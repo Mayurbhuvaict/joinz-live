@@ -1,0 +1,12 @@
+{% block sw_sidebar_navisadfgation_item %}
+    <button
+        @click="emitButtonClicked"
+        class="kplngi-product-order-refresh-button"
+        :class="{ 'is--disabled': isLoading || !orderActive }"
+        :disabled="isLoading || !orderActive"
+        >
+
+        <sw-icon name="default-arrow-360-left" size="20px"></sw-icon>
+    </button>
+
+{% endblock %}

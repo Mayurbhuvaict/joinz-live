@@ -1,0 +1,43 @@
+{
+    "name": "dtgs/rich-snippets",
+    "description": "codiverse Rich Snippets",
+    "version": "v6.0.5",
+    "type": "shopware-platform-plugin",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "codiverse GbR",
+            "homepage": "https://www.codiverse.de/"
+        }
+    ],
+    "require": {
+        "shopware/core": ">=6.2",
+        "ext-json": "*"
+    },
+    "extra": {
+        "shopware-plugin-class": "Dtgs\\RichSnippets\\DtgsRichSnippetsSw6",
+        "plugin-icon": "src/Resources/config/plugin.png",
+        "copyright": "(c) by codiverse GbR",
+        "label": {
+            "de-DE": "codiverse Rich Snippets JSON LD",
+            "en-GB": "codiverse Rich Snippets JSON LD"
+        },
+        "description": {
+            "de-DE": "Mit sog. \"Rich Snippets\" liefern Sie der Suchmaschine wichtige Informationen über die Struktur Ihrer Produkte. Hier lassen sich Preise, Bilder, Bewertungen und Verfügbarkeiten übermitteln, die auch auf der Google-Ergebnisseite auftauchen und Ihnen dabei helfen, mehr Besucher in Ihren Shop zu locken.",
+            "en-GB": " JSON-LD Rich Snippets for product pages! JSON-LD is now the preferred Rich Snippet format according to Google: \"JSON-LD is the recommended format. Google is in the process of adding JSON-LD support for all markup-powered features.\""
+        },
+        "manufacturerLink": {
+            "de-DE": "https://store.shopware.com/codiverse.html",
+            "en-GB": "https://store.shopware.com/en/codiverse.html"
+        },
+        "supportLink": {
+            "de-DE": "https://www.codiverse.de/faqs/",
+            "en-GB": "https://www.codiverse.de/faqs/"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Dtgs\\RichSnippets\\": "src/"
+        }
+    }
+}

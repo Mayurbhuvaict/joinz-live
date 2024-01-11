@@ -1,0 +1,40 @@
+{
+    "name": "kplngi/product-order",
+    "description": "Set productorder for categories",
+    "version": "1.5.7",
+    "type": "shopware-platform-plugin",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Kiplingi",
+            "homepage": "https://www.kiplingi.de"
+        }
+    ],
+    "require": {
+        "shopware/core": "~6.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Kplngi\\ProductOrder\\": "src/"
+        }
+    },
+    "extra": {
+        "shopware-plugin-class": "Kplngi\\ProductOrder\\KplngiProductOrder",
+        "label": {
+            "de-DE": "Produkte anordnen",
+            "en-GB": "Product sorting"
+        },
+        "description": {
+            "de-DE": "Die Reihenfolge von Produkten in einer Kategorie kann im Administrationsbereich sortiert werden. Die Artikel erscheinen dann in der sortierten Reihenfolge im Shop.",
+            "en-GB": "The order of products in a category can be sorted in the administration area. The products then appear in the chosen order in the shop category to draw the customers attention."
+        },
+        "manufacturerLink": {
+            "de-DE": "https://www.kiplingi.de",
+            "en-GB": "https://www.kiplingi.de"
+        },
+        "supportLink": {
+            "de-DE": "https://www.kiplingi.de",
+            "en-GB": "https://www.kiplingi.de"
+        }
+    }
+}

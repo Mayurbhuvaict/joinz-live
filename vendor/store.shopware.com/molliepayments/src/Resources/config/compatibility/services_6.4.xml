@@ -1,0 +1,37 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <service id="Kiener\MolliePayments\Compatibility\Storefront\Route\PaymentMethodRoute\Voucher\HideVoucherPaymentMethodRoute64"
+                 decorates="Shopware\Core\Checkout\Payment\SalesChannel\PaymentMethodRoute">
+            <argument type="service" id="Kiener\MolliePayments\Compatibility\Storefront\Route\PaymentMethodRoute\Voucher\HideVoucherPaymentMethodRoute64.inner"/>
+            <argument type="service" id="service_container"/>
+            <argument type="service" id="Kiener\MolliePayments\Service\Voucher\VoucherService"/>
+        </service>
+
+        <service id="Kiener\MolliePayments\Compatibility\Storefront\Route\PaymentMethodRoute\MollieLimits\MollieLimitsPaymentMethodRoute64"
+                 decorates="Shopware\Core\Checkout\Payment\SalesChannel\PaymentMethodRoute">
+            <argument type="service" id="Kiener\MolliePayments\Compatibility\Storefront\Route\PaymentMethodRoute\Voucher\HideVoucherPaymentMethodRoute64.inner"/>
+            <argument type="service" id="Kiener\MolliePayments\Compatibility\Storefront\Route\PaymentMethodRoute\MollieLimits\Service\MollieLimitsRemover"/>
+        </service>
+
+        <service id="Kiener\MolliePayments\Compatibility\Storefront\Route\PaymentMethodRoute\Cache\CachedPaymentMethodRoute64">
+            <argument type="service" id="Kiener\MolliePayments\Service\SettingsService"/>
+            <argument type="service" id="Shopware\Core\Checkout\Cart\SalesChannel\CartService"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <!-- Mail -->
+        <service id="mollie_payments.mail_service" class="Kiener\MolliePayments\Service\Mail\MailService">
+            <argument type="service" id="Shopware\Core\Framework\Validation\DataValidator"/>
+            <argument type="service" id="Shopware\Core\Content\Mail\Service\MailFactory"/>
+            <argument type="service" id="Shopware\Core\Content\Mail\Service\MailSender"/>
+            <argument type="service" id="mollie_payments.logger"/>
+        </service>
+    </services>
+
+</container>

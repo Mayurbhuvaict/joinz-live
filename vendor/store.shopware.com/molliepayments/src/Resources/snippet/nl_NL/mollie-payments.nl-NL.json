@@ -1,0 +1,33 @@
+{
+  "molliePayments": {
+    "testMode": {
+      "label": "testmodus"
+    },
+    "messages": {
+      "payment": {
+        "error": "Betaling mislukt",
+        "failed": "De betaling is mislukt of geannuleerd. U wordt doorgestuurd naar Mollie waar u uw betaling kunt afronden met de methode naar keuze. ",
+        "buttonPayThroughMollie": "Betaal met een andere betaalmethode",
+        "buttonReturnToShop": "Terug naar de webshop"
+      },
+      "redirecting": "Doorsturen naar: "
+    },
+    "components": {
+      "creditCard": {
+        "headLine": "Credit card gegevens",
+        "cardHolderLabel": "Naam kaarthouder",
+        "cardNumberLabel": "Creditcardnummer",
+        "cardExpiryDateLabel": "MM/JJ",
+        "cardVerificationCodeLabel": "CVV",
+        "creditCardTagLine": "Betaling verzekerd en verzorgd door"
+      }
+    },
+    "payments": {
+      "applePayDirect": {
+        "captionSubtotal": "Subtotaal",
+        "captionTaxes": "BTW",
+        "paymentError": "De betaling met Apple Pay is mislukt."
+      }
+    }
+  }
+}

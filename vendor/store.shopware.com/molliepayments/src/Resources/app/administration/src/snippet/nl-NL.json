@@ -1,0 +1,275 @@
+{
+  "global": {
+    "businessEvents": {
+      "mollie_webhook_received_All": " Mollie Webhook Ontvangen (Alle)",
+      "mollie_webhook_received_status_authorized": " Mollie Webhook Ontvangen (Geautoriseerd)",
+      "mollie_webhook_received_status_failed": " Mollie Webhook Ontvangen (Mislukt)",
+      "mollie_webhook_received_status_canceled": " Mollie Webhook Ontvangen (Geannuleerd)",
+      "mollie_webhook_received_status_expired": " Mollie Webhook Ontvangen (Vervallen)",
+      "mollie_webhook_received_status_pending": " Mollie Webhook Ontvangen (In Afwachting)",
+      "mollie_webhook_received_status_paid": " Mollie Webhook Ontvangen (Betaald)",
+      "mollie_webhook_received_status_completed": " Mollie Webhook Ontvangen (Voltooid)",
+      "mollie_webhook_received_status_refunded": " Mollie Webhook Ontvangen (Terugbetaald)",
+      "mollie_webhook_received_status_partially_refunded": " Mollie Webhook Ontvangen (Gedeeltelijk terugbetaald)",
+      "mollie_refund_started": " Mollie terugbetaling gestart"
+    }
+  },
+  "mollie-payments": {
+    "general": {
+      "mainMenuItemGeneral": "Mollie betalingen",
+      "descriptionTextModule": "Mollie betalingen",
+      "btnMollieActions": "Mollie acties",
+      "refundThroughMollie": "Terugbetaling via Mollie",
+      "shipThroughMollie": "Verzending door Mollie"
+    },
+    "config": {
+      "info": {
+        "title": "Hi {userName}, Welkom bij Mollie!",
+        "descriptionTop": "Onboarding is eenvoudig bij Mollie!",
+        "descriptionBottom": "Dat is alles!",
+        "descriptionFooter": "Als je meer wilt weten over onze plugin, bezoek dan onze officiële documentatie pagina.",
+        "onboardingStep1": "Meld je aan voor een Mollie Account.",
+        "onboardingStep2": "Voer je API sleutels in de sectie hieronder in.",
+        "onboardingStep2TestMode": "Zet 'Test Mode' aan als je alleen betalingen wilt testen.",
+        "onboardingStep3": "Wijs betaalmethoden toe aan je verkoopkanaal.",
+        "onboardingStep3Link": "naar je verkoopkanalen",
+        "btnDocumentation": "Documentatie",
+        "btnRequestSupport": "Support",
+        "btnTroubleshooting": "Troubleshooting Gids"
+      },
+      "api": {
+        "apiLinkButton": "Haal jouw API sleutels van het Mollie Dashboard",
+        "testButton": "Controlle API Keys",
+        "testApiKeys": {
+          "title": "Mollie Payments",
+          "apiKey": "API Key",
+          "isValid": "is geldig",
+          "isInvalid": "is ongeldig"
+        }
+      },
+      "payments": {
+        "updatePaymentMethods": {
+          "title": "Mollie Payments",
+          "button": "Betaalmethoden updaten",
+          "succeeded": "De betaalmethoden zijn succesvol geupdated.",
+          "failed": "De betaalmethoden konden niet worden geupdated."
+        },
+        "mollieLimits": {
+          "link": "Open betalingslimieten van Mollie"
+        }
+      },
+      "support": {
+        "modalTitle": "Verzoek support van Mollie",
+        "btnCancel": "Cancel",
+        "btnConfirm": "Verzoek support",
+        "btnSupport": "Meer over onze ondersteuning",
+        "form": {
+          "name": "Uw naam",
+          "email": "Uw e-mail",
+          "recipient": "Stuur verzoek naar",
+          "subject": "Onderwerp",
+          "message": "Message"
+        },
+        "data": {
+          "header": "Gegevens verzonden naar Mollie:",
+          "other": "Andere:",
+          "shopwareVersion": "Shopwareversie",
+          "pluginLogs": "{plugin} logbestanden",
+          "pluginConfiguration": "{plugin} configuratie",
+          "pluginConfigurationHelpText": "API-sleutels zijn uitgesloten.",
+          "paymentMethods": "Informatie over betaalmethoden",
+          "paymentMethodsHelpText": "Bevat informatie over betaalmethoden, welke zijn gekoppeld aan de verkoopkanalen, en de betreffende status ervan in uw Mollie account."
+        },
+        "success": "Het ondersteuningsverzoek is succesvol verzonden. We doen ons best om zo snel mogelijk te antwoorden",
+        "error": "Helaas was er een probleem met de verzending via Shopware. Probeer het opnieuw of stuur ons direct een e-mail."
+      }
+    },
+    "refunds": {
+      "status": {
+        "queued": "In wachtrij",
+        "pending": "In afwachting",
+        "processing": "In behandeling",
+        "refunded": "Terugbetaald",
+        "failed": "Mislukt",
+        "description": {
+          "queued": "De terugbetaling wordt in de wachtrij geplaatst totdat er voldoende saldo is om de terugbetaling te verwerken. U kunt de terugbetaling nog steeds annuleren.",
+          "pending": "De terugbetaling wordt de volgende werkdag naar de bank gestuurd. U kunt de terugbetaling nog annuleren.",
+          "processing": "De terugbetaling is naar de bank gestuurd. Het bedrag wordt zo spoedig mogelijk overgemaakt op de rekening van de klant.",
+          "refunded": "Het restitutiebedrag is overgemaakt naar de klant.",
+          "failed": "De terugbetaling is mislukt na verwerking. De klant heeft bijvoorbeeld zijn/haar bankrekening opgeheven. Het geld zal worden teruggestort op de rekening."
+        }
+      }
+    },
+    "refund-manager": {
+      "general": {
+        "unitQuantity": "st."
+      },
+      "cart": {
+        "title": "Bestelling ##orderNumber##",
+        "btnSelectAll": "Alles selecteren",
+        "btnResetForm": "Formulier resetten",
+        "linkHowTo": "Hoe gebruik je dit formulier?",
+        "grid": {
+          "columns": {
+            "item": "Artikel",
+            "productNumber": "Artikelnummer",
+            "unitPrice": "Prijs per eenheid",
+            "quantity": "Aantal",
+            "refunded": "Vergoed",
+            "refundQuantity": "Vergoeding",
+            "totalPrice": "Totaal",
+            "refundAmount": "Vergoeding",
+            "resetStock": "Voorraad resetten"
+          },
+          "btnResetLine": "Rij resetten",
+          "checkDeductPromotion": "Promotie aftrekken"
+        }
+      },
+      "instructions": {
+        "linkResetTutorials": "Handleidingen resetten",
+        "btnToggleTutorial": "Handleidingen tonen/verbergen",
+        "titleFullRefund": "Volledige terugbetaling",
+        "textFullRefund": "Gebruik gewoon de knop voor de volledige terugbetaling. Dit zorgt ervoor dat alle artikelen worden gemarkeerd als terugbetaald en het volledige bedrag wordt vergoed aan de klant.",
+        "titleStockReset": "Voorraad resetten",
+        "textStockReset": "Je kunt de beschikbare voorraad automatisch verhogen door de hoeveelheid in te voeren die u weer op voorraad wilt hebben. Dit moet je invoeren voordat je overgaat tot een volledige of gedeeltelijke terugbetaling. Het terugzetten van de voorraad kan op een flexibele manier gecombineerd worden met het eigenlijke terugbetalingsproces.",
+        "titleShipping": "Verzendkosten",
+        "textShipping": "Verzendkosten kunnen worden terugbetaald zoals elk ander artikel. Voer de volledige hoeveelheid in of een aangepast deelbedrag en ga verder met de terugbetaling. Het terugbetalen van verzendkosten kan op een flexibele manier gecombineerd worden met het eigenlijke terugbetalingsproces van artikelen.",
+        "titlePartialAmount": "Gedeeltelijke terugbetaling (enkel een bedrag)",
+        "textPartialAmount": "Voer gewoon het deelbedrag in het tekstveld in en start de terugbetaling.",
+        "titlePartialItems": "Gedeeltelijke terugbetaling (met artikelen)",
+        "textPartialItems": "Als u hoeveelheden en artikelen als terugbetaald wilt markeren in Mollie, gebruik dan bovenstaand formulier. Stel uw hoeveelheden in en geef een aangepast bedrag op voor elk item dat zal worden terugbetaald. De totale som zal dan zichtbaar zijn in het tekstveld met het finale terugbetalingsbedrag. Vergeet niet dat het nog steeds mogelijk is om dit eindbedrag aan te passen voordat u de terugbetaling start.",
+        "titlePartialPromotions": "Gedeeltelijke terugbetaling (met promotions)",
+        "textPartialPromotions": "Als je een promotion in je winkelwagen hebt, dan is de promotion een eigen line item. Als je alle afgeprijsde artikelen wilt terugbetalen, dan kann je de totale waarde van alle artikelen terugbetalen en ook de promotie zelf. Als u echter slechts een paar afgeprijsde artikelen wilt terugbetalen, kunt je de aangepaste korting automatisch aftrekken voor elk afzonderlijk artikel. Je kunt natuurlijk altijd de waarden veranderen mochten ze niet juist zijn."
+      },
+      "summary": {
+        "dataLoading": "Gegevens worden geladen...",
+        "captionTotal": "Totaal incl. belasting",
+        "captionTotalTaxFree": "Totaal",
+        "captionPendingRefunds": "Wachtend op terugbetaling",
+        "captionVouchers": "Voucher bedrag",
+        "captionRefunded": "Terugbetaald bedrag",
+        "captionRemaining": "Terugbetaalbaar bedrag",
+        "btnFixDiff": "Herstel verschil",
+        "placeholderDescription": "Een optionele beschrijving aan terugbetaling toevoegen",
+        "checkVerification": "Ik heb het totale restitutiebedrag en de geconfigureerde hoeveelheden voor restitutie en herbevoorrading geverifieerd.",
+        "btnRefund": "Terugbetaling",
+        "btnFullRefund": "Volledige terugbetaling"
+      },
+      "refunds": {
+        "title": "Terugbetalingen in het Mollie Dashboard",
+        "linkMore": "Meer over terugbetalingen",
+        "grid": {
+          "columns": {
+            "amount": "Bedrag",
+            "status": "Status",
+            "description": "Beschrijving",
+            "composition": "Samenstelling",
+            "date": "Datum"
+          },
+          "lblNoComposition": "Geen samenstelling beschikbaar",
+          "btnCancelRefund": "Annuleer deze terugbetaling"
+        }
+      },
+      "notifications": {
+        "success": {
+          "refund-created": "Er is een terugbetaling aangemaakt in Mollie. Het kan 2 uur duren voordat de terugbetaling is voltooid. Tot die tijd kan de terugbetaling worden geannuleerd.",
+          "refund-canceled": "De uitstaande terugbetaling is met succes geannuleerd en verwijderd."
+        },
+        "error": {
+          "low-amount": "Vull een terug te betalen bedrag in",
+          "refund-created": "Er is iets misgegaan bij het aanmaken van een terugbetaling.",
+          "refund-canceled": "Er is een probleem opgetreden bij het annuleren van de uitstaande terugbetaling. Probeer het opnieuw in het Mollie Dashboard."
+        }
+      }
+    },
+    "modals": {
+      "shipping": {
+        "title": "Verzenden bij Mollie",
+        "item": {
+          "label": "Product:",
+          "noQuantity": "Voer een hoeveelheid in om te verzenden.",
+          "shipAll": "Verzend alles",
+          "summary": {
+            "quantity": "Te verzenden hoeveelheid",
+            "shipped": "Verzonden hoeveelheid",
+            "shippable": "Verzendbare hoeveelheid"
+          },
+          "success": "De bestelling is succesvol verzonden."
+        },
+        "order": {
+          "description": "De volgende product aantallen zullen worden verzonden.",
+          "itemHeader": "Product",
+          "quantityHeader": "Aantal"
+        },
+        "availableTracking": {
+          "label": "Beschikbare tracking codes",
+          "hint": "Klik op een van deze tracking codes om automatisch alle gegevens in te vullen."
+        },
+        "showTracking": "Voeg tracking info toe aan deze zending",
+        "tracking": {
+          "carrier": "Carrier",
+          "code": "Code",
+          "url": "Url",
+          "invalid": "Voer zowel Carrier als Code in"
+        },
+        "confirmButton": "Verzenden",
+        "cancelButton": "Niet verzenden"
+      }
+    },
+    "sw-flow": {
+      "actions": {
+        "shipOrder": {
+          "editor": {
+            "title": "Bestelling verzenden (Mollie)",
+            "description": "Bestelling is gemarkeerd als verzonden in Mollie."
+          },
+          "modal": {
+            "title": "Bestelling verzenden",
+            "description": "Deze actie zal automatisch een bestelling verzenden via Mollie. De flow sequence ontvangt het ordernummer, en geeft dit door aan de Mollie API. Succesvolle verzendingen en mislukte verzendingen zullen zichtbaar zijn in de Mollie logbestanden.",
+            "warningConfig": "Schakel alle extra automatiseringen uit die eventueel in conflict komen met deze Flow Builder actie. De volgende geactiveerde features in deze plugin kunnen elkaar kruisen met deze actie:",
+            "noWarnings": "Geen waarschuwingen"
+          }
+        },
+        "refundOrder": {
+          "editor": {
+            "title": "Bestelling terugbetalen (Mollie)",
+            "description": "Bestelling zal worden terugbetaald via Mollie."
+          },
+          "modal": {
+            "title": "Bestelling terugbetalen",
+            "description": "Deze actie zal automatisch een terugbetaling starten via Mollie. De flow sequence ontvangt het ordernummer, en geeft dit door aan de Mollie API. Succesvolle refunds en mislukte refunds zullen zichtbaar zijn in de Mollie logbestanden.",
+            "warning": "Houd er rekening mee dat het tot 2 uur kan duren voordat een terugbetaling zichtbaar is in de shop. Tot die tijd kunt u geïnitieerde terugbetalingen op elk moment annuleren op de bestelpagina in de shop, of direct in het Mollie Dashboard.",
+            "warningConfig": "Deactiveer alle extra automatiseringen die kunnen collideren met deze Flow Builder actie."
+          }
+        },
+        "warnings": {
+          "automaticShipping": "Automatische verzending in plugin configuratie"
+        }
+      }
+    }
+  },
+  "sw-order": {
+    "detailExtended": {
+      "buttonMolliePaymentLink": "Kopieer naar Klembord",
+      "columnRefunded": "Terugbetaald",
+      "columnShipped": "Verzonden",
+      "labelMollieOrderId": "Mollie Order ID",
+      "labelMolliePaymentLink": "Mollie Checkout URL",
+      "totalRefunds": "Terugbetaald bedrag",
+      "totalRefundsPending": "Wachtend op terugbetaling",
+      "totalRemaining": "Terug te betalen",
+      "totalVouchers": "Voucher",
+      "totalShipments": "Verzonden bedrag ({quantity} items)",
+      "refundManager": {
+        "title": "Terugbetaling via Mollie",
+        "btnOpenRefundManager": "Refund Manager openen",
+        "btnCloseRefundManager": "Refund Manager sluiten"
+      }
+    }
+  },
+  "sw-customer": {
+    "extendedInfo": {
+      "labelPreferredIdealIssuer": "Voorkeur iDeal verstrekker"
+    }
+  }
+}

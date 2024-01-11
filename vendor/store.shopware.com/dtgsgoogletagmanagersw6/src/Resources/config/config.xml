@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/System/SystemConfig/Schema/config.xsd">
+
+    <card>
+        <title>Basic configuration</title>
+        <title lang="de-DE">Basis-Konfiguration</title>
+
+        <input-field>
+            <name>googleId</name>
+            <label>Google Tag Manager ID</label>
+            <label lang="de-DE">Google Tag Manager ID</label>
+            <helpText>Please enter your Tag Manager ID. (Supports the use of multiple IDs! Please separate by comma)</helpText>
+            <helpText lang="de-DE">Geben Sie hier Ihre Tag Manager ID an. (Unterstützt die Verwendung mehrerer IDs! Bitte mit Komma separieren)</helpText>
+        </input-field>
+
+        <input-field>
+            <name>googleAdwordsId</name>
+            <label>Google Adwords Merchant ID</label>
+            <label lang="de-DE">Google Adwords Merchant ID</label>
+            <helpText>Please enter your Adwords Merchant ID. (optional!)</helpText>
+            <helpText lang="de-DE">Geben Sie hier Ihre Adwords Merchant ID an. (optional!)</helpText>
+        </input-field>
+
+        <input-field type="bool">
+            <name>enhancedTrackingEnabled</name>
+            <label lang="de-DE">Enhanced Ecommerce Tracking einbinden?</label>
+            <label>Use google Enhanced Ecommerce Tracking?</label>
+            <helpText lang="de-DE">Geben Sie auch das Enhanced Ecommerce Tracking für den Tag Manager aus.</helpText>
+            <helpText>Will add google Enhanced Ecommerce Tracking to data layer.</helpText>
+        </input-field>
+
+        <input-field type="bool">
+            <name>remarketingEnabled</name>
+            <label lang="de-DE">Remarketing Parameter einbinden?</label>
+            <label>Use google remarketing?</label>
+            <helpText lang="de-DE">Geben Sie auch Remarketing Parameter für den Tag Manager aus.</helpText>
+            <helpText>Will add google remarketing to data layer.</helpText>
+        </input-field>
+
+        <input-field type="single-select">
+            <name>datalayerPosition</name>
+            <options>
+                <option>
+                    <id>head</id>
+                    <name lang="de-DE">Standard - im head-Tag</name>
+                    <name>default - inside head-tag</name>
+                </option>
+                <option>
+                    <id>body</id>
+                    <name lang="de-DE">im Body Tag</name>
+                    <name>inside body-tag</name>
+                </option>
+            </options>
+            <defaultValue>head</defaultValue>
+            <label lang="de-DE">Position des Datalayers</label>
+            <label>Position of data layer</label>
+        </input-field>
+
+        <input-field type="single-select">
+            <name>tagmanagerPosition</name>
+            <options>
+                <option>
+                    <id>head</id>
+                    <name lang="de-DE">Standard - im head-Tag</name>
+                    <name>default - inside head-tag</name>
+                </option>
+                <option>
+                    <id>body</id>
+                    <name lang="de-DE">im Body Tag</name>
+                    <name>inside body-tag</name>
+                </option>
+            </options>
+            <defaultValue>head</defaultValue>
+            <label lang="de-DE">Position des Tag Managers</label>
+            <label>Position of tag manager</label>
+        </input-field>
+    </card>
+
+    <card>
+        <title>Advanced configuration</title>
+        <title lang="de-DE">Erweiterte Konfiguration</title>
+
+        <input-field type="single-select">
+            <name>showPriceType</name>
+            <options>
+                <option>
+                    <id>brutto</id>
+                    <name lang="de-DE">Bruttopreise</name>
+                    <name>prices incl. tax</name>
+                </option>
+                <option>
+                    <id>netto</id>
+                    <name lang="de-DE">Nettopreise</name>
+                    <name>net prices</name>
+                </option>
+            </options>
+            <defaultValue>brutto</defaultValue>
+            <label lang="de-DE">Welcher Preistyp soll übergeben werden?</label>
+            <label>Select price type</label>
+        </input-field>
+
+        <input-field type="bool">
+            <name>eeAddCategorynameInCheckout</name>
+            <label lang="de-DE">Enhanced Ecommerce: Kategorienamen übertragen?</label>
+            <label>Enhanced Ecommerce: add category names?</label>
+            <helpText lang="de-DE">Shopware übergibt die Kategorienamen nicht standardmäßig im Warenkorb. Über zusätzliche Datenbankanfragen können Sie ausgelesen und an Google Analytics übertragen werden.</helpText>
+            <helpText>Shopware does not include category names by default in its basket. With additional db queries, we can add them to the transfered data.</helpText>
+        </input-field>
+
+        <input-field type="int">
+            <name>eeMaxAmountCategoriesForImpressions</name>
+            <label lang="de-DE">Enhanced Ecommerce: Maximale Anzahl an Produkten im Impressions-Array (Unbegrenzt: 0)</label>
+            <label>Enhanced Ecommerce: limit amount of products in impressions-array? (Set 0 for no limit)</label>
+            <defaultValue>0</defaultValue>
+            <helpText lang="de-DE">Wenn sehr viele Produkte in den Impressions übergeben werden, kann der Datalayer u.U. zu groß werden. Hier kann die Anzahl an übergebenen Produkten begrenzt werden.</helpText>
+            <helpText>Having a lot of products in your impressions-array can cause the datalayer to get to big for further processing. This options helps to limit the amount of products.</helpText>
+        </input-field>
+
+        <input-field type="bool">
+            <name>pagehidingEnabled</name>
+            <label lang="de-DE">Page Hiding einbinden?</label>
+            <label>Use page hiding?</label>
+            <helpText lang="de-DE">Geben Sie das Page Hiding Snippet aus, wenn Sie Google Optimize für A/B Tests nutzen.</helpText>
+            <helpText>Add the page hiding snippet (might be helpful when using Google Optimize for A/B tests)</helpText>
+        </input-field>
+
+        <input-field type="bool">
+            <name>usercentricsEnabled</name>
+            <label lang="de-DE">UserCentrics Kompatibiltät aktivieren?</label>
+            <label>Enable UserCentrics compatibility?</label>
+            <helpText lang="de-DE">Diese Option fügt zusätzlichen Code (für die Version 1 von UserCentrics!) ein, der es für UserCentrics möglich macht, den GTM Code erst nach dem Consent auszugeben. Wenn Sie UserCentrics nicht nutzen, deaktivieren Sie bitte diese Funktion.</helpText>
+            <helpText>This option adds additional code (UserCentrics Version 1!), required by the UserCentrics framework in order to withhold the GTM code until after the user's consent. Please disable, if you're not using UserCentrics.</helpText>
+        </input-field>
+
+        <input-field type="single-select">
+            <name>eeEnhancedConversions</name>
+            <options>
+                <option>
+                    <id>off</id>
+                    <name lang="de-DE">deaktivieren</name>
+                    <name>disable</name>
+                </option>
+                <option>
+                    <id>mail</id>
+                    <name lang="de-DE">nur E-Mail Adresse</name>
+                    <name>e-mail only</name>
+                </option>
+                <option>
+                    <id>full</id>
+                    <name lang="de-DE">komplette Userdaten</name>
+                    <name>full user data</name>
+                </option>
+            </options>
+            <defaultValue>mail</defaultValue>
+            <label lang="de-DE">Erweiterte Conversions im Checkout</label>
+            <label>Enhanced Conversions in checkout</label>
+            <helpText lang="de-DE">Legt fest, welche Daten in den erweiterten Conversions übergeben werden sollen.</helpText>
+            <helpText>Which data should be transferred when using Enhanced Conversions.</helpText>
+        </input-field>
+
+        <input-field>
+            <name>customGtmJsUrl</name>
+            <label lang="de-DE">Eigene GTM.js URL</label>
+            <label>Custom GTM.js URL</label>
+            <helpText lang="de-DE">Falls gewünscht, können Sie das GTM.js auch über Ihren eigenen Server ausliefern. Geben Sie im Anschluss hier die URL (ohne die Endung gtm.js!) an. Beispiel: https://www.codiverse.de/</helpText>
+            <helpText>If you'd like to stay in first-party-context and deliver the gtm.js Script via your own server, please provide the URL here (without the gtm.js, just domain/folder etc.) Example: https://www.codiverse.de/</helpText>
+        </input-field>
+
+        <input-field>
+            <name>customGetParams</name>
+            <label lang="de-DE">Custom GET Parameter</label>
+            <label>Custom GET parameters</label>
+            <helpText lang="de-DE">Hier können Custom-Parameter (semikolon-getrennt) definiert werden. Z.B. URL-Paramter1:Parametername1 in GTM;URL-Paramter2:Parametername2 in GTM;</helpText>
+            <helpText>Here you can define custom parameters (semicolon-seperated). E.g. URL-Paramter1:Parametername1 in GTM;URL-Paramter2:Parametername2 in GTM;</helpText>
+        </input-field>
+    </card>
+
+    <card>
+        <title>Developer configuration</title>
+        <title lang="de-DE">Entwickler Konfiguration</title>
+
+        <input-field type="single-select">
+            <name>tagmanagerLogging</name>
+            <options>
+                <option>
+                    <id>off</id>
+                    <name>off</name>
+                    <name lang="de-DE">Ausgeschaltet</name>
+                </option>
+                <option>
+                    <id>debug</id>
+                    <name>debug</name>
+                    <name lang="de-DE">Debug</name>
+                </option>
+            </options>
+            <defaultValue>off</defaultValue>
+            <label lang="de-DE">Entwickler: Logging</label>
+            <label>Developer: logging</label>
+        </input-field>
+    </card>
+</config>

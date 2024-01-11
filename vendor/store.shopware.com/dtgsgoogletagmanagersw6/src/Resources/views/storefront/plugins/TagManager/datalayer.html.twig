@@ -1,0 +1,26 @@
+{% if page.extensions.GoogleTagManagerConfig.status == 'enabled' %}
+    <script>
+        dataLayer = window.dataLayer || []; dataLayer.push({{ page.extensions.GoogleTagManagerConfig.tags|raw }});
+        {% if config('DtgsGoogleTagManagerSw6.config.remarketingEnabled') %}
+            var google_tag_params = {{ page.extensions.GoogleTagManagerConfig.remarketing_tags|raw }}
+            dataLayer.push ({
+                'event':'remarketingTriggered',
+                'google_tag_params': window.google_tag_params
+            });
+        {%  endif %}
+        {% if config('DtgsGoogleTagManagerSw6.config.enhancedTrackingEnabled') %}
+            {% if page.extensions.GoogleTagManagerConfig.enhancedecommerce_tags != '[]' %}
+            dataLayer.push (
+                {{ page.extensions.GoogleTagManagerConfig.enhancedecommerce_tags|raw }}
+            );
+            {%  endif %}
+        {%  endif %}
+        {% if page.extensions.GoogleTagManagerConfig.adwords_tracking_enabled %}
+            {% if page.extensions.GoogleTagManagerConfig.adwords_tags != '[]' %}
+                dataLayer.push (
+                    {{ page.extensions.GoogleTagManagerConfig.adwords_tags|raw }}
+                );
+            {%  endif %}
+        {%  endif %}
+    </script>
+{%  endif %}

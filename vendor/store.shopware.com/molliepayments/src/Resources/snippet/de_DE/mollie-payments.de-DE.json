@@ -1,0 +1,33 @@
+{
+  "molliePayments": {
+    "testMode": {
+      "label": "Testmodus"
+    },
+    "messages": {
+      "payment": {
+        "error": "Zahlung fehlgeschlagen",
+        "failed": "Die Zahlung ist fehlgeschlagen oder wurde storniert. Sie werden zu Mollie weitergeleitet, wo Sie Ihre Zahlung mit der Methode Ihrer Wahl abschließen können. ",
+        "buttonPayThroughMollie": "Bezahlen Sie mit einer anderen Zahlungsart",
+        "buttonReturnToShop": "Kehre zum Webshop zurück"
+      },
+      "redirecting": "Leiten Sie weiter zu: "
+    },
+    "components": {
+      "creditCard": {
+        "headLine": "Kreditkarteninformationen",
+        "cardHolderLabel": "Name des Karteninhabers",
+        "cardNumberLabel": "Kreditkartennummer",
+        "cardExpiryDateLabel": "MM/JJ",
+        "cardVerificationCodeLabel": "CVV",
+        "creditCardTagLine": "Zahlung gesichert und zur Verfügung gestellt von"
+      }
+    },
+    "payments": {
+      "applePayDirect": {
+        "captionSubtotal": "Zwischensumme",
+        "captionTaxes": "Steuern",
+        "paymentError": "Die Zahlung mit Apple Pay ist fehlgeschlagen."
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+@import "~scss/variables";
+
+$kplngi-proudct-order-refresh-button-icon-color: $color-gray-500;
+$kplngi-proudct-order-refresh-button-icon-color-active: $color-shopware-brand-500;
+$kplngi-proudct-order-refresh-button-size: 64px;
+
+.kplngi-product-order-refresh-button {
+    width: $kplngi-proudct-order-refresh-button-size;
+    height: $kplngi-proudct-order-refresh-button-size;
+    border: none;
+    color: $kplngi-proudct-order-refresh-button-icon-color;
+    background: none;
+    cursor: pointer;
+    outline: none;
+    align-self: flex-end;
+
+    &:hover:not(.is--disabled) {
+        color: $kplngi-proudct-order-refresh-button-icon-color-active;
+    }
+
+    &.is--disabled {
+        cursor: not-allowed;
+        opacity: .3;
+    }
+}

@@ -1,0 +1,29 @@
+.kplngi-product-order {
+    .kplngi-product-order-configuration {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .sw-data-grid__actions-menu {
+        display: none;
+    }
+
+    @media screen and (min-width: 1580px) {
+        .sw-card .sw-card__title {
+            width: inherit;
+            position: inherit;
+            left: inherit;
+            top: inherit;
+            text-align: inherit;
+        }
+    }
+
+    .kplngi-product-order-table-filter {
+        .sw-simple-search-field {
+            input {
+                border-radius: 4px;
+            }
+        }
+    }
+}

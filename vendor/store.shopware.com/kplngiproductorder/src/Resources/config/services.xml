@@ -1,0 +1,73 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <!--        Subscribers -->
+        <service id="Kplngi\ProductOrder\Subscriber\ProductCategoryChange">
+            <argument type="service" id="kplngi_productcategoryposition.repository"/>
+            <argument type="service" id="kplngi_orderactive.repository"/>
+            <tag name="kernel.event_subscriber"/>
+            <argument type="service" id="product.repository"/>
+        </service>
+
+        <service id="Kplngi\ProductOrder\Subscriber\ListingCriteria">
+            <argument type="service" id="Kplngi\ProductOrder\Position\CategoryIdHelper"/>
+            <argument type="service" id="category.repository"/>
+            <argument type="service" id="kplngi_orderactive.repository"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <service id="Kplngi\ProductOrder\Subscriber\OnPositionChange">
+            <tag name="kernel.event_subscriber"/>
+            <argument type="service" id="kplngi_productcategoryposition.repository"/>
+            <argument type="service" id="Shopware\Core\Framework\Adapter\Cache\CacheInvalidator"/>
+        </service>
+        <!--        Entities-->
+        <service id="Kplngi\ProductOrder\Position\ProductCategoryDefinition">
+            <tag name="shopware.entity.definition" entity="kplngi_productcategoryposition"/>
+        </service>
+
+        <service id="Kplngi\ProductOrder\Position\OrderActiveDefinition">
+            <tag name="shopware.entity.definition" entity="kplngi_orderactive"/>
+        </service>
+
+        <!--        Extensions-->
+        <service id="Kplngi\ProductOrder\Core\Content\Product\Extension\ProductExtension">
+            <tag name="shopware.entity.extension"/>
+        </service>
+
+        <!--        Fields-->
+        <service id="Kplngi\ProductOrder\Position\Fields\PositionResolver">
+            <argument type="service" id="Kplngi\ProductOrder\Position\CategoryIdHelper"/>
+            <tag name="shopware.field_resolver"/>
+        </service>
+
+        <service id="Kplngi\ProductOrder\Position\Fields\PositionJoinBuilder">
+            <argument type="service"
+                      id="Shopware\Core\Framework\DataAbstractionLayer\Dbal\EntityDefinitionQueryHelper"/>
+            <argument type="service" id="Kplngi\ProductOrder\Position\CategoryIdHelper"/>
+        </service>
+
+        <!--        Service-->
+        <service id="Kplngi\ProductOrder\Position\CategoryIdHelper"/>
+
+        <service id="Kplngi\ProductOrder\Position\ProductCategoryPositionService">
+            <argument type="service" id="product.repository"/>
+            <argument type="service" id="category.repository"/>
+            <argument type="service" id="kplngi_productcategoryposition.repository"/>
+            <argument type="service" id="kplngi_orderactive.repository"/>
+        </service>
+
+        <!--        Controller-->
+        <service id="Kplngi\ProductOrder\Controller\ProductOrderController" public="true">
+            <argument type="service" id="Kplngi\ProductOrder\Position\ProductCategoryPositionService"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+    </services>
+</container>

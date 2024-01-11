@@ -1,0 +1,43 @@
+{% block kplngi_product_order %}
+    <div class="kplngi-product-order">
+        <sw-card :title="$tc('kplngi-product-order.title')">
+            <div class="kplngi-product-order-configuration">
+                <sw-field type="switch"
+                          v-model="orderSwitch"
+                          @change="onSwitch(orderSwitch)"
+                          :disabled="switchDisabled"
+                          :label="$tc('kplngi-product-order.switch')">
+                </sw-field>
+                <div class="kplngi-product-order-table-filter">
+                    <sw-simple-search-field
+                        :disabled="!productCategoryPositions"
+                        :searchTerm="searchTerm"
+                        @search-term-change="filterProducts"
+                    ></sw-simple-search-field>
+                </div>
+                <div class="kplngi-product-order-table-assist">
+                    <kplngi-product-order-refresh-button
+                        :isLoading="isLoading"
+                        :orderActive="orderSwitch"
+                        @button-click="refreshProducts"
+                    ></kplngi-product-order-refresh-button>
+
+                    <sw-help-text
+                        :text="$tc('kplngi-product-order.helpText')">
+                    </sw-help-text>
+                </div>
+            </div>
+
+            <kplngi-product-order-entity-listing
+                v-if="productCategoryPositions"
+                :items="productCategoryPositions"
+                :repository="productCategoryPositionRepository"
+                :columns="columns"
+                :showSelection="false"
+                :fullPage="false"
+                :isLoading="isLoading"
+            >
+            </kplngi-product-order-entity-listing>
+        </sw-card>
+    </div>
+{% endblock %}

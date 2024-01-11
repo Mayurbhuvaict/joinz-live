@@ -1,0 +1,44 @@
+{% if page.extensions.RichSnippetData.data|length > 0 %}
+    <script type="application/ld+json">
+        {
+            "@context": "http://schema.org/",
+            "@type": "Product",
+            "name": "{{ page.extensions.RichSnippetData.data.productName }}",
+            "image": "{{ page.extensions.RichSnippetData.data.productImage }}",
+            "description": "{{ page.extensions.RichSnippetData.data.description }}",
+            "sku": "{{ page.extensions.RichSnippetData.data.productSku }}",
+            {% if page.extensions.RichSnippetData.data.productMpn != '' %}
+            "mpn": "{{ page.extensions.RichSnippetData.data.productMpn }}",
+            {% endif %}
+            "brand": {
+            "@type": "Brand",
+            "name": "{{ page.extensions.RichSnippetData.data.brandName }}"
+        },
+            {% if page.extensions.RichSnippetData.data.reviewCount > 0 %}
+            "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "{{ page.extensions.RichSnippetData.data.ratingValue }}",
+            "reviewCount": "{{ page.extensions.RichSnippetData.data.reviewCount }}",
+            "worstRating": "{{ page.extensions.RichSnippetData.data.worstRating }}",
+            "bestRating": "{{ page.extensions.RichSnippetData.data.bestRating }}"
+            },
+            {% endif %}
+            {% if  page.extensions.RichSnippetData.data.reviews|length > 0 %}
+            "review": {{ page.extensions.RichSnippetData.data.reviewsEncoded|raw }},
+            {% endif %}
+        "offers": {
+            "@type": "Offer",
+            "url": "{{ seoUrl('frontend.detail.page', {'productId': page.extensions.RichSnippetData.data.productID}) }}",
+            "priceCurrency": "{{ page.extensions.RichSnippetData.data.priceCurrency }}",
+            "price": "{{ page.extensions.RichSnippetData.data.price }}",
+            "priceValidUntil": "{{ page.extensions.RichSnippetData.data.priceValidUntil }}",
+            "itemCondition": "{{ page.extensions.RichSnippetData.data.itemCondition }}",
+            "availability": "{{ page.extensions.RichSnippetData.data.availability }}",
+            "seller": {
+            "@type": "Organization",
+            "name": "{{ page.extensions.RichSnippetData.data.sellerName }}"
+            }
+        }
+        }
+    </script>
+{% endif %}

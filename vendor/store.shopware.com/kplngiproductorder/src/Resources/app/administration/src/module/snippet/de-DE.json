@@ -1,0 +1,16 @@
+{
+    "kplngi-product-order": {
+        "extension": {
+            "tabHeadline": "Sortieren"
+        },
+        "title": "Benutzerdefinierte Produktanordnung",
+        "switch": "Für aktuelle Kategorie aktivieren",
+        "helpText": "Passe die Priorität durch Doppelklick auf entsprechenden Tabelleneintrag an. Je größer die Zahl, desto weiter oben ist das Produkt in der Übersicht. Es können positive und negative Zahlen genutzt werden.",
+        "table": {
+            "priority": "Priorität",
+            "product": "Produkt",
+            "productNumber": "Produktnummer"
+        },
+        "notification": "Der Kategorie sind keine Produkte zugeordnet."
+    }
+}

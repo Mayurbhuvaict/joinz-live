@@ -1,0 +1,16 @@
+{
+    "kplngi-product-order": {
+        "extension": {
+            "tabHeadline": "Sorting"
+        },
+        "title": "Custom Product Sorting",
+        "switch": "Enable for current category",
+        "helpText": "Edit product priority by double clicking on an table entry. The bigger the number the higher up in the listing. Positive and negative numbers are allowed.",
+        "table": {
+            "priority": "Priority",
+            "product": "Product",
+            "productNumber": "Product Number"
+        },
+        "notification": "The category has no products assigned"
+    }
+}

@@ -1,0 +1,8 @@
+{% sw_extends '@Storefront/storefront/component/product/listing.html.twig' %}
+
+{% block element_product_listing_sorting %}
+    {% sw_include '@KplngiProductOrder/storefront/kplngi-extension/sorting.html.twig'  with {
+        current: searchResult.sorting,
+        sortings: searchResult.availableSortings
+    } %}
+{% endblock %}
