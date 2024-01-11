@@ -1,0 +1,14 @@
+/.git/*
+/.git(old)/*
+
+/public/media/*
+!/public/media/.gitkeep
+
+/public/thumbnail/*
+!/public/thumbnail/.gitkeep
+
+/files/*
+
+/var/*
+
+.env
