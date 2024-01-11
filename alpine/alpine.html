@@ -1,0 +1,245 @@
+<html>
+<head>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body>
+<script>
+    class Configurator {
+        mainProduct;
+        selectedProduct;
+        selectedLocation;
+        selectedOption;
+
+        constructor() {
+
+        }
+
+        setMainProduct(product) {
+            this.mainProduct = product;
+        }
+
+        setSelectedProduct(productId) {
+            if (this.mainProduct.id === productId) {
+                this.selectedProduct = this.mainProduct;
+            } else {
+                this.selectedProduct = this.mainProduct.variations[productId];
+            }
+            this.selectedLocation = null;
+            this.selectedOption = null;
+        }
+
+        setSelectedLocation(il_id) {
+            this.selectedLocation = this.selectedProduct.imprintLocations[il_id];
+            this.selectedOption = null;
+        }
+
+        setSelectedOption(io_id) {
+            this.selectedOption = this.selectedLocation.imprintOptions[io_id];
+        }
+    }
+
+    class Product {
+        constructor(id, title, description, price, img) {
+            this.id = id;
+            this.title = title;
+            this.description = description;
+            this.price = price;
+            this.img = img;
+
+            this.variations = {};
+            this.imprintLocations = {};
+        }
+
+        addVariation(p) {
+            this.variations[p.id] = p;
+        }
+
+        addImprintLocation(il) {
+            this.imprintLocations[il.id] = il;
+        }
+    }
+
+    class ImprintLocation {
+        constructor(id, title, img) {
+            this.id = id;
+            this.title = title;
+            this.img = img;
+
+            this.imprintOptions = {};
+        }
+
+        addImprintOption(io) {
+            this.imprintOptions[io.id] = io;
+        }
+    }
+
+    class ImprintOption {
+        constructor(id, title, colors, price) {
+            this.id = id;
+            this.title = title;
+            this.colors = colors;
+            this.price = price;
+        }
+    }
+
+    class AdvancedPricing {
+        constructor() {
+            this.prices = {}
+        }
+
+        addPrice(price, from, to) {
+            this.prices[from] = {
+                from: from,
+                to: to,
+                price: price
+            }
+        }
+
+        priceFor(quantity) {
+            var price;
+            for (var from in this.prices) {
+                if (parseInt(from) > parseInt(quantity)) {
+                    break;
+                }
+                price = this.prices[from].price;
+            }
+            return price;
+        }
+    }
+
+    //@TODO Gallery
+
+    function createPrice(x) {
+        var p = new AdvancedPricing();
+        p.addPrice(x, 1, 24);
+        p.addPrice(x - 1, 25, 49);
+        p.addPrice(x - 2, 50);
+        return p;
+    }
+
+    var p = new Product(1, 'Pants', 'Short pants', createPrice(10), 'https://www.kunstform.org/images/DUB-BMX-Tomorrow-Kurze-Hose-Black-2020062694214-1.jpg');
+    var v1 = new Product(2, 'Pants S', 'Short pants S', createPrice(20), 'https://www.huskyeu.eu/temp/img/me/men-short-pants-kimbi-m-w1200-h1200-e-66aeb5b8f91e88be358be5c19c47607c.jpg');
+    var il1 = new ImprintLocation(1, 'Bottom left', 'https://standards.buildingsmart.org/IFC/RELEASE/IFC2x3/TC1/HTML/ifcpresentationdefinitionresource/lexical/figures/IfcBoxAlignment_Fig1.gif');
+    il1.addImprintOption(new ImprintOption(1, 'Laser', 1, createPrice(10)));
+    il1.addImprintOption(new ImprintOption(2, 'Laser', 2, createPrice(11)));
+    il1.addImprintOption(new ImprintOption(3, 'Laser', 3, createPrice(12)));
+    il1.addImprintOption(new ImprintOption(4, 'Laser', 5, createPrice(14)));
+    il1.addImprintOption(new ImprintOption(5, 'Wood', 1, createPrice(16)));
+    var il2 = new ImprintLocation(2, 'Top right', 'https://static.thenounproject.com/png/2963800-200.png');
+    il2.addImprintOption(new ImprintOption(6, 'Laser2', 1, createPrice(23)));
+    il2.addImprintOption(new ImprintOption(7, 'Laser2', 2, createPrice(24)));
+    il2.addImprintOption(new ImprintOption(8, 'Laser2', 3, createPrice(25)));
+    il2.addImprintOption(new ImprintOption(9, 'Laser2', 5, createPrice(26)));
+    v1.addImprintLocation(il1);
+    v1.addImprintLocation(il2);
+    var v2 = new Product(3, 'Pants L', 'Short pants L', createPrice(30), 'https://www.huskyeu.eu/temp/img/me/men-cotton-short-pants-ropy-w1200-h1200-e-f191fe41792dddc3384dc8f7b5d3659d.jpg');
+    var il3 = new ImprintLocation(3, 'Left', 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Small_arrow_pointing_left.svg/1200px-Small_arrow_pointing_left.svg.png');
+    il3.addImprintOption(new ImprintOption(10, 'Ink', 1, createPrice(10)));
+    il3.addImprintOption(new ImprintOption(11, 'Ink', 2, createPrice(12)));
+    il3.addImprintOption(new ImprintOption(12, 'Ink', 5, createPrice(15)));
+    v2.addImprintLocation(il3);
+    var v3 = new Product(4, 'Pants M', 'Short pants M', createPrice(50), 'https://www.huskyeu.eu/temp/img/me/men-cotton-short-pants-ropy-w1200-h1200-e-bdce74bb8b8112d6bf39514b9825700d.jpg');
+    var il4 = new ImprintLocation(4, 'Center', 'https://www.computerhope.com/jargon/c/center.jpg');
+    il4.addImprintOption(new ImprintOption(10, 'Laser', 1, createPrice(10)));
+    il4.addImprintOption(new ImprintOption(11, 'Ink', 1, createPrice(20)));
+    il4.addImprintOption(new ImprintOption(12, 'Wood', 1, createPrice(30)));
+    v3.addImprintLocation(il4);
+    p.addVariation(v1);
+    p.addVariation(v2);
+    p.addVariation(v3);
+
+    var c = new Configurator();
+    c.setMainProduct(p);
+    c.setSelectedProduct(p.id);
+
+
+</script>
+<div style="width:30%;margin:0 auto;" x-data="{ configurator: c, quantity:0 }">
+    <h2>Variants</h2>
+    <template x-for="v in configurator.mainProduct.variations">
+        <button x-text="v.title" @click="configurator.setSelectedProduct(v.id)"></button>
+    </template>
+    <hr/>
+    <div>
+        <h1 x-text="configurator.selectedProduct.title"></h1>
+        <p x-text="configurator.selectedProduct.description"></p>
+        <img :src="configurator.selectedProduct.img" width="100" height="100"/>
+        <hr/>
+    </div>
+    <div>
+        <h2>Imprint Locations</h2>
+        <template x-for="il in configurator.selectedProduct.imprintLocations">
+            <div>
+                <img :src="il.img" width="100"/>
+                <button x-text="il.title" @click="configurator.setSelectedLocation(il.id)"></button>
+            </div>
+        </template>
+        <hr/>
+    </div>
+    <div>
+        <h2>Imprint Options</h2>
+        <select x-on:change="function(el){configurator.setSelectedOption(el.target.value);}">
+            <option> Select Imprint Option</option>
+            <template x-for="io in configurator.selectedLocation ? configurator.selectedLocation.imprintOptions : []">
+                <option :value="io.id" x-text="io.title + ' colors:' + io.colors"></option>
+            </template>
+        </select>
+        <hr/>
+    </div>
+    <div>
+        <h2>Price</h2>
+        <div>
+            Quantity: <input type="number" x-model="quantity"/>
+            <button @click="quantity = 10">10</button>
+            <button @click="quantity = 20">20</button>
+            <button @click="quantity = 50">50</button>
+            <button @click="quantity = 100">100</button>
+        </div>
+        <table border="1" style="width:50%;float:left">
+            <tr>
+                <th colspan="3">Product</th>
+            </tr>
+            <tr>
+                <th>From</th>
+                <th>To</th>
+                <th>Price</th>
+            </tr>
+            <template x-for="p in configurator.selectedProduct.price.prices">
+                <tr>
+                    <td x-text="p.from"></td>
+                    <td x-text="p.to"></td>
+                    <td x-text="p.price + '$'"></td>
+                </tr>
+            </template>
+            <tr>
+                <td x-text="'For ' + quantity"></td>
+                <td x-text="configurator.selectedProduct.price.priceFor(quantity)"></td>
+                <td x-text="configurator.selectedProduct.price.priceFor(quantity)*quantity"></td>
+            </tr>
+        </table>
+        <table border="1" style="width:50%;float:left">
+            <tr>
+                <th colspan="3">Imprint</th>
+            </tr>
+            <tr>
+                <th>From</th>
+                <th>To</th>
+                <th>Price</th>
+            </tr>
+            <template x-for="p in configurator.selectedOption ? configurator.selectedOption.price.prices : []">
+                <tr>
+                    <td x-text="p.from"></td>
+                    <td x-text="p.to"></td>
+                    <td x-text="p.price + '$'"></td>
+                </tr>
+            </template>
+            <tr>
+                <td x-text="'For ' + quantity"></td>
+                <td x-text="configurator.selectedOption.price.priceFor(quantity)"></td>
+                <td x-text="configurator.selectedOption.price.priceFor(quantity)*quantity"></td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,8 @@
+shopware:
+    logger:
+        exclude_exception:
+            - Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+    cart:
+        expire_days: 150
+    admin_worker:
+        enable_admin_worker: false
