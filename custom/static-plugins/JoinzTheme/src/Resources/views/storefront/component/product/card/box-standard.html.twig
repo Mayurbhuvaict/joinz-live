@@ -1,0 +1,148 @@
+{% block component_product_box %}
+    {% if product %}
+        {% set name = product.translated.name %}
+        {% set id = product.id %}
+        {% set cover = product.cover.media %}
+        {% set variation = product.variation %}
+<style>
+    .img-max-size {
+        max-height: 240px;
+    }
+</style>
+        <div class="product-card flex-container flex-dir-column">
+            {% block component_product_box_content %}
+                    {% block component_product_box_badges %}
+                        <span class="product-label " >{% sw_include '@Storefront/storefront/component/product/card/badges.html.twig' %}</span>
+                    {% endblock %}
+
+                <div class="product-image flex-container align-center">
+                    {% block component_product_box_image %}
+
+                            {# fallback if display mode is not set #}
+                            {% set displayMode = displayMode ?: 'standard' %}
+
+                            {# set display mode 'cover' for box-image with standard display mode #}
+                            {% if layout == 'image' and displayMode == 'standard' %}
+                                {% set displayMode = 'cover' %}
+                            {% endif %}
+
+                            <a href="{{ seoUrl('frontend.detail.page', {'productId': id}) }}"
+                               title="{{ name }}"
+                               class="product-image-link is-{{ displayMode }}">
+                                {% if cover.url %}
+                                    {% set attributes = {
+                                        'class': 'product-image is-'~displayMode,
+                                        'alt': (cover.translated.alt ?: name),
+                                        'title': (cover.translated.title ?: name)
+                                    } %}
+
+                                    {% if displayMode == 'cover' or displayMode == 'contain' %}
+                                        {% set attributes = attributes|merge({ 'data-object-fit': displayMode }) %}
+                                    {% endif %}
+
+                                    {% sw_thumbnails 'product-image-thumbnails' with {
+                                        media: cover,
+                                        attributes: {
+                                            'class': 'img-max-size',
+                                            'alt': (cover.translated.alt ?: name)
+                                        },
+                                        sizes: {
+                                            'xs': '501px',
+                                            'sm': '315px',
+                                            'md': '427px',
+                                            'lg': '333px',
+                                            'xl': '284px'
+                                        }
+                                    } %}
+                                {% else %}
+                                    <div class="product-image-placeholder">
+                                        {% sw_icon 'placeholder' style {
+                                            'size': 'fluid'
+                                        } %}
+                                    </div>
+                                {% endif %}
+                            </a>
+
+                            {% if shopware.config.core.cart.wishlistEnabled %}
+                                {% block component_product_box_wishlist_action %}
+                                    {% sw_include '@Storefront/storefront/component/product/card/wishlist.html.twig' with {
+                                        appearance: 'circle',
+                                        productId: id
+                                    } %}
+                                {% endblock %}
+                            {% endif %}
+
+                    {% endblock %}
+                </div>
+
+                {% block component_product_box_rich_snippets %}
+                    {% sw_include '@Storefront/storefront/component/product/card/meta.html.twig' %}
+                {% endblock %}
+
+                {% block component_product_box_info %}
+                    <div class="product-content flex-child-grow flex-container flex-dir-column align-justify">
+                        <div>
+                            <h3>{% block component_product_box_name %}
+                                    <a href="{{ seoUrl('frontend.detail.page', {'productId': id}) }}"
+                                       class="product-name"
+                                       title="{{ name }}">
+                                        {{ name }}
+                                    </a>
+                                {% endblock %}</h3>
+
+                            <ul>
+                                <li>
+                                    <i class="icon-circle"></i>
+                                    <span>Bezorgd op {{ product.extensions['delivery_date'].text | default("-")}}</span>
+                                </li>
+                                <li>
+                                    <i class="icon-circle"></i>
+                                    <span>Vanaf {{ product.minPurchase }} stuks</span>
+                                </li>
+                            </ul>
+                            <p>Vanaf <span>{{ product.cheapestPrice.price|last.net|currency }}</span></p>
+
+                            {#
+                            {% block component_product_box_variant_characteristics %}
+                                <div class="product-variant-characteristics">
+                                    <div class="product-variant-characteristics-text">
+                                        {% if not product.isGrouped %}
+                                            {% for variation in product.variation %}
+                                                {{ variation.group }}:
+                                                <span class="product-variant-characteristics-option">
+                                                    {{ variation.option }}
+                                                </span>
+
+                                                {% if product.variation|last != variation %}
+                                                    {{ " | " }}
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            {% endblock %} #}
+                            <ul class="available-colors flex-container" style="overflow: hidden;">
+                                {% for setting in product.configuratorSettings %}
+                                    {% if(setting.option.colorHexCode is not empty) %}
+                                        <li>
+                                            <a href="{{ seoUrl('frontend.detail.page', {'productId': id,
+                                                'optionId': setting.option.id}) }}"
+                                               style="{{ setting.option.extensions.style.css }};
+                                               {% if setting.option.colorHexCode in ['#ffffff', '#fff', 'fff', 'ffffff'] %}
+                                                   border: 1px solid #dee9ee;
+                                               {% endif %}"></a>
+                                        </li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <a href="{{ seoUrl('frontend.detail.page', {'productId': id}) }}"><button class="button button-white small">Bereken Jouw Prijs</button></a>
+
+                    </div>
+
+                {% endblock %}
+
+            {% endblock %}
+        </div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,53 @@
+{% block logo_upload_crud_list %}
+    <sw-page>
+        {% block logo_upload_crud_smart_bar_header %}
+            <template #smart-bar-header>
+                {% block logo_upload_crud_list_smart_bar_header_title %}
+                    <h2>
+                        {% block logo_upload_crud_list_smart_bar_header_title_text %}
+                            {{ $tc('sw-settings.index.title') }}
+                            <sw-icon name="small-arrow-medium-right" small></sw-icon>
+                            Logo Upload Crud
+                        {% endblock %}
+                        {% block logo_upload_crud_list_smart_bar_header_amount %}
+                            <span v-if="total" class="sw-page__smart-bar-amount">
+                                ({{total}})
+                            </span>
+                        {% endblock %}
+                    </h2>
+                {% endblock %}
+            </template>
+        {% endblock %}
+
+        <template slot="content">
+
+            <sw-entity-listing
+                :items="emizenModuleCollection"
+                :repository="repository"
+                :showSelection="false"
+                :allow-view="true"
+                :columns="columns">
+                <template slot="column-mediaId" slot-scope="{ item }">
+                    <sw-media-preview-v2
+                        :source="item.mediaId"
+                        :show-controls="true"
+                        :autoplay="false"
+                        :use-thumbnails="false">
+                    </sw-media-preview-v2>
+                </template>
+                <template slot="column-firstName" slot-scope="{ item }">
+                    {{item.firstName}}
+                </template>
+                <template slot="column-lastName" slot-scope="{ item }">
+                    {{item.lastName}}
+                </template>
+                <template slot="column-email" slot-scope="{ item }">
+                    {{item.email}}
+                </template>
+                <template slot="column-additionalInfo" slot-scope="{ item }">
+                    {{item.additionalInfo}}
+                </template>
+            </sw-entity-listing>
+        </template>
+    </sw-page>
+{% endblock %}

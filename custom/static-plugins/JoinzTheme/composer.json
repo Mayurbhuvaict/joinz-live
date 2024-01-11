@@ -1,0 +1,25 @@
+{
+  "name": "joinz/theme",
+  "description": "Joinz Theme",
+  "version": "1.1.1",
+  "type": "shopware-platform-plugin",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Code402",
+      "role": "main developer"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "JoinzTheme\\": "src/"
+    }
+  },
+  "extra": {
+    "shopware-plugin-class": "JoinzTheme\\JoinzTheme",
+    "label": {
+      "de-DE": "Theme JoinzTheme plugin",
+      "en-GB": "Theme JoinzTheme plugin"
+    }
+  }
+}

@@ -1,0 +1,143 @@
+{% if app.request.requestUri starts with '/checkout' %}
+{% elseif app.request.requestUri starts with '/joinz/submitQuote'%}
+{% else %}
+<div class="navigation">
+        <nav class="grid-container">
+            <div data-responsive-toggle="toggle-nav" style="display:none;">
+                <a href="#" data-toggle="toggle-nav">
+                    <i class="icon-responsive-menu"></i>
+                </a>
+            </div>
+
+            <div class="navigation-inner flex-container align-justify align-middle fast" id="toggle-nav"
+                 data-animate="fade-in fade-out" style="display:none">
+                <div class="button-categories">
+                    <button class="button primary button-gradient hide-for-small-only">
+                        Alle Categorieën
+                    <span class="show-for-medium">
+                        <i class="icon-caret-down-white"></i>
+                    </span>
+                    </button>
+
+                    <button class="button flex-container align-middle" data-responsive-toggle="toggle-nav"
+                            style="display:none;">
+                    <span class="show-for-small-only" data-toggle="toggle-nav">
+                        <i class="icon-close-menu-white"></i>
+                    </span>
+                        Categorieën
+                    </button>
+                </div>
+                <div class="menu-categories">
+                    <div class="menu-wrapper">
+                        <ul class="menu-left-list vertical menu" data-responsive-menu="drilldown medium-dropdown"
+                            data-autoclose="false" data-close-on-click="false">
+                            {% set continue = false %}
+                            {% for navi in page.header.navigation.tree %}
+                               {% if (navi.category.customFields['custom_hide_in_mega_menu_setting'] == true) %}
+                                   {% set continue = true %}
+                                {% endif %}
+                                {% if not continue %}
+                                <li class="menu-item ">
+                                    <a href="{# seoUrl('frontend.navigation.page', { navigationId: navi.category.id }) #}/{{ (navi.category.breadcrumb[1]|lower|replace({'&':''})|replace({'-':''})|replace({',':''})|replace({' ':'-'})|replace({'--':'-'})) }}/"
+                                       class="menu-link">
+                                        {{ navi.category.name }}
+                                    </a>
+                                    <ul class="menu nested menu-right-list">
+                                        <li>
+                                        {% for naviChild in navi.children %}
+                                            {% if (naviChild.category.customFields['custom_hide_in_mega_menu_setting'] == true) %}
+                                                {% set continue = true %}
+                                            {% endif %}
+                                            {% if not continue %}
+                                            <div>
+                                                <a href="{{ category_url(naviChild.category) }}" class="title">{{ naviChild.category.name }}</a>
+
+                                                <ul>
+
+
+
+                                            {% for naviChildChild in naviChild.children %}
+                                                {% if (naviChildChild.category.customFields['custom_hide_in_mega_menu_setting'] == true) %}
+                                                    {% set continue = true %}
+                                                {% endif %}
+                                                {% if not continue %}
+                                                <li>
+                                                    <a href="{{ category_url(naviChildChild.category) }}">
+                                                        {{ naviChildChild.category.name }}
+                                                    </a>
+                                                </li>
+                                                {% endif %}
+                                                {% if continue %}
+                                                    {% set continue = false %}
+                                                {% endif %}
+                                            {% endfor %}
+                                                </ul>
+                                            </div>
+                                            {% endif %}
+                                            {% if continue %}
+                                                {% set continue = false %}
+                                            {% endif %}
+                                        {% endfor %}
+
+
+                                            <a href="{{ seoUrl('frontend.navigation.page', { navigationId: navi.category.id }) }}"
+                                               class="link-read-more">
+                                                Bekijk {{navi.category.name}}
+                                                <i class="icon-arrow-right-orange"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                               {% endif %}
+                                {% if continue %}
+                                    {% set continue = false %}
+                                {% endif %}
+                            {% endfor %}
+                            <div class="grid-x show-for-small-only" style="position: fixed; width: 100%; bottom: 0; color: white; background: #016F9F!important;">
+                                <div class="cell small-6">
+                                <a style="background: none; color: white" href="tel:+31332464533">
+                                    <i style="filter:brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(1%) hue-rotate(103deg) brightness(103%) contrast(101%);" class="icon-phone-blue"></i>
+                                    <span style="padding-left: 10px">033-2464533</span>
+                                </a>
+                                </div>
+                                <div class="cell small-6">
+                                <a style="background: none; color: white" href="mailto:info@joinz.nl">
+                                    <i style="filter:brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(1%) hue-rotate(103deg) brightness(103%) contrast(101%);" class="icon-email-blue"></i>
+                                    <span style="padding-left: 10px">info@joinz.nl</span>
+                                </a>
+                                </div>
+                                <div class="cell small-12">
+                                    <a style="background: none; color: white" href="/joinz/contact">Contact</a>
+                                    <a style="background: none; color: white" href="/joinz/about-us">Over Ons</a>
+                                    <a style="background: none; color: white" href="/joinz/faq">Veel gestelde vragen</a>
+                                </div>
+
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+                <ul class="menu flex-container align-middle show-for-large">
+                    <li>
+                        <a href="{{ seoUrl('frontend.navigation.page', { navigationId: '3f16ea6f95504f97b9e3c52a1c63acaf' }) }}">Promotiemateriaal</a>
+                    </li>
+                    <li>
+                        <a href="{{ seoUrl('frontend.navigation.page', { navigationId: 'aa3f74a3d0224c9f8d7b9c55dcd38e75' }) }}">Kantoorartikelen</a>
+                    </li>
+                    <li>
+                        <a href="{{ seoUrl('frontend.navigation.page', { navigationId: 'fddb0bcf1bac4a429148ba34f8eb8a44' }) }}">Geschenken</a>
+                    </li>
+                    <li>
+                        <a href="/joinz/faq">FAQ</a>
+                    </li>
+                    <li>
+                        <a href="/joinz/contact">Contact</a>
+                    </li>
+                    <li>
+                        <a href="/joinz/about-us">Over ons</a>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+    </div>
+{% endif %}

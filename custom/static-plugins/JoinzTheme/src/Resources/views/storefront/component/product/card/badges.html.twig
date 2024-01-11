@@ -1,0 +1,36 @@
+{% block component_product_badges %}
+        {% if product.customFields['custom_product_badges_cheap'] == true %}
+            <span class="product-label warning-color badge">Budget</span>
+        {% elseif product.customFields['custom_product_badges_fast_delivery'] == true %}
+           <span class="product-label secondary-color badge">Snelle Levering</span>
+        {% elseif product.customFields['custom_product_badges_our_choice'] == true %}
+            <span class="product-label primary-color badge">Onze Keuze</span>
+        {% elseif product.customFields['custom_product_badges_bestseller'] == true %}
+            <span class="product-label secondary-color badge">Populair</span>
+        {% elseif product.customFields['custom_product_badges_duurzaam'] == true %}
+            <span class="product-label badge" style="border-color: #138369; background-color: #138369; color: #fff;">Duurzaam</span>
+        {% endif %}
+        {% block component_product_badges_discount %}
+            {% set listPrice = product.priceRange or product.calculatedPrices.count > 0 ? null : product.calculatedPrice.listPrice.percentage > 0 %}
+            {% if listPrice %}
+                <span class="product-label secondary-color">Sale</span>
+            {% endif %}
+        {% endblock %}
+
+        {% block component_product_badges_topseller %}
+            {% if product.markAsTopseller %}
+                <div>
+                    <span class="badge badge-warning badge-topseller">{{ "listing.boxLabelTopseller"|trans|sw_sanitize }}</span>
+                </div>
+            {% endif %}
+        {% endblock %}
+
+        {% block component_product_badges_new %}
+            {% if product.isNew %}
+                <div>
+                    <span class="badge badge-success badge-new">{{ "listing.boxLabelNew"|trans|sw_sanitize }}</span>
+                </div>
+            {% endif %}
+        {% endblock %}
+
+{% endblock %}

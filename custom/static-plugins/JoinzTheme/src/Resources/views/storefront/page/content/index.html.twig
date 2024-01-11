@@ -1,0 +1,434 @@
+{% sw_extends '@Storefront/storefront/page/content/index.html.twig' %}
+{% block base_main_inner %}
+    {#  {{ dump(page.cmsPage.sections.elements) }}#}
+    {#   {{ dump(page) }} #}
+    <main>
+        {% block page_content %}
+            {% if page.cmsPage.name == 'Homepage' %}
+                <div class="banner banner-primary">
+                    <div class="background"></div>
+                    <div class="grid-container">
+                        <div class="banner-inner flex-container align-justify align-middle">
+                            <div class="content" style="padding-top: 20px">
+                            <h1 style="text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">Eindejaarsgeschenken 2023</h1>
+                    <p>Ontdek orginele ideeën voor kerst- en eindejaarsgeschenken. Bekijk onze collectie giveaways en laat je inspireren.</p>
+                    <a href="https://joinz.nl/eindejaarsgeschenken-2022/"><button class="button">Bekijk Eindejaarsgeschenken</button></a>
+                    <a href="https://joinz.nl/kerstpakket/"><p style="color:white; font-weight: bold; text-decoration: underline;">Of Bestel Kerstpakketen</p></a>
+                             </div>
+                            <div class="image" style="margin-top:5%;">
+                                <img src="{{ asset('bundles/joinztheme/img/christmas23.png' , 'asset') }}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="advantages-bar grid-container">
+                    <ul class="menu flex-container align-justify">
+                        <li class="flex-container align-middle">
+                            <i class="icon-check-circle"></i>
+                            <span>Gratis ontwerp</span>
+                        </li>
+                        <li class="flex-container align-middle">
+                            <i class="icon-check-circle"></i>
+                            <span>99% beveelt ons aan</span>
+                        </li>
+                        <li class="flex-container align-middle">
+                            <i class="icon-check-circle"></i>
+                            <span>Pixel-perfecte bedrukking</span>
+                        </li>
+                        <li class="flex-container align-middle">
+                            <i class="icon-check-circle"></i>
+                            <span>Betaal nooit teveel</span>
+                        </li>
+                        <li class="flex-container align-middle">
+                            <i class="icon-check-circle"></i>
+                            <span>Custom Made</span>
+                        </li>
+                    </ul>
+                </div>
+                {% sw_include "@Storefront/storefront/page/content/detail.html.twig" with {'cmsPage': page.cmsPage} %}
+
+                <section class="section-categories">
+                    <div class="grid-container">
+                        <div class="section-head">
+                            <h4>Inspiratie</h4>
+                        </div>
+
+                        <ul class="menu flex-container align-justify js-categories-slider">
+                        {% for cat in page.extensions.topCategories.elements %}
+                            <li>
+                                <div class="category">
+                                    <a href="{{ seoUrl('frontend.navigation.page', { navigationId: cat.id }) }}"
+                                       class="align-middle align-center">
+                                        {% sw_thumbnails 'my-thumbnails' with {
+                                        media: cat.media
+                                        } %}
+                                    </a>
+
+                                    <p><a style="all: unset"
+                                          href="{{ seoUrl('frontend.navigation.page', { navigationId: cat.id }) }}">{{ cat.name }}</a>
+                                    </p>
+                                </div>
+                            </li>
+                        {% endfor %}
+                        </ul>
+                    </div>
+                </section>
+               <!-- <section class="section-find-product">
+                    <img src="{{ asset('bundles/joinztheme/img/svg/decorative-triangles.svg' , 'asset') }}" alt="">
+
+                    <div class="grid-container">
+                        <h4>Vind jouw perfecte product <span>in 2 stappen</span></h4>
+
+
+
+                        <form action="" class="form-find-product">
+                            <fieldset class="flex-container active">
+                                <input type="radio" name="criteria-first" value="Relatiegeschenk" id="promotional-gift"
+                                       checked
+                                       required>
+
+                                <label for="promotional-gift">
+                                    <i class="icon-present"></i>
+                                    <span>Relatiegeschenk</span>
+                                </label>
+
+                                <input type="radio" name="criteria-first" value="Promotiemateriaal"
+                                       id="promotional-material">
+
+                                <label for="promotional-material">
+                                    <i class="icon-speaker"></i>
+                                    Promotiemateriaal
+                                </label>
+                            </fieldset>
+
+                            <fieldset class="flex-container">
+                                <input type="radio" name="criteria-second" value="Lorem ipsum" id="lorem-ipsum" checked
+                                       required>
+
+                                <label for="lorem-ipsum">
+                                    <i class="icon-present"></i>
+                                    <span>Lorem Ipsum</span>
+                                </label>
+
+                                <input type="radio" name="criteria-second" value="Consectetur adipiscing"
+                                       id="consectetur-adipiscing">
+
+                                <label for="consectetur-adipiscing">
+                                    <i class="icon-speaker"></i>
+                                    <span>Consectetur adipiscing</span>
+                                </label>
+                            </fieldset>
+
+                            <button class="button">Volgende Stap</button>
+                        </form>
+                    </div>
+                </section> -->
+               <a href="https://www.kiyoh.com/reviews/1043645/joinz_relatiegeschenken" target="_blank"> <section class="section-stats">
+                    <div class="grid-container">
+                        <div class="section-inner">
+                            <img class="blue-star"
+                                 src="{{ asset('bundles/joinztheme/img/svg/blue-star.svg' , 'asset') }}" alt="">
+                            <img class="green-star"
+                                 src="{{ asset('bundles/joinztheme/img/svg/green-star.svg' , 'asset') }}" alt="">
+                            <img class="logo-kiyoh"
+                                 src="{{ asset('bundles/joinztheme/img/svg/logo-kiyoh.svg' , 'asset') }}" alt="">
+
+                            <div class="flex-container align-spaced align-bottom">
+                                <div>
+                                    <span>
+                                        <b>1.000.000+</b>
+                                        Bedrukkingen
+                                    </span>
+                                </div>
+                                <div>
+                                    <div class="pointer">
+                                        <img src="{{ asset('bundles/joinztheme/img/svg/pointer.svg' , 'asset') }}"
+                                             alt="">
+                                        <span>9,4</span>
+                                    </div>
+                                    <img src="{{ asset('bundles/joinztheme/img/svg/rating.svg' , 'asset') }}" alt=""
+                                         class="rating">
+
+                                    <p>
+                                        <b>161</b>
+                                        99% beveelt ons aan
+                                    </p>
+                                </div>
+                                <div>
+                        <span>
+                            <b>3000+</b>
+                            Klanten
+                        </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section></a>
+                <section class="section-customer-service">
+                    <div class="grid-container">
+                        <div class="grid-x grid-margin-x">
+                            <div class="cell large-6 small-12">
+                                <div class="discounts flex-container flex-dir-column">
+                                    <div class="discount discount-personal flex-child-auto flex-container align-middle">
+                                        <div class="background"></div>
+                                        <div class="content">
+                                            <p>
+                                                <img src="{{ asset('bundles/joinztheme/img/Eindejaars geschenken.png' , 'asset') }}"
+                                                     alt="">
+                                            </p>
+                                            <a href="https://joinz.nl/eindejaarsgeschenken-2022/"><button class="button button">Ontdek Cadeaus</button></a>
+                                        </div>
+                                        <div class="image flex-child-grow flex-container align-center">
+                                            <img src="{{ asset('bundles/joinztheme/img/Group 1000001999.png' , 'asset') }}"
+                                                 alt="">
+                                        </div>
+                                    </div>
+                                    <div class="discount discount-bottles flex-child-auto flex-container align-middle">
+                                        <div class="background"></div>
+                                        <div class="content">
+                                            <p><span>Snel</span> je beursmateriaal in huis</p>
+                                            <a href="/promotiemateriaal/"><button class="button">Alles voor de beurs</button></a>
+                                        </div>
+                                        <div class="image flex-child-grow flex-container align-center">
+                                            <img src="{{ asset('bundles/joinztheme/img/discount2.png' , 'asset') }}"
+                                                 alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cell large-6 small-12 flex-container">
+                                <div class="customer-service flex-container flex-dir-column align-middle align-justify">
+                                    <div class="background"></div>
+
+                                    <div class="flex-container flex-dir-column align-middle">
+                                        <img src="{{ asset('bundles/joinztheme/img/team-large.png' , 'asset') }}"
+                                             alt="Customer service">
+
+                                        <b>Tom & Bram</b>
+                                    </div>
+
+                                    <div class="flex-container align-middle flex-dir-column medium-flex-dir-row">
+                                        <div class="contact flex-container align-middle align-justify">
+                                        <i class="icon-phone"></i>
+                                        <div>
+                                            <a href="tel:033-2464533">033 2464 533</a>
+                                            <span>08.00-17.00</span>
+                                        </div>
+                                        </div>
+                                        <div class="contact flex-container align-middle align-justify">
+                                        <i class="icon-email"></i>
+                                        <div>
+                                            <a href="mailto:info@joinz.nl">info@joinz.nl</a>
+                                        </div>
+                                        </div>
+                                    </div>
+
+                                    <p>Offerte? Custom promotiemateriaal? <a href="/joinz/contact" style="text-decoration: underline; color: white;">Neem gerust contact op.</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- TODO: Find a way to export black and white logos -->
+
+                <section class="section-suppliers">
+                    <div class="grid-container">
+                        <h4>Proud Suppliers</h4>
+
+                        <div class="section-inner">
+                            <ul class="menu flex-container align-justify" style="filter: grayscale(100%);">
+                                <li class="flex-container align-middle">
+                                    <img src="{{ asset('bundles/joinztheme/img/svg/logo-abn-amro.svg' , 'asset') }}"
+                                         alt="">
+                                </li>
+                                <li class="flex-container align-middle">
+                                    <img src="{{ asset('bundles/joinztheme/img/svg/logo-danone.svg' , 'asset') }}"
+                                         alt="">
+                                </li>
+                                <li class="flex-container align-middle">
+                                    <img src="{{ asset('bundles/joinztheme/img/svg/logo-nyenrode.svg' , 'asset') }}"
+                                         alt="">
+                                </li>
+                                <li class="flex-container align-middle">
+                                    <img src="{{ asset('bundles/joinztheme/img/svg/logo-radio-538.svg' , 'asset') }}"
+                                         alt="">
+                                </li>
+                                <li class="flex-container align-middle">
+                                    <img src="{{ asset('bundles/joinztheme/img/svg/logo-heineken.svg' , 'asset') }}"
+                                         alt="">
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                <section class="section-categories">
+                    <div class="grid-container">
+                        <div class="section-head flex-container align-justify align-middle ">
+                            <h4>Beste Cadeaus</h4>
+                            <a href="{{ seoUrl('frontend.navigation.page', { navigationId: "fddb0bcf1bac4a429148ba34f8eb8a44" }) }}" class="link-more-info flex-container align-middle">
+                                <i class="icon-caret-right"></i>
+                                <span>Alle relatiegeschenken</span>
+                            </a>
+                        </div>
+
+                        <ul class="menu flex-container align-justify js-categories-slider">
+                            {% for cat in page.extensions.besteCadeaus.elements %}
+                                <li>
+                                    <div class="category">
+                                        <a href="{{ seoUrl('frontend.navigation.page', { navigationId: cat.id }) }}"
+                                           class="align-middle align-center">
+                                            {% sw_thumbnails 'my-thumbnails' with {
+                                            media: cat.media
+                                            } %}
+                                        </a>
+
+                                        <p><a style="all: unset"
+                                              href="{{ seoUrl('frontend.navigation.page', { navigationId: cat.id }) }}">{{ cat.name }}</a>
+                                        </p>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- TODO: Turn the categories list into slider -->
+                <!-- TODO: The background svg is not appearing right -->
+
+                <section class="section-categories hide-for-small-only">
+                    <div class="grid-container">
+                        <div class="flex-container align-middle">
+                            <div class="section-image">
+                                <div class="background"></div>
+                                <img src="{{ asset('bundles/joinztheme/img/office.png' , 'asset') }}" alt="Office">
+                            </div>
+
+                            <div class="section-content">
+                                <div class="section-head">
+                                    <h4>Voor op kantoor</h4>
+                                </div>
+
+                                <ul class="menu js-office-slider">
+                                    {% for cat in page.extensions.voorOpKantoor.elements %}
+                                        <li>
+                                            <div class="category">
+                                                <a href="{{ seoUrl('frontend.navigation.page', { navigationId: cat.id }) }}"
+                                                   class="align-middle align-center">
+                                                    {% sw_thumbnails 'my-thumbnails' with {
+                                                    media: cat.media
+                                                    } %}
+                                                </a>
+
+                                                <p><a style="all: unset"
+                                                      href="{{ seoUrl('frontend.navigation.page', { navigationId: cat.id }) }}">{{ cat.name }}</a>
+                                                </p>
+                                            </div>
+                                        </li>
+                                    {% endfor %}{% for cat in page.extensions.voorOpKantoor.elements %}
+                                        <li>
+                                            <div class="category">
+                                                <a href="{{ seoUrl('frontend.navigation.page', { navigationId: cat.id }) }}"
+                                                   class="align-middle align-center">
+                                                    {% sw_thumbnails 'my-thumbnails' with {
+                                                    media: cat.media
+                                                    } %}
+                                                </a>
+
+                                                <p><a style="all: unset"
+                                                      href="{{ seoUrl('frontend.navigation.page', { navigationId: cat.id }) }}">{{ cat.name }}</a>
+                                                </p>
+                                            </div>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+
+                                <a href="#" class="link-more-info flex-container align-middle">
+                                    <i class="icon-caret-right"></i>
+                                    <span>Alle Kantoorartikelen</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="section-about">
+                    <div class="grid-container">
+                        <div class="section-inner flex-container align-justify align-middle">
+                            <div class="section-content">
+                                <h2>Over Joinz</h2>
+
+                                <p>Zorgeloos het beste promotiemateriaal en de leukste geschenken bestellen? Bij Joinz gaat dat heel
+                                    gemakkelijk in de uitgebreide webshop. Ons team staat paraat om je te voorzien van het beste advies
+                                    en ideeën.</p>
+
+                                <p>Sinds 2000 leveren wij met veel enthousiasme de nieuwste relatiegeschenken. Wij zijn een bruisend
+                                    familiebedrijf en zetten ons graag 100% voor je in!</p>
+
+                                <p>Joinz staat voor verbinden en verenigen we komen graag met je in contact. Ontvang vrijblijvend de
+                                    mooiste ontwerpen en de origineelste voorstellen. En laat ons samen met jou je klanten en relaties
+                                    versteld staan.</p>
+
+                                <p>Bij Joinz krijg je naast onze full service ook de scherpste prijs en snelste afleveroptie aangeboden.
+                                    Dit alles om het proces zorgeloos voor je te laten verlopen.</p>
+
+                                <a href="/joinz/about-us" class="link-read-more flex-container align-middle">
+                                    Lees meer
+                                    <i class="icon-arrow-right-orange"></i>
+                                </a>
+                            </div>
+
+                            <div class="section-image flex-container align-middle">
+                                <div class="background"></div>
+
+                                <div class="image-small">
+                                    <img src="{{ asset('bundles/joinztheme/img/Joinz_Team_Groepsfoto.png' , 'asset') }}" alt="Team">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="section-bottom hide-for-small-only">
+                            <ul class="menu">
+                                <li>
+                                    <div class="about-asset flex-container align-justify align-middle">
+                                        <i class="icon-piggy-bank"></i>
+                                        <span>Betaal nooit te veel</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="about-asset flex-container align-justify align-middle">
+                                        <i class="icon-drop"></i>
+                                        <span>Pixel-perfecte bedrukking</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="about-asset flex-container align-justify align-middle">
+                                        <i class="icon-crown"></i>
+                                        <span>99% beveelt ons aan</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            {% elseif page.cmsPage.type == 'product_list' %}
+                {% sw_include '@Storefront/storefront/page/category.html.twig' %}
+            {% else %}
+                {# @deprecated tag:v6.4.0 class `cms-breadcrump` use `cms-breadcrumb` instead #}
+                <div class="breadcrumb cms-breadcrumb cms-breadcrump container">
+                    {% block cms_breadcrumb %}
+                        {# @deprecated tag:v6.4.0 parameter `navigationTree` will be removed #}
+                        {% sw_include '@Storefront/storefront/component/listing/breadcrumb.html.twig' with {
+                        context: context,
+                        navigationTree: page.header.navigation.tree,
+                        category: page.header.navigation.active
+                        } only %}
+                    {% endblock %}
+                </div>
+                <div class="cms-page">
+                    {% block page_content_blocks %}
+                        {% sw_include "@Storefront/storefront/page/content/detail.html.twig" with {'cmsPage': page.cmsPage} %}
+                    {% endblock %}
+                </div>
+            {% endif %}
+        {% endblock %}
+    </main>
+{% endblock %}

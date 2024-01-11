@@ -1,0 +1,313 @@
+{% sw_extends '@Storefront/storefront/page/checkout/_page.html.twig' %}
+
+
+{% block page_checkout_aside %}
+{% endblock %}
+{% block page_checkout_main_content %}
+    {% block base_flashbags_checkout %}
+        <div class="flashbags">
+            {% for type, messages in app.flashes %}
+                {% sw_include '@Storefront/storefront/utilities/alert.html.twig' with { type: type, list: messages } %}
+            {% endfor %}
+        </div>
+    {% endblock %}
+
+    {% block page_checkout_finish %}
+        {% block page_checkout_finish_details %}
+            <main>
+                <section class="section-thank-you">
+                    <div class="grid-container">
+                        <div class="section-inner">
+                            <div class="background"></div>
+                            {% if isQuote %}
+                                <div class="section-head">
+                                    <h4>
+                                        Hi {{ context.customer.defaultBillingAddress.firstName }}, we hebben je
+                                        offerte aanvraag ontvangen en sturen je zo snel mogelijk de beste offerte!
+                                    </h4>
+                                    <p>
+                                        Onze bram maakt een offerte met een scherpe prijs. Wij doen er alles aan om onze
+                                        prijzen laag te houden en onze kwaliteit hoog!
+                                        We hebben een bevestingingsmail gestuurd naar: {{ context.customer.email }}<br/>
+                                        Bekijk je spamfolder en whitelist @joinz.nl. We sturen je z.s.m. jouw offerte en digitaal ontwerp!
+                                    </p>
+                                </div>
+                            {% else %}
+                            <div class="section-head">
+                                <h4>Hi {{ context.customer.defaultBillingAddress.firstName }}, bedankt voor je
+                                    bestelling!</h4>
+
+                                <p>We hebben een bevestingingsmail gestuurd naar: {{ context.customer.email }} <br/>Bekijk
+                                    je spamfolder en whitelist @joinz.nl. We sturen je z.s.m. een <b>digitaal
+                                        ontwerp!</b></p>
+                            </div>
+                            {% endif %}
+
+                          <!--  <div class="section-body">
+
+                                <form action="{{ path('frontend.joinz.upload-logo-submit') }}"
+                                      method="post" class="form-cart"
+                                      enctype="multipart/form-data"
+                                      data-form-csrf-handler="true">
+                                    {{ sw_csrf('frontend.joinz.upload-logo-submit') }}                                    <fieldset>
+                                        <h4 class="flex-container align-middle align-justify normal">
+                                            EVENTUELE (EXTRA) ontwerp instructies
+                                            <span>optioneel</span>
+                                        </h4>
+
+                                        <input class="form-control" type="hidden" id="first-name" name="first-name" value="{{  context.customer.defaultBillingAddress.firstName }}">
+                                        <input class="form-control" type="hidden" id="last-name" name="last-name" value="{{  context.customer.defaultBillingAddress.lastName }}">
+                                        <input class="form-control" type="hidden" id="email" name="email" value="{{   context.customer.email }}">
+
+                                        <div class="grid-x grid-margin-x">
+                                            <div class="cell medium-4">
+                                                <div class="field-group">
+                                                    <div class="fileupload">
+                                                        <input type="file" name="fileupload" id="fileupload"
+                                                               value="fileupload" id="fileupload" accept="image/*,.pdf" onchange="readURL(this);">
+                                                        <label for="fileupload" class="flex-container align-middle">
+                                                            pLAATS JE BESTANDEN HIER (MAX 100mb)
+                                                        </label>
+                                                        <p id="uploadFlag" class="text-center"></p>
+
+                                                        <p class="text-center">PDF/SVG/EPS/AI/PNG/JPG</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="cell medium-8">
+                                                <div class="field-group">
+                                                    <label for="textfiled">Tekst/opmerking</label>
+                                                    <textarea class="textarea" id="textfield" name="textfield" rows="7"
+                                                              cols="50">oPTIONEEL: aF TE DRUKKEN TEKST OF OPMERKING OVER HET ONTWERP/DE BESTELLING</textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="flex-container align-right">
+                                            <button type="submit" class="button">VERSTUREN</button>
+                                        </div>
+                                    </fieldset>
+                                </form>
+                            </div> -->
+                        </div>
+                    </div>
+                </section>
+                <section class="section-stats">
+                    <div class="grid-container">
+                        <div class="section-inner">
+                            <img class="blue-star"
+                                 src="{{ asset('bundles/joinztheme/img/svg/blue-star.svg' , 'asset') }}" alt="">
+                            <img class="green-star"
+                                 src="{{ asset('bundles/joinztheme/img/svg/green-star.svg' , 'asset') }}" alt="">
+                            <img class="logo-kiyoh"
+                                 src="{{ asset('bundles/joinztheme/img/svg/logo-kiyoh.svg' , 'asset') }}" alt="">
+
+                            <div class="flex-container align-spaced align-bottom">
+                                <div>
+                                    <span>
+                                        <b>1.000.000+</b>
+                                        Bedrukkingen
+                                    </span>
+                                </div>
+                                <div>
+                                    <div class="pointer">
+                                        <img src="{{ asset('bundles/joinztheme/img/svg/pointer.svg' , 'asset') }}"
+                                             alt="">
+                                        <span>9,4</span>
+                                    </div>
+                                    <img src="{{ asset('bundles/joinztheme/img/svg/rating.svg' , 'asset') }}" alt=""
+                                         class="rating">
+
+                                    <p>
+                                        <b>161</b>
+                                        99% beveelt ons aan
+                                    </p>
+                                </div>
+                                <div>
+                                <span>
+                                    <b>3000+</b>
+                            Klanten
+                                </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="section-accordion-small">
+                    <div class="grid-conainer">
+                        <div class="accordion-small">
+                            <div class="grid-container">
+                                <div class="accordion-inner">
+                                    <div class="accordion-top">
+                                        <p>FAQ</p>
+                                    </div>
+
+                                    <div class="accordion-section">
+                                        <div class="accordion-head">
+                                    <span class="flex-container align-justify align-middle">
+                                        Wat gebeurt er na mijn bestelling/offerte aanvraag (van offerte tot productie)?
+                                        <i class="icon-caret-down"></i>
+                                    </span>
+                                        </div>
+
+                                        <div class="accordion-body">
+                                            <p>Na je offerteaanvraag of bestelling gaan onze ontwerpers aan de slag en
+                                                ontvang je een digitaal ontwerp. Hierop kun je zien hoe jouw bedrukking
+                                                wordt. Als je via de mail akkoord geeft op het ontwerp en de offerte,
+                                                start de productie. De levertijd kan afhangen van de drukte en voorraad.
+                                                Wij zullen je over de actuele levertijd informeren. Nadat je artikelen
+                                                zijn bedrukt, ontvang je een email met jouw track & trace code.</p>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-section">
+                                        <div class="accordion-head">
+                                    <span class="flex-container align-justify align-middle">
+                                        Wanneer krijg ik mijn ontwerp?
+                                        <i class="icon-caret-down"></i>
+                                    </span>
+                                        </div>
+
+                                        <div class="accordion-body">
+                                            <p>Een ontwerp ontvang je gratis nadat je een offerte hebt aangevraagd of
+                                                nadat je een bestelling hebt gedaan. Ons team gaat direct aan de slag,
+                                                zodra we je jouw logo/ontwerp specificaties hebben ontvangen. Een ontwerp
+                                                en offerte sturen we eigenlijk altijd binnen 4 uur tijdens werkdagen.</p>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-section">
+                                        <div class="accordion-head">
+                                    <span class="flex-container align-justify align-middle">
+                                        Kan ik ook zelf een ontwerp aanleveren?
+                                        <i class="icon-caret-down"></i>
+                                    </span>
+                                        </div>
+
+                                        <div class="accordion-body">
+                                            <p>Zeker weten! Neem contact met ons op en dan sturen wij je een template die
+                                                je kunt aanpassen met je eigen software.</p>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-section">
+                                        <div class="accordion-head">
+                                    <span class="flex-container align-justify align-middle">
+                                        Wat is de levertijd van mijn bedrukte artikelen?
+                                        <i class="icon-caret-down"></i>
+                                    </span>
+                                        </div>
+
+                                        <div class="accordion-body">
+                                            <p>Je kan een indicatie van de levertijd vinden op de productpagina. De actuele
+                                                levertijd kan afhangen van het seizoen, de voorraad en afnamehoeveelheid.
+                                                Voor drukkere periodes zoals kerst en oudjaar is de levertijd langer dan
+                                                normaal. Voor verzendingen naar België is levertijd 1 dag langer.<br />
+                                                Neem contact met ons op voor een specifieke inschatting.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-section">
+                                        <div class="accordion-head">
+                                    <span class="flex-container align-justify align-middle">
+                                        Bestelling annuleren
+                                        <i class="icon-caret-down"></i>
+                                    </span>
+                                        </div>
+
+                                        <div class="accordion-body">
+                                            <p>Na je online bestelling kun je er nog voor kiezen om te annuleren.
+                                                Je bestelling gaat pas in productie nadat jij akkoord gaat met het
+                                                digitale ontwerp. Je mag tot die tijd nog afzien van je bestelling.
+                                                Om wat voor reden dan ook. Als het ontwerp door je akkoord is gegeven
+                                                zetten wij het door naar de productie en is annuleren niet meer mogelijk.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+               <!-- <section class="section-categories">
+                    <div class="grid-container">
+                        <div class="section-head">
+                            <h4>Top Categories</h4>
+                        </div>
+                        {# @@TODO top categories from where?! #}
+                        <ul class="menu flex-container align-justify">
+                            {% for cat in page.extensions.topCategories.elements %}
+                                <li>
+                                    <div class="category">
+                                        <a href="{{ seoUrl('frontend.navigation.page', { navigationId: cat.id }) }}"
+                                           class="align-middle align-center">
+                                            {% sw_thumbnails 'my-thumbnails' with {
+                                            media: cat.media
+                                            } %}
+                                        </a>
+
+                                        <p><a style="all: unset"
+                                              href="{{ seoUrl('frontend.navigation.page', { navigationId: cat.id }) }}">{{ cat.name }}</a>
+                                        </p>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </section>
+                TODO: Find a way to export black and white logos -->
+
+                <section class="section-suppliers">
+                    <div class="grid-container">
+                        <h4>Proud Suppliers</h4>
+
+                        <div class="section-inner">
+                            <ul class="menu flex-container align-justify">
+                                <li class="flex-container align-middle">
+                                    <img src="{{ asset('bundles/joinztheme/img/svg/logo-abn-amro.svg' , 'asset') }}"
+                                         alt="">
+                                </li>
+                                <li class="flex-container align-middle">
+                                    <img src="{{ asset('bundles/joinztheme/img/svg/logo-danone.svg' , 'asset') }}"
+                                         alt="">
+                                </li>
+                                <li class="flex-container align-middle">
+                                    <img src="{{ asset('bundles/joinztheme/img/svg/logo-nyenrode.svg' , 'asset') }}"
+                                         alt="">
+                                </li>
+                                <li class="flex-container align-middle">
+                                    <img src="{{ asset('bundles/joinztheme/img/svg/logo-radio-538.svg' , 'asset') }}"
+                                         alt="">
+                                </li>
+                                <li class="flex-container align-middle">
+                                    <img src="{{ asset('bundles/joinztheme/img/svg/logo-heineken.svg' , 'asset') }}"
+                                         alt="">
+                                </li>
+                                <li class="flex-container align-middle">
+                                    <img src="{{ asset('bundles/joinztheme/img/svg/logo-nyenrode.svg' , 'asset') }}"
+                                         alt="">
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </main>
+
+        {% endblock %}
+
+
+    {% endblock %}
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#uploadFlag').text(input.files[0].name);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+{% endblock %}
+
+
+

@@ -1,0 +1,20 @@
+{
+  "name": "JoinzTheme",
+  "author": "Code402",
+  "views": [
+     "@Storefront",
+     "@Plugins",
+     "@JoinzTheme"
+  ],
+  "style": [
+    "app/storefront/dist/css/app.scss"
+  ],
+  "script": [
+    "@Storefront",
+    "app/storefront/dist/js/app.js"
+  ],
+  "asset": [
+    "@Storefront",
+    "app/storefront/src/assets"
+  ]
+}

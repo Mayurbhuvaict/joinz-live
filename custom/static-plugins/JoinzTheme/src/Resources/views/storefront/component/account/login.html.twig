@@ -1,0 +1,95 @@
+{% block component_account_login %}
+    {% block component_account_login_form %}
+        <form class="form form-login"
+              action="{{ path('frontend.account.login') }}"
+            {% if removeStyle%} style="background: none; padding: 0; -webkit-box-shadow: none; box-shadow: none;" {% endif %}
+              method="post"
+              data-form-csrf-handler="true"
+              data-form-validation="true">
+
+                <fieldset>
+                    <h4>Login</h4>
+
+
+            {% block component_account_login_form_csrf %}
+                {{ sw_csrf('frontend.account.login') }}
+            {% endblock %}
+
+            {% block component_account_login_form_redirect %}
+                <input type="hidden"
+                       name="redirectTo"
+                       value="{{ redirectTo }}">
+
+                <input type="hidden"
+                       name="redirectParameters"
+                       value="{{ redirectParameters }}">
+            {% endblock %}
+
+
+            {% block component_account_login_form_error %}
+                {% if loginError %}
+                    {% if errorSnippet != null %}
+                        {% sw_include '@Storefront/storefront/utilities/alert.html.twig' with {
+                            type: "danger",
+                            content: errorSnippet|trans|sw_sanitize
+                        } %}
+                    {% else %}
+                        {% sw_include '@Storefront/storefront/utilities/alert.html.twig' with {
+                            type: "danger",
+                            content: "account.loginBadCredentials"|trans|sw_sanitize
+                        } %}
+                    {% endif %}
+                {% endif %}
+            {% endblock %}
+
+            {% block component_account_login_form_fields %}
+                    {% block component_account_login_form_mail %}
+                        <div class="grid-x">
+                            <div class="cell medium-12">
+                                <div class="field-group">
+                                    <label class="form-label" for="loginMail">Email</label>
+                                    <input type="email"
+                                           class="form-control{% if loginError %} is-invalid{% endif %}"
+                                           id="loginMail"
+                                           placeholder="Emailadres"
+                                           name="username"
+                                           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,9}$"
+                                           required="required">
+                                </div>
+                            </div>
+                        </div>
+                    {% endblock %}
+
+                    {% block component_account_login_form_password %}
+                    <div class="grid-x">
+                        <div class="cell medium-12">
+                            <div class="field-group">
+                                <label class="form-label" for="loginPassword">Password</label>
+                                <input type="password"
+                                       class="form-control{% if loginError %} is-invalid{% endif %}"
+                                       id="loginPassword"
+                                       placeholder="Wachtwoord"
+                                       name="password"
+                                       required="required">
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                    {% endblock %}
+            {% endblock %}
+            <fieldset>
+            {% block component_account_login_password_recover %}
+
+                    <a href="{{ seoUrl('frontend.account.recover.page') }}" class="link-underlined">Wachtwoord vergeten ></a>
+
+            {% endblock %}
+
+            {% block component_account_login_submit %}
+                <div class="flex-container align-right">
+                    <button type="submit" class="button small">Inloggen</button>
+                </div>
+            {% endblock %}
+            </fieldset>
+        </form>
+    {% endblock %}
+{% endblock %}

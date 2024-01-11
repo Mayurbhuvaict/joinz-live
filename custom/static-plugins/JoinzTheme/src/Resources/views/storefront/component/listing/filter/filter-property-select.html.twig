@@ -1,0 +1,70 @@
+{% sw_extends '@Storefront/storefront/component/listing/filter/filter-multi-select.html.twig' %}
+
+{% if dataPluginSelectorOptions is not defined %}
+    {% set dataPluginSelectorOptions = {
+        name: name,
+        propertyName: propertyName,
+        snippets: {
+            disabledFilterText: 'listing.disabledFilterTooltip'|trans|sw_sanitize
+        }
+    } %}
+{% endif %}
+
+{% block component_filter_multi_select_list_item %}
+    <li class="filter-multi-select-list-item filter-property-select-list-item">
+        {% if displayType == 'color' or displayType == 'media' %}
+            {% set color = element.colorHexCode %}
+            {% set media = element.media.url %}
+            {% set name = element.translated.name %}
+            {% set id = element.id %}
+
+            {% block component_filter_property_select_preview %}
+                <div class="custom-control custom-checkbox"
+                     title="{{ name }}"
+                >
+
+                    {% block component_filter_property_select_checkox_input %}
+                        <input type="checkbox"
+                               class="custom-control-input filter-property-select-checkbox filter-multi-select-checkbox"
+                               id="{{ id }}"
+                               data-label="{{ name }}"
+
+                            {% if displayType == 'media' and media %}
+                            data-preview-image-url="{{ media }}"
+                            {% endif %}>
+                    {% endblock %}
+                    <label class="filter-multi-select-item-label" for="{{ id }}">
+                        {% block component_filter_property_select_preview_list_item_label %}
+
+                            {% if '/' in color %}
+                                {% set color = color|split('/') %}
+                                {% set colorCss = 'background:linear-gradient(45deg, #'~ color[0] ~' 50%, #'~ color[1] ~' 50%)' %}
+                            {% elseif '#' in color %}
+                                {% set colorCss = 'background:'~ color ~'' %}
+                            {% elseif not color %}
+                                {{ name }}
+                            {% else %}
+                                {% set colorCss = 'background: #'~ color ~''%}
+                            {% endif %}
+                            <span style="display: inline-block;
+width: 1.14286rem;
+height: 1.14286rem;
+border-radius: 50%; {{ colorCss }}"></span>
+                        {% endblock %}
+                    </label>
+
+                </div>
+            {% endblock %}
+
+            {% if not hideTitle %}
+                {% block component_filter_property_select_preview_list_item_label_element %}
+
+                {% endblock %}
+            {% endif %}
+        {% else %}
+            {% block component_filter_property_select_preview_list_item %}
+                {% sw_include '@Storefront/storefront/component/listing/filter/filter-multi-select-list-item.html.twig' %}
+            {% endblock %}
+        {% endif %}
+    </li>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% block element_product_slider %}
+    {% if not sliderConfig %}
+        {% set sliderConfig = element.fieldConfig.elements %}
+    {% endif %}
+    {% if element.data.products.elements %}
+        <section class="section-products-slider">
+            <div class="grid-container">
+                <h2>{{ sliderConfig.title.value }}</h2>
+
+                <ul class="products-slider js-products-slider">
+                    {% for product in element.data.products.elements %}
+                        {% if product.id %}
+                            {% sw_include '@Storefront/storefront/component/product/card/box-slider.html.twig' with {
+                                product: product
+                            } %}
+                        {% endif %}
+                    {% endfor %}
+
+                </ul>
+            </div>
+        </section>
+    {% endif %}
+{% endblock %}

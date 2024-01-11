@@ -1,0 +1,62 @@
+{% block page_account_overview_addresses %}
+    <div class="account-item cell medium-6 flex-container flex-dir-column align-justify align-top">
+        <h5>Standaard factuuradres</h5>
+        {% block billing %}
+{% set address = context.customer.defaultBillingAddress %}
+        <p>{% if address.salutation.salutationKey != 'not_specified' %}
+                {% block component_address_salutation %}
+                    {{ address.salutation.translated.displayName }}
+                {% endblock %}
+            {% endif %}
+            {% if address.title %}
+                {% block component_address_title %}
+                    {{ address.title }}
+                {% endblock %}
+            {% endif %}
+            {% block component_address_name %}
+                {{ address.firstName }} {{ address.lastName }}<br/>
+            {% endblock %}  {% block component_address_street %}
+                {{ address.street }}<br/>
+            {% endblock %}{% if address.additionalAddressLine1 %}
+                {% block component_address_additional_address_line_1 %}
+                    {{ address.additionalAddressLine1 }}<br/>
+                {% endblock %}
+            {% endif %}  {% block component_address_zipcode_city %}
+                {% if shopware.config.core.address.showZipcodeInFrontOfCity %}
+                    {{ address.zipcode }} {{ address.city }}<br/>
+                {% else %}
+                    {{ address.zipcode }} {{ address.city }}<br/>
+                {% endif %}
+            {% endblock %} <br> </p>{% endblock %}
+
+        <a href="{{ path('frontend.account.address.page') }}" class="button button-gray">Verander factuuradres</a>
+    </div>
+    <div class="account-item cell medium-6 flex-container flex-dir-column align-justify align-top">
+        <h5>Standaard verzendadres</h5>
+
+        {% set address = context.customer.defaultShippingAddress %}
+        <p>{% if address.salutation.salutationKey != 'not_specified' %}
+
+                    {{ address.salutation.translated.displayName }}
+
+            {% endif %}
+            {% if address.title %}
+                    {{ address.title }}
+            {% endif %}
+                {{ address.firstName }} {{ address.lastName }}<br/>
+                {{ address.street }}<br/>
+            {% if address.additionalAddressLine1 %}
+
+                    {{ address.additionalAddressLine1 }}<br/>
+
+            {% endif %}
+                {% if shopware.config.core.address.showZipcodeInFrontOfCity %}
+                    {{ address.zipcode }} {{ address.city }}<br/>
+                {% else %}
+                    {{ address.zipcode }} {{ address.city }}<br/>
+                {% endif %}
+            <br> </p>
+
+        <a href="{{ path('frontend.account.address.page') }}" class="button button-gray">Verander verzendadres</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{# @deprecated tag:v6.4.0 -  Will be handled by generic "layout/breadcrumb.html.twig" template #}
+{% block component_listing_breadcrumb %}
+    {% set breadcrumb = sw_breadcrumb(category) %}
+    {% set breadcrumbKeys = breadcrumb|keys %}
+    {% set breadcrumbTypes = sw_breadcrumb_types(breadcrumbKeys, context.context) %}
+
+    <ul class="menu align-center">
+    {% for key, item in breadcrumb %}
+
+        <li>
+            {% block component_listing_breadcrumb_category %}
+                {% if breadcrumbTypes[key] == 'folder' %}
+                    <div>{{ item }}</div>
+                {% else %}
+                    <a class="{% if key is same as(category.id) %} is-active{% endif %}"
+                       href="{{ seoUrl('frontend.navigation.page', { navigationId: key }) }}">
+                        {% block component_listing_breadcrumb_link_name %}
+                            {{ item }} {% block component_listing_breadcrumb_placeholder %}
+                            {% if key != breadcrumbKeys|last %}
+                                <i class="icon-pointer-next-white"></i>
+                            {% endif %}
+                        {% endblock %}
+                        {% endblock %}
+                    </a>
+                {% endif %}
+            {% endblock %}
+
+        </li>
+    {% endfor %}
+    </ul>
+{% endblock %}

@@ -1,0 +1,188 @@
+{% if app.request.requestUri starts with '/checkout'%}
+{% elseif app.request.requestUri starts with '/joinz/submitQuote'%}
+{% else %}
+    <header class="header grid-container">
+        <div class="grid-x">
+            <div class="cell medium-2 small-4 flex-container align-middle">
+                <div class="logo">
+                    <a href="/">
+                        <img src="{{ asset('bundles/joinztheme/img/svg/logo-joinz.svg', 'asset') }}" alt="Joinz logo">
+                    </a>
+                </div>
+            </div>
+            <style>
+                .phone-mobile {
+                    display: none;
+                }
+                ul.search-suggest-container {
+                    list-style-type: none;
+                }
+
+                .search-bar-inner{
+                    width:100%;
+                }
+
+                .search-suggest {
+                    position: absolute;
+                    background-color: #fff;
+                    width: 100%;
+                    padding: 20px;
+                    z-index: 99;
+                }
+
+                .header-search-btn {
+                    height: 48px;
+                }
+
+                img.search-suggest-product-image {
+                    width: 50px;
+                    float: left;
+                    margin-right: 10px;
+                }
+
+                .search-suggest-product-link {
+                    float: left;
+                    width: 50%;
+                }
+
+                @media only screen and (max-width: 600px) {
+                    .phone-mobile {
+                        display: block;
+                    }
+                    .search-suggest {
+                        position: fixed;
+                        left: 0;
+                        top: 118px;
+                    }
+
+                    .search-suggest-product-link {
+                        width: 100%;
+                    }
+                }
+            </style>
+            <div class="cell medium-10 small-8 flex-container align-left medium-align-right flex-dir-row-reverse medium-flex-dir-row">
+                <div class="search-bar flex-child-grow">
+                    <form action="{{ path('frontend.search.page') }}"
+                          method="get"
+                          data-search-form="true"
+                          data-url="{{ path('frontend.search.suggest') }}?search="
+                          class="header-search-form">
+                        <div class="input-group" style="margin-bottom:0px!important;">
+                            <a href="#" class="show-for-small-only" id="js-expand-search">
+                                <i class="icon-magnifying-glass"></i>
+                            </a>
+
+                            <div class="search-bar-inner">
+                                <input type="search"
+                                        {#placeholder="Search everything at Joinz"#}
+                                       name="search"
+                                       class="form-control header-search-input"
+                                       autocomplete="off"
+                                       autocapitalize="off"
+                                       placeholder="{{ "header.searchPlaceholder"|trans|striptags }}"
+                                       aria-label="{{ "header.searchPlaceholder"|trans|striptags }}"
+                                       value="{{ page.searchTerm }}"
+                                        >
+                                <button
+                                        type="submit"
+                                        class="btn header-search-btn button"
+                                        aria-label="{{ "header.searchButton"|trans|striptags }}"
+                                        >
+                                    <i class="icon-magnifying-glass-white"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+
+                <div class="user-info flex-container align-middle flex-child-shrink">
+                    <a href="/joinz/contact">
+                        <img src="{{ asset('bundles/joinztheme/img/sara-jone.png' , 'asset') }}" alt="Customer service">
+                    </a>
+
+                    <div>
+                        <a href="tel:+31332464533"><b>033 2464 533</b></a>
+                        <span>09.00-17.00</span>
+                    </div>
+                </div>
+
+                <ul class="menu">
+                    <li class="phone-mobile">
+                        <a href="tel:+31332464533"><i style="width: 25px; height: 25px; filter: invert(0%) sepia(5%) saturate(0%) hue-rotate(317deg) brightness(91%) contrast(104%);" class="icon-phone-blue"></i></a>
+                    </li>
+                    <li>
+                        <a href="#" class="">
+                            <i class="icon-user"></i>
+                            <i class="icon-arrow-down"></i>
+                        </a>
+
+                        <div class="menu-dropdown">
+                            <h6>Mijn Account</h6>
+
+                            <div class="menu-login">
+                                {% if context.customer %}
+                                    Hi {{ context.customer.title }}
+                                    {{ context.customer.firstName }}
+                                    {{ context.customer.lastName }}
+                                {% endif %}
+                                {% if not context.customer %}
+                                    <a href="{{ path('frontend.account.login.page') }}"
+                                       class="button button-white mini uppercase">Aanmelden</a>
+
+                                    <p>Of, <a href="{{ path('frontend.account.login.page') }}">registreren</a></p>
+                                {% endif %}
+
+                            </div>
+
+                            <ul class="no-bullet">
+                                {% if context.customer %}
+                                    {% if not context.customer.guest %}
+                                        <li>
+                                            <a href="{{ path('frontend.account.home.page') }}">Overzicht</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('frontend.account.profile.page') }}">Mijn profiel</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('frontend.account.address.page') }}">Mijn adressen</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('frontend.account.order.page') }}">Mijn Bestellingen</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('frontend.account.logout.page') }}"
+                                               class="btn btn-link account-aside-btn">
+                                                {{ "account.logout"|trans|sw_sanitize }}
+                                            </a>
+                                        </li>
+                                    {% else %}
+                                        <li>
+                                            <a href="{{ path('frontend.account.logout.page') }}"
+                                               class="btn btn-link account-aside-btn">
+                                                {{ "account.guestAbort"|trans|sw_sanitize }}
+                                            </a>
+                                        </li>
+                                    {% endif %}
+                                {% endif %}
+                            </ul>
+                        </div>
+
+                    </li>
+                    <li>
+                        <a href="/checkout/cart">
+                            <i class="icon-bag"></i>
+                        </a>
+                        {% set cartSes = app.session.get('cart') %}
+                        {% set padding = cartSes < 10 ? 6 : cartSes < 100 ? 2 : 0 %}
+                        {% if(cartSes != 0) %}
+                        <span class="menu-total-sum" style="padding:0 {{ padding }}px">
+                            {{ cartSes|currency }}
+                        </span>
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+{% endif %}

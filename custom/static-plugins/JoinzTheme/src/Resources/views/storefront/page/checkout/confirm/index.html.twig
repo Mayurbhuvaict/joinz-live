@@ -1,0 +1,458 @@
+{% sw_extends '@Storefront/storefront/page/checkout/_page.html.twig' %}
+
+{%  set isQuote = app.request.get('quote') %}
+{% if not isQuote %}
+    {% set isQuote = app.session.get('quote') %}
+{% endif %}
+
+{% block base_content %}
+<style>
+    .card.checkout-card {padding: 10px 20px;}
+    p#uploadFlag:empty {
+        display: none;
+    }
+    p#uploadFlag {
+        background-color: #fff;
+        max-width: 140px;
+        min-height: 170px;
+        word-break: break-word;
+        border: solid 1px #e3e3e3;
+        padding: 14px;
+        border-radius: 6px;
+        font-weight: bold;
+    }
+
+    p#uploadFlag::before {
+        font-weight: normal;
+        content: "Jouw bestand \A";
+    }
+
+    p#uploadFlag::after {
+        content: "\A \A Verander bestand";
+        font-weight: normal;
+        text-decoration: underline;
+        white-space: pre;
+    }
+</style>
+    {% block page_checkout_main_content %}
+        {% set billingAddress = context.customer.activeBillingAddress %}
+        {% set shippingAddress = context.customer.activeShippingAddress %}
+
+
+        <section class="section-cart">
+            <div class="section-inner">
+                <div class="section-head">
+                    <div class="grid-x flex-container align-stretch">
+                        <div class="cell large-7 medium-12">
+                            <div class="section-left">
+                                <div class="flex-container align-middle">
+                                    <div class="logo">
+                                        <a href="/">
+                                            <img src="/bundles/joinztheme/img/svg/logo-joinz.svg" alt="Joinz logo">
+                                        </a>
+                                    </div>
+                                    <div class="recommended">
+                                        <img src="/bundles/joinztheme/img/svg/recommended.svg"
+                                             alt="99% recommend us on kiyoh">
+                                    </div>
+                                </div>
+
+                                <div class="loading-bar">
+                                    <div class="loading-bar-inner loading-99">
+                                        <p>Upload logo & {{ isQuote ? 'ontvang offerte' : 'bestel'}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cell large-5 medium-12">
+                            <div class="section-right" style="height: 100%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flashbags">
+                    {% for type, messages in app.flashes %}
+                        {% sw_include '@Storefront/storefront/utilities/alert.html.twig' with { type: type, list: messages } %}
+                    {% endfor %}
+                </div>
+                <div class="section-body">
+                    <div class="grid-x grid-padding-x">
+                        <div class="cell large-7 medium-12">
+                            <div class="section-left">
+                                {% block page_checkout_confirm_alerts %}
+                                    {% if page.errorCode == 'CHECKOUT__CUSTOMER_CANCELED_EXTERNAL_PAYMENT' %}
+                                        {% sw_include '@Storefront/storefront/utilities/alert.html.twig' with {
+                                            type: 'danger',
+                                            content: 'account.externalPaymentCanceled'|trans|sw_sanitize
+                                        } %}
+                                    {% elseif page.errorCode == 'CHECKOUT__PAYMENT_TOKEN_EXPIRED' %}
+                                        {% sw_include '@Storefront/storefront/utilities/alert.html.twig' with {
+                                            type: 'danger',
+                                            content: 'account.externalPaymentExpired'|trans|sw_sanitize
+                                        } %}
+                                    {% elseif page.errorCode is not null %}
+                                        {% sw_include '@Storefront/storefront/utilities/alert.html.twig' with {
+                                            type: 'danger',
+                                            content: 'account.externalPaymentFailure'|trans|sw_sanitize
+                                        } %}
+                                    {% endif %}
+                                    {% block page_checkout_confirm_violations %}
+                                        {% for violation in formViolations.getViolations() %}
+                                            {% set snippetName = "error.#{violation.code}" %}
+                                            {% set fieldName = violation.propertyPath|trim('/', 'left') %}
+
+                                            {% sw_include '@Storefront/storefront/utilities/alert.html.twig' with {
+                                            type: "danger",
+                                            content: snippetName|trans({'%field%': fieldName})|sw_sanitize
+                                            } %}
+                                        {% endfor %}
+                                    {% endblock %}
+
+                                    {% block page_checkout_confirm_errors %}
+                                        {% sw_include '@Storefront/storefront/component/checkout/cart-alerts.html.twig' %}
+                                    {% endblock %}
+                                {% endblock %}
+
+                                <div class="form-cart">
+
+
+                                    <fieldset class="label-top">
+                                        {#<p class="label label-note label-pointer top-right">Je mag je logo ook laten later terugmailen</p>#}
+
+                                        <h4 class="flex-container align-middle align-justify {{ app.request.query.has('uploaded') ? 'hide' }}">
+                                             Jouw logo en tekst
+                                            <span>optioneel</span>
+                                        </h4>
+                                        <form {{ app.request.query.has('uploaded') ? "class='hide'" }}
+                                              action="{{ path('frontend.joinz.upload-logo-submit') }}"
+                                              method="post" class="form"
+                                              enctype="multipart/form-data"
+                                              data-form-csrf-handler="true">
+                                            {{ sw_csrf('frontend.joinz.upload-logo-submit') }}
+                                            <input class="form-control" type="hidden" id="first-name" name="first-name" value="{{  billingAddress.firstName }}">
+                                            <input class="form-control" type="hidden" id="last-name" name="last-name" value="{{  billingAddress.lastName }}">
+                                            <input class="form-control" type="hidden" id="email" name="email" value="{{   context.customer.email }}">
+
+                                            <div class="grid-x grid-margin-x">
+                                                <div class="cell medium-6 small-12">
+                                                    <div class="field-group">
+                                                        <div class="fileupload">
+                                                            <input type="file" name="fileupload" id="fileupload"
+                                                                   value="fileupload" id="fileupload" accept="image/*,.pdf" onchange="readURL(this);">
+                                                            <label for="fileupload"
+                                                                   class="flex-container flex-dir-column align-middle align-center">
+                                                            <span class="flex-container align-middle align-center">
+                                                                <i class="icon-file"></i>
+                                                                Kies Bestand
+                                                            </span>
+                                                                <p id="uploadFlag" class="text-center"></p>
+                                                                (MAX 20mb)
+                                                            </label>
+
+                                                            <p class="text-center">PDF/SVG/EPS/AI/PNG/JPG</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="cell medium-6 small-12">
+                                                    <div class="field-group">
+                                                        <label for="textfiled">Tekst/opmerking</label>
+                                                        <textarea oninput="toggleBtn();" class="textarea" id="textfield" name="textfield" rows="7"
+                                                                  cols="50" placeholder="Optioneel: af te drukken tekst of opmerking over het ontwerp/de bestelling"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="submitBtn" class="flex-container align-right" style="display:none">
+                                                <button class="button" type="submit">Verstuur bestand/tekst</button>
+                                            </div>
+                                        </form>
+                                    </fieldset>
+<br/>
+                                    <fieldset>
+                                        <h4>Controleer je gegevens</h4>
+                                        {% sw_include '@Storefront/storefront/page/checkout/confirm/confirm-address.html.twig' %}
+
+                                    </fieldset>
+
+                                </div>
+                                {% block page_checkout_confirm_payment %}
+                                    {% if not isQuote  %}
+                                    {% sw_include '@Storefront/storefront/page/checkout/confirm/confirm-payment.html.twig' %}
+                                    {% endif %}
+                                {% endblock %}
+
+                                {% block page_checkout_confirm_tos %}
+                                {% if not isQuote  %}
+                                    <div class="confirm-tos">
+                                        <div class="card checkout-card">
+                                            <div class="card-body">
+                                                {% block page_checkout_confirm_tos_header %}
+                                                    <div class="card-title">
+                                                        {{ "checkout.confirmTermsHeader"|trans|sw_sanitize }}
+                                                    </div>
+                                                {% endblock %}
+
+                                                {% block page_checkout_confirm_revocation_notice %}
+                                                    {% if shopware.config.confirm.revocationNotice %}
+                                                        <p class="revocation-notice">
+                                                            {% block page_checkout_confirm_revocation_notice_link %}
+                                                                <a href="{{ path('frontend.cms.page',{ id: shopware.config.core.basicInformation.revocationPage }) }}"
+                                                                   data-toggle="modal"
+                                                                   title="{{ "checkout.confirmRevocationNotice"|trans|striptags }}"
+                                                                   data-url="{{ path('frontend.cms.page',{ id: shopware.config.core.basicInformation.revocationPage }) }}">
+                                                                    {{ "checkout.confirmRevocationNotice"|trans|sw_sanitize }}
+                                                                </a>
+                                                            {% endblock %}
+                                                        </p>
+                                                    {% endif %}
+                                                {% endblock %}
+
+                                                {% block page_checkout_confirm_tos_control %}
+                                                    <div class="custom-control custom-checkbox">
+                                                        {% block page_checkout_confirm_tos_control_checkbox %}
+                                                            <input type="checkbox"
+                                                                   class="checkout-confirm-tos-checkbox custom-control-input{% if formViolations.getViolations('/tos') is not empty %} is-invalid{% endif %}"
+                                                                   required="required"
+                                                                   id="tos"
+                                                                   form="confirmOrderForm"
+                                                                   name="tos"/>
+                                                        {% endblock %}
+
+                                                        {% block page_checkout_confirm_tos_control_label %}
+                                                            <label for="tos"
+                                                                   class="checkout-confirm-tos-label custom-control-label">
+                                                                {{ "checkout.confirmTerms"|trans({
+                                                                    '%url%': path('frontend.cms.page',{ id: shopware.config.core.basicInformation.tosPage })
+                                                                })|raw }}
+                                                            </label>
+                                                        {% endblock %}
+                                                    </div>
+                                                {% endblock %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                                {% endblock %}
+                                {% block page_checkout_aside_actions %}
+                                    {% set path = isQuote ? 'frontend.joinz.submit-quote' : 'frontend.checkout.finish.order' %}
+                                    <div class="checkout-aside-action">
+                                        <form id="confirmOrderForm"
+                                              class="form-cart"
+                                              action="{{ path(path) }}"
+                                              data-form-csrf-handler="true"
+                                              data-form-preserver="true"
+                                              data-form-submit-loader="true"
+                                              method="post">
+
+                                            {% block page_checkout_aside_actions_csrf %}
+                                                {{ sw_csrf(path) }}
+                                            {% endblock %}
+
+                                            {% block page_checkout_confirm_form_submit %}
+                                                <fieldset class="label-bottom">
+                                                    <button
+                                                            id="confirmFormSubmit"
+                                                            form="confirmOrderForm"
+                                                            class="button expanded"
+                                                            {% if page.cart.errors.blockOrder %}
+                                                                disabled
+                                                            {% endif %}
+                                                            type="submit"
+                                                            >{% if isQuote %}ONTVANG OFFERTE OP MAAT {% else %}BESTELLING  PLAATSEN {% endif %}</button>
+                                                    {% if not isQuote %}
+                                                    <p class="label label-note label-pointer bottom-right">Je ontvangt binnen 4 uur je ontwerp</p>
+                                                    {% endif %}
+                                                </fieldset>
+                                            {% endblock %}
+                                        </form>
+                                    </div>
+                                {% endblock %}
+                                {% if not isQuote %}
+                                <div class="accordion-small">
+                                    <div class="grid-container">
+                                        <div class="accordion-inner">
+                                            <div class="accordion-top">
+                                                <p>VRAGEN EN ANTWOORDEN</p>
+                                            </div>
+
+                                            <div class="accordion-section">
+                                                <div class="accordion-head">
+                                                    <span class="flex-container align-justify align-middle">
+                                                        Het bestelproces (van bestelling tot productie)
+                                                        <i class="icon-caret-down"></i>
+                                                    </span>
+                                                </div>
+
+                                                <div class="accordion-body">
+                                                    <p>Na je bestelling gaan onze ontwerpers aan de slag en ontvang je
+                                                        een digitaal drukvoorbeeld. Hierop kun je zien hoe jouw bedrukking
+                                                        wordt. Nadat je via de mail akkoord geeft op het ontwerp en de
+                                                        offerte, start de productie en is je bestelling definitief. De
+                                                        levertijd kan afhangen van de drukte en voorraad. Nadat je
+                                                        artikelen zijn bedrukt, ontvang je een email met een track &
+                                                        trace code.</p>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-section">
+                                                <div class="accordion-head">
+                                                    <span class="flex-container align-justify align-middle">
+                                                        Bestelling annuleren
+                                                        <i class="icon-caret-down"></i>
+                                                    </span>
+                                                </div>
+
+                                                <div class="accordion-body">
+                                                    <p>Na je online bestelling kun je er nog voor kiezen om te annuleren.
+                                                        Je bestelling gaat pas in productie nadat jij akkoord gaat met
+                                                        het ontwerp. Je mag tot die tijd nog afzien van je bestelling.
+                                                        Om wat voor reden dan ook. Na je bestelling ontvang je het
+                                                        ontwerp vaak binnen 4 uur in je inbox.</p>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-section">
+                                                <div class="accordion-head">
+                                                    <span class="flex-container align-justify align-middle">
+                                                        Logo later uploaden
+                                                        <i class="icon-caret-down"></i>
+                                                    </span>
+                                                </div>
+
+                                                <div class="accordion-body">
+                                                    <p>Heb je jouw logo niet bij de hand? Bestel dan alsnog. Je kun je
+                                                        logo of drukbestand na je bestelling mailen. Wij zullen contact
+                                                        met je opnemen.</p>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-section">
+                                                <div class="accordion-head">
+                                                    <span class="flex-container align-justify align-middle">
+                                                        Op factuur betalen.
+                                                        <i class="icon-caret-down"></i>
+                                                    </span>
+                                                </div>
+
+                                                <div class="accordion-body">
+                                                    <p>Je hoeft niet direct te betalen bij je online bestelling. Kies de
+                                                        optie ‘op factuur betalen’ tijdens het afrekenen. Je zult dan een
+                                                        factuur van ons ontvangen waarin je het verschuldigde bedrag kan voldoen. </p>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-section">
+                                                <div class="accordion-head">
+                                                    <span class="flex-container align-justify align-middle">
+                                                        Gratis ontwerp binnen ca. 4 uur
+                                                        <i class="icon-caret-down"></i>
+                                                    </span>
+                                                </div>
+
+                                                <div class="accordion-body">
+                                                    <p>We maken graag een gratis ontwerp voor je. Op deze digitale
+                                                        drukproef kan je zien hoe jouw bedrukking wordt. Upload je logo
+                                                        tijdens het bestelproces of stuur het later via de mail.  </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% else %}
+                                    <div class="accordion-small">
+                                        <div class="grid-container">
+                                            <div class="accordion-inner">
+                                                <div class="accordion-top">
+                                                    <p>VRAGEN EN ANTWOORDEN</p>
+                                                </div>
+
+                                                <div class="accordion-section">
+                                                    <div class="accordion-head">
+                                                    <span class="flex-container align-justify align-middle">
+                                                        Vrijblijvende persoonlijke offerte
+                                                        <i class="icon-caret-down"></i>
+                                                    </span>
+                                                    </div>
+
+                                                    <div class="accordion-body">
+                                                        <p>Na je offerte-aanvraag gaan onze accountmanagers aan de slag.
+                                                            Je krijgt (meestal) binnen 4 uur een op maat gemaakte offerte
+                                                            met een scherpe prijs. Als jij je logo of drukwensen nu
+                                                            uploadt of later nastuurt krijg je ook direct een ontwerp. </p>
+                                                    </div>
+                                                </div>
+                                                <div class="accordion-section">
+                                                    <div class="accordion-head">
+                                                    <span class="flex-container align-justify align-middle">
+                                                        Gratis ontwerp binnen ca. 4 uur
+                                                        <i class="icon-caret-down"></i>
+                                                    </span>
+                                                    </div>
+
+                                                    <div class="accordion-body">
+                                                        <p>We maken graag een gratis ontwerp voor je. Op deze digitale
+                                                            drukproef kan je zien hoe jouw bedrukking wordt. Upload je
+                                                            logo tijdens het offerte aanvraagproces of stuur het later
+                                                            via de mail. </p>
+                                                    </div>
+                                                </div>
+                                                <div class="accordion-section">
+                                                    <div class="accordion-head">
+                                                    <span class="flex-container align-justify align-middle">
+                                                        Het bestelproces (van offerte tot productie)
+                                                        <i class="icon-caret-down"></i>
+                                                    </span>
+                                                    </div>
+
+                                                    <div class="accordion-body">
+                                                        <p>Na je offerteaanvraag gaan onze ontwerpers aan de slag en
+                                                            ontvang je een drukvoorbeeld. Hierop kun je zien hoe jouw
+                                                            bedrukking wordt. Als je via de mail akkoord geeft op het
+                                                            ontwerp en de offerte, start de productie. De levertijd kan
+                                                            afhangen van de drukte en voorraad. Nadat je artikelen zijn
+                                                            bedrukt, ontvang je een email met een track & trace code.</p>
+                                                    </div>
+                                                </div>
+                                                <div class="accordion-section">
+                                                    <div class="accordion-head">
+                                                    <span class="flex-container align-justify align-middle">
+                                                        Logo later uploaden
+                                                        <i class="icon-caret-down"></i>
+                                                    </span>
+                                                    </div>
+
+                                                    <div class="accordion-body">
+                                                        <p>Heb je jouw logo niet bij de hand? Vraag dan alsnog een
+                                                            offerte aan. Je kun je logo of drukbestand na je
+                                                            offerteaanvraag mailen. Wij zullen contact met je opnemen. </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% block page_checkout_summary_list_container %}
+                            {% sw_include '@JoinzTheme/storefront/page/checkout/confirm/summary.html.twig' with {
+                            delivery: page.cart.deliveries.first()
+                            } %}
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% endblock %}
+
+    <script>
+	function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#uploadFlag').text(input.files[0].name);
+					toggleBtn();
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+	function toggleBtn() {
+		$('#submitBtn').show();
+	}
+    </script>
+{% endblock %}

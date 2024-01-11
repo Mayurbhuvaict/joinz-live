@@ -1,0 +1,84 @@
+{% block wk_test_list %}
+    <sw-page>
+        {% block wk_test_list_smart_bar_header %}
+            <template #smart-bar-header>
+                {% block wk_test_list_smart_bar_header_title %}
+                    <h2>
+                        {% block wk_test_list_smart_bar_header_title_text %}
+                            {{ $tc('sw-settings.index.title') }} <sw-icon name="small-arrow-medium-right" small></sw-icon>
+                            Logo Upload CRUD
+                        {% endblock %}
+
+                        {% block wk_test_list_smart_bar_header_total %}
+                            <span v-if="!isLoading" class="sw-page__smart-bar-amount">
+                                ({{ total }})
+                            </span>
+                        {% endblock %}
+                    </h2>
+                {% endblock %}
+            </template>
+        {% endblock %}
+
+        <template #content>
+            {% block wk_test_list_content %}
+                <div>
+                    {% block wk_test_list_grid %}
+                        <sw-entity-listing
+                            v-if="logoUpload"
+                            :items="logoUpload"
+                            :columns="logoUploadColumns"
+                            :repository="logoUploadRepository"
+                            :showSelection="false"
+                            :isLoading="isLoading"
+                        >
+                            <template slot="column-mediaId" slot-scope="{ item }">
+                                <sw-media-preview-v2
+                                    :source="item.mediaId"
+                                    :show-controls="true"
+                                    :autoplay="false"
+                                    :use-thumbnails="false">
+                                </sw-media-preview-v2>
+                            </template>
+                        </sw-entity-listing>
+                    {% endblock %}
+                </div>
+            {% endblock %}
+        </template>
+        <template #pagination>
+            {% block sw_order_list_grid_pagination %}
+                <sw-pagination
+                    :page="page"
+                    :limit="limit"
+                    :total="total"
+                    :total-visible="7"
+                    @page-change="onPageChange"
+                />
+            {% endblock %}
+        </template>
+
+        {% block wk_test_list_sidebar %}
+            <template #sidebar>
+                <sw-sidebar class="sw-order-list__sidebar">
+                    {% block wk_test_list_sidebar_refresh %}
+                        <sw-sidebar-item
+                            icon="default-arrow-360-left"
+                            :title="$tc('sw-order.list.titleSidebarItemRefresh')"
+                            @click="onRefresh">
+                        </sw-sidebar-item>
+                    {% endblock %}
+
+                    {% block wk_test_list_sidebar_filter %}
+                        <sw-sidebar-filter-panel
+                            entity="logoUpload"
+                            :storeKey="storeKey"
+                            :filters="listFilters"
+                            :defaults="defaultFilters"
+                            :activeFilterNumber="activeFilterNumber"
+                            @criteria-changed="updateCriteria">
+                        </sw-sidebar-filter-panel>
+                    {% endblock %}
+                </sw-sidebar>
+            </template>
+        {% endblock %}
+    </sw-page>
+{% endblock %}

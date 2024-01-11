@@ -1,0 +1,399 @@
+<style>
+    #read-more-top {
+        position: relative;
+    }
+
+    #read-more-top p {
+        max-height: 20px;
+        overflow: hidden;
+    }
+
+    #read-more-top span {
+        /*position: absolute;*/
+        right: -90px;
+        top: 0;
+    }
+
+    #read-more-bottom {
+        position:relative;
+    }
+    #read-more-bottom div.body{
+        max-height:300px;
+        overflow:hidden;
+    }
+    #read-more-bottom p.read-more{
+        position:absolute;
+        bottom:0;
+    }
+</style>
+<script>
+    function readMoreTop()
+    {
+        var el = document.querySelector('#read-more-top p');
+        el.style.maxHeight = 'none';
+        el = document.querySelector('#read-more-top span');
+        el.remove()
+    }
+
+    function readMoreBottom()
+    {
+        var el = document.querySelector('#read-more-bottom div.body');
+        el.style.maxHeight = 'none';
+        el = document.querySelector('#read-more-bottom p.read-more');
+        el.remove()
+    }
+</script>
+<div class="banner banner-category">
+    <div class="background"></div>
+    <div class="grid-container">
+        <div class="content">
+            <h1>{% if (page.header.navigation.active.customFields['custom_category_info_title'] is not null) %}
+                    {{ page.header.navigation.active.customFields['custom_category_info_title'] }}
+                {% else %}{{ page.metaInformation.metaTitle }}{% endif %}</h1>
+            {% sw_include '@Storefront/storefront/component/listing/breadcrumb.html.twig' with {
+                context: context,
+                navigationTree: page.header.navigation.tree,
+                category: page.header.navigation.active
+            } only %}
+            <div id="read-more-top">
+                <p>{{ page.header.navigation.active.description }}</p>
+                <span>... <a href="javascript:void(0);" onclick="readMoreTop()">Lees verder</a></span>
+            </div>
+        </div>
+    </div>
+</div>
+{% if page.header.navigation.active.customFields['custom_secondary_template_active'] == TRUE %}
+<section class="section-products section-products-alt" style="margin-top: 0px">
+    <div class="grid-container">
+        <div class="grid-x grid-margin-x">
+            <div class="cell large-12">
+
+    <section class="section-categories" style="margin-top: 60px">
+        <div class="grid-container">
+            <div class="section-head">
+                <h4>Ontdek top {{ page.header.navigation.active.name }} categorieën</h4>
+            </div>
+
+            <ul class="menu flex-container align-justify js-categories-slider">
+                {% set subcats = page.header.navigation.tree[page.header.navigation.active.id].children %}
+                {% if sw_breadcrumb(page.header.navigation.active)| length > 2 %}
+                    {% set subcats = page.header.navigation.tree[sw_breadcrumb(page.header.navigation.active)|keys|first].children[sw_breadcrumb(page.header.navigation.active)|keys|slice(1)|first].children %}
+                {% elseif page.header.navigation.tree[page.header.navigation.active.parentid].children[page.header.navigation.active.id].children %}
+                    {% set subcats = page.header.navigation.tree[page.header.navigation.active.parentid].children[page.header.navigation.active.id].children %}
+                {% elseif page.header.navigation.tree[page.header.navigation.active.parentid].children[page.header.navigation.active.id] %}
+                    {% set subcats = page.header.navigation.tree[page.header.navigation.active.parentid].children %}
+                {% elseif not page.header.navigation.tree[page.header.navigation.active.id].children %}
+                    {% set subcats = page.header.navigation.tree %}
+                {% endif %}
+                {% for subcat in subcats %}
+                    <li>
+                        <div class="category">
+                            <a href="{{ category_url(subcat.category) }}"
+                               class="align-middle align-center">
+                                {% sw_thumbnails 'my-thumbnails' with {
+                                    media: subcat.category.media,
+                                    attributes: {
+                                        'alt': subcat.category.name ~ ' bedrukken met logo'
+                                    },
+                                } %}
+                            </a>
+
+                            <p><a style="all: unset"
+                                  href="{{ category_url(subcat.category) }}">{{ subcat.category.name }}</a>
+                            </p>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </section>
+    {% if page.header.navigation.active.customFields['custom_top_products_category_products'] is not null %}
+        <section class="section-products-slider" style="padding: 3%; background: rgba(58, 190, 187, 0.14); position: relative;
+  left: -50vw;
+  width: 100vw;
+  margin-left: 50%;">
+                    <div class="grid-container" >
+                        <h2>Aanbevolen</h2>
+
+
+                        <ul class="products-slider js-products-slider">
+                            {% for product in page.header.navigation.active.customFields['custom_top_products_category_products'] %}
+                                {% if product.id %}
+                                    {% sw_include '@Storefront/storefront/component/product/card/box-slider.html.twig' with {
+                                        product: product
+                                    } %}
+                                {% endif %}
+                            {% endfor %}
+
+                        </ul>
+                    </div>
+                </section>
+    {% endif %}
+                {% if page.header.navigation.active.customFields['custom_secondary_template_categories'] is not null %}
+                <section class="section-categories" style="margin-top: 60px">
+                    <div class="grid-container">
+                        <div class="section-head">
+                            <h4>Ontdek meer {{ page.header.navigation.active.name }} categorieën</h4>
+                        </div>
+
+                        <ul class="menu flex-container align-justify ">
+                            {% for cat in page.header.navigation.active.customFields['custom_secondary_template_categories'] %}
+                                <li>
+                                    <div class="category">
+                                        <a href="{{ category_url(cat) }}"
+                                           class="align-middle align-center">
+                                            {% sw_thumbnails 'my-thumbnails' with {
+                                                media: cat.media,
+                                                attributes: {
+                                                    'alt': cat.name ~ ' bedrukken met logo'
+                                                },
+                                            } %}
+                                        </a>
+
+                                        <p><a style="all: unset"
+                                              href="{{ category_url(cat) }}">{{ cat.name }}</a>
+                                        </p>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </section>
+                {% endif %}
+                <section class="section-products-listing">
+                    <div class="grid-container">
+                        <div class="container-main">
+                            <div class="cms-page">
+                                {% sw_include "@Storefront/storefront/page/content/detail.html.twig" with {'cmsPage': page.cmsPage} %}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                {% if (page.header.navigation.active.customFields['custom_category_info_description'] is not null) %}
+                    <section class="section-article">
+                        <div class="grid-container" id="read-more-bottom">
+                            <div class="body" style="color: #424242;">
+                                {{ page.header.navigation.active.customFields['custom_category_info_description']|raw }}
+                            </div>
+                            <p class="read-more"><a href="javascript:void(0);" onclick="readMoreBottom()">Lees verder +</a></p>
+                        </div>
+                    </section>
+                {% endif %}
+    </div>
+        </div>
+    </div>
+    </section>
+
+{% else %}
+    <section class="section-products section-products-alt">
+        <div class="grid-container">
+            <div class="grid-x grid-margin-x">
+
+
+            <div class="cell large-3 hide-for-small-only">
+                <div class="section-left">
+                    <div class="product-categories">
+                        <div class="accordion-small">
+                            <span class="spanh5">
+                                {% if sw_breadcrumb(page.header.navigation.active)| length > 2 %}
+                                    <a href="{{ category_url(page.header.navigation.tree[sw_breadcrumb(page.header.navigation.active)|keys|first].children[sw_breadcrumb(page.header.navigation.active)|keys|slice(1)|first].category) }}">{{ sw_breadcrumb(page.header.navigation.active)| slice(1)|first }} </a>
+                                {% else %}
+                                    <a href="{{ category_url(page.header.navigation.tree[sw_breadcrumb(page.header.navigation.active)|keys|first].category) }}">{{ sw_breadcrumb(page.header.navigation.active)|first }}</a>
+                                {% endif %}</span>
+                            {% if sw_breadcrumb(page.header.navigation.active)| length > 2 %}
+                                {% set accordion_navi = page.header.navigation.tree[sw_breadcrumb(page.header.navigation.active)|keys|first].children[sw_breadcrumb(page.header.navigation.active)|keys|slice(1)|first].children %}
+                            {% elseif sw_breadcrumb(page.header.navigation.active)| length > 1 %}
+                                {% set accordion_navi = page.header.navigation.tree[sw_breadcrumb(page.header.navigation.active)|keys|first].children %}
+                            {% else %}
+                                {% set accordion_navi = page.header.navigation.tree %}
+                            {% endif %}
+                            {% for navi in accordion_navi %}
+                                <div class="accordion-section">
+                                    <div class="accordion-head">
+                                            <span class="flex-container align-justify align-middle">
+                                                <a href="{{ category_url(navi.category) }}">
+                                                    {{ navi.category.name }}
+                                                </a>
+                                                {% if navi.children and navi.category.id == page.header.navigation.active.id %}
+                                                    <i class="icon-pointer-next"></i>{% endif %}
+                                            </span>
+                                    </div>
+                                    {% if navi.children %}
+                                    <div
+                                            class="accordion-body" {% if navi.category.id == page.header.navigation.active.id %} style="display: block;" {% endif %}>
+                                        <ul>
+                                            {% if navi.children and navi.category.id == page.header.navigation.active.id %}
+                                                {% for naviChild in navi.children %}
+                                                    <li>
+                                                        <a href="{{ category_url(naviChild.category) }}"
+                                                           class="has-arrow">
+                                                            {{ naviChild.category.name }}
+                                                        </a>
+                                                    </li>
+                                                    <ul>
+                                                        {% for naviChildChild in naviChild.children %}
+                                                            <li>
+                                                                <a href="{{ category_url(naviChildChild.category) }}">
+                                                                    {{ naviChildChild.category.name }}
+                                                                </a>
+                                                            </li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                {% endfor %}
+                                            {% endif %}
+                                        </ul>
+                                        </div>{% endif %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cell large-9">
+                <div class="section-right">
+                    <div class="list-categories">
+                        <ul class="flex-container align-justify align-middle" style="justify-content: flex-start;">
+                            {% set subcats = page.header.navigation.tree[page.header.navigation.active.id].children %}
+                            {% if sw_breadcrumb(page.header.navigation.active)| length > 2 %}
+                                {% set subcats = page.header.navigation.tree[sw_breadcrumb(page.header.navigation.active)|keys|first].children[sw_breadcrumb(page.header.navigation.active)|keys|slice(1)|first].children %}
+                            {% elseif page.header.navigation.tree[page.header.navigation.active.parentid].children[page.header.navigation.active.id].children %}
+                                {% set subcats = page.header.navigation.tree[page.header.navigation.active.parentid].children[page.header.navigation.active.id].children %}
+                            {% elseif page.header.navigation.tree[page.header.navigation.active.parentid].children[page.header.navigation.active.id] %}
+                                {% set subcats = page.header.navigation.tree[page.header.navigation.active.parentid].children %}
+                            {% elseif not page.header.navigation.tree[page.header.navigation.active.id].children %}
+                                {% set subcats = page.header.navigation.tree %}
+                            {% endif %}
+                            {% for subcat in subcats %}
+                                <li>
+                                    <a href="{{ category_url(subcat.category) }}">{{ subcat.category.name }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% if page.header.navigation.active.customFields['custom_top_products_category_products'] is not null %}
+                        <section class="section-products-slider">
+                            <div class="grid-container">
+                                <h2>Aanbevolen</h2>
+
+
+                                <ul class="products-slider js-products-slider-small">
+                                    {% for product in page.header.navigation.active.customFields['custom_top_products_category_products'] %}
+                                        {% if product.id %}
+                                            {% sw_include '@Storefront/storefront/component/product/card/box-slider.html.twig' with {
+                                            product: product
+                                            } %}
+                                        {% endif %}
+                                    {% endfor %}
+
+                                </ul>
+                            </div>
+                        </section>
+                    {% endif %}
+                    <section class="section-products-listing">
+                        <div class="grid-container">
+                            <div class="container-main">
+                                <div class="cms-page">
+                                    {% sw_include "@Storefront/storefront/page/content/detail.html.twig" with {'cmsPage': page.cmsPage} %}
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    {% if (page.header.navigation.active.customFields['custom_category_info_description'] is not null) %}
+                    <section class="section-article">
+                        <div class="grid-container" id="read-more-bottom">
+                            <div class="body" style="color: #424242;">
+                                    {{ page.header.navigation.active.customFields['custom_category_info_description']|raw }}
+                            </div>
+                            <p class="read-more"><a href="javascript:void(0);" onclick="readMoreBottom()">Lees verder +</a></p>
+                        </div>
+                    </section>
+                    {% endif %}
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</section>
+<section class="section-list">
+    <div class="grid-container">
+        <h2 style="font-size: 2.28571rem;">Gerelateerd aan {% if page.header.navigation.active.customFields.custom_category_info_title is defined %}
+                {{ page.header.navigation.active.customFields.custom_category_info_title }}
+            {% else %}
+                {{ page.header.navigation.active.name }}
+            {% endif %}</h2>
+        {% set simcat = [] %}
+        {% set allCats = [] %}
+        {% for c in page.header.navigation.tree %}
+            {% set allCats = allCats|merge({ (c.category.id) : c }) %}
+            {% for cc in c.children %}
+                {% set allCats = allCats|merge({ (cc.category.id) : cc }) %}
+                {% for ccc in cc.children %}
+                    {% set allCats = allCats|merge({ (ccc.category.id) : ccc }) %}
+                {% endfor %}
+            {% endfor %}
+        {% endfor %}
+        {% if allCats[page.header.navigation.active.id].children|length > 0 %}
+
+            {% for naviChild in allCats[page.header.navigation.active.id].children %}
+                {% set simcat = simcat|merge([naviChild.category]) %}
+            {% endfor %}
+        {% else %}
+            {% for naviSiblings in allCats[page.header.navigation.active.parentId].children %}
+                {% set simcat = simcat|merge([naviSiblings.category]) %}
+            {% endfor %}
+        {% endif %}
+        <div class="grid-x grid-margin-x">
+            {% set sliceLength = (simcat|length/4)|round(0,'ceil') %}
+            {% for i in 0..3 %}
+                <div class="cell medium-3 small-6">
+                    <ul>
+                        {% for sc in simcat|slice(sliceLength*i, sliceLength) %}
+                            <li>
+                                <a href="{{ category_url(sc) }}">{% if sc.customFields.custom_category_info_title is defined %}
+                                        {{ sc.customFields.custom_category_info_title }}
+                                    {% else %}
+                                        {{ sc.name }}
+                                    {% endif %}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endfor %}
+        </div>
+
+
+        <h2 style="font-size: 2.28571rem;">Andere soortgelijke categorieën</h2>
+        {% set simcat = [] %}
+
+        {% for k, navi in page.header.navigation.tree|filter((navi, k) => k == sw_breadcrumb(page.header.navigation.active)|keys|first) %}
+            {# set simcat = simcat|merge([navi.category]) #}
+            {% if navi.children|length > 0 %}
+                {% for naviSiblings in allCats[navi.category.id].children %}
+                    {% set simcat = simcat|merge([naviSiblings.category]) %}
+                {% endfor %}
+            {% else %}
+                {% set simcat = simcat|merge([allCats[navi.category.id].category]) %}
+            {% endif %}
+        {% endfor %}
+        <div class="grid-x grid-margin-x">
+            {% set sliceLength = (simcat|length/4)|round(0,'ceil') %}
+            {% for i in 0..3 %}
+                <div class="cell medium-3 small-6">
+                    <ul>
+                        {% for sc in simcat|slice(sliceLength*i, sliceLength) %}
+                            <li>
+                                <a href="{{ category_url(sc) }}">{% if sc.customFields.custom_category_info_title is defined %}
+                                        {{ sc.customFields.custom_category_info_title }}
+                                    {% else %}
+                                        {{ sc.name }}
+                                    {% endif %}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}

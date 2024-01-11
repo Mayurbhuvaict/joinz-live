@@ -1,0 +1,35 @@
+{% if page.extensions.RichSnippetData.data|length > 0 %}
+    <script type="application/ld+json">
+    {% set quantity = app.request.query.get('quantity') %}
+    {% set product =  page.extensions.joinzProduct.product.children|filter(v => v.productNumber == page.extensions.RichSnippetData.data.productSku)|first %}
+        {
+            "@context": "http://schema.org/",
+            "@type": "Product",
+            "name": "{{ page.extensions.RichSnippetData.data.productName }}",
+            "image": "{{ page.extensions.RichSnippetData.data.productImage }}",
+            "description": "{{ page.extensions.RichSnippetData.data.description }}",
+            "sku": "{{ page.extensions.RichSnippetData.data.productSku }}",
+            "brand": {
+            "@type": "Brand",
+            "name": "{{ page.extensions.RichSnippetData.data.brandName }}"
+        },
+        "offers": {
+            "@type": "Offer",
+            "url": "{{ seoUrl('frontend.detail.page', {'productId': page.extensions.RichSnippetData.data.productID}) }}",
+            "priceCurrency": "{{ page.extensions.RichSnippetData.data.priceCurrency }}",
+            {% if quantity %}
+            "price": "{{ quantity * product.prices|reduce((lowest, link) => max(lowest ?? link.price, link.price))|first.net|number_format(context.currency.itemRounding.decimals, '.', '')*1.21 }}",
+            {% else %}
+            "price": "{{ product.prices|reduce((lowest, link) => max(lowest ?? link.price, link.price))|first.net|number_format(context.currency.itemRounding.decimals, '.', '')*1.21}}",
+            {% endif %}
+            "priceValidUntil": "{{ page.extensions.RichSnippetData.data.priceValidUntil }}",
+            "itemCondition": "{{ page.extensions.RichSnippetData.data.itemCondition }}",
+            "availability": "{{ page.extensions.RichSnippetData.data.availability }}",
+            "seller": {
+            "@type": "Organization",
+            "name": "{{ page.extensions.RichSnippetData.data.sellerName }}"
+            }
+        }
+        }
+    </script>
+{% endif %}

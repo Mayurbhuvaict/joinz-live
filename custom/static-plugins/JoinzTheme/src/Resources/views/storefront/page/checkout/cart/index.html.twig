@@ -1,0 +1,372 @@
+{% sw_extends '@Storefront/storefront/page/checkout/_page.html.twig' %}
+{% block base_content %}
+
+    {% set product = page.extensions.joinzProduct.product %}
+    {% set id = product.id %}
+    {% if page.cart %}
+        {% set summary = page.cart %}
+    {% elseif page.order %}
+        {% set summary = page.order %}
+    {% endif %}
+    {% block page_checkout_cart_product_table %}
+        <script>
+            function gtmRemoveFromCart()
+            {
+                dataLayer.push({
+                    'event': 'gtmRemoveFromCart',
+                    'ecommerce': {
+                        'remove': {
+                            'products': [{
+                                'id': document.getElementsByName("dtgs-gtm-product-sku")[0].value,
+                            }]
+                        }
+                    }
+                });
+            }
+
+        </script>
+        <section class="section-cart">
+        <div class="section-inner">
+        <div class="section-head">
+            <div class="grid-x flex-container align-stretch">
+                <div class="cell large-7 medium-12">
+                    <div class="section-left">
+                        <div class="flex-container align-middle">
+                            <div class="logo">
+                                <a href="/">
+                                    <img src="/bundles/joinztheme/img/svg/logo-joinz.svg" alt="Joinz logo">
+                                </a>
+                            </div>
+                            <div class="recommended">
+                                <img src="/bundles/joinztheme/img/svg/recommended.svg" alt="99% recommend us on kiyoh">
+                            </div>
+                        </div>
+                        <div class="loading-bar flex-container">
+                            <div class="loading-bar-inner loading-50">
+                                <p>Producten in de winkelmand</p>
+                            </div>
+
+                            <p>Vul gegevens in de volgende stap</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="cell large-5 medium-12">
+                    <div class="section-right" style="height: 100%"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-body">
+        <div class="grid-x grid-padding-x">
+        <div class="cell large-7 medium-12">
+        <div class="section-left">
+        <div class="flashbags">
+            {% for type, messages in app.flashes %}
+                {% sw_include '@Storefront/storefront/utilities/alert.html.twig' with { type: type, list: messages } %}
+            {% endfor %}
+        </div>
+            {% if page.cart.lineItems.count is same as(0) %}
+                {% sw_include '@Storefront/storefront/utilities/alert.html.twig' with {
+                    type: "info",
+                    content: "checkout.cartEmpty"|trans|sw_sanitize
+                } %}
+            {% else %}
+                {% block page_checkout_cart_messages %}
+                    {% block page_checkout_confirm_errors %}
+                        {%  sw_include '@Storefront/storefront/component/checkout/cart-alerts.html.twig' %}
+                    {% endblock %}
+                {% endblock %}
+                {% for lineItem in page.cart.lineItems %}
+                    {% if lineItem.type == 'promotion' %}
+                        <div class="callout callout-success" style="margin-top: 10px">
+                    <span class="flex-container align-middle align-center">
+                            <i class="icon-callout-success"></i>
+
+                    </span>
+
+                            <div class="callout-inner">
+                                <h6>
+                                    Korting is toegepast op de productprijs (excl. bedrukkingskosten)
+                                </h6>
+                                <p>
+                                    {{ lineItem.payload['value'] }}% Korting</li>
+                                </p>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+
+        {% block page_checkout_cart_table_header %}
+            <h5>Winkelmandje</h5>
+        {% endblock %}
+
+        <div class="shopping-cart">
+            <div class="shopping-cart-head hide-for-small-only">
+                <div class="grid-x flex-container align-middle">
+                    <div class="cell medium-6">
+                        <p>Product</p>
+                    </div>
+                    <div class="cell medium-2">
+                        <p>Hoeveelheid</p>
+                    </div>
+                    <div class="cell medium-2">
+                        <p>Prijs per <br> stuk</p>
+                    </div>
+                    <div class="cell medium-2">
+                        <p>Totaal</p>
+                    </div>
+                </div>
+            </div>
+            <div class="shopping-cart-body">
+                {% for lineItem in page.cart.lineItems %}
+                    {% if lineItem.payload.type == 'product' %}
+                        <div class="shopping-cart-product">
+                            <div class="grid-x">
+                                <div class="cell medium-6">
+                                    <div class="flex-container align-justify">
+                                        <form
+                                                action="{{ path('frontend.joinz.delete-cart-item', {'id': lineItem.id}) }}"
+                                                method="post"
+                                                data-form-csrf-handler="true">
+
+                                            {{ sw_csrf('frontend.joinz.delete-cart-item') }}
+                                            <input type="hidden"
+                                                   name="redirectTo"
+                                                   value="frontend.checkout.cart.page">
+                                            <input type="hidden"
+                                                   name="dtgs-gtm-product-sku"
+                                                   value="{{ lineItem.payload.productNumber }}">
+                                            <input type="hidden" name="productId" value="{{ lineItem.id }}">
+                                            <input type="hidden" name="imprintId"
+                                                   value="{{ lineItem.payload.imprint.id }}"
+                                                    {# :value="lineItem.payload.imprint.id ? 'lineItem.payload.imprint.id' : '' "#}>
+                                            <input type="hidden" name="setupCostId" value="{{ lineItem.payload.imprint.setupCostId }}"/>
+                                            <button type="submit"
+                                                    title="{{ "checkout.removeLineItem"|trans|striptags }}"
+                                                    data-product-id="{{ lineItem.id }}"
+                                                    class="btn btn-light btn-sm cart-item-remove-button">
+                                                {% sw_icon 'x' style { 'size': 'sm' } %}
+                                            </button>
+                                        </form>
+
+
+                                        <div class="shopping-cart-image">
+                                            <img src="{{ lineItem.cover.url }}" alt="">
+                                        </div>
+
+                                        <div class="shopping-cart-description">
+                                            <p>
+                                                <span>{{ lineItem.label }}</span>
+
+                                                {% if lineItem.payload.imprint %}
+                                                    <span>{{ lineItem.payload.imprint.label }} {{ lineItem.payload.imprint.MaxPrintArea }}</span>
+                                                {% endif %}
+                                                <span>{{ lineItem.payload.imprintLocation }}</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cell medium-2">
+                                    {% if lineItem.quantityInformation and lineItem.stackable and not isChild %}
+                                        <form
+                                                action="{{ path('frontend.joinz.change-cart-item-quantity', {'id': lineItem.id}) }}"
+                                                class="cart-item-quantity-container"
+                                                method="post">
+
+                                            {{ sw_csrf('frontend.joinz.change-cart-item-quantity') }}
+
+                                            <input type="hidden"
+                                                   name="redirectTo"
+                                                   value="frontend.checkout.cart.page">
+
+                                            <input type="hidden" name="imprintId"
+                                                   value="{{ lineItem.payload.imprint.id }}">
+
+                                            {% set quantityInformation = lineItem.quantityInformation %}
+                                            {% if quantityInformation.maxPurchase %}
+                                                {% set maxQuantity = quantityInformation.maxPurchase %}
+                                            {% else %}
+                                                {% set maxQuantity = shopware.config.core.cart.maxQuantity %}
+                                            {% endif %}
+
+                                            <div class="flex-container align-justify align-middle align-stretch">
+                                                <span class="show-for-small-only">Hoeveelheid</span>
+                                                <input name="quantity" type="number" value="{{ lineItem.quantity }}">
+                                            </div>
+                                            <button type="submit" style=" text-decoration: underline; border-radius: 0;">Aanpassen</button>
+                                        </form>
+                                    {% elseif lineItem.type != "promotion" %}
+                                        <div
+                                                class="d-flex justify-content-end cart-item-quantity">
+                                            {{ lineItem.quantity }}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <div class="cell medium-2">
+                                    <div class="flex-container align-justify align-middle">
+                                        <span class="show-for-small-only">Prijs per stuk</span>
+                                        <span> {{ (lineItem.price.unitPrice + lineItem.payload.imprint.price.unitPrice)|currency }}
+                                            P/S</span>
+                                    </div>
+                                </div>
+                                <div class="cell medium-2">
+                                    <div class="flex-container align-justify align-middle">
+                                        <span class="show-for-small-only">Totaal excl. btw</span>
+                                        <span>{{ (lineItem.price.totalPrice + page.cart.lineItems.elements[lineItem.payload.imprint.id].price.totalPrice)|currency }}</span>
+                                    </div>
+{#
+                                    <a href="#" class="edit-button">edit</a>
+#}
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+
+                {% endfor %}
+                {% block page_checkout_cart_add_promotion %}<br />
+                    <form action="{{ path('frontend.checkout.promotion.add') }}"
+                          class="cart-add-promotion"
+                          data-form-csrf-handler="true"
+                          method="post">
+
+                        {% block page_checkout_cart_add_promotion_csrf %}
+                            {{ sw_csrf('frontend.checkout.promotion.add') }}
+                        {% endblock %}
+
+                        {% block page_checkout_cart_add_promotion_forward %}
+                            <input type="hidden"
+                                   name="redirectTo"
+                                   value="frontend.checkout.cart.page">
+                        {% endblock %}
+
+                        {% block page_checkout_cart_add_promotion_input_group %}
+                            <div class="grid-x">
+                                <div class="cell medium-3">
+                                    {% block page_checkout_cart_add_promotion_input %}
+                                        <input type="text"
+                                               name="code"
+                                               class="form-control"
+                                               id="addPromotionInput"
+                                               placeholder="Kortingscode"
+                                               aria-label="{{ "checkout.addPromotionLabel"|trans|striptags }}"
+                                               aria-describedby="addPromotion"
+                                               required="required">
+                                    {% endblock %}
+                                </div>
+                                <div class="cell medium-3">
+                                    {% block page_checkout_cart_add_promotion_submit %}
+                                        {# @deprecated tag:v6.5.0 - Bootstrap v5 removes `input-group-append` wrapper and uses elements as direct childs of `input-group` #}
+                                        {% if feature('v6.5.0.0') %}
+                                            <button class="btn btn-secondary"
+                                                    type="submit"
+                                                    id="addPromotion">
+                                                Korting toepassen
+                                            </button>
+                                        {% else %}
+                                            <button class="form-control btn btn-secondary"
+                                                    type="submit"
+                                                    id="addPromotion" style="background: #FFFFFF;
+color: #016F9F;
+border-radius: 5px;
+border: 1px solid #016F9F;
+border-radius: 0px 3px 3px 0px;">
+                                                Korting toepassen
+                                            </button>
+                                        {% endif %}
+                                    {% endblock %}
+
+                                </div>
+                            </div>
+
+
+
+
+                        {% endblock %}
+                    </form>
+                {% endblock %}
+            </div>
+        </div>
+            {% endif %}
+    {% endblock %}
+
+
+    <div class="accordion-small">
+        <div class="accordion-inner">
+            <p>VRAGEN EN ANTWOORDEN</p>
+        </div>
+
+        <div class="accordion-section">
+            <div class="accordion-head">
+                                            <span class="flex-container align-justify align-middle">
+                                                Het bestelproces (van bestelling tot productie)
+                                                <i class="icon-caret-down"></i>
+                                            </span>
+            </div>
+
+            <div class="accordion-body">
+                <p>Na je bestelling of offerteaanvraag gaan onze ontwerpers aan de slag en ontvang je een drukvoorbeeld.
+                    Hierop kun je zien hoe jouw product met bedrukking wordt. Nadat je via de mail akkoord geeft op het
+                    ontwerp en de offerte, start de productie. De levertijd kan afhangen van de drukte en voorraad.
+                    Je ontvangt een email met een track & trace code zodra jouw producten zijn bedrukt.</p>
+            </div>
+        </div>
+        <div class="accordion-section">
+            <div class="accordion-head">
+                                            <span class="flex-container align-justify align-middle">
+                                                Logo nu of later uploaden
+                                                <i class="icon-caret-down"></i>
+                                            </span>
+            </div>
+
+            <div class="accordion-body">
+                <p>In de laatste stap kan je jouw logo of artwork uploaden. Heb je jouw logo niet bij de hand? Bestel
+                    dan alsnog. Je kunt je logo of drukbestand na de bestelling of aanvraag mailen. Wij zullen contact met je opnemen.</p>
+            </div>
+        </div>
+        <div class="accordion-section">
+            <div class="accordion-head">
+                                            <span class="flex-container align-justify align-middle">
+                                                Tekst bedrukking aanleveren
+                                                <i class="icon-caret-down"></i>
+                                            </span>
+            </div>
+
+            <div class="accordion-body">
+                <p>Het is gemakkelijk om direct jouw tekst aan te leveren in de volgende stap. Dit scheelt communicatie
+                    en maakt het bestelproces een stapje sneller. Mocht je de tekst later willen verzinnen, of gaat het
+                    om een lange tekst, dan kun je die later toesturen via de website of email.</p>
+            </div>
+        </div>
+        <div class="accordion-section">
+            <div class="accordion-head">
+                                            <span class="flex-container align-justify align-middle">
+                                                Eigen ontwerp maken
+                                                <i class="icon-caret-down"></i>
+                                            </span>
+            </div>
+
+            <div class="accordion-body">
+                <p>Het is natuurlijk mogelijk om zelf een ontwerp te maken. In de meeste gevallen beschikken we over een
+                    template waarmee jij of je ontwerper aan de slag kan. Als je zelf het ontwerp aanlevert en het
+                    voldoet aan de specificaties, dan kunnen we de productie gelijk starten. Dat komt de
+                    levertijd ten goede.<br /><br />
+                    Ben je niet creatief of beschik je niet over de juiste software? Het Joinz ontwerpteam staat voor je
+                    klaar en stuurt je (meestal) binnen 4 uur al een ontwerp. Daarop kan je precies zien hoe jouw
+                    bedrukking wordt.
+                </p>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    {% block page_checkout_summary_list_container %}
+        {% sw_include '@Storefront/storefront/page/checkout/summary.html.twig' with {
+        delivery: summary.deliveries.first()
+        } %}
+    {% endblock %}
+    </div>
+    </div>
+    </div>
+    </section>
+{% endblock %}
+

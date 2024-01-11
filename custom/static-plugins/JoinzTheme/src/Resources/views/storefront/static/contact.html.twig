@@ -1,0 +1,151 @@
+{% sw_extends '@JoinzTheme/storefront/base.html.twig' %}
+
+{% block base_offcanvas_navigation %}
+{% endblock %}
+
+{% block base_scroll_up %}
+{% endblock %}
+
+{% block base_cookie_permission %}
+{% endblock %}
+
+{% block base_pseudo_modal %}
+{% endblock %}
+
+{% block base_content %}
+    {% block layout_head_javascript_recaptcha %}
+        {% sw_include "@Storefront/storefront/component/recaptcha.html.twig" %}
+    {% endblock %}
+    <main>
+    <div class="banner banner-small">
+        <div class="background"></div>
+
+        <div class="grid-container">
+
+            <h1>Contact</h1>
+
+
+        </div>
+    </div>    <div class="menu-small">
+    <div class="grid-container">
+        <nav>
+            <ul class="no-bullet flex-container align-justify">
+                <li class="flex-child-grow">
+                    <a href="/joinz/upload-logo">Logo uploaden</a>
+                </li>
+                <li class="flex-child-grow">
+                    <a href="/joinz/faq">Veel gestelde Vragen</a>
+                </li>
+                <li class="flex-child-grow">
+                    <a href="/joinz/verzending">Verzendinformatie</a>
+                </li>
+                <li class="flex-child-grow">
+                    <a href="/joinz/about-us/">Over ons</a>
+                </li>
+                <li class="flex-child-grow">
+                    <a href="/joinz/order-process">Bestelproces</a>
+                </li>
+                <li class="flex-child-grow">
+                    <a href="/joinz/contact">Contact</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>    <section class="section-contact">
+    <div class="grid-container">
+        <div class="grid-x grid-margin-x">
+            <div class="cell medium-7">
+                <form action="{{ path('frontend.joinz.contact-submit') }}" class="form" method="POST">
+                    {{ sw_csrf('frontend.joinz.contact-submit') }}
+                    <span class="product-label warning-color medium-weight small">Snelle reactie gegarandeerd</span>
+                    <fieldset>
+                        <h4>Neem contact met ons op</h4>
+
+                        <div class="grid-x grid-margin-x">
+                            <div class="cell medium-6">
+                                <div class="field-group">
+                                    <label class="form-label visible" for="first-name">Voornaam</label>
+                                    <input class="form-control" type="text" id="first-name" name="first-name" required>
+                                </div>
+                            </div>
+                            <div class="cell medium-6">
+                                <div class="field-group">
+                                    <label class="form-label visible" for="last-name">Achternaam</label>
+                                    <input class="form-control" type="text" id="last-name" name="last-name" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid-x">
+                            <div class="cell medium-12">
+                                <div class="field-group">
+                                    <label class="form-label" for="email">Email</label>
+                                    <input class="form-control" type="email" id="email" name="email" placeholder="Emailadres"
+                                           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,9}$" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid-x">
+                            <div class="cell medium-12">
+                                <div class="field-group">
+                                    <textarea class="textarea" id="textfield" name="textfield" rows="7" cols="50" placeholder="Jouw bericht"></textarea>
+                                </div>
+                            </div>
+                            {% block component_account_register_captcha %}
+                                {% sw_include '@Storefront/storefront/component/captcha/base.html.twig' with { preCheck: true } %}
+                            {% endblock %}
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <div class="flex-container align-right">
+                            <button type="submit" class="button x-large bold">Bericht verzenden</button>
+                        </div>
+                    </fieldset>
+                </form>            </div>
+
+            <div class="cell medium-1"></div>
+
+            <div class="cell medium-4">
+                <div class="company-info">
+                    <h4>Bedrijfsgegevens</h4>
+
+                    <div class="user-info flex-container align-middle">
+                        <img src="/bundles/joinztheme/img/sara-jone.png" alt="Customer service">
+
+                        <div class="flex-container align-justify">
+                            <div>
+                                <a href="tel:+31332464533"><b>033 2464 533</b></a>
+                                <span>08.00-17.00</span>
+                            </div>
+                            <div>
+                                <a href="mailto:info@joinz.nl"><b>info@joinz.nl</b></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p>
+                        <b>Adres</b> <br>
+                        Henri Nouwenstraat 34 <br>
+                        3863 HV, Nijkerk <br>
+                        Nederland <br>
+
+                    <p>
+                        <b>Bedrijfsinformatie</b> <br>
+                        KVK: 76577325 <br>
+                        BTW-nummer: NL860683333B01 <br>
+                    </p>
+
+                    <p>
+                        IBAN: NL79 INGB 0008 1330 18 <br>
+                        Ten name van: Joinz <br>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section></main>
+{% endblock %}
+
+

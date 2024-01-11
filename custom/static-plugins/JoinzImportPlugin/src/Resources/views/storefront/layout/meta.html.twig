@@ -1,0 +1,11 @@
+{% sw_extends '@Storefront/storefront/layout/meta.html.twig' %}
+
+{% block layout_head_javascript_tracking %}
+
+    {% block dtgs_layout_head_richsnippets %}
+        {% sw_include 'storefront/plugins/RichSnippets/index.html.twig' %}
+    {% endblock %}
+
+    {{ parent() }}
+
+{% endblock %}

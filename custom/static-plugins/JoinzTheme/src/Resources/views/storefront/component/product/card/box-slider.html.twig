@@ -1,0 +1,65 @@
+<li>
+    {% set id = product.id %}
+    <a style="all: unset"
+       href="{{ seoUrl('frontend.detail.page', {'productId': product.id}) }}">
+        <div class="product-card flex-container flex-dir-column" style="background-color: white">
+            {% block component_product_box_badges %}
+                <span class="product-label">{% sw_include '@Storefront/storefront/component/product/card/badges.html.twig' %}</span>
+            {% endblock %}
+
+            <div class="product-image flex-container align-center">
+                {% sw_thumbnails 'product-image-thumbnails' with {
+                media: product.cover.media,
+                    attributes: {
+                        'class': 'img-max-size',
+                        'alt': (cover.translated.alt ?: name)
+                    },
+                sizes: {
+                'xs': '501px',
+                'sm': '315px',
+                'md': '427px',
+                'lg': '333px',
+                'xl': '284px'
+                }
+                } %}
+            </div>
+
+            <div class="product-content flex-child-grow flex-container flex-dir-column align-justify">
+                <div>
+                    <h3 style="cursor:pointer;">{{ product.translated.name }}</h3>
+
+                    <ul>
+                        <li>
+                            <i class="icon-circle"></i>
+                            <span>Bezorgd op {{ product.extensions['delivery_date'].text | default("-") }}</span>
+                        </li>
+                        <li>
+                            <i class="icon-circle"></i>
+                            <span>Vanaf {{ product.minPurchase }} stuks</span>
+                        </li>
+                    </ul>
+                    <p>Vanaf <span>{{ product.cheapestPrice.price|last.net|currency }}</span></p>
+
+                    <ul class="available-colors flex-container" style="overflow: hidden;">
+                        {% for setting in product.configuratorSettings %}
+                            {% if(setting.option.colorHexCode is not empty) %}
+                                <li>
+                                    <a href="{{ seoUrl('frontend.detail.page', {'productId': id,
+                                        'optionId': setting.option.id}) }}" style="{{ setting.option.extensions.style.css }};
+                                    {% if setting.option.colorHexCode in ['#ffffff', '#fff', 'fff', 'ffffff'] %}
+                                        border: 1px solid #dee9ee;
+                                    {% endif %}"></a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                <a href="{{ seoUrl('frontend.detail.page', {'productId': product.id}) }}">
+                    <button class="button button-white small">Bereken Jouw
+                        Prijs
+                    </button>
+                </a>
+            </div>
+        </div>
+    </a>
+</li>

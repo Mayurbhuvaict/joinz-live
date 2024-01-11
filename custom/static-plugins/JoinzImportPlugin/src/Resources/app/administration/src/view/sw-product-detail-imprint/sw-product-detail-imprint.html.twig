@@ -1,0 +1,32 @@
+<sw-card title="Imprint">
+        <ul v-if="!isLoading && product.crossSellings && product.crossSellings.length > 0" class="sw-product-detail-cross-selling__cross-selling-list">
+            <sw-product-cross-selling-form
+                v-for="item in product.crossSellings"
+                :key="item.id"
+                :crossSelling="item"
+                :allowEdit="acl.can('product.editor')">
+            </sw-product-cross-selling-form>
+        </ul>
+
+
+
+
+
+        <sw-card class="sw-product-detail-cross-selling__empty-state"  v-else>
+            <sw-loader v-if="isLoading"></sw-loader>
+            <div v-else>
+                <template>
+                    <div class="sw-product-detail-cross-selling__empty-state-inner">
+                        <img :src="'/administration/static/img/empty-states/products-empty-state.svg' | asset">
+
+                        <div class="sw-product-detail-cross-selling__empty-state-inner--label">
+                            <p>{{ $tc('sw-product.crossselling.emptyStateDescription') }}</p>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </sw-card>
+
+
+</sw-card>
+

@@ -1,0 +1,55 @@
+{% block page_account_order_item_detail_overview %}
+    <div class="order-table" id="order{{ order.orderNumber }}" style="display: none">
+        <div class="order-table-header">
+            <div class="grid-x grid-margin-x">
+                <div class="cell medium-3">
+                    <p>{{ "account.orderItemColumnName"|trans|sw_sanitize }}</p>
+                </div>
+                <div class="cell medium-3">
+                    <p>{{ "account.orderItemColumnQuantity"|trans|sw_sanitize }}</p>
+                </div>
+                <div class="cell medium-3">
+                    <p>{{ "account.orderItemColumnPrice"|trans|sw_sanitize }}</p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="order-table-body">
+            {% for lineItem in order.nestedLineItems %}
+                {% if lineItem.payload.type == 'product' %}
+                    <div class="grid-x grid-margin-x">
+                        <div class="cell medium-3">
+                            <p><div style="width: 100px" class="image">
+                                <img src="{{ lineItem.cover.url }}" alt="">
+
+                            </div></p>
+                        </div>
+                        <div class="cell medium-3">
+                            <p>
+                                <b>{{ lineItem.label }}</b> <br>
+                                {{ lineItem.quantity }} stuks <br>
+
+
+
+                                {% if lineItem.payload.imprint %}
+
+                                    {{ lineItem.payload.imprint.label }} {{ lineItem.payload.imprint.MaxPrintArea}}<br>
+
+                                {% endif %}
+                                {{ lineItem.payload.imprintLocation }} <br>
+
+
+
+                            </p>
+                        </div>
+                        <div class="cell medium-3">
+                            <p> €{{ lineItem.price.unitPrice + lineItem.payload.imprint.price.unitPrice }} per stuk</p>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

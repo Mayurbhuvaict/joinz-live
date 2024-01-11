@@ -1,0 +1,27 @@
+{% block sw_order_line_items_grid_grid_columns_label_nested_modal_button %}
+    {% block sw_order_line_items_grid_grid_columns_label_nested_modal_button_inner %}{% endblock %}
+
+    <div class="sw-order-line-items-grid__item-product-inner">
+        {% block sw_order_line_items_grid_grid_columns_label_nested_modal_button_inner_before %}{% endblock %}
+        {% parent() %}
+        {% block sw_order_line_items_grid_grid_columns_label_nested_modal_button_inner_after %}{% endblock %}
+
+{% endblock %}
+
+{% block sw_order_line_items_grid_column_payload_options %}
+        {% block sw_order_line_items_grid_column_payload_options_inner %}{% endblock %}
+
+        {% parent() %}
+    </div>
+
+
+{% endblock %}
+
+{% block sw_order_line_items_grid_grid_columns_label_content %}
+        {% block sw_order_line_items_grid_grid_columns_label_content_inner %}{% endblock %}
+        <div class="sw-order-line-items-grid__item-label">
+            {% block sw_order_line_items_grid_grid_columns_label_content_inner_label %}
+                {{ item.description }}
+            {% endblock %}
+        </div>
+{% endblock %}

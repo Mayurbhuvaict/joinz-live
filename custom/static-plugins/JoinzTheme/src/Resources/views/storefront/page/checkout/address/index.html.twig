@@ -1,0 +1,78 @@
+{% sw_extends '@Storefront/storefront/page/checkout/_page.html.twig' %}
+
+{% block base_content %}
+    <style>
+        input:focus:required:invalid {border: 2px solid red;}
+    </style>
+    <section class="section-cart">
+        <div class="section-inner">
+            <div class="section-head">
+                <div class="grid-x flex-container align-stretch">
+                    <div class="cell large-7 medium-12">
+                        <div class="section-left">
+                            <div class="flex-container align-middle">
+                                <div class="logo">
+                                    <a href="/">
+                                        <img src="/bundles/joinztheme/img/svg/logo-joinz.svg" alt="Joinz logo">
+                                    </a>
+                                </div>
+                                <div class="recommended">
+                                    <img src="/bundles/joinztheme/img/svg/recommended.svg"
+                                         alt="99% recommend us on kiyoh">
+                                </div>
+                            </div>
+                            <div class="loading-bar flex-container">
+                                <div class="loading-bar-inner loading-90" style="width:79%">
+                                    <p>Vul je gegevens in</p>
+                                </div>
+                                <p>Upload logo & bestel</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cell large-5 medium-12">
+                        <div class="section-right" style="height: 100%"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="grid-x grid-padding-x">
+                    <div class="cell large-7 medium-12">
+
+                        <div class="form-cart">
+                            <div class="section-left">
+                                <input type="radio" name="buttons" value="register" id="registerbutton"
+                                       checked="checked"><label for="registerbutton">Verder als gast</label>
+                                <input type="radio" name="buttons" value="login" id="loginbutton"><label
+                                        for="loginbutton">Of inloggen</label>
+                                {% block page_checkout_address_login %}
+                                    <div id="loginTab" style="display:none">
+                                        {% block page_checkout_address_login_card %}
+                                            {% sw_include '@Storefront/storefront/component/account/login.html.twig' with {
+                                            'removeStyle': true
+                                            } %}
+                                        {% endblock %}
+                                    </div>
+                                {% endblock %}
+                                {% block page_checkout_address_register_card %}
+                                    <div id="registerTab">
+                                        {% sw_include '@Storefront/storefront/page/checkout/address/register.html.twig' with {
+                                        'cardTitle': "checkout.addressRegisterCardTitle"|trans|sw_sanitize
+                                        } %}
+                                    </div>
+                                {% endblock %}
+
+                            </div>
+
+                        </div>
+                    </div>
+                    {% block page_checkout_summary_list_container %}
+                        {% sw_include '@JoinzTheme/storefront/page/checkout/confirm/summary.html.twig' with {
+                        delivery: page.cart.deliveries.first()
+                        } %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+

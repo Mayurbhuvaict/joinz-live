@@ -1,0 +1,289 @@
+{% block component_address_form %}
+    {% block component_address_form_addressId %}
+        {% if data.get('id') %}
+            <input type="hidden"
+                   name="{{ prefix }}[id]"
+                   value="{{ data.get('id') }}">
+        {% endif %}
+    {% endblock %}
+
+
+    {% block component_address_form_address_fields %}
+        <div class="grid-x" style="height: 0px">
+            <div class="cell medium-12">
+                <div class="field-group">
+                    <label class="form-label" for="{{ prefix }}PhoneNumber">Phone</label>
+
+                    {% block component_address_form_phone_number %}
+                        {% if config('core.loginRegistration.showPhoneNumberField') %}
+                            <div class="form-group col-md-6">
+                                {% if formViolations.getViolations("/phoneNumber") is not empty %}
+                                    {% set violationPath = "/phoneNumber" %}
+                                {% elseif formViolations.getViolations("/#{prefix}/phoneNumber") is not empty %}
+                                    {% set violationPath = "/#{prefix}/phoneNumber" %}
+                                {% endif %}
+
+                                {% block component_address_form_phone_number_label %}
+                                    <label class="form-label"
+                                           for="{{ prefix }}PhoneNumber">
+                                        {{ "address.phoneNumberLabel"|trans|sw_sanitize }}{{ config('core.loginRegistration.phoneNumberFieldRequired') ? "general.required"|trans|sw_sanitize }}
+                                    </label>
+                                {% endblock %}
+
+                                {% block component_address_form_phone_number_input %}
+                                    <input type="hidden"
+                                           class="form-control"
+                                           id="{{ prefix }}PhoneNumber"
+                                           placeholder="Telefoonnummer"
+                                           name="{{ prefix }}[phoneNumber]"
+                                           value="{{ data.get('phoneNumber') }}"
+                                        {{ config('core.loginRegistration.phoneNumberFieldRequired') ? 'required="true"' }}>
+                                {% endblock %}
+
+                                {% block component_address_form_phone_error %}
+                                    {% if violationPath %}
+                                        {% sw_include '@Storefront/storefront/utilities/form-violation.html.twig' %}
+                                    {% endif %}
+                                {% endblock %}
+                            </div>
+                        {% endif %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+        <div class="grid-x grid-margin-x">
+            <div class="cell medium-8">
+                <div class="field-group">
+                    {% block component_address_form_street %}
+                        <div class="form-group col-md-6">
+                            {% if formViolations.getViolations("/street") is not empty %}
+                                {% set violationPath = "/street" %}
+                            {% elseif formViolations.getViolations("/#{prefix}/street") is not empty %}
+                                {% set violationPath = "/#{prefix}/street" %}
+                            {% endif %}
+
+                            {% block component_address_form_street_label %}
+                                <label class="form-label"
+                                       for="{{ prefix }}AddressStreet">
+                                    Straat
+                                </label>
+                            {% endblock %}
+
+                            {% block component_address_form_street_input %}
+                                <input type="text"
+                                       class="form-control{% if violationPath %} is-invalid{% endif %}"
+                                       id="{{ prefix }}AddressStreet"
+                                       placeholder="Straat"
+                                       name="{{ prefix }}[street]"
+                                       value="{{ data.get('street') }}"
+                                       required="required">
+                            {% endblock %}
+
+                            {% block component_address_form_street_input_error %}
+                                {% if violationPath %}
+                                    {% sw_include '@Storefront/storefront/utilities/form-violation.html.twig' %}
+                                {% endif %}
+                            {% endblock %}
+                        </div>
+                    {% endblock %}
+                </div>
+            </div>
+            <div class="cell medium-4">
+                <div class="field-group">
+                    {% block component_address_form_additional_field1 %}
+
+
+                        {% if config('core.loginRegistration.showAdditionalAddressField1') %}
+                            {% if formViolations.getViolations("/additionalAddressLine1") is not empty %}
+                                {% set violationPath = "/additionalAddressLine1" %}
+                            {% elseif formViolations.getViolations("/#{prefix}/additionalAddressLine1") is not empty %}
+                                {% set violationPath = "/#{prefix}/additionalAddressLine1" %}
+                            {% endif %}
+
+                            <div class="form-group col-md-6">
+                                {% block component_address_form_additional_field1_label %}
+                                    <label class="form-label"
+                                           for="{{ idPrefix ~ prefix }}_house_number">
+                                        Huisnummer</label>
+                                {% endblock %}
+
+                                {% block component_address_form_additional_field1_input %}
+                                    <input type="text"
+                                           class="form-control {% if violationPath %} is-invalid{% endif %}"
+                                           id="{{ idPrefix ~ prefix }}_house_number"
+                                           placeholder="Huisnummer"
+                                           name="{{ idPrefix ~ prefix }}_house_number"
+                                           value="{{ data.get('additionalAddressLine1') }}"
+                                        {{ config('core.loginRegistration.additionalAddressField1Required') ? 'required="true"' }}>
+                                    <input type="hidden"
+                                           class="form-control {% if violationPath %} is-invalid{% endif %}"
+                                           id="{{ idPrefix ~ prefix }}AdditionalField1"
+                                           placeholder="Huisnummer"
+                                           name="{{ prefix }}[additionalAddressLine1]"
+                                           value="{{ data.get('additionalAddressLine1') }}"
+                                        {{ config('core.loginRegistration.additionalAddressField1Required') ? 'required="true"' }}>
+                                {% endblock %}
+
+                                {% block component_address_form_additional_field1_error %}
+                                    {% if violationPath %}
+                                        {% sw_include '@Storefront/storefront/utilities/form-violation.html.twig' %}
+                                    {% endif %}
+                                {% endblock %}
+                            </div>
+                        {% endif %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+        <div class="grid-x grid-margin-x">
+            <div class="cell medium-4">
+                <div class="field-group">
+                    {% block component_address_form_zipcode_city %}
+                        {% set zipcodeField %}
+                            {% if formViolations.getViolations("/zipcode") is not empty %}
+                                {% set violationPath = "/zipcode" %}
+                            {% elseif formViolations.getViolations("/#{prefix}/zipcode") is not empty %}
+                                {% set violationPath = "/#{prefix}/zipcode" %}
+                            {% endif %}
+
+                            {% block component_address_form_zipcode_label %}
+                                <label class="form-label"
+                                       for="{{ prefix }}AddressZipcode">
+                                    {{ "address.zipcodeLabel"|trans|sw_sanitize }}{{ "general.required"|trans|sw_sanitize }}
+                                </label>
+                            {% endblock %}
+
+                            {% block component_address_form_zipcode_input %}
+                                <input type="text"
+                                       class="form-control{% if violationPath %} is-invalid{% endif %}"
+                                       id="{{ prefix }}AddressZipcode"
+                                       placeholder="Postcode"
+                                       name="{{ prefix }}[zipcode]"
+                                       value="{{ data.get('zipcode') }}"
+                                       required="required">
+                            {% endblock %}
+
+                            {% block component_address_form_zipcode_error %}
+                                {% if violationPath %}
+                                    {% sw_include '@Storefront/storefront/utilities/form-violation.html.twig' %}
+                                {% endif %}
+                            {% endblock %}
+                        {% endset %}
+
+                        {% set cityField %}
+                            {% if formViolations.getViolations("/city") is not empty %}
+                                {% set violationPath = "/city" %}
+                            {% elseif formViolations.getViolations("/#{prefix}/city") is not empty %}
+                                {% set violationPath = "/#{prefix}/city" %}
+                            {% else %}
+                                {% set violationPath = null %}
+                            {% endif %}
+
+                            {% block component_address_form_city_label %}
+                                <label class="form-label"
+                                       for="{{ prefix }}AddressCity">
+                                    {{ "address.cityLabel"|trans|sw_sanitize }}{{ "general.required"|trans|sw_sanitize }}
+                                </label>
+                            {% endblock %}
+
+                            {% block component_address_form_city_input %}
+                                <input type="text"
+                                       class="form-control{% if violationPath %} is-invalid{% endif %}"
+                                       id="{{ prefix }}AddressCity"
+                                       placeholder="Plaats"
+                                       name="{{ prefix }}[city]"
+                                       value="{{ data.get('city') }}"
+                                       required="required">
+                            {% endblock %}
+
+                            {% block component_address_form_city_error %}
+                                {% if violationPath %}
+                                    {% sw_include '@Storefront/storefront/utilities/form-violation.html.twig' %}
+                                {% endif %}
+                            {% endblock %}
+                        {% endset %}
+                        {{ zipcodeField }}
+
+                </div>
+            </div>
+            <div class="cell medium-8">
+                <div class="field-group">
+                    {{ cityField }}{% endblock %}
+                    </div>
+            </div>
+        </div>
+
+        <div class="grid-x">
+            <div class="cell medium-12">
+                <div class="field-group">
+                    {% if not page.countries %}  {% else %}
+                    {% block component_address_form_country %}
+                        <div class="form-group col-md-6">
+                            {% if formViolations.getViolations("/countryId") is not empty %}
+                                {% set violationPath = "/countryId" %}
+                            {% elseif formViolations.getViolations("/#{prefix}/countryId") is not empty %}
+                                {% set violationPath = "/#{prefix}/countryId" %}
+                            {% endif %}
+
+                            {% block component_address_form_country_label %}
+                                <label class="form-label"
+                                       for="{{ prefix }}AddressCountry">
+                                    {{ "address.countryLabel"|trans|sw_sanitize }}{{ "general.required"|trans|sw_sanitize }}
+                                </label>
+                            {% endblock %}
+
+                            {% block component_address_form_country_select %}
+                                <select class="form-control country-select custom-select{% if violationPath %} is-invalid{% endif %}"
+                                        id="{{ prefix }}AddressCountry"
+                                        name="{{ prefix }}[countryId]"
+                                        required="required"
+                                        data-initial-country-id="{{ data.get('countryId') }}">
+                                    {% if not data.get('countryId') %}
+                                        <option disabled="disabled"
+                                                value=""
+                                                selected="selected">
+                                            {{ "address.countryPlaceholder"|trans|sw_sanitize }}
+                                        </option>
+                                    {% endif %}
+                                    {% for country in page.countries %}
+                                        <option {% if country.id == data.get('countryId') %}
+                                            selected="selected"
+                                        {% endif %}
+                                            value="{{ country.id }}">
+                                            {{ country.translated.name }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                            {% endblock %}
+                        </div>
+
+                        <div class="form-group col-md-6  d-none">
+                            {% if formViolations.getViolations("/countryStateId") is not empty %}
+                                {% set violationPath = "/countryStateId" %}
+                            {% elseif formViolations.getViolations("/#{prefix}/countryStateId") is not empty %}
+                                {% set violationPath = "/#{prefix}/countryStateId" %}
+                            {% endif %}
+
+                            {% block component_address_form_country_state_label %}
+                                <label class="form-label"
+                                       for="{{ prefix }}AddressCountry">
+                                    {{ "address.countryStateLabel"|trans|sw_sanitize }}{{ "general.required"|trans|sw_sanitize }}
+                                </label>
+                            {% endblock %}
+
+                            {% block component_address_form_country_error %}
+                                {% if violationPath %}
+                                    {% sw_include '@Storefront/storefront/utilities/form-violation.html.twig' %}
+                                {% endif %}
+                            {% endblock %}
+                        </div>
+                    {% endblock %}
+                    {% endif %}
+</div>
+            </div>
+        </div>
+
+    {% endblock %}
+
+    {#TODO: NEXT-2671 - country states#}
+{% endblock %}

@@ -1,0 +1,12 @@
+{% sw_extends '@Storefront/storefront/section/cms-section-block-container.html.twig' %}
+{% block section_content_block_container %}
+    <div class="cms-block-container"
+         style="">
+
+        {% block section_content_block_row %}
+            <div class="cms-block-container-row row cms-row {{ sidebarClasses }}">
+                {% sw_include "@Storefront/storefront/block/cms-block-" ~ block.type ~ ".html.twig" ignore missing %}
+            </div>
+        {% endblock %}
+    </div>
+{% endblock %}

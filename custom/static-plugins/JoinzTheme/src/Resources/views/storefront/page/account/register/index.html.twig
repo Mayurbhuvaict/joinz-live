@@ -1,0 +1,38 @@
+{% sw_extends '@Storefront/storefront/base.html.twig' %}
+
+{% block base_head %}
+    {% sw_include '@Storefront/storefront/page/account/register/meta.html.twig' %}
+{% endblock %}
+
+{% block base_content %}
+    {% block page_account_register %}
+        <main>
+        <div class="banner banner-small">
+            <div class="background"></div>
+        </div>
+        <section class="section-login">
+
+            <div class="grid-container">
+                <div class="grid-x grid-margin-x">
+                {% block page_account_register_inner %}
+                    {% block page_account_register_login_container %}
+                    <div class="cell medium-6">
+                        {% sw_include '@Storefront/storefront/component/account/login.html.twig' with {
+                            'cardTitle': "account.loginHeader"|trans|sw_sanitize
+                        } %}
+                    </div>
+                    {% endblock %}
+                    {% block page_account_register_container %}
+                    <div class="cell medium-6">
+                     {% sw_include '@Storefront/storefront/component/account/register.html.twig' with {
+                           'cardTitle': "account.registerPersonalHeader"|trans|sw_sanitize
+                     } %}
+                    </div>
+                {% endblock %}
+                {% endblock %}
+                </div>
+            </div>
+        </section>
+        </main>
+    {% endblock %}
+{% endblock %}

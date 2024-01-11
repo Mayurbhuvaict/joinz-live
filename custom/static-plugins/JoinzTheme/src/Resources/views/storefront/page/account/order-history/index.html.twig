@@ -1,0 +1,157 @@
+{% sw_extends '@Storefront/storefront/page/account/_page.html.twig' %}
+
+{% block page_account_main_content %}
+
+    {% block page_account_orders %}
+        <script>
+            function viewOrder(id)
+            {
+                var x = document.getElementById("order"+id);
+                if (x.style.display === "none") {
+                    x.style.display = "block";
+                } else {
+                    x.style.display = "none";
+                }
+            }
+        </script>
+        <section class="section-account">
+            <div class="grid-container">
+                <h3>Orders</h3>
+                {% if page.orders.total == 0 %}
+                    {% block page_account_orders_info_empty %}
+                        {% sw_include '@Storefront/storefront/utilities/alert.html.twig' with {
+                            type: "warning",
+                            content: "account.ordersInfoEmpty"|trans|sw_sanitize
+                        } %}
+                    {% endblock %}
+                {% else %}
+                    {% block page_account_orders_overview %}
+                        <div class="account-orders-overview">
+                            {% block page_account_orders_table %}
+
+                                {# @deprecated tag:v6.4.0 #}
+                                {% block page_account_orders_table_header %}
+
+                                    {# @deprecated tag:v6.4.0 #}
+                                    {% block page_account_orders_table_header_date %}{% endblock %}
+
+                                    {# @deprecated tag:v6.4.0 #}
+                                    {% block page_account_orders_table_header_number %}{% endblock %}
+
+                                    {# @deprecated tag:v6.4.0 #}
+                                    {% block page_account_orders_table_header_payment_method %}{% endblock %}
+
+                                    {# @deprecated tag:v6.4.0 #}
+                                    {% block page_account_orders_table_header_shipping_method %}{% endblock %}
+
+                                    {# @deprecated tag:v6.4.0 #}
+                                    {% block page_account_orders_table_header_actions %}{% endblock %}
+                                {% endblock %}
+
+                                {% block page_account_orders_table_body %}
+                                    {% for order in page.orders %}
+                                        <div class="order">
+                                            <div class="div flex-container align-justify align-middle">
+                                                <div class="order-date">{{ order.orderDateTime|format_date('short', locale=app.request.locale) }}</div>
+                                                {% block page_account_order_item_context_menu_reorder %}
+                                                    {% set action %}
+                                                        {% block page_account_order_item_context_menu_reorder_form_action %}
+                                                            {{ path('frontend.checkout.line-item.add') }}
+                                                        {% endblock %}
+                                                    {% endset %}
+
+                                                    {% block page_account_order_item_context_menu_reorder_form %}
+                                                        <form action="{{ path('frontend.joinz.add-to-cart') }}"
+                                                              method="post">
+
+                                                            {% block page_account_order_item_context_menu_reorder_form_csrf %}
+                                                                {{ sw_csrf('frontend.joinz.add-to-cart') }}
+                                                            {% endblock %}
+
+
+
+                                                            {% block page_account_order_item_context_menu_reorder_form_line_items_input %}
+                                                                {% for lineItem in order.lineItems %}
+                                                                    {% block page_account_order_item_context_menu_reorder_form_line_item_input %}
+                                                                        {% if lineItem.payload.type == 'product' %}
+                                                                            <input type="hidden" name="productId" value="{{ lineItem.referencedId }}">
+                                                                        {% if lineItem.payload.imprint %}
+                                                                            <input type="hidden" name="imprintId"
+                                                                                   value="{{ lineItem.payload.imprint.id }}">
+                                                                            {% endif %}
+                                                                            <input type="hidden" name="imprintLocation"
+                                                                                   value="{{ lineItem.payload.imprintLocation }}">
+                                                                            <input type="hidden" name="setupCost"
+                                                                                   value="{{ lineItem.payload.imprint.setupCost }}"/>
+                                                                            <input type="hidden"
+                                                                                   name="quantity"
+                                                                                   value="{{ lineItem.quantity }}">
+                                                                        {% endif %}
+                                                                    {% endblock %}
+                                                                {% endfor %}
+                                                            {% endblock %}
+
+                                                            {% block page_account_order_item_context_menu_reorder_form_button %}
+                                                                <a href=""> <button class="button button-white smallorder-table-header-context-menu-content-link" type="submit">{{ "account.orderContextMenuReorder"|trans|sw_sanitize }}</button></a>
+                                                            {% endblock %}
+                                                        </form>
+                                                    {% endblock %}
+                                                {% endblock %}
+                                            </div>
+                                            <div class="order-number"><b>Ordernummer:</b> {{ order.orderNumber|sw_sanitize }}</div>
+
+                                            <div class="order-table">
+                                                <div class="order-table-header">
+                                                    <div class="grid-x grid-margin-x">
+                                                        <div class="cell medium-3">
+                                                            <p>Verzendstatus</p>
+                                                        </div>
+                                                        <div class="cell medium-3">
+                                                            <p>Betalingsstatus</p>
+                                                        </div>
+                                                        <div class="cell medium-3">
+                                                            <p>Betalingswijze</p>
+                                                        </div>
+                                                        <div class="cell medium-3">
+                                                            <p>Verzendwijze</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="order-table-body">
+                                                    <div class="grid-x grid-margin-x">
+                                                        <div class="cell medium-3">
+                                                            <p>{{ order.deliveries|first.stateMachineState.translated.name }}</p>
+                                                        </div>
+                                                        <div class="cell medium-3">
+                                                            <p>{{ order.transactions|last.stateMachineState.translated.name }}</p>
+                                                        </div>
+                                                        <div class="cell medium-3">
+                                                            <p>{{ order.transactions|last.paymentMethod.translated.name }}</p>
+                                                        </div>
+                                                        <div class="cell medium-3">
+                                                            <p>{{ order.deliveries|first.shippingMethod.translated.name }}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="flex-container align-right align-middle">
+                                                <a href="javascript:void(0);" onclick="viewOrder({{ order.orderNumber  }})" class="button button-gray">Bekijk</a>
+                                            </div>
+                                            {% block page_account_order_item_detail %}
+                                                {% sw_include '@Storefront/storefront/page/account/order-history/order-detail.html.twig' %}
+                                            {% endblock %}
+                                        </div>
+                                    {% endfor %}
+                                {% endblock %}
+                            {% endblock %}
+                        </div>
+                    {% endblock %}
+                {% endif %}
+
+            </div>
+        </section></main>
+
+    {% endblock %}
+{% endblock %}

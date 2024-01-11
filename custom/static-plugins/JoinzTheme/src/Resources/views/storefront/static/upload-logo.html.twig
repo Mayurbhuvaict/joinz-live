@@ -1,0 +1,271 @@
+{% sw_extends '@JoinzTheme/storefront/base.html.twig' %}
+{% block base_offcanvas_navigation %}
+{% endblock %}
+
+{% block base_scroll_up %}
+{% endblock %}
+
+{% block base_cookie_permission %}
+{% endblock %}
+
+{% block base_pseudo_modal %}
+{% endblock %}
+
+{% block base_content %}
+
+    <main>
+        <div class="banner banner-small">
+            <div class="background"></div>
+
+            <div class="grid-container">
+
+
+                <h1>Upload logo of drukinfo</h1>
+
+            </div>
+        </div>    <div class="menu-small">
+            <div class="grid-container">
+                <nav>
+                    <ul class="no-bullet flex-container align-justify">
+                        <li class="flex-child-grow">
+                            <a href="/joinz/upload-logo">Logo uploaden</a>
+                        </li>
+                        <li class="flex-child-grow">
+                            <a href="/joinz/faq">Veel gestelde Vragen</a>
+                        </li>
+                        <li class="flex-child-grow">
+                            <a href="/joinz/verzending">Verzendinformatie</a>
+                        </li>
+                        <li class="flex-child-grow">
+                            <a href="/joinz/about-us/">Over ons</a>
+                        </li>
+                        <li class="flex-child-grow">
+                            <a href="/joinz/order-process">Bestelproces</a>
+                        </li>
+                        <li class="flex-child-grow">
+                            <a href="/joinz/contact">Contact</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>    <section class="section-upload-logo">
+            <div class="grid-container">
+                <div class="grid-x grid-margin-x">
+                    <div class="cell medium-7">
+                        <form action="{{ path('frontend.joinz.upload-logo-submit') }}"
+                              method="post" class="form"
+                              enctype="multipart/form-data"
+                              data-form-csrf-handler="true">
+
+                            {{ sw_csrf('frontend.joinz.upload-logo-submit') }}
+                            <span class="product-label primary-color medium-weight small">Gratis Ontwerp binnen 4 uur</span>
+                            <fieldset>
+                                <h4>Lever bestanden of informatie aan voor het ontwerp </h4>
+
+                                <div class="grid-x grid-margin-x">
+                                    <div class="cell medium-6">
+                                        <div class="field-group">
+                                            <label class="form-label visible" for="first-name">Voornaam</label>
+                                            <input class="form-control" type="text" id="first-name" name="first-name" required>
+                                        </div>
+                                    </div>
+                                    <div class="cell medium-6">
+                                        <div class="field-group">
+                                            <label class="form-label visible" for="last-name">Achternaam</label>
+                                            <input class="form-control" type="text" id="last-name" name="last-name" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="grid-x">
+                                    <div class="cell medium-12">
+                                        <div class="field-group">
+                                            <label class="form-label" for="email">Email</label>
+                                            <input class="form-control" type="email" id="email" name="email" placeholder="Emailadres"
+                                                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,9}$" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="grid-x grid-margin-x">
+                                    <div class="cell">
+                                        <div class="field-group">
+                                            <div class="fileupload">
+                                                <input type="file" name="fileupload" id="fileupload" value="fileupload" id="fileupload" accept="image/*,.pdf" required onchange="readURL(this);">
+                                                <label for="fileupload" class="flex-container flex-dir-column align-middle align-center">
+
+                                                <span class="flex-container align-middle align-center">
+                                                    <i class="icon-file"></i>
+                                                    Kies bestanden
+                                                </span>
+                                                    <p id="uploadFlag" class="text-center"></p>
+                                                    of Sleep en pLAATS JE BESTANDEN HIER (MAX 100mb)
+                                                </label>
+                                                <p class="text-center">PDF/SVG/EPS/AI/PNG/JPG</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="grid-x">
+                                    <div class="cell medium-12">
+                                        <div class="field-group">
+                                            <textarea class="textarea" id="textfield" name="textfield" rows="7" cols="50" placeholder="Af te drukken tekst of opmerking over het ontwerp"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                            <fieldset>
+                                <div class="flex-container align-right">
+{#
+                                    <a href="#" class="button x-large bold">Bericht verzenden</a>
+#}
+                                    <button type="submit" class="button x-large bold">Bericht verzenden</button>
+                                </div>
+                            </fieldset>
+                        </form>            </div>
+
+                    <div class="cell medium-1"></div>
+
+                    <div class="cell medium-4">
+                        <div class="company-info">
+                            <h6>Hulp Nodig?</h6>
+
+                            <div class="user-info flex-container align-middle">
+                                <img src="/bundles/joinztheme/img/sara-jone.png" alt="Customer service">
+
+                                <div class="flex-container align-justify">
+                                    <div>
+                                        <a href="tel:033-2464177"><b>033-2464177</b></a>
+                                        <span>08.00-17.00</span>
+                                    </div>
+                                    <div>
+                                        <a href="mailto:info@joinz.nl"><b>info@joinz.nl</b></a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-small">
+                                <div class="grid-container">
+                                    <div class="accordion-inner extended">
+                                        <div class="accordion-top">
+                                            <p>Veel gestelde vragen</p>
+                                        </div>
+
+                                        <div class="accordion-section">
+                                            <div class="accordion-head">
+                                                <span class="flex-container align-justify align-middle">
+                                                    Wat is een vectorbestand?
+                                                    <i class="icon-caret-down"></i>
+                                                </span>
+                                            </div>
+
+                                            <div class="accordion-body">
+                                                <p>Dit is een afbeelding die niet wazig wordt als je inzoomt. Dit komt omdat het bestand geen pixels heeft. Dit zijn het type vectorbestanden dat we nodig hebben: EPS, AI, PDF of SVG</p>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-section">
+                                            <div class="accordion-head">
+                                                <span class="flex-container align-justify align-middle">
+                                                    Help, kunnen jullie mijn logo omzetten in een vectorbestand?
+                                                    <i class="icon-caret-down"></i>
+                                                </span>
+                                            </div>
+
+                                            <div class="accordion-body">
+                                                <p>Zeker weten. Als je geen vector bestand hebt, kunnen we dit maken op basis van je logo. Hier zullen we geen kosten voor in rekening brengen.</p>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-section">
+                                            <div class="accordion-head">
+                                                <span class="flex-container align-justify align-middle">
+                                                    Hoeveel tekst past er op het product?
+                                                    <i class="icon-caret-down"></i>
+                                                </span>
+                                            </div>
+
+                                            <div class="accordion-body">
+                                                <p>Dit verschilt per product. Neem contact met ons op en we zullen je adviseren.</p>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-section">
+                                            <div class="accordion-head">
+                                                <span class="flex-container align-justify align-middle">
+                                                    Wat is een digitaal ontwerp?
+                                                    <i class="icon-caret-down"></i>
+                                                </span>
+                                            </div>
+
+                                            <div class="accordion-body">
+                                                <p>Een digitaal ontwerp is een afbeelding van het product met bedrukking. Op dit digitale ontwerp kan je zien hoe jouw bedrukking wordt. Upload je logo tijdens het offerte aanvraagproces of stuur het later via de mail.</p>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-section">
+                                            <div class="accordion-head">
+                                                <span class="flex-container align-justify align-middle">
+                                                    Wanneer krijg ik een ontwerp?
+                                                    <i class="icon-caret-down"></i>
+                                                </span>
+                                            </div>
+
+                                            <div class="accordion-body">
+                                                <p>Een ontwerp ontvang je gratis nadat je een offerte hebt aangevraagd of nadat je een bestelling hebt gedaan. Ons team gaat direct aan de slag, zodra we je jouw logo/ontwerp specificaties hebben ontvangen. Een ontwerp en offerte sturen we eigenlijk altijd binnen 4 uur tijdens werkdagen.</p>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-section">
+                                            <div class="accordion-head">
+                                                <span class="flex-container align-justify align-middle">
+                                                    Kan het ontwerp zo vaak aangepast worden als ik wil?
+                                                    <i class="icon-caret-down"></i>
+                                                </span>
+                                            </div>
+
+                                            <div class="accordion-body">
+                                                <p>Zeker, we gaan net zolang door totdat je 100% tevreden bent.</p>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-section">
+                                            <div class="accordion-head">
+                                                <span class="flex-container align-justify align-middle">
+                                                    Kan ik ook zelf een ontwerp aanleveren?
+                                                    <i class="icon-caret-down"></i>
+                                                </span>
+                                            </div>
+
+                                            <div class="accordion-body">
+                                                <p>Zeker weten! Neem contact met ons op en dan sturen wij je een template die je kunt aanpassen met je eigen software.</p>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-section">
+                                            <div class="accordion-head">
+                                                <span class="flex-container align-justify align-middle">
+                                                    Zijn er ontwerpkosten?
+                                                    <i class="icon-caret-down"></i>
+                                                </span>
+                                            </div>
+
+                                            <div class="accordion-body">
+                                                <p>Nee, we maken gratis een ontwerp voor je op.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>                </div>
+                    </div>
+                </div>
+            </div>
+        </section></main>
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#uploadFlag').text(input.files[0].name);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+{% endblock %}

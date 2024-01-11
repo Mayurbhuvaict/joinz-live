@@ -1,0 +1,70 @@
+{% sw_extends '@Storefront/storefront/component/product/listing.html.twig' %}
+{% block element_product_listing_wrapper_content %}
+    {{ searchResult.elements|filter(v => v.stock > 0)|length }} Producten
+    <div class="cms-element-product-listing" style="position: relative;">
+        {% if searchResult.total > 0 %}
+            {% block element_product_listing_pagination_nav_actions %}
+                <div class="cms-element-product-listing-actions row justify-content-between" style="position: absolute;  top: -20px; right: 0;">
+                    <div class="col-md-auto">
+                        {% block element_product_listing_pagination_nav_top %}
+                        {% endblock %}
+                    </div>
+
+                    <div class="col-md-auto">
+                        {% block element_product_listing_sorting %}
+                            {% sw_include '@Storefront/storefront/component/sorting.html.twig' with {
+                                current: searchResult.sorting,
+                                sortings: searchResult.availableSortings
+                            } %}
+                        {% endblock %}
+                    </div>
+                </div>
+            {% endblock %}
+        {% endif %}
+
+        {% block element_product_listing_row %}
+            <div class="row cms-listing-row js-listing-wrapper">
+                {% if searchResult.total > 0 %}
+                    {% block element_product_listing_col %}
+                        <div class="cms-listing-col col-sm-6 col-lg-4 col-xl-3">
+                            <div class="card product-box box-standard">
+                                {% for product in searchResult %}
+                                {% if product.stock > 0 %}
+                                    {% block element_product_listing_box %}
+                                        {% sw_include '@Storefront/storefront/component/product/card/box.html.twig' with {
+                                            'layout': boxLayout,
+                                            'displayMode': displayMode
+                                        } %}
+                                    {% endblock %}
+                                {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endblock %}
+                {% else %}
+                    {% block element_product_listing_col_empty %}
+                        <div class="cms-listing-col col-12">
+                            {% block element_product_listing_col_empty_alert %}
+                                {% sw_include '@Storefront/storefront/utilities/alert.html.twig' with {
+                                    type: 'info',
+                                    content: 'listing.emptyResultMessage'|trans|sw_sanitize
+                                } %}
+                            {% endblock %}
+                        </div>
+                    {% endblock %}
+                {% endif %}
+            </div>
+        {% endblock %}
+
+        {% if searchResult.total > searchResult.limit %}
+            {% block element_product_listing_pagination_nav_bottom %}
+                {% sw_include '@Storefront/storefront/component/pagination.html.twig' with {
+                    entities: searchResult,
+                    criteria: searchResult.criteria,
+                    paginationLocation: 'bottom',
+                } %}
+            {% endblock %}
+        {% endif %}
+    </div>
+{% endblock %}
+

@@ -1,0 +1,112 @@
+{% if page.cart %}
+   {% set summary = page.cart %}
+   {% elseif page.order %}
+   {% set summary = page.order %}
+{% endif %}
+
+{% block page_checkout_summary %}
+    <div class="cell large-5 medium-12">
+        <div class="section-right">
+            <div class="section-right-top">
+                {%  set isQuote = app.request.get('quote') %}
+                {% if isQuote %}
+                    <p><b>Offerte binnen 2 uur</b></p>
+                        <a href="#" class="link-alert flex-container align-middle">
+                            <i class="icon-alert-bell"></i>
+                            Persoonlijke offerte binnen 2 uur (ma-vr tussen 09:00 en 17:00)
+                        </a>
+                {% else %}
+                    <p><b>Levering: {% for el in page.cart.data.elements %}
+                                {% if el.extensions['delivery_date'] %}{{ el.extensions['delivery_date'].text }} {% endif %}
+                            {% endfor %}
+
+                            {# page.cart.deliveries.elements[0].deliveryDate.earliest|date("j F") #}</b></p>
+                    {% block page_checkout_summary_alert %}
+                        <a href="#" class="link-alert flex-container align-middle">
+                            <i class="icon-alert-bell"></i>
+                            lEVER JE LOGO AAN VOOR 17:00
+                        </a>
+                    {% endblock %}
+                {% endif %}
+
+            </div>
+
+            {% block page_checkout_summary_list %}{% endblock %}
+
+            <div class="section-right-middle">
+                {% if summary.lineItems | filter(v => v.type == 'promotion') | first %}
+                <p class="flex-container align-justify" style="color:#159300;">
+                    <span>Korting</span>
+                    <span>{{ summary.lineItems | filter(v => v.type == 'promotion') | reduce((carry, v) => carry + v.price.unitprice) | currency}}</span>
+                </p>
+                {% endif %}
+                    <p class="flex-container align-justify">
+                        <span>Setupkosten</span>
+                        <span>{{ summary.lineItems | filter(v => v.payload.type == 'setup_cost') | reduce((carry, v) => carry + v.payload.cost_net) | currency}}</span>
+                    </p>
+                {% block page_checkout_summary_shipping %}
+                    <p class="flex-container align-justify">
+                        <span>Verzendkosten</span>
+                        <span>{{ delivery.shippingCosts.totalPrice|currency }}</span>
+                    </p>
+                {% endblock %}
+                {% block page_checkout_summary_total %}
+                    <p class="flex-container align-justify">
+                        <span><b>Totaal Excl. btw</b></span>
+                        <span><b> {{ summary.price.netPrice|currency }}</b></span>
+                    </p>
+                {% endblock %}
+
+
+
+                {% block page_checkout_summary_taxes %}
+                    <p class="flex-container align-justify">
+                        <span>BTW</span>
+                        <span>{{ (summary.price.totalPrice - summary.price.netPrice)|currency }}</span>
+                    </p>
+                {% endblock %}
+
+                <p class="flex-container align-justify">
+                    <span>Totaal incl. BTW</span>
+                    <span>{{ summary.price.totalPrice|currency }}</span>
+                </p>
+            </div>
+
+            {% block page_checkout_aside_actions %}
+            {%  set isQuote = app.request.get('quote') %}
+                <div class="section-right-bottom">
+                    <div class="grid-x grid-margin-x">
+                        {% if(isQuote is null) %}
+                        <div class="cell medium-6">
+                            <a href="{{ path('frontend.checkout.confirm.page') }}?quote=1" class="button button-white">Ontvang offerte</a>
+                        </div>
+                        <div class="cell medium-6">
+                            <a href="{{ path('frontend.checkout.confirm.page') }}"
+                               class="button"
+                               title="{{ "checkout.proceedLink"|trans|striptags }}">
+                                NAAR BESTELLEN
+                            </a>
+                            <p class="label cart-label">GRATIS ANNULEREN TOT JE AKKOORD OP DE DRUKPROEF</p>
+                        </div>
+                        {% else %}
+                            {% if isQuote %}
+                                <div class="cell medium-12">
+                                    <a href="{{ path('frontend.checkout.confirm.page') }}?quote=1" class="button button-white">Ontvang offerte</a>
+                                </div>
+                            {% else %}
+                                <div class="cell medium-12">
+                                    <a href="{{ path('frontend.checkout.confirm.page') }}"
+                                       class="button"
+                                       title="{{ "checkout.proceedLink"|trans|striptags }}">
+                                        NAAR BESTELLEN
+                                    </a>
+                                    <p class="label cart-label">GRATIS ANNULEREN TOT JE AKKOORD OP DE DRUKPROEF</p>
+                                </div>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}

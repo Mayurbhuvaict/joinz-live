@@ -1,0 +1,25 @@
+{
+  "name": "joinz/plugin-import",
+  "description": "Joinz import plugin",
+  "version": "1.1.1",
+  "type": "shopware-platform-plugin",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Code402",
+      "role": "main developer"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "JoinzImportPlugin\\": "src/"
+    }
+  },
+  "extra": {
+    "shopware-plugin-class": "JoinzImportPlugin\\JoinzImportPlugin",
+    "label": {
+      "de-DE": "Joinz import plugin",
+      "en-GB": "Joinz import plugin"
+    }
+  }
+}

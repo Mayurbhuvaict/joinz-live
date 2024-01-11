@@ -1,0 +1,133 @@
+{#
+Global messages template
+
+https://getbootstrap.com/docs/4.3/components/alerts/
+
+*Type:
+The template provides an easy way to display messages in the storefront. The following types are supported:
+
+* primary
+* secondary
+* danger (red)
+* success (green)
+* warning (yellow)
+* info (blue)
+* light (white)
+* dark (dark gray)
+
+    {% sw_include '@Storefront/storefront/utilities/alert.html.twig' with {
+        type:"primary",
+        content:"Primary Lorem ipsum dolor"
+    } %}
+
+*Icons:
+Icons are shown by default. To hide the icon within the alert, set the value of "icon" to false:
+
+    {% sw_include '@Storefront/storefront/utilities/alert.html.twig' with {
+        type:"primary",
+        content:"Primary Lorem ipsum dolor",
+        icon: false
+    } %}
+
+*Message Content:
+The component requires the parameters ```content``` or ```list``` to display a message. If no ```type``` is defined it
+will use the fallback option (success).
+
+    {% sw_include '@Storefront/storefront/utilities/alert.html.twig' with {
+        type:"primary",
+        content:"Primary Lorem ipsum dolor"
+    } %}
+
+*Message List:
+If you need to display a bunch of messages (for example error messages in the registration), you can pass an array
+of messages to the template using the parameter ```list```:
+
+     {% set list1 = [
+        'Error message 1',
+        'Error message 2',
+        'Error message 3'
+    ] %}
+
+    {% sw_include '@Storefront/storefront/utilities/alert.html.twig' with {
+        type:"secondary",
+        list: list1
+    } %}
+
+*Heading:
+To display a heading, use "heading".
+
+    {% sw_include '@Storefront/storefront/utilities/alert.html.twig' with {
+        type:"primary",
+        content:"Primary Lorem ipsum dolor",
+        heading: "Test Heading"
+    } %}
+
+*Dismissible Button:
+To display a dismissible button set the value of "dismissible" to true.
+
+    {% sw_include '@Storefront/storefront/utilities/alert.html.twig' with {
+        type:"primary",
+        content:"Primary Lorem ipsum dolor",
+        dismissible: true
+    } %}
+
+#}
+
+{% block utilities_alert %}
+    {% if type == "danger" %}
+        {% set calloutType = 'callout-warning' %}
+    {% elseif type == "warning" %}
+        {% set calloutType = 'callout-failed' %}
+    {% elseif type == "info" %}
+        {% set calloutType = '' %}
+    {% elseif type == "success" %}
+        {% set calloutType = 'callout-success' %}
+    {% else %}
+        {% set calloutType = '' %}
+    {% endif %}
+    <div class="callout {% if type %}{{ calloutType }}{% endif %}" style="margin-top: 10px">
+                    <span class="flex-container align-middle align-center">
+                        {% if type == "danger" %}
+                            <i class="icon-callout-warning"></i>
+                        {% elseif type == "warning" %}
+                            <i class="icon-callout-failed"></i>
+                        {% elseif type == "info" %}
+                            <i class="icon-callout"></i>
+                        {% elseif type == "success" %}
+                            <i class="icon-callout-success"></i>
+                        {% else %}
+                            <i class="icon-callout"></i>
+                        {% endif %}
+
+                    </span>
+
+        <div class="callout-inner">
+            {% block utilities_alert_heading %}
+                {% if heading %}
+                        <h6>
+                        {{ heading }}
+                        </h6>
+                {% endif %}
+            {% endblock %}
+            <p>{% block utilities_alert_content %}
+
+                {% if list|length > 1 %}
+                    <ul class="alert-list">
+                        {% for entry in list %}
+                            <li>{{ entry|sw_sanitize }}</li>
+                        {% endfor %}
+                    </ul>
+                {% elseif list|length == 1 %}
+                    {% for entry in list %}
+                        {{ entry|sw_sanitize }}
+                    {% endfor %}
+                {% else %}
+                    {{ content|sw_sanitize }}
+                {% endif %}
+
+            {% endblock %}
+            </p>
+        </div>
+    </div>
+
+{% endblock %}

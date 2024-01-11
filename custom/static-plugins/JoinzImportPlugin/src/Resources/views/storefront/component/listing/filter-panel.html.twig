@@ -1,0 +1,49 @@
+{% sw_extends '@Storefront/storefront/component/listing/filter-panel.html.twig' %}
+
+{% block component_filter_panel_item_manufacturer %}
+    {# isInStockFilter #}
+    {% set stock = listing.aggregations.get('stock') %}
+
+    {% sw_include '@Storefront/storefront/component/listing/filter/filter-stock.html.twig' with {
+        stock: stock,
+        sidebar: sidebar,
+        name: 'stock',
+        minKey: 'min-stock',
+        maxKey: 'max-stock',
+        displayName: 'Stock',
+    } %}
+    {# moqFilter #}
+    {% set moq = listing.aggregations.get('moq') %}
+    {% set bucketElements = [] %}
+    {% for bucket in moq.buckets %}
+        {% set bucketElements = bucketElements|merge([{ id: bucket.key, translated: {name: bucket.key} }]) %}
+    {% endfor %}
+    {% if not moq.buckets is empty %}
+
+        {% sw_include '@Storefront/storefront/component/listing/filter/filter-multi-select.html.twig' with {
+            elements: bucketElements,
+            sidebar: sidebar,
+            name: 'moq',
+            displayName: 'MOQ'
+        } %}
+    {% endif %}
+
+    {# deliveryTimeFilter #}
+    {% block component_filter_panel_dt %}
+        {# @var properties \Shopware\Core\Framework\DataAbstractionLayer\Search\AggregationResult\Metric\EntityResult #}
+        {% set dt = listing.aggregations.get('delivery-time') %}
+        {% if not dt.entities is empty %}
+                {% sw_include '@Storefront/storefront/component/listing/filter/filter-property-select.html.twig' with {
+                    elements: dt.entities,
+                    sidebar: sidebar,
+                    name: 'delivery-time',
+                    displayName: 'Delivery Time',
+                    pluginSelector: 'filter-property-select',
+                    propertyName: 'delivery-time'
+                } %}
+        {% endif %}
+    {% endblock %}
+
+
+    {{ parent() }}
+{% endblock %}

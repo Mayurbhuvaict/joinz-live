@@ -1,0 +1,198 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="JoinzImportPlugin\Subscriber\DetailSubscriber">
+            <argument type="service" id="JoinzImportPlugin\Components\Helper\ProductHelper" />
+            <argument type="service" id="JoinzImportPlugin\Components\Helper\CustomerHelper" />
+            <tag name="kernel.event_subscriber"/>
+        </service>
+        <service id="JoinzImportPlugin\Subscriber\AfterSearch">
+            <argument type="service" id="category.repository"/>
+            <argument type="service" id="sales_channel.repository"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+        <service id="JoinzImportPlugin\Components\Helper\ProductHelper">
+            <argument type="service" id="product.repository"/>
+        </service>
+
+        <service id="JoinzImportPlugin\Components\Helper\CustomerHelper">
+            <argument type="service" id="customer.repository"/>
+        </service>
+        <service id="JoinzImportPlugin\Storefront\Page\Joinz\PageLoader" public="true">
+            <argument type="service" id="Shopware\Storefront\Page\GenericPageLoader" />
+            <argument type="service" id="event_dispatcher"/>
+        </service>
+        <service id="JoinzImportPlugin\Service\AddCategoriesToHome" >
+            <argument type="service" id="category.repository"/>
+            <tag name="kernel.event_subscriber" />
+        </service>
+        <service id="JoinzImportPlugin\Subscriber\FilterSubscriber">
+            <tag name="kernel.event_subscriber"/>
+        </service>
+        <service id="JoinzImportPlugin\Subscriber\RegisterSubscriber">
+            <tag name="kernel.event_subscriber"/>
+        </service>
+        <service id="JoinzImportPlugin\Subscriber\CheckoutFinishEventListener">
+            <tag name="kernel.event_subscriber"/>
+        </service>
+        <service id="JoinzImportPlugin\Extension\Content\Product\DeliveryDateExtension">
+            <tag name="shopware.entity.extension"/>
+        </service>
+
+        <service id="JoinzImportPlugin\Subscriber\ProductSubscriber">
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <service id="JoinzImportPlugin\Subscriber\OptionStyleSubscriber">
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <service id="JoinzImportPlugin\Subscriber\CategoryListingCriteriaSubscriber">
+            <tag name="kernel.event_subscriber"/>
+        </service>
+        <service id="JoinzImportPlugin\Service\AddTopProductsToCategoryPage" >
+            <argument type="service" id="category.repository"/>
+            <argument type="service" id="product.repository"></argument>
+            <argument type="service" id="media.repository"></argument>
+            <argument type="service" id="tax.repository"></argument>
+            <argument type="service" id="product_media.repository"></argument>
+            <tag name="kernel.event_subscriber" />
+        </service>
+        <service id="JoinzImportPlugin\Service\ImportImage">
+            <argument type="service" id="media.repository"></argument>
+            <argument type="service" id="Shopware\Core\Content\Media\MediaService"></argument>
+            <argument type="service" id="Shopware\Core\Content\Media\File\FileSaver"></argument>
+        </service>
+
+        <service id="JoinzImportPlugin\Service\ImportService">
+            <argument type="service" id="product.repository"></argument>
+            <argument type="service" id="tax.repository"></argument>
+            <argument type="service" id="media.repository"></argument>
+            <argument type="service" id="product_media.repository"></argument>
+            <argument type="service" id="property_group.repository"></argument>
+            <argument type="service" id="property_group_option.repository"></argument>
+            <argument type="service" id="product_cross_selling.repository"></argument>
+            <argument type="service" id="product_configurator_setting.repository"></argument>
+            <argument type="service" id="sales_channel.repository"></argument>
+            <argument type="service" id="rule.repository"></argument>
+            <argument type="service" id="category.repository"></argument>
+            <argument type="service" id="JoinzImportPlugin\Service\ImportImage"></argument>
+            <argument type="service" id="product_hash.repository"></argument>
+            <argument type="service" id="delivery_time.repository"></argument>
+            <argument type="service" id="product_price.repository"></argument>
+            <argument type="service" id="product_option.repository"></argument>
+            <argument type="service" id="product_property.repository"></argument>
+        </service>
+
+        <service id="JoinzImportPlugin\Command\ImportCommand">
+            <tag name="console.command" command="joinz:import"/>
+            <argument type="service" id="JoinzImportPlugin\Service\ImportService"/>
+            <argument type="service" id="product_hash.repository"></argument>
+        </service>
+
+        <service id="JoinzImportPlugin\Command\UpdateConfigurationNameCommand">
+            <tag name="console.command" command="joinz:update-configuration-name"/>
+            <argument type="service" id="JoinzImportPlugin\Service\UpdateConfigurationNameService"/>
+        </service>
+
+        <service id="JoinzImportPlugin\Service\UpdateConfigurationNameService">
+            <argument type="service" id="product.repository"></argument>
+            <argument type="service" id="property_group.repository"></argument>
+        </service>
+
+        <service id="JoinzImportPlugin\Service\ImportCategoryService">
+            <argument type="service" id="category.repository"></argument>
+            <argument type="service" id="language.repository"></argument>
+            <argument type="service" id="cms_page.repository"></argument>
+        </service>
+
+        <service id="JoinzImportPlugin\Command\ImportCategoryCommand">
+            <tag name="console.command" command="joinz:import-categories"/>
+            <argument type="service" id="JoinzImportPlugin\Service\ImportCategoryService"></argument>
+        </service>
+
+        <service id="JoinzImportPlugin\Service\ImportCategoryFileService">
+            <argument type="service" id="category.repository"></argument>
+            <argument type="service" id="language.repository"></argument>
+            <argument type="service" id="cms_page.repository"></argument>
+        </service>
+
+        <service id="JoinzImportPlugin\Command\ImportCategoryFileCommand">
+            <tag name="console.command" command="joinz:import-categories-file"/>
+            <argument type="service" id="JoinzImportPlugin\Service\ImportCategoryFileService"></argument>
+        </service>
+
+        <service id="JoinzImportPlugin\Service\ImportStockService">
+            <argument type="service" id="product.repository"></argument>
+            <argument type="service" id="product_stock.repository"></argument>
+        </service>
+
+        <service id="JoinzImportPlugin\Command\ImportStockCommand">
+            <tag name="console.command" command="joinz:import-stock"/>
+            <argument type="service" id="JoinzImportPlugin\Service\ImportStockService"></argument>
+        </service>
+
+        <service id="JoinzImportPlugin\Extension\Content\Product\ProductCrossSellingExtraExtension">
+            <tag name="shopware.entity.extension"/>
+        </service>
+
+        <service id="JoinzImportPlugin\Extension\Content\Product\ProductCrossSellingExtraDefinition">
+            <tag name="shopware.entity.definition" entity="product_cross_selling_extra" />
+        </service>
+
+        <service id="JoinzImportPlugin\Extension\Content\Product\ProductHashDefinition">
+            <tag name="shopware.entity.definition" entity="product_hash" />
+        </service>
+
+        <service id="JoinzImportPlugin\Extension\Content\Product\ProductStockDefinition">
+            <tag name="shopware.entity.definition" entity="product_stock" />
+        </service>
+
+        <service id="JoinzImportPlugin\Extension\Content\LogoUploadDefinition">
+            <tag name="shopware.entity.definition" entity="logo_uploads" />
+        </service>
+
+        <service id="JoinzImportPlugin\Service\AddProductVariations" >
+            <argument type="service" id="product.repository"></argument>
+            <argument type="service" id="shipping_method.repository"></argument>
+            <argument type="service" id="Shopware\Core\Checkout\Cart\SalesChannel\CartService"></argument>
+            <tag name="kernel.event_subscriber" />
+        </service>
+
+        <service id="JoinzImportPlugin\Controller\JoinzCartController" public="true">
+            <argument type="service" id="Shopware\Core\Checkout\Cart\LineItemFactoryRegistry"></argument>
+            <argument type="service" id="Shopware\Core\Checkout\Cart\SalesChannel\CartService"></argument>
+            <argument type="service" id="Shopware\Core\Checkout\Order\SalesChannel\OrderService"></argument>
+            <argument type="service" id="Shopware\Core\Checkout\Cart\Order\OrderPersister"></argument>
+            <argument type="service" id="order.repository"></argument>
+            <argument type="service" id="Shopware\Core\Content\Mail\Service\MailService"/>
+            <argument type="service" id="sales_channel.repository"></argument>
+            <argument type="service" id="product.repository"></argument>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="JoinzImportPlugin\Controller\StaticPagesController" public="true">
+            <argument type="service" id="Shopware\Core\Content\Media\File\FileSaver"></argument>
+            <argument type="service" id="Shopware\Core\Content\Media\File\FileNameProvider"></argument>
+            <argument type="service" id="Shopware\Core\Content\Media\MediaService"></argument>
+            <argument type="service" id="logo_uploads.repository"></argument>
+            <argument type="service" id="Shopware\Core\Content\Mail\Service\MailService"/>
+            <argument type="service" id="sales_channel.repository"></argument>
+            <argument type="service" id="JoinzImportPlugin\Storefront\Page\Joinz\PageLoader"></argument>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="JoinzImportPlugin\Core\Content\Sitemap\Provider\DecoratedProductUrlProvider" decorates="Shopware\Core\Content\Sitemap\Provider\ProductUrlProvider">
+            <argument type="service" id="JoinzImportPlugin\Core\Content\Sitemap\Provider\DecoratedProductUrlProvider.inner" />
+        </service>
+
+    </services>
+</container>

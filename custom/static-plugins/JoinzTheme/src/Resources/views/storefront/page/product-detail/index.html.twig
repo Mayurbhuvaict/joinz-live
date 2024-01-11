@@ -1,0 +1,2111 @@
+{% sw_extends '@Storefront/storefront/page/product-detail/index.html.twig' %}
+{% block base_head %}
+    {{ parent() }}
+    <script type="text/javascript" src="/js/alpine.min.js" defer></script>
+    <script type="module">
+        import PhotoSwipeLightbox from '/js/photoswipe-lightbox.esm.min.js';
+        const lightbox = new PhotoSwipeLightbox({
+            gallery: '#productPhotos',
+            children: 'a',
+            pswpModule: () => import('/js/photoswipe.esm.min.js')
+        });
+        lightbox.init();
+    </script>
+    <link rel="stylesheet" href="/css/photoswipe.css">
+{% endblock %}
+{% block base_content %}
+    {% set product = page.extensions.joinzProduct.product %}
+
+    {% set similarProducts = page.extensions.joinzProduct.similarProducts %}
+    {#{{ dump(page.configuratorSettings) }}#}
+    {% set id = product.id %}
+    {% set dissableOptions = [] %}
+    {% for cs in page.configuratorSettings %}
+    {% if cs.visibleOnProductDetailPage == false %}
+        {% set dissableOptions = dissableOptions|merge([cs.id]) %}
+        {% for k in cs.options.elements|keys %}
+            {% set dissableOptions = dissableOptions|merge([k]) %}
+        {% endfor %}
+    {% endif %}
+    {% endfor %}
+    <style>
+        small {
+            color: #016F9F;
+        }
+        .accordion .accordion-body {
+            /*display: block;*/
+            /*overflow: hidden;*/
+            /*padding: 0;*/
+            /*max-height: 0;*/
+            /*transition: max-height 5s linear;*/
+        }
+
+        .accordion .accordion-body.active {
+            display: block;
+            /*max-height: 600px;*/
+            /*padding: 1rem 0.5rem 0.5rem;*/
+        }
+
+        .accordion .accordion-head {
+            cursor: pointer;
+        }
+
+        .description-list ul li img {
+            max-width: 100px;
+        }
+        .accordion .accordion-body .details label span {
+            word-wrap:break-word;
+            max-width: 94px;
+        }
+
+        #read-more-bottom {
+            position:relative;
+        }
+        #read-more-bottom ul.body{
+            max-height:500px;
+            overflow:hidden;
+        }
+        #read-more-bottom p.read-more{
+            position:absolute;
+            bottom:0;
+        }
+        .read-more {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            margin: 0;
+            padding-top: 70px;
+            text-align: center;
+            background-image: linear-gradient(to top, #fff 20%, transparent);
+            z-index: 10;
+        }
+        #read-more-top {
+            position:relative;
+        }
+        #read-more-top ul.body{
+            max-height:500px;
+            overflow:hidden;
+        }
+        #read-more-top p.read-more-top{
+            position:absolute;
+            bottom:0;
+        }
+        .read-more-top {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            margin: 0;
+            padding-top: 70px;
+            text-align: center;
+            background-image: linear-gradient(to top, #fff 20%, transparent);
+            z-index: 10;
+        }
+    </style>
+    <script>
+        const params = new Proxy(new URLSearchParams(window.location.search), {
+            get: (searchParams, prop) => searchParams.get(prop),
+        });
+        let queryParamQuantity = params.quantity;
+
+        function addToCartGtm()
+        {
+            dataLayer.push({
+                'event': 'gtmAddToCart',
+                'ecommerce': {
+                    'currencyCode': document.getElementsByName("dtgs-gtm-currency-code")[0].value,
+                    'add': {
+                        'products': [{
+                            'name': c.selectedProduct.name,
+                            'quantity': c.quantity,
+                            'id': document.getElementsByName("dtgs-gtm-product-sku")[0].value,
+                            'price': document.getElementsByName("dtgs-gtm-product-price")[0].value,
+                        }]
+                    }
+                }
+            });
+        }
+        function clearInput(target){
+            if (target.value == 0){
+                target.value= "";
+            }
+        }
+        function readMoreBottom()
+        {
+            var el = document.querySelector('#read-more-bottom ul.body');
+            el.style.maxHeight = 'none';
+            el = document.querySelector('#read-more-bottom p.read-more');
+            el.remove()
+        }
+
+        function readMoreTop()
+        {
+            var el = document.querySelector('#read-more-top ul.body');
+            el.style.maxHeight = 'none';
+            el = document.querySelector('#read-more-top p.read-more-top');
+            el.remove()
+        }
+
+        function round(x) {
+            return Math.round(100 * x) / 100;
+            //return parseFloat((Math.round((x * Math.pow(10, 2)) + (1 * 0.0001)) / Math.pow(10, 2)).toFixed(2));
+        }
+
+        function currency(x) {
+            var options = {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            };
+
+            var f = x.toLocaleString('en', options);
+            f = f.replace(/\,/g, 'tmp').replace(/\./g, ',').replace(/tmp/g, '.');
+            return f;
+        }
+
+        function calcSignature(arr) {
+            return arr.sort().join('-');
+        }
+
+        class Configurator {
+            mainProduct;
+            variantGroups;
+            selectedOptions;
+            selectedOptionsSignature;
+            selectedProduct;
+            selectedLocation;
+            selectedImprint;
+            quantity;
+            expandPrice = false;
+            shippingCost;
+
+            constructor() {
+                this.quantity = 0;
+                this.steps = {
+                    'variant': {'open': 1, 'completed': 1},
+                    'location': {'open': 0, 'completed': 0},
+                    'imprint': {'open': 0, 'completed': 0},
+                    'quantity': {'open': 0, 'completed': 0}
+                };
+                this.variantGroups = [];
+                this.selectedOptions = {};
+            }
+
+            addVariantGroup(group) {
+                this.variantGroups.push(group)
+            }
+
+            setMainProduct(product) {
+                this.mainProduct = product;
+            }
+
+            setSelectedOption(groupId, optionId) {
+                this.selectedOptions[groupId] = optionId;
+                this.calcSelectedOptionsSignature();
+                var pid = this.findProductIdFromSelectedOptions();
+                if (pid) {
+                    this.setSelectedProduct(pid, false);
+                }
+            }
+
+            onOptionChange() {
+                this.calcSelectedOptionsSignature();
+                var pid = this.findProductIdFromSelectedOptions();
+                if (pid) {
+                    this.setSelectedProduct(pid, false);
+                }
+
+                this.steps.location.open = 1;
+            }
+
+            setShippingCost(sc) {
+                this.shippingCost = sc;
+            }
+
+            calcSelectedOptionsSignature() {
+                this.selectedOptionsSignature = calcSignature(Object.values(this.selectedOptions));
+            }
+
+            findProductIdFromSelectedOptions() {
+                for (var i in this.mainProduct.variations) {
+                    var v = this.mainProduct.variations[i];
+                    if (v.optionsSignature == this.selectedOptionsSignature) {
+                        return v.id;
+                    }
+                }
+                return '';
+            }
+
+            setSelectedProduct(productId, moveStep) {
+                if (typeof moveStep == 'undefined') {
+                    moveStep = true;
+                }
+                if (this.mainProduct.id === productId) {
+                    this.selectedProduct = this.mainProduct;
+                } else {
+                    if(this.mainProduct.variations[productId].stock > 0) {
+                        this.selectedProduct = this.mainProduct.variations[productId];
+                    }
+                    else {
+                        for (var z in this.mainProduct.variations) {
+                            if(this.mainProduct.variations[z].stock > 0) {
+                                this.selectedProduct = this.mainProduct.variations[z];
+                            }
+                        }
+                    }
+
+                }
+                this.selectedLocation = null;
+                this.steps.location.completed = 0;
+                this.selectedImprint = null;
+                this.steps.imprint.completed = 0;
+                if (queryParamQuantity) {
+                    this.setQuantity(queryParamQuantity);
+                }
+
+                if (moveStep) {
+                    this.steps.variant.completed = 1;
+                    this.steps.variant.open = 0;
+                    this.steps.location.open = 1;
+                }
+            }
+
+            setSelectedLocation(il_id, moveStep) {
+                if (typeof moveStep == 'undefined') {
+                    moveStep = true;
+                }
+
+                this.selectedLocation = this.selectedProduct.imprintLocations[il_id];
+                this.selectedImprint = null;
+
+                if (moveStep) {
+                    this.steps.location.completed = 1;
+                    this.steps.location.open = 0;
+                    this.steps.imprint.open = 0;
+                    this.steps.imprint.completed = 0;
+
+                    if (this.selectedLocation.is_none) {
+                        this.steps.imprint.open = 0;
+                        this.steps.imprint.completed = 1;
+                        this.steps.quantity.open = 1;
+                    } else {
+                        this.steps.imprint.open = 1;
+                    }
+                }
+            }
+
+            openLocationStep() {
+                this.steps.variant.completed = 1;
+                this.steps.variant.open = 0;
+                this.steps.location.open = 1;
+            }
+
+            setSelectedImprint(io_id, moveStep) {
+                if (typeof moveStep == 'undefined') {
+                    moveStep = true;
+                }
+
+                this.selectedImprint = this.selectedLocation.getOptionById(io_id);
+
+                if (moveStep) {
+                    this.steps.imprint.completed = 1;
+                    this.steps.imprint.open = 0;
+                    this.steps.quantity.open = 1;
+                }
+            }
+
+            setQuantity(quantity) {
+                var moq = this.getMoq();
+
+                if (quantity < moq) {
+                    quantity = moq;
+                }
+                this.quantity = quantity;
+                this.steps.quantity.completed = 1;
+            }
+
+            getCheapestPrice() {
+                return this.selectedProduct.price.getCheapestPrice().net;
+            }
+
+            getHighestPrice() {
+                return this.selectedProduct.price.getHighestPrice().net;
+            }
+
+            getProductPrice() {
+                if (!this.quantity) {
+                    return null;
+                }
+                if (!this.selectedProduct) {
+                    return null;
+                }
+                return this.selectedProduct.price.priceFor(this.quantity);
+            }
+
+            getImprintPrice() {
+                if (!this.quantity) {
+                    return null;
+                }
+                if (!this.selectedImprint) {
+                    return null;
+                }
+
+                return this.selectedImprint.price.priceFor(this.quantity);
+            }
+
+            getProductGross() {
+                var p = this.getProductPrice();
+                if (p) {
+                    return p.gross;
+                }
+                return 0;
+            }
+
+            getProductNet() {
+                var p = this.getProductPrice();
+                if (p) {
+                    return p.net;
+                }
+                return 0;
+            }
+
+            getImprintGross() {
+                var p = this.getImprintPrice();
+                if (p) {
+                    return p.gross;
+                }
+                return 0;
+            }
+
+            getImprintNet() {
+                var p = this.getImprintPrice();
+                if (p) {
+                    return p.net;
+                }
+                return 0;
+            }
+
+            getPieceGross(do_round) {
+                do_round = typeof do_round !== 'undefined' ? do_round : true;
+                if (!this.quantity) {
+                    return 0;
+                }
+                var pp = this.selectedProduct ? this.selectedProduct.price.priceFor(this.quantity).gross : 0;
+                var ip = this.selectedImprint ? this.selectedImprint.price.priceFor(this.quantity).gross : 0;
+
+                if (do_round) {
+                    return round(pp + ip);
+                } else {
+                    return pp + ip;
+                }
+            }
+
+            getPieceNet(do_round) {
+                do_round = typeof do_round !== 'undefined' ? do_round : true;
+                if (!this.quantity) {
+                    return 0;
+                }
+                var pp = this.selectedProduct ? this.selectedProduct.price.priceFor(this.quantity).net : 0;
+                var ip = this.selectedImprint ? this.selectedImprint.price.priceFor(this.quantity).net : 0;
+
+                if (do_round) {
+                    return round(pp + ip);
+                } else {
+                    return pp + ip;
+                }
+            }
+
+            getTotal() {
+                return round(this.getPieceGross(true) * this.quantity + this.getSetupCostGross());
+            }
+
+            getTotalExTax() {
+                return round(this.getPieceNet(true) * this.quantity + this.getSetupCostNet());
+            }
+
+            getSetupCost() {
+                return this.selectedImprint ? this.selectedImprint.setupCost : false;
+            }
+
+            getSetupCostNet() {
+                var setupCost = this.getSetupCost();
+                if (setupCost) {
+                    return setupCost.net;
+                }
+                return 0;
+            }
+
+            getSetupCostGross() {
+                var setupCost = this.getSetupCost();
+                if (setupCost) {
+                    return setupCost.gross;
+                }
+                return 0;
+            }
+
+            getTotalTax() {
+                return round(this.getTotal() - this.getTotalExTax());
+            }
+
+
+            getMoq() {
+                return this.selectedProduct.moq;
+            }
+
+            getPrices() {
+                //@TODO hide if below MOQ
+
+                // Make clone object
+                var moq = this.getMoq();
+                var ap = new AdvancedPricing();
+                for (var i in this.selectedProduct.price.prices) {
+                    var p = this.selectedProduct.price.prices[i];
+                    if (p.to != null && moq > p.to) {
+                        continue;
+                    }
+                    if (moq > p.from) {
+                        p.from = moq;
+                    }
+                    var imprint_gross = this.selectedImprint ? this.selectedImprint.price.priceFor(p.from).gross : 0;
+                    var imprint_net = this.selectedImprint ? this.selectedImprint.price.priceFor(p.from).net : 0;
+                    var new_gross = round(p.gross + imprint_gross);
+                    var new_net = round(p.net + imprint_net);
+                    ap.addPrice(new_gross, new_net, p.from, p.to);
+                }
+                ap.calcDiscounts();
+                return ap.prices;
+            }
+
+            onQuantityChange() {
+                var step = this.selectedProduct.step;
+
+                if (this.quantity % step != 0) {
+                    var times = Math.floor(this.quantity / step);
+                    var low = step * times;
+                    var high = step * (times + 1);
+                    this.quantity = Math.abs(this.quantity - low) >= Math.abs(this.quantity - high) ? high : low;
+                }
+
+                this.quantity = this.quantity < this.getMoq() ? this.getMoq() : this.quantity;
+
+                var checked_radio = document.querySelector('input[type=radio][name=quantity-select]:checked');
+                if (checked_radio !== null) {
+                    checked_radio.checked = false;
+                }
+
+                var radio = document.querySelector('input[type=radio][name=quantity-select][value="' + this.quantity + '"]');
+                if (radio !== null) {
+                    radio.checked = true;
+                }
+            }
+        }
+
+        class VariantGroup {
+            name;
+            id;
+            options;
+            type;
+
+            constructor(name, groupId, type) {
+                this.name = name;
+                this.id = groupId;
+                this.type = type;
+                this.options = [];
+            }
+
+            addOption(option) {
+                if(this.options.indexOf(option) === -1) {
+                    this.options.push(option)
+                }
+            }
+        }
+
+        class VariantOption {
+            name;
+            id;
+            colorHex;
+            style;
+
+            constructor(name, optionId, colorHex) {
+                this.name = name;
+                this.id = optionId;
+                this.colorHex = colorHex;
+                if (this.isColor()) {
+                    var colors = this.colorHex.split('/');
+                    var styles = [];
+                    if(this.hexToRgba(colors[0]) == '255,255,255,1') {
+                        styles.push('border: 1px solid #dee9ee;');
+                    }
+                    styles.push('background:rgba(' + this.hexToRgba(colors[0]) + ')');
+                    if (colors.length == 2) {
+                        styles.push('background:linear-gradient(45deg, rgba(' + this.hexToRgba(colors[0]) + ') 50%, rgba(' + this.hexToRgba(colors[1]) + ') 50%)');
+                    }
+                    this.style = styles.join(';');
+                }
+            }
+
+            hexToRgba(hex) {
+                var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+                return result ? ''
+                    + parseInt(result[1], 16) + ','
+                    + parseInt(result[2], 16) + ','
+                    + parseInt(result[3], 16)
+                    + ',1' : null;
+            }
+
+            isColor() {
+                return !!this.colorHex;
+            }
+        }
+
+        class Product {
+            stock;
+            moq;
+            step;
+            optionIds;
+            optionsSignature;
+            deliveryDate;
+            deliveryTime;
+            fastestDeliveryDate;
+            weight;
+            size;
+
+            constructor(id, name, description, price, img, imgH, imgW, thumbnail, sku) {
+                this.id = id;
+                this.name = name;
+                this.description = description;
+                this.price = price;
+                this.img = img;
+                this.imgH = imgH;
+                this.imgW = imgW;
+                this.thumbnail = thumbnail;
+                this.sku = sku;
+                this.stock = 0;
+                this.moq = 1;
+                this.step = 1;
+                this.optionIds = [];
+                this.optionsSignature = '';
+
+                this.variations = {};
+                this.imprintLocations = {};
+                this.media = [];
+            }
+
+            setStock(stock) {
+                this.stock = stock;
+            }
+
+            appendName(name) {
+                this.name = this.name + ' ' + name;
+            }
+
+            setMoq(moq) {
+                this.moq = moq;
+            }
+
+            setStep(step) {
+                this.step = step;
+            }
+
+            setDeliveryDate(dd) {
+                this.deliveryDate = dd;
+            }
+
+            setDeliveryTime(dt) {
+                this.deliveryTime = dt;
+            }
+
+            setFastestDeliveryDate(fdd) {
+                this.fastestDeliveryDate = fdd;
+            }
+
+            setWeight(w) {
+                this.weight = w;
+            }
+
+            setSize(w, h, l) {
+                if (w == 0 && h == 0 && l == 0) {
+                    this.size = false;
+                    return;
+                }
+                this.size = (w / 10) + 'x' + (h / 10) + 'x' + (l / 10) + ' cm';
+            }
+
+            addOptionId(optionId) {
+                this.optionIds.push(optionId);
+            }
+
+            calcOptionsSignature() {
+                this.optionsSignature = calcSignature(this.optionIds);
+            }
+
+            addVariation(p) {
+                this.variations[p.id] = p;
+            }
+
+            addImprintLocation(il) {
+                this.imprintLocations[il.id] = il;
+            }
+
+            addMedia(url, width, height) {
+                this.media.push([url, width, height]);
+            }
+        }
+
+        class ImprintLocation {
+
+            img;
+            thumb;
+            is_none;
+            cheapestIo;
+
+            constructor(id, name, is_none) {
+                this.id = id;
+                this.name = name;
+                this.is_none = is_none;
+                this.icon = is_none ? 'icon-no-imprint-location' : null;
+                this.imprintOptions = [];
+            }
+
+            setImg(img) {
+                this.img = img;
+            }
+
+            setThumb(img) {
+                this.thumb = img;
+            }
+
+            addImprintOption(io) {
+                this.imprintOptions.push(io);
+            }
+
+            sortOptions() {
+                this.imprintOptions = this.imprintOptions.sort(function compare(a, b) {
+                    return a.colors > b.colors ? 1 : -1;
+                })
+            }
+
+            setCheapestIo() {
+                this.cheapestIo = this.imprintOptions.sort((a, b) => (a.price.getCheapestPrice().net > b.price.getCheapestPrice().net ? 1 : -1))[0].id;
+            }
+
+
+            getOptionById(id) {
+                return this.imprintOptions.find(function fn(io) {
+                    return io.id == id
+                });
+            }
+        }
+
+        class ImprintOption {
+            constructor(id, name, colors, price, sku, setupCost, main) {
+                this.id = id;
+                this.name = name;
+                this.colors = colors;
+                this.price = price;
+                this.sku = sku;
+                this.main = main;
+                this.setupCost = {
+                    net: setupCost,
+                    gross: setupCost * 1.21,
+                    tax: setupCost * 0.21
+                };
+            }
+
+            getIconText() {
+                if (this.colors == 1) {
+                    return '1 Kleur';
+                }
+                if (this.colors > 1) {
+                    return this.colors + ' Kleuren';
+                }
+
+                return this.name;
+            }
+
+            getDescriptionIconName() {
+                var regex_embroid = /bordu|geweven|weven/gi;
+                var regex_zeef = /zeef|tampon/gi;
+                var regex_transfer = /transfer/gi;
+                var regex_folie = /folie|stamping/gi;
+                var regex_doming = /Doming/gi;
+                var regex_label = /label|stick/gi;
+                var regex_laser = /laser|grave|gravu/gi;
+                var regex_blind = /blind|emboss|deboss/gi;
+                var regex_full = /full/gi;
+                var regex_digita = /digita/gi;
+                var regex_subli = /subli/gi;
+                var regex_1_color = /1 kleur/gi;
+                var regex_2_color = /2 kleuren/gi;
+                var regex_3_color = /3 kleuren/gi;
+                var regex_4_color = /4 kleuren/gi;
+                var regex_5_color = /5 kleuren/gi;
+                var regex_6_color = /6 kleuren/gi;
+                var regex_7_color = /7 kleuren/gi;
+                var regex_8_color = /8 kleuren/gi;
+                var regex_9_color = /9 kleuren/gi;
+                var regex_10_color = /10 kleuren/gi;
+                if (this.name.match(regex_zeef) != null) {
+                    return 'Zeefdruk / tampondruk';
+                }
+                if (this.name.match(regex_full) != null) {
+                    return 'Full color bedrukking';
+                }
+                if (this.name.match(regex_laser) != null) {
+                    return 'Lasergravure';
+                }
+                if (this.name.match(regex_embroid) != null) {
+                    return 'Borduren';
+                }
+                if (this.name.match(regex_doming) != null) {
+                    return 'Doming';
+                }
+                if (this.name.match(regex_label) != null) {
+                    return 'Sticker of label';
+                }
+                if (this.name.match(regex_blind) != null) {
+                    return 'Blinddruk';
+                }
+                if (this.name.match(regex_transfer) != null) {
+                    return 'Transferdruk';
+                }
+                if (this.name.match(regex_folie) != null) {
+                    return 'Foliedruk / hot stamping';
+                }
+                if (this.name.match(regex_digita) != null) {
+                    return 'Digitale druk';
+                }
+                if (this.name.match(regex_subli) != null) {
+                    return 'Sublimatiedruk';
+                }
+
+
+                if (this.colors == 1 || this.name.match(regex_1_color) != null) {
+                    return 'Zeefdruk / tampondruk';
+                }
+                if (this.colors == 2 || this.name.match(regex_2_color) != null) {
+                    return 'Zeefdruk / tampondruk';
+                }
+                if (this.colors == 3 || this.name.match(regex_3_color) != null) {
+                    return 'Zeefdruk / tampondruk';
+                }
+                if (this.colors == 4 || this.name.match(regex_4_color) != null) {
+                    return 'Zeefdruk / tampondruk';
+                }
+                if (this.colors == 5 || this.name.match(regex_5_color) != null) {
+                    return 'Zeefdruk / tampondruk';
+                }
+                if (this.colors == 6 || this.name.match(regex_6_color) != null) {
+                    return 'Zeefdruk / tampondruk';
+                }
+                if (this.colors == 7 || this.name.match(regex_7_color) != null) {
+                    return 'Zeefdruk / tampondruk';
+                }
+                if (this.colors == 8 || this.name.match(regex_8_color) != null) {
+                    return 'Zeefdruk / tampondruk';
+                }
+                if (this.colors == 9 || this.name.match(regex_9_color) != null) {
+                    return 'Zeefdruk / tampondruk';
+                }
+                if (this.colors == 10 || this.name.match(regex_10_color) != null) {
+                    return 'Zeefdruk / tampondruk';
+                }
+                return this.name + ' Neem contact op voor uitleg over deze personalisatie';
+            }
+            getDescriptionIconText() {
+                var regex_embroid = /bordu|geweven|weven/gi;
+                var regex_zeef = /zeef|tampon/gi;
+                var regex_transfer = /transfer/gi;
+                var regex_folie = /folie|stamping/gi;
+                var regex_doming = /Doming/gi;
+                var regex_label = /label|stick/gi;
+                var regex_laser = /laser|grave|gravu/gi;
+                var regex_blind = /blind|emboss|deboss/gi;
+                var regex_full = /full/gi;
+                var regex_digita = /digita/gi;
+                var regex_subli = /subli/gi;
+                var regex_1_color = /1 kleur/gi;
+                var regex_2_color = /2 kleuren/gi;
+                var regex_3_color = /3 kleuren/gi;
+                var regex_4_color = /4 kleuren/gi;
+                var regex_5_color = /5 kleuren/gi;
+                var regex_6_color = /6 kleuren/gi;
+                var regex_7_color = /7 kleuren/gi;
+                var regex_8_color = /8 kleuren/gi;
+                var regex_9_color = /9 kleuren/gi;
+                var regex_10_color = /10 kleuren/gi;
+                if (this.name.match(regex_zeef) != null) {
+                    return '1-10 kleuren';
+                }
+                if (this.name.match(regex_full) != null) {
+                    return 'Full color';
+                }
+                if (this.name.match(regex_laser) != null) {
+                    return 'Laser';
+                }
+                if (this.name.match(regex_embroid) != null) {
+                    return 'Borduren';
+                }
+                if (this.name.match(regex_doming) != null) {
+                    return 'Doming';
+                }
+                if (this.name.match(regex_label) != null) {
+                    return 'Sticker';
+                }
+                if (this.name.match(regex_blind) != null) {
+                    return 'Blinddruk';
+                }
+                if (this.name.match(regex_transfer) != null) {
+                    return 'Transfer';
+                }
+                if (this.name.match(regex_folie) != null) {
+                    return 'Foliedruk';
+                }
+                if (this.name.match(regex_digita) != null) {
+                    return 'Full color';
+                }
+                if (this.name.match(regex_subli) != null) {
+                    return 'Full color';
+                }
+
+
+                if (this.colors == 1 || this.name.match(regex_1_color) != null) {
+                    return '1-10 kleuren';
+                }
+                if (this.colors == 2 || this.name.match(regex_2_color) != null) {
+                    return '1-10 kleuren';
+                }
+                if (this.colors == 3 || this.name.match(regex_3_color) != null) {
+                    return '1-10 kleuren';
+                }
+                if (this.colors == 4 || this.name.match(regex_4_color) != null) {
+                    return '1-10 kleuren';
+                }
+                if (this.colors == 5 || this.name.match(regex_5_color) != null) {
+                    return '1-10 kleuren';
+                }
+                if (this.colors == 6 || this.name.match(regex_6_color) != null) {
+                    return '1-10 kleuren';
+                }
+                if (this.colors == 7 || this.name.match(regex_7_color) != null) {
+                    return '1-10 kleuren';
+                }
+                if (this.colors == 8 || this.name.match(regex_8_color) != null) {
+                    return '1-10 kleuren';
+                }
+                if (this.colors == 9 || this.name.match(regex_9_color) != null) {
+                    return '1-10 kleuren';
+                }
+                if (this.colors == 10 || this.name.match(regex_10_color) != null) {
+                    return '1-10 kleuren';
+                }
+                return this.name + ' Neem contact op voor uitleg over deze personalisatie';
+            }
+
+            getIcon() {
+                var regex_embroid = /bordu|geweven/gi;
+                var regex_doming = /Doming/gi;
+                var regex_label = /label|stick/gi;
+                var regex_laser = /laser|grave|gravu/gi;
+                var regex_blind = /blind|emboss|deboss/gi;
+                var regex_full = /button|digita|Keramische transfer|subl|imould|custom|full/gi;
+                var regex_aanvraag = /aanvraag/gi;
+                var regex_1_color = /1 kleur/gi;
+                var regex_2_color = /2 kleuren/gi;
+                var regex_3_color = /3 kleuren/gi;
+                var regex_4_color = /4 kleuren/gi;
+                var regex_5_color = /5 kleuren/gi;
+                var regex_6_color = /6 kleuren/gi;
+                var regex_7_color = /7 kleuren/gi;
+                var regex_8_color = /8 kleuren/gi;
+                var regex_9_color = /9 kleuren/gi;
+                var regex_10_color = /10 kleuren/gi;
+
+        if (this.name.match(regex_embroid) != null) {
+            return 'icon-stiching';
+        }
+        if (this.name.match(regex_doming) != null) {
+            return 'icon-doming';
+        }
+        if (this.name.match(regex_label) != null) {
+            return 'icon-sticker';
+        }
+        if (this.name.match(regex_laser) != null) {
+            return 'icon-laser';
+        }
+        if (this.name.match(regex_blind) != null) {
+            return 'icon-blinddruk';
+        }
+        if (this.name.match(regex_full) != null) {
+            return 'icon-full-color';
+        }
+        if (this.colors == 1 || this.name.match(regex_1_color) != null) {
+            return 'icon-one-color';
+        }
+        if (this.colors == 2 || this.name.match(regex_2_color) != null) {
+            return 'icon-two-colors';
+        }
+        if (this.colors == 3 || this.name.match(regex_3_color) != null) {
+            return 'icon-three-colors';
+        }
+        if (this.colors == 4 || this.name.match(regex_4_color) != null) {
+            return 'icon-four-colors';
+        }
+        if (this.colors == 5 || this.name.match(regex_5_color) != null) {
+            return 'icon-five-colors';
+        }
+        if (this.colors == 6 || this.name.match(regex_6_color) != null) {
+            return 'icon-six-colors';
+        }
+        if (this.colors == 7 || this.name.match(regex_7_color) != null) {
+            return 'icon-seven-colors';
+        }
+        if (this.colors == 8 || this.name.match(regex_8_color) != null) {
+            return 'icon-eight-colors';
+        }
+        if (this.colors == 9 || this.name.match(regex_9_color) != null) {
+            return 'icon-nine-colors';
+        }
+        if (this.colors == 10 || this.name.match(regex_10_color) != null) {
+            return 'icon-ten-colors';
+        }
+        return 'icon-default-color';
+    }
+
+            getDescriptionIcon() {
+                var regex_embroid = /bordu|geweven|weven/gi;
+                var regex_zeef = /zeef|tampon/gi;
+                var regex_transfer = /transfer/gi;
+                var regex_folie = /folie|stamping/gi;
+                var regex_doming = /Doming/gi;
+                var regex_label = /label|stick/gi;
+                var regex_laser = /laser|grave|gravu/gi;
+                var regex_blind = /blind|emboss|deboss/gi;
+                var regex_full = /full/gi;
+                var regex_digita = /digita/gi;
+                var regex_subli = /subli/gi;
+                var regex_1_color = /1 kleur/gi;
+                var regex_2_color = /2 kleuren/gi;
+                var regex_3_color = /3 kleuren/gi;
+                var regex_4_color = /4 kleuren/gi;
+                var regex_5_color = /5 kleuren/gi;
+                var regex_6_color = /6 kleuren/gi;
+                var regex_7_color = /7 kleuren/gi;
+                var regex_8_color = /8 kleuren/gi;
+                var regex_9_color = /9 kleuren/gi;
+                var regex_10_color = /10 kleuren/gi;
+                if (this.name.match(regex_zeef) != null) {
+                    return 'icon-three-colors';
+                }
+                if (this.name.match(regex_full) != null) {
+                    return 'icon-full-color';
+                }
+                if (this.name.match(regex_laser) != null) {
+                    return 'icon-laser';
+                }
+                if (this.name.match(regex_embroid) != null) {
+                    return 'icon-stiching';
+                }
+                if (this.name.match(regex_doming) != null) {
+                    return 'icon-doming';
+                }
+                if (this.name.match(regex_label) != null) {
+                    return 'icon-sticker';
+                }
+                if (this.name.match(regex_blind) != null) {
+                    return 'icon-blinddruk';
+                }
+                if (this.name.match(regex_transfer) != null) {
+                    return 'icon-default-color';
+                }
+                if (this.name.match(regex_folie) != null) {
+                    return 'icon-default-color';
+                }
+                if (this.name.match(regex_digita) != null) {
+                    return 'icon-full-color';
+                }
+                if (this.name.match(regex_subli) != null) {
+                    return 'icon-full-color';
+                }
+
+
+                if (this.colors == 1 || this.name.match(regex_1_color) != null) {
+                    return 'icon-one-color';
+                }
+                if (this.colors == 2 || this.name.match(regex_2_color) != null) {
+                    return 'icon-two-colors';
+                }
+                if (this.colors == 3 || this.name.match(regex_3_color) != null) {
+                    return 'icon-three-colors';
+                }
+                if (this.colors == 4 || this.name.match(regex_4_color) != null) {
+                    return 'icon-four-colors';
+                }
+                if (this.colors == 5 || this.name.match(regex_5_color) != null) {
+                    return 'icon-five-colors';
+                }
+                if (this.colors == 6 || this.name.match(regex_6_color) != null) {
+                    return 'icon-six-colors';
+                }
+                if (this.colors == 7 || this.name.match(regex_7_color) != null) {
+                    return 'icon-seven-colors';
+                }
+                if (this.colors == 8 || this.name.match(regex_8_color) != null) {
+                    return 'icon-eight-colors';
+                }
+                if (this.colors == 9 || this.name.match(regex_9_color) != null) {
+                    return 'icon-nine-colors';
+                }
+                if (this.colors == 10 || this.name.match(regex_10_color) != null) {
+                    return 'icon-ten-colors';
+                }
+                return 'icon-fallback-contact';
+            }
+            getDescriptionText() {
+                var regex_embroid = /bordu|geweven|weven/gi;
+                var regex_zeef = /zeef|tampon/gi;
+                var regex_transfer = /transfer/gi;
+                var regex_folie = /folie|stamping/gi;
+                var regex_doming = /Doming/gi;
+                var regex_label = /label|stick/gi;
+                var regex_laser = /laser|grave|gravu/gi;
+                var regex_blind = /blind|emboss|deboss/gi;
+                var regex_full = /full/gi;
+                var regex_digita = /digita/gi;
+                var regex_subli = /subli/gi;
+                var regex_1_color = /1 kleur/gi;
+                var regex_2_color = /2 kleuren/gi;
+                var regex_3_color = /3 kleuren/gi;
+                var regex_4_color = /4 kleuren/gi;
+                var regex_5_color = /5 kleuren/gi;
+                var regex_6_color = /6 kleuren/gi;
+                var regex_7_color = /7 kleuren/gi;
+                var regex_8_color = /8 kleuren/gi;
+                var regex_9_color = /9 kleuren/gi;
+                var regex_10_color = /10 kleuren/gi;
+                if (this.name.match(regex_zeef) != null) {
+                    return 'Zeefdruk / tampondruk';
+                }
+                if (this.name.match(regex_full) != null) {
+                    return 'Full color bedrukking';
+                }
+                if (this.name.match(regex_laser) != null) {
+                    return 'Lasergravure';
+                }
+                if (this.name.match(regex_embroid) != null) {
+                    return 'Borduren';
+                }
+                if (this.name.match(regex_doming) != null) {
+                    return 'Doming';
+                }
+                if (this.name.match(regex_label) != null) {
+                    return 'Sticker of label';
+                }
+                if (this.name.match(regex_blind) != null) {
+                    return 'Blinddruk';
+                }
+                if (this.name.match(regex_transfer) != null) {
+                    return 'Transferdruk';
+                }
+                if (this.name.match(regex_folie) != null) {
+                    return 'Foliedruk / hot stamping';
+                }
+                if (this.name.match(regex_digita) != null) {
+                    return 'Digitale druk';
+                }
+                if (this.name.match(regex_subli) != null) {
+                    return 'Sublimatiedruk';
+                }
+
+
+                if (this.colors == 1 || this.name.match(regex_1_color) != null) {
+                    return 'Zeefdruk / tampondruk';
+                }
+                if (this.colors == 2 || this.name.match(regex_2_color) != null) {
+                    return 'Zeefdruk / tampondruk';
+                }
+                if (this.colors == 3 || this.name.match(regex_3_color) != null) {
+                    return 'Zeefdruk / tampondruk';
+                }
+                if (this.colors == 4 || this.name.match(regex_4_color) != null) {
+                    return 'Zeefdruk / tampondruk';
+                }
+                if (this.colors == 5 || this.name.match(regex_5_color) != null) {
+                    return 'Zeefdruk / tampondruk';
+                }
+                if (this.colors == 6 || this.name.match(regex_6_color) != null) {
+                    return 'Zeefdruk / tampondruk';
+                }
+                if (this.colors == 7 || this.name.match(regex_7_color) != null) {
+                    return 'Zeefdruk / tampondruk';
+                }
+                if (this.colors == 8 || this.name.match(regex_8_color) != null) {
+                    return 'Zeefdruk / tampondruk';
+                }
+                if (this.colors == 9 || this.name.match(regex_9_color) != null) {
+                    return 'Zeefdruk / tampondruk';
+                }
+                if (this.colors == 10 || this.name.match(regex_10_color) != null) {
+                    return 'Zeefdruk / tampondruk';
+                }
+                return this.name + ' Neem contact op voor uitleg over deze personalisatie';
+
+            }
+}
+
+class AdvancedPricing {
+    constructor() {
+        this.prices = {}
+    }
+
+    getCheapestPrice() {
+        return Object.values(this.prices).pop();
+    }
+
+    getHighestPrice() {
+        return Object.values(this.prices)[0];
+    }
+
+    addPrice(gross, net, from, to) {
+        this.prices[from] = {
+            from: from,
+            to: to,
+            gross: gross,
+            net: net,
+            tax: gross - net,
+        }
+    }
+
+    calcDiscounts() {
+        if (Object.values(this.prices).length == 0) {
+            return;
+        }
+        var highest = this.getHighestPrice().net;
+        for (var from in this.prices) {
+            var p = this.prices[from];
+            p.discount = highest - p.net;
+            p.discountPercent = round((p.discount / highest) * 100);
+        }
+    }
+
+    priceFor(quantity) {
+        var price;
+        for (var from in this.prices) {
+            if (parseInt(from) > parseInt(quantity)) {
+                break;
+            }
+            price = this.prices[from];
+        }
+        return price;
+    }
+}
+
+//@TODO Gallery
+
+function createPrice(prices) {
+    var p = new AdvancedPricing();
+    for (var i in prices) {
+        var price = prices[i];
+        p.addPrice(price.price[0].gross, price.price[0].net, price.quantityStart, price.quantityEnd);
+    }
+    p.calcDiscounts();
+    return p;
+}
+
+//@TODO REMOVE main product leave only variants
+var p = new Product('{{ product.id }}', '{{ product.name|raw }}', '{{ product.description|replace({'\'': '\\\'','\n':'<br/>'})|raw }}', createPrice({{ product.prices | json_encode | raw }}), '{{ product.cover.media.url }}', '{{ product.cover.media.metaData.height }}', '{{ product.cover.media.metaData.width }}', '{{ product.cover.media.thumbnails.elements|slice(1,1)|first.url }}');
+        p.setStock({{ product.stock }});
+        p.setMoq({{ product.minPurchase ?? 0 }});
+        p.setStep({{ product.purchaseSteps ?? 0 }});
+        p.setDeliveryDate('{{ product.extensions.delivery_date.text ?? '' }}')
+        p.setFastestDeliveryDate('{{ product.extensions.delivery_date.fastest_text ?? '' }}')
+        p.setDeliveryTime('{{ product.deliveryTime.name ?? '' }}')
+        p.setWeight({{ product.weight }})
+        p.setSize({{ product.width ?? 0 }}, {{ product.height ?? 0 }}, {{ product.length ?? 0 }})
+
+        {% for v in product.children %}
+        var v = new Product('{{ v.id }}', '{{ v.name|raw }}', '{{ v.description|replace({'\'': '\\\'','\n':'<br/>'})|raw }}', createPrice({{ v.prices | json_encode | raw }}), '{{ v.cover.media.url }}', '{{ product.cover.media.metaData.height }}', '{{ product.cover.media.metaData.width }}', '{{ v.cover.media.thumbnails.elements|slice(1,1)|first.url }}', '{{ v.productNumber }}');
+
+        v.setStock({{ v.stock }});
+        v.setMoq({{ v.minPurchase ?? product.minPurchase ?? 0 }});
+        v.setStep({{ v.purchaseSteps ?? product.purchaseSteps ?? 0 }});
+        v.setDeliveryDate('{{ v.extensions.delivery_date.text ?? product.extensions.delivery_date.text ?? '' }}')
+        v.setFastestDeliveryDate('{{ v.extensions.delivery_date.fastest_text ?? product.extensions.delivery_date.fastest_text ?? '' }}')
+        v.setDeliveryTime('{{ v.deliveryTime.name ?? product.deliveryTime.name ?? '' }}')
+        v.setWeight({{ v.weight }})
+        v.setSize({{ v.width ?? 0}}, {{ v.height ?? 0}}, {{ v.length ?? 0}})
+        {% for oid in v.optionIds %}
+        {% if oid not in dissableOptions %}
+        v.addOptionId('{{ oid }}');
+        {% endif %}
+        {% endfor %}
+        v.calcOptionsSignature();
+        {% for m in v.media %}
+        v.addMedia('{{m.media.url}}', '{{ m.media.metaData.width }}', '{{ m.media.metaData.height }}');
+        {% endfor %}
+        {% for il in v.crossSellings %}
+        var il = new ImprintLocation('{{ il.id }}', '{{ il.name }}', false);
+        il.setImg('{{ il.extensions.extra.cover.url }}')
+        il.setThumb('{{ il.extensions.extra.cover.url }}')
+        {% for ap in il.assignedProducts %}
+        {% set isMain = 1 %}
+        {% if ap.product.name ends with 'kleuren' or ap.product.customFields.numColors > 1 %}
+        {% set isMain = 0 %}
+        {% endif %}
+        il.addImprintOption(new ImprintOption('{{ ap.product.id }}',
+            '{{ ap.product.name|raw }}',
+            {{ ap.product.customFields.numColors ?? 0 }},
+            createPrice({{ ap.product.prices | json_encode | raw }}),
+            '{{ ap.product.productNumber }}',
+            {{ ap.product.customFields.imprint_setupCost ?? 0 }},
+            {{ isMain }}
+        ));
+        {% endfor %}
+        il.setCheapestIo();
+        il.sortOptions();
+        v.addImprintLocation(il);
+        {% endfor %}
+        v.addImprintLocation(new ImprintLocation('none', 'Onbedrukt', true));
+
+
+        p.addVariation(v);
+
+        {% endfor %}
+
+        var c = new Configurator();
+        c.setMainProduct(p);
+
+        {% for cs in page.configuratorSettings %}
+        {% if cs.visibleOnProductDetailPage == true %}
+        var vg = new VariantGroup('{{ cs.translated.name }}', '{{ cs.id }}', '{{ cs.displayType }}');
+        c.addVariantGroup(vg);
+
+
+        {% for o in cs.options %}
+        var vo = new VariantOption("{{ o.translated.name|raw }}", '{{ o.id }}', '{{ o.colorHexCode }}');
+
+        for (opv of Object.values(p.variations)) {
+            if (opv.optionIds.some(e => e === '{{ o.id }}') && opv.stock > 0) {
+                opv.appendName("{{ o.translated.name|raw }}");
+                vg.addOption(vo);
+            }
+        }
+        {% endfor %}
+        {% endif %}
+        {% endfor %}
+
+        {% for vo in page.selectedOptions %}
+        {% if vo.groupId not in dissableOptions %}
+        c.setSelectedOption('{{ vo.groupId }}', '{{ vo.id }}')
+        {% endif %}
+        {% endfor %}
+
+        if(c.selectedOptionsSignature !== c.selectedProduct.optionsSignature) {
+            for (var [i, vg] of c.variantGroups.entries()) {
+                c.setSelectedOption(vg.id, c.selectedProduct.optionsSignature.split("-")[i])
+            }
+        }
+
+        c.calcSelectedOptionsSignature();
+        c.setShippingCost({{ page.extensions.joinzProduct.shippingCost }});
+
+        {% if product.children.count() == 1 %}
+        c.openLocationStep();
+        {% endif %}
+
+        //        var watches = Object.keys(c.selectedOptions);
+        //        for (var i in watches) {
+        //            watches[i] = 'c.selectedOptions.' + watches[i];
+        //        }
+        //        watches = watches.join(',');
+        //        console.log("WATCHES=========================================");
+        //        console.log(watches);
+    </script>
+    {# x-init="$watch('c.selectedOptions.87bed1e8cadd4f129a9a1fba1362bb44',c.onOptionChange)"#}
+    <main>
+        <div class="reveal" x-data="{ configurator: c}" style="border-color: #016F9F; padding: 0;" id="meerInformatie" data-reveal>
+            <div style="background-color: #016F9F; color:white; padding: 1rem; font-size: 20px">Printopties</div>
+            <template
+                x-for="(io, index) in configurator.selectedLocation ? configurator.selectedLocation.imprintOptions : []">
+                <div>
+                    <template x-if="io.main == 1">
+                <div class="grid-x grid-padding-x align-justify" style="padding: 2rem">
+                    <div class="cell large-9">
+                        <span style="font-weight: bold; font-size: 18px" x-text="io.getDescriptionIconName()"></span><br />
+                        <template x-if="io.getDescriptionIconName() == 'Zeefdruk / tampondruk'">
+                        <div>
+                            <p>Bij zeef- of tampondruk wordt elke kleur afzonderlijk op het product gedrukt.
+                                Met deze technieken krijg je een gedetailleerde afwerking.</p>
+                            <p><i class="icon-plus-printing" style="margin-right: 10px"></i>Haarscherpe bedrukking</p>
+                            <p><i class="icon-plus-printing" style="margin-right: 10px"></i><b>Goedkoop</b> voor bedrukkingen (en logo’s) met één kleur </p>
+                            <p><i class="icon-minus-printing" style="margin-right: 10px"></i>Heeft een maximaal aantal kleuren (niet geschikt voor foto’s)</p>
+                            <p><i class="icon-minus-printing" style="margin-right: 10px"></i>Hoge setupkosten voor bedrukkingen met 2 of meer kleuren</p>
+                        </div>
+                        </template>
+                        <template x-if="io.getDescriptionIconName() == 'Full color bedrukking'">
+                        <div>
+                            <p>Met een speciale digitale UV-printer wordt jouw afdruk rechtstreeks op het oppervlak
+                                aangebracht. Met een full color bedrukking kan je plaatjes en foto’s bedrukken</p>
+                            <p><i class="icon-plus-printing" style="margin-right: 10px"></i>Geschikt voor foto’s of logo’s met meerdere kleuren</p>
+                            <p><i class="icon-plus-printing" style="margin-right: 10px"></i><b>Goedkoop</b> voor bedrukkingen met veel kleuren</p>
+                            <p><i class="icon-minus-printing" style="margin-right: 10px"></i>Is vaak duurder dan een 1-kleurige druk</p>
+                        </div>
+                        </template>
+                        <template x-if="io.getDescriptionIconName() == 'Lasergravure'">
+                        <div>
+                            <p>Jouw logo of tekst permanent met een laser in het materiaal gegraveerd.
+                                Zo ontstaat er een reliëf en kleurverschil in het oppervlak.</p>
+                            <p><i class="icon-plus-printing" style="margin-right: 10px"></i>Luxe effect, permanente printoplossing</p>
+                            <p><i class="icon-plus-printing" style="margin-right: 10px"></i>Zeer gedetailleerd</p>
+                            <p><i class="icon-plus-printing" style="margin-right: 10px"></i><b>Goedkoop</b> voor bedrukkingen (en logo’s) met één kleur </p>
+                            <p><i class="icon-minus-printing" style="margin-right: 10px"></i>Geen kleuren druk</p>
+                        </div>
+                        </template>
+                        <template x-if="io.getDescriptionIconName() == 'Borduren'">
+                        <div>
+                            <p>Jouw logo of tekst worden met een naaimachine op het product geborduurd.
+                                Vaak is het mogelijk om 1-10 kleuren te naaien.</p>
+                            <p><i class="icon-plus-printing" style="margin-right: 10px"></i>Hoge kwaliteit</p>
+                            <p><i class="icon-plus-printing" style="margin-right: 10px"></i>Levert het beste resultaat op</p>
+                            <p><i class="icon-minus-printing" style="margin-right: 10px"></i>Vaak duurder dan bedrukken</p>
+                        </div>
+                        </template>
+                        <template x-if="io.getDescriptionIconName() == 'Doming'">
+                        <div>
+                            <p>Jouw foto of logo wordt gedrukt op een zelfklevend etiket.
+                                Op het etiket komt een beschermende acrylharslaag van een aantal millimeter.</p>
+                            <p><i class="icon-plus-printing" style="margin-right: 10px"></i>Luxe uitstaling omdat de sticker onderdeel wordt van het product</p>
+                            <p><i class="icon-plus-printing" style="margin-right: 10px"></i>Meestal geschikt voor foto’s of logo’s met meerdere kleuren</p>
+                            <p><i class="icon-minus-printing" style="margin-right: 10px"></i>Niet altijd de goedkoopste optie</p>
+                        </div>
+                        </template>
+                        <template x-if="io.getDescriptionIconName() == 'Sticker of label'">
+                        <div>
+                            <p>Jouw logo, tekst of foto wordt op een sticker/label gedrukt.
+                                Vervolgens wordt het label aan het product gelijmd. </p>
+                            <p><i class="icon-plus-printing" style="margin-right: 10px"></i>Meestal geschikt voor foto’s of logo’s met meerdere kleuren</p>
+                            <p><i class="icon-plus-printing" style="margin-right: 10px"></i>Budget-vriendelijk</p>
+                            <p><i class="icon-minus-printing" style="margin-right: 10px"></i>Bedrukken levert soms een beter resultaat</p>
+                        </div>
+                        </template>
+                        <template x-if="io.getDescriptionIconName() == 'Blinddruk'">
+                        <div>
+                            <p>Blinddruk is een kleurloze druk. Een stempel wordt in het drukoppervlak gedrukt.
+                                Zo ontstaat er een duidelijk effect wat te vergelijken is met een lasergravure</p>
+                            <p><i class="icon-minus-printing" style="margin-right: 10px"></i>Luxe uitstraling dankzij het 3D effect </p>
+                            <p><i class="icon-minus-printing" style="margin-right: 10px"></i>Niet zo opvallend als een kleurendruk</p>
+                        </div>
+                        </template>
+                        <template x-if="io.getDescriptionIconName() == 'Transferdruk'">
+                        <div>
+                            <p>Jouw logo wordt eerst op speciaal transferpapier gedrukt en vervolgens onder druk en
+                                hitte overgebracht op het voorwerp.</p>
+                            <p><i class="icon-plus-printing" style="margin-right: 10px"></i>1-4 kleuren, full color niet altijd mogelijk</p>
+                            <p><i class="icon-plus-printing" style="margin-right: 10px"></i>Uit het oog springende druk, omdat de druk op het object ligt</p>
+                            <p><i class="icon-minus-printing" style="margin-right: 10px"></i>Kan slijten na intensief wassen of gebruik</p>
+                        </div>
+                        </template>
+                        <template x-if="io.getDescriptionIconName() == 'Foliedruk / hot stamping'">
+                        <div>
+                            <p>Jouw logo of tekst wordt met een folie in het voorwerp gedrukt. Zo ontstaand er een
+                                glimmende, metallic laag.</p>
+                            <p><i class="icon-plus-printing" style="margin-right: 10px"></i>Luxe effect </p>
+                            <p><i class="icon-plus-printing" style="margin-right: 10px"></i>Mooie glans (vaak zilver of goud)</p>
+                            <p><i class="icon-minus-printing" style="margin-right: 10px"></i>Maximaal 1 opdruk kleur </p>
+                        </div>
+                        </template>
+                        <template x-if="io.getDescriptionIconName() == 'Digitale druk'">
+                        <div>
+                            <p>Met een speciale digitale UV-printer wordt jouw afdruk rechtstreeks op het oppervlak
+                                aangebracht. Met een full color bedrukking kan je plaatjes en foto’s bedrukken</p>
+                            <p><i class="icon-plus-printing" style="margin-right: 10px"></i>Geschikt voor foto’s of logo’s met meerdere kleuren</p>
+                            <p><i class="icon-plus-printing" style="margin-right: 10px"></i><b>Goedkoop</b> voor bedrukkingen met veel kleuren </p>
+                            <p><i class="icon-minus-printing" style="margin-right: 10px"></i>Is vaak duurder dan een 1-kleurige druk</p>
+                        </div>
+                        </template>
+                        <template x-if="io.getDescriptionIconName() == 'Sublimatiedruk'">
+                        <div>
+                            <p>Jouw afbeelding of logo wordt gedrukt op een sublimatiepapier. Daarna brengen we de
+                                bedrukte vellen onder druk, hitte en tijd aan op het oppervlak. .</p>
+                            <p><i class="icon-plus-printing" style="margin-right: 10px"></i>Geschikt voor foto’s of logo’s met meerdere kleuren</p>
+                            <p><i class="icon-plus-printing" style="margin-right: 10px"></i><b>Goedkoop</b> voor bedrukkingen met veel kleuren</p>
+                            <p><i class="icon-minus-printing" style="margin-right: 10px"></i>Is vaak duurder dan een 1-kleurige druk</p>
+                            <p><i class="icon-minus-printing" style="margin-right: 10px"></i>Meestal alleen mogelijk op </p>
+                        </div>
+                        </template>
+                    </div>
+                    <div class="cell large-2 text-center">
+                        <div style="width: 72px; padding: 5px; border: 1px solid #DEE9EE;border-radius: 5%">
+                            <i :class="io.getDescriptionIcon()"></i><br />
+                            <span x-text="io.getDescriptionIconText()" style="color: #8296A0; font-size: 12px"></span>
+                        </div>
+                            </div>
+                </div>
+                    </template>
+                </div>
+            </template>
+            <button class="close-button" style="color:white; padding: 0.5rem;font-size: 30px" data-close aria-label="Close modal" type="button">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <section x-data="{ configurator: c}" class="section-product">
+            <div class="grid-container">
+                <div class="section-head">
+                    <h1 class="product-detail-h1"
+                        x-text="configurator.selectedProduct.name">{{ page.product.name }}</h1>
+                    <ul class="menu align-center">
+                        <li>
+                            <a href="/">
+                                Home
+                                <i class="icon-pointer-next"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ seoUrl('frontend.navigation.page', { navigationId: page.product.seoCategory.id }) }}">
+                                {{ page.product.seoCategory.name }}
+                                <i class="icon-pointer-next"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" x-text="configurator.selectedProduct.name">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="section-body">
+                    <div class="product flex-container align-justify">
+                        <div class="product-image" id="productPhotos">
+                            <div class="product-image-box" id="img-container">
+                                <a :href="configurator.selectedProduct.img"
+                                   :data-pswp-width="configurator.selectedProduct.imgW"
+                                   :data-pswp-height="configurator.selectedProduct.imgH"
+                                   target="_blank">
+                                    <img id="mainPhoto" :src="configurator.selectedProduct.img" :alt="configurator.selectedProduct.name">
+                                </a>
+                            </div>
+
+                            <ul class="product-image-list flex-container align-justify" >
+                                <template x-for="media in configurator.selectedProduct.media">
+                                    <li>
+                                        <a :href="media[0]"
+                                            :data-pswp-width="media[1]"
+                                            :data-pswp-height="media[2]"
+                                            target="_blank"
+                                            @click="configurator.selectedProduct.img = media[0]; configurator.selectedProduct.imgW = media[2]; configurator.selectedProduct.imgH = media[1]">
+                                            <img :src="media[0]" :alt="configurator.selectedProduct.name">
+                                        </a>
+                                    </li>
+                                </template>
+                            </ul>
+
+                            <ul class="product-details grid-x grid-margin-x">
+                                <li class="cell xlarge-6 large-12">
+                                    <i class="icon-circle"></i>
+                                    Minimale bestelhoeveelheid: <span x-text="configurator.selectedProduct.moq"></span>
+                                </li>
+
+                                <li class="cell xlarge-6 large-12">
+                                    <i class="icon-circle"></i>
+                                    Levertijd: <span x-text="configurator.selectedProduct.fastestDeliveryDate"></span>
+                                </li>
+
+                                <li class="cell xlarge-6 large-12">
+                                    <i class="icon-circle"></i>
+                                    Vanaf <b x-text="'&euro;'+currency(configurator.getCheapestPrice())+' p/s'"></b>
+
+                                </li>
+
+                                <li class="cell xlarge-6 large-12">
+                                    <i class="icon-circle"></i>
+                                    Voorraad: <b x-text="configurator.selectedProduct.stock + ' stuks'"></b>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="product-content">
+                            <div class="accordion">
+                                <div class="accordion-top">
+                                    <template x-if="configurator.mainProduct.stock < 1">
+                                        <div>
+                                            <h4 style=" text-transform: none; font-weight: bold; color: #016F9F; padding-bottom: 15px;">Dit product is momenteel niet op voorraad</h4>
+                                            <p style="text-transform: none; padding-bottom: 15px;">Bel <u>033 246 4533</u> om te informeren naar de volgende bevoorrading. Of stuur een email naar <u>info@joinz.nl</u></p>
+                                        </div>
+                                    </template>
+                                    <p class="flex-container align-justify align-bottom align-middle">
+                                        <span>VANAF <b
+                                                x-text="currency(configurator.getCheapestPrice())"></b> P/S</span>
+                                        <template x-if="configurator.mainProduct.stock > 0">
+                                        <span class="verwachte">Verwachte leverdatum: <span
+                                                x-text="configurator.selectedProduct.fastestDeliveryDate"></span></span>
+                                        </template>
+                                    </p>
+                                </div>
+
+                                <form action="{{ path('frontend.joinz.add-to-cart') }}" method="post">
+                                    {{ sw_csrf('frontend.joinz.add-to-cart') }}
+                                    {% if page.extensions.GtmAddToCartInfo %}
+                                        <input type="hidden"
+                                               name="dtgs-gtm-currency-code"
+                                               value="{{ page.header.activeCurrency.isoCode }}">
+                                        <input type="hidden"
+                                               name="dtgs-gtm-product-price"
+                                               value="{{ page.extensions.GtmAddToCartInfo.price }}">
+                                        <input type="hidden"
+                                               name="dtgs-gtm-product-sku"
+                                               value="{{ page.extensions.GtmAddToCartInfo.sku }}">
+                                    {% endif %}
+                                    <input type="hidden" name="productId" :value="configurator.selectedProduct.id">
+
+                                    <input type="hidden" name="imprintId"
+                                           :value="configurator.selectedImprint ? configurator.selectedImprint.id : '' ">
+                                    <input type="hidden" name="imprintLocation"
+                                           :value="configurator.selectedLocation ? configurator.selectedLocation.name : ''">
+                                    <input type="hidden" name="setupCost"
+                                           :value="configurator.selectedImprint ? configurator.getSetupCost().net : ''"/>
+                                    <div x-show="!configurator.variantGroups.filter(obj => {return obj.name === 'joinz-variant'})[0]" :class="{'accordion-section':1,'inactive': !configurator.steps.variant.open}"
+                                         class="accordion-section">
+                                        <div class="accordion-head accordion-disabled"
+                                             @click="configurator.steps.variant.open = 1 - configurator.steps.variant.open">
+                                            <input id="color" type="checkbox"
+                                                   :class="{checked: configurator.steps.variant.completed}">
+                                            <label for="color"
+                                                   @click="configurator.steps.variant.open = 1 - configurator.steps.variant.open">
+                                                <i class="icon-check-blue"></i>
+                                                <em style="font-style: normal">1</em>. Kies je kleur/maat<br />
+                                                <template x-for="(so,index) in configurator.selectedOptions">
+                                                    <small x-text="configurator.variantGroups.filter(obj => {return obj.id === index})[0].options.filter(obj => {return obj.id === so})[0].name + ' | '"></small>
+                                                </template>
+
+                                            </label>
+
+                                            <span></span>
+                                        </div>
+
+                                        <div :class="{'accordion-body':1,'active': configurator.steps.variant.open}"
+                                             class="accordion-body">
+                                            <template x-for="vg in configurator.variantGroups">
+                                                <div>
+                                                    <fieldset :class="vg.type == 'color' ? 'colors' : 'details'">
+                                                        <legend x-text="vg.name"></legend>
+                                                        <template x-for="vo in vg.options">
+                                                                <span>
+                                                                    <input type="radio" :name="'option-'+vg.name"
+                                                                           :id="'variant-'+vo.id"
+                                                                           x-model="configurator.selectedOptions[vg.id]"
+                                                                           @change="configurator.onOptionChange()"
+                                                                           :value="vo.id"
+                                                                           required>
+                                                                    <label :for="'variant-'+vo.id"
+                                                                        :style="vo.style"
+                                                                        :title="vo.name">
+                                                                        <span x-text="vo.name" :class="vg.type == 'color' ? 'icon-check-white' : ''"
+                                                                              :style="vg.type == 'color' ? 'color: rgba(234, 240, 246, 0);' : ''"></span>
+                                                                    </label>
+                                                                </span>
+                                                        </template>
+                                                    </fieldset>
+                                                </div>
+                                            </template>
+                                        </div>
+                                    </div>
+
+                                    <div :class="{'accordion-section':1,'inactive': !configurator.steps.location.open}"
+                                         class="accordion-section">
+                                        <div class="accordion-head accordion-disabled"
+                                             @click="configurator.steps.location.open = 1 - configurator.steps.location.open">
+                                            <input id="side" type="checkbox"
+                                                   :class="{checked: configurator.steps.location.completed}">
+                                            <label for="side"
+                                                   @click="configurator.steps.location.open = 1 - configurator.steps.location.open">
+                                                <i class="icon-check-blue"></i>
+                                                <em style="font-style: normal" x-text="configurator.variantGroups.filter(obj => {return obj.name === 'joinz-variant'})[0] ? '1' : '2'"></em>. Kies drukpositie
+                                                <div><small x-text="configurator.selectedLocation ? configurator.selectedLocation.name : ''"></small></div>
+                                                <div><small style="color:#F20000;" x-text="!configurator.selectedLocation
+                                                && (configurator.steps.quantity.open == 1 &&
+                                                configurator.steps.location.completed == 0) ? 'Maak een keuze' : ''"></small>
+                                                </div>
+                                            </label>
+                                            <span></span>
+                                        </div>
+
+                                        <div :class="{'accordion-body':1,'active': configurator.steps.location.open}"
+                                             class="accordion-body">
+                                            <fieldset class="details">
+                                                <template x-for="il in configurator.selectedProduct.imprintLocations">
+                                                    <span>
+                                                        <input type="radio" name="side" :id="'imprint-location-'+il.id"
+                                                               required >
+                                                        <label :for="'imprint-location-'+il.id"
+                                                               @click="configurator.setSelectedLocation(il.id)">
+                                                            <img x-show="!il.is_none" :src="il.img" alt="">
+                                                            <i x-show="il.is_none" class="icon-no-imprint-location"></i>
+                                                            <span x-text="il.name"></span>
+                                                        </label>
+                                                    </span>
+                                                </template>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+
+                                    <div :class="{'accordion-section':1,'inactive': !configurator.steps.imprint.open}"
+                                         class="accordion-section">
+                                        <div class="accordion-head accordion-disabled"
+                                             @click="configurator.steps.imprint.open = 1 - configurator.steps.imprint.open">
+                                            <input id="palette" type="checkbox"
+                                                   :class="{checked: configurator.steps.imprint.completed}">
+                                            <label for="palette"
+                                                   @click="configurator.steps.imprint.open = 1 - configurator.steps.imprint.open">
+                                                <i class="icon-check-blue"></i>
+                                                <em style="font-style: normal" x-text="configurator.variantGroups.filter(obj => {return obj.name === 'joinz-variant'})[0] ? '2' : '3'"></em>. Kies bedrukking (aantal kleuren)
+                                                <div><small x-text="configurator.selectedImprint ? configurator.selectedImprint.getIconText()  : ''"></small></div>
+                                                <div><small style="color:#F20000;" x-text="!configurator.selectedImprint
+                                                && (configurator.steps.quantity.open == 1 &&
+                                                configurator.steps.imprint.completed == 0) ? 'Maak een keuze' : ''"></small>
+                                                </div>
+                                            </label>
+                                            <span></span>
+                                        </div>
+
+                                        <div :class="{'accordion-body':1,'active': configurator.steps.imprint.open}"
+                                             class="accordion-body">
+                                            <fieldset class="details palette">
+                                                <template
+                                                    x-for="(io, index) in configurator.selectedLocation ? configurator.selectedLocation.imprintOptions : []">
+
+                                                    <div class="flex-container flex-dir-column">
+                                                        <template x-if="configurator.selectedLocation.imprintOptions.length > 1 && io.id == configurator.selectedLocation.cheapestIo ">
+                                                            <span style="border: 2px solid transparent;position: absolute;padding:0 4px;margin-top:-10px;margin-left:2px;border-radius: 4px;background: #fff;font-weight: 500;z-index: 1; border-color: #f29100;color: #f29100;" >Goedkoopst</span>
+                                                        </template>
+                                                        <input type="radio" name="palette" :id="'option' + io.id"
+                                                               required>
+                                                        <label :for="'option' + io.id"
+                                                               class="flex-child-grow"
+                                                               @click="configurator.setSelectedImprint(io.id)">
+                                                            <i :class="io.getIcon()"></i>
+                                                            <span x-text="io.getIconText()"></span>
+                                                        </label>
+
+                                                        <p x-text="io.name"></p>
+                                                    </div>
+                                                </template>
+                                               </fieldset>
+                                            <template x-if="configurator.steps.location.completed == 1 && configurator.selectedLocation.id != 'none'">
+                                                <button style="border-color: #016F9F; background-color: #fff; color: #016F9F; min-width: 148px; font-size: 12px; padding: 10px 15px;" class="button" data-open="meerInformatie">Meer Informatie</button>
+                                            </template>
+
+
+                                        </div>
+                                    </div>
+
+                                    <div :class="{'accordion-section':1,'inactive': !configurator.steps.quantity.open}"
+                                         class="accordion-section">
+                                        <div class="accordion-head accordion-disabled"
+                                             @click="configurator.steps.quantity.open = 1 - configurator.steps.quantity.open">
+                                            <input id="quantity" type="checkbox"
+                                                   :class="{checked: configurator.steps.quantity.completed}">
+                                            <label for="quantity"
+                                                   @click="configurator.steps.quantity.open = 1 - configurator.steps.quantity.open">
+                                                <i class="icon-check-blue"></i>
+                                                <em style="font-style: normal" x-text="configurator.variantGroups.filter(obj => {return obj.name === 'joinz-variant'})[0] ? '3' : '4'"></em>. Aantal
+                                                <div><small style="color:#F20000;" x-text="!configurator.quantity
+                                                && (configurator.steps.quantity.open == 0 &&
+                                                configurator.steps.quantity.completed == 0 && configurator.steps.imprint.completed == 1) ? 'Maak een keuze' : ''"></small>
+                                                </div>
+                                            </label>
+                                            <span></span>
+                                        </div>
+
+                                        <div :class="{'accordion-body':1,'active': configurator.steps.quantity.open}"
+                                             class="accordion-body">
+                                            <div class="quantity">
+                                                <ul>
+                                                    <template x-for="p in configurator.getPrices()">
+                                                        <li>
+                                                            <div class="flex-container align-middle grid-x grid-margin-x">
+                                                                <div class="cell large-3 medium-4 small-5">
+                                                                    <input type="radio"
+                                                                           name="quantity-select"
+                                                                           :id="'price-' + p.from"
+                                                                           :value="p.from">
+                                                                    <label :for="'price-' + p.from"
+                                                                           @click="configurator.setQuantity(p.from)">
+                                                                        <span x-text="p.from + 'stuks'"></span>
+                                                                    </label>
+                                                                </div>
+                                                                <div class="cell medium-6 small-4">
+                                                                    <template x-if="p.discountPercent != 0">
+                                                                        <b>Bespaar <span
+                                                                                x-text="p.discountPercent"></span>%</b>
+                                                                    </template>
+                                                                </div>
+                                                                <div class="cell large-3 medium-2 small-3">
+                                                                    <span><b x-text="'&euro;'+ currency(p.net)"></b></span>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </template>
+                                                    <li>
+                                                        <div class="flex-container align-middle grid-x grid-margin-x">
+                                                            <div class="cell medium-6">
+                                                                <label for="number">Kies zelf een aantal (min. <span
+                                                                        x-text="configurator.selectedProduct.moq"></span>)</label>
+                                                            </div>
+                                                            <div class="cell medium-3">
+                                                                <input x-model="configurator.quantity"
+                                                                       @change="configurator.onQuantityChange()"
+                                                                       onfocus= "clearInput(this)"
+                                                                       type="number"
+                                                                       id="number"
+                                                                       name="quantity" min="1"
+
+                                                                        style="display:block"
+                                                                       required>
+                                                            </div>
+                                                            <div class="cell medium-3">
+                                                                <span><b x-text="'&euro;' + configurator.getPieceNet()">&euro;0</b></span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+
+                                                <div class="grid-x">
+                                                    <div class="cell medium-12" style="margin-bottom:10px;">
+                                                        <span style="color:#2d709f;cursor:pointer;font-size: 14px;padding:1px 5px;border: solid 1px #2d709f;border-radius: 4px;"
+                                                              @click="configurator.expandPrice = !configurator.expandPrice">Bekijk prijsspecificatie &nbsp;&nbsp;&nbsp;<i
+                                                                class="icon-caret-down"
+                                                                :style="'transform: rotate('+(configurator.expandPrice ? '180' : '0')+'deg);'"></i></span>
+                                                    </div>
+                                                    <div class="cell large-8 medium-7 small-7"
+                                                         x-show="configurator.expandPrice">
+                                                        <p>
+                                                            Product (<span
+                                                                x-text="configurator.quantity+' stuks'"></span>)<br/>
+                                                            Personalisatie <br/>
+                                                            Totaal excl. BTW<br/>
+                                                            Setupkosten<br/>
+                                                            BTW Totaal 21%<br/>
+                                                            <template x-if="configurator.shippingCost > 0">
+                                                                <span>Shipping<br/></span>
+                                                            </template>
+                                                        </p>
+                                                    </div>
+                                                    <div class="cell large-4 medium-5 small-5"
+                                                         x-show="configurator.expandPrice">
+                                                        <p>
+                                                            <span x-text="'&euro;' + currency(configurator.getProductNet()) + ' p/s'">€</span><br>
+                                                            <span x-text="'&euro;' + currency(configurator.getImprintNet()) + ' p/s'">€</span><br>
+                                                            <span x-text="'&euro;' + currency(configurator.getPieceNet()) + ' p/s'"></span><br>
+                                                            <span x-text="'&euro;' + currency(configurator.getSetupCostNet())"></span><br>
+                                                            <span x-text="'&euro;' + currency(configurator.getTotalTax())"></span><br/>
+                                                            <template x-if="configurator.shippingCost > 0">
+                                                                <span x-if="configurator.shippingCost > 0"
+                                                                      x-text="'&euro;' + configurator.shippingCost"></span>
+                                                            </template>
+                                                        </p>
+                                                    </div>
+                                                    <div class="cell medium-5 small-7">
+                                                        <span><strong style="color:#2d709f;font-size:28px;"
+                                                                      x-text="'&euro;' + currency(configurator.getTotalExTax())"></strong></span>
+                                                    </div>
+                                                    <div class="cell medium-7 small-5">
+                                                        <span style="color:#c9c9c9;font-size:23px;line-height:40px;">Excl. btw</span>
+                                                    </div>
+                                                    <div class="cell medium-5 small-5">
+                                                        <span style="color:#c9c9c9;font-size:16px;"
+                                                              x-text="'&euro;' + currency(configurator.getTotalExTax() * 1.21)"></span>
+                                                    </div>
+                                                    <div class="cell medium-7 small-5">
+                                                        <span style="color:#c9c9c9;font-size:16px;">Incl. btw</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="accordion-bottom">
+                                        {% if product.stock > 0 %}
+                                            <button  type="submit" onclick="addToCartGtm()" name="add-to-cart" class="button secondary">Bestellen
+                                            </button>
+                                            <button type="submit" onclick="addToCartGtm()" name="request-quote" class="button button-white">Offerte Aanvragen
+                                            </button>
+                                        {% endif %}
+
+                                        <div class="flex-container align-spaced ">
+                                            <div>
+                                                <p>Verzendkosten</p>
+                                                {% if product.categoryTree|filter(v => v == '474aa115fb924b119b65b899f29f9986')|first %}
+                                                    <span class="product-label primary-color" style="position:inherit;">Gratis Ontwerp</span>
+                                                {% elseif product.categoryTree|filter(v => v == '9ba1d736aa054929936500e591cfdbce')|first %}
+                                                    <span class="product-label primary-color" style="position:inherit;">Gratis Ontwerp</span>
+                                                {% else %}
+                                                    <span class="product-label primary-color" style="position:inherit;"
+                                                          x-text="c.shippingCost == 0 ? 'Gratis' : '&euro;'+c.shippingCost+' for NL'"></span>
+                                                {% endif %}
+
+                                            </div>
+                                            <template x-if="configurator.mainProduct.stock > 0">
+                                                <div>
+                                                    <p>Verwachte leverdatum</p>
+                                                    <span class="product-label primary-color" style="position:inherit;"
+                                                          x-text="configurator.selectedProduct.deliveryDate"></span>
+                                                </div>
+                                            </template>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section x-data="{ configurator: c}" class="section-description">
+            <div class="grid-container">
+                <div class="grid-x grid-margin-x">
+                    <div class="cell large-6 medium-12">
+                        <div class="product-description" id="read-more-top">
+                            <div>
+                                <h6>Productbeschrijving</h6>
+                                <ul class="body">
+                                    <p x-html="configurator.selectedProduct.description"></p>
+                                </ul>
+                                <p class="read-more-top"><a href="javascript:void(0);" onclick="readMoreTop()">Bekijk meer +</a></p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- TODO: Add green dot to the person's image -->
+        <section x-data="{ configurator: c}" class="live-chat">
+            <div class="grid-container">
+                <div class="grid-x section-callout grid-margin-x flex-container">
+                    <div class="cell large-6 medium-12">
+                        <h2>Laat direct een ontwerp maken</h2>
+                        <div class="flex-container align-middle flex-dir-column medium-flex-dir-row">
+                            <div class="contact flex-container align-middle align-justify">
+                                <i class="icon-phone-blue"></i>
+                                <div>
+                                    <a href="tel:033-2464533">033 2464 533</a>
+                                </div>
+                            </div>
+                            <div class="contact flex-container align-middle align-justify" >
+                                <i class="icon-email-blue"></i>
+                                <div>
+                                    <a href="mailto:info@joinz.nl">info@joinz.nl</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-content flex-child-grow flex-container align-right align-middle">
+                        <div class="flex-container align-justify align-middle">
+                            <p>Onze ontwerper <br> Sara is online</p>
+
+                            <div class="section-image">
+                                <img src="{{ asset('bundles/joinztheme/img/sara-jone-middle.png' , 'asset') }}" alt="">
+                                <span></span>
+                            </div>
+                        </div>
+                        <a href="javascript:$zopim.livechat.window.show();">
+                            <button class="button button-white">
+                                <i class="icon-conversation"></i>
+                                <b>Live ontwerp</b>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section x-data="{ configurator: c}" class="section-description">
+            <div class="grid-container">
+                <div class="grid-x grid-margin-x">
+                    <div class="cell large-6 medium-12">
+                        <div class="grid-x grid-margin-x">
+                            <div class="product-description cell large-12 medium-6">
+
+                                <h6>Bedrukkingsmogelijkgeden</h6>
+
+                                <div class="description-slider flex-container">
+                                    <template
+                                        x-for="il in Object.values(configurator.selectedProduct.imprintLocations).filter(function(el){return !el.is_none})">
+                                        <div>
+                                            <template x-if="il.img">
+                                                <img :src="il.img"
+                                                     :alt="v.name + ' bedrukken ' + il.name">
+                                            </template>
+                                            <p x-text="il.name"></p>
+                                        </div>
+                                    </template>
+                                </div>
+                            </div>
+
+                            <div class="product-description product-table cell large-12 medium-6">
+                                <table>
+                                    <thead>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th x-text="configurator.selectedProduct.name"></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>Levertijd</td>
+                                        <td x-text="configurator.selectedProduct.fastestDeliveryDate"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Maat</td>
+                                        <td x-text="configurator.selectedProduct.size ? configurator.selectedProduct.size : '-'"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Gewicht (gram)</td>
+                                        <td x-text="configurator.selectedProduct.weight * 1000"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Product SKU</td>
+                                        <td x-text="configurator.selectedProduct.sku"></td>
+                                    </tr>
+                                    {% for cs in page.configuratorSettings %}
+                                    {% if cs.visibleOnProductDetailPage == false %}
+                                        <tr>
+                                            <td>{{ cs.translated.name }}</td>
+                                            <td>{{ cs.options|first.translated.name }}</td>
+                                        </tr>
+                                    {% endif %}
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cell large-6 medium-12">
+                        <div class="product-description">
+
+                            <div class="description-list" id="read-more-bottom">
+                                <h6>Voorraad</h6>
+
+                                <ul class="body">
+
+                                    <template x-for="v in configurator.mainProduct.variations">
+                                        <li>
+                                            <img :src="v.thumbnail" :alt="v.name">
+
+                                            <p x-html="v.stock > 0 ? '<strong>' + v.stock + ' Stuks Op Voorraad</strong><br />' + v.name : 'Niet voorradig, neem contact op om levertijd te bespreken'"></p>
+                                        </li>
+                                        <template x-for="(so,index) in v.optionIds">
+                                            <span x-text="configurator.variantGroups.filter(obj => {return obj.id === index})[0].options.filter(obj => {return obj.id === so})[0].name + ' | '"></span>
+                                        </template>
+                                    </template>
+
+                                </ul>
+                                <p class="read-more"><a href="javascript:void(0);" onclick="readMoreBottom()">Bekijk meer +</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section x-data="{ configurator: c}" class="section-products-slider">
+            <div class="grid-container">
+                <h4>Alternatieven</h4>
+                <ul class="products-slider js-products-slider">
+                    {% for sp in similarProducts %}
+                        {% sw_include '@Storefront/storefront/component/product/card/box-slider.html.twig' with {
+                            product: sp
+                        } %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </section>
+        <section x-data="{ configurator: c}" class="section-list">
+            <div class="grid-container">
+                {% set categories = product.categories %}
+                {% set newCategories = [] %}
+
+                {% for k, category in categories %}
+                    {% if category.level > 2 %}
+                        {% set siblings = [] %}
+                        {% for siblingCategory in categories %}
+                            {% if siblingCategory.parentId == category.parentId and siblingCategory.id != category.id %}
+                                {% set siblings = siblings|merge([siblingCategory]) %}
+                            {% endif %}
+                        {% endfor %}
+                        {% if siblings|length == 0 %}
+                            {% set newCategories = newCategories|merge([k]) %}
+                        {% elseif siblings|length > 0 %}
+                            {% set firstSibling = siblings[0] %}
+                            {% if firstSibling.id == category.id %}
+                                {% set newCategories = newCategories|merge([k]) %}
+                            {% endif %}
+                        {% endif %}
+                    {% else %}
+                        {% set newCategories = newCategories|merge([k]) %}
+                    {% endif %}
+                {% endfor %}
+
+                {% set allCats = [] %}
+                {% for c in page.header.navigation.tree %}
+                    {% set allCats = allCats|merge({ (c.category.id) : c }) %}
+                    {% for cc in c.children %}
+                        {% set allCats = allCats|merge({ (cc.category.id) : cc }) %}
+                        {% for ccc in cc.children %}
+                            {% set allCats = allCats|merge({ (ccc.category.id) : ccc }) %}
+                        {% endfor %}
+                    {% endfor %}
+                {% endfor %}
+                {% set simcat = [] %}
+                {% set activeCatId = product.categoryTree|slice(1,1)|first %}
+                {% for k, navi in allCats|filter((navi, k) => k in newCategories) %}
+                    <h4>Gerelateerd aan {% if navi.category.customFields.custom_category_info_title is defined %}
+                            {{ navi.category.customFields.custom_category_info_title }}
+                        {% else %}
+                            {{ navi.category.name }}
+                        {% endif %}</h4>
+                    {% if navi.children|length > 0 %}
+                        {% for naviChild in navi.children %}
+                            {% set simcat = simcat|merge([naviChild.category]) %}
+                        {% endfor %}
+                    {% else %}
+                        {% for naviSiblings in allCats[navi.category.parentId].children %}
+                            {% set simcat = simcat|merge([naviSiblings.category]) %}
+                        {% endfor %}
+                    {% endif %}
+                    <div class="grid-x grid-margin-x">
+                        {% set sliceLength = (simcat|length/4)|round(0,'ceil') %}
+                        {% for i in 0..3 %}
+                            <div class="cell medium-3">
+                                <ul>
+                                    {% for sc in simcat|slice(sliceLength*i, sliceLength) %}
+                                        <li>
+                                            <a href="{{ seoUrl('frontend.navigation.page', { navigationId: sc.id }) }}">
+                                                {% if sc.customFields.custom_category_info_title is defined %}
+                                                    {{ sc.customFields.custom_category_info_title }}
+                                                {% else %}
+                                                    {{ sc.name }}
+                                                {% endif %}
+                                            </a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    {% set simcat = [] %}
+                {% endfor %}
+
+
+            </div>
+        </section>
+    </main>
+
+{% endblock %}
+
+{% block page_product_detail_cross_selling %}
+    <div class="product-detail-tabs product-detail-cross-selling">
+        {% sw_include '@Storefront/storefront/page/product-detail/cross-selling/tabs.html.twig' with {
+            crossSellings: page.crossSellings
+        } only %}
+    </div>
+{% endblock %}

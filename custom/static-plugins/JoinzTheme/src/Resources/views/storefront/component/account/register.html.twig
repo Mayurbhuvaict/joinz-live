@@ -1,0 +1,267 @@
+{% block component_account_register %}
+     {% block component_account_register_form %}
+                <form action="{{ path('frontend.account.register.save') }}"
+                      class="register-form form form-login"
+                      method="post"
+                      data-form-csrf-handler="true"
+                      data-form-validation="true">
+                    <span class="product-label primary-color medium-weight small">Herhaalbestelling binnen 1 minuut</span>
+                    {% block component_account_register_form_csrf %}
+                        {{ sw_csrf('frontend.account.register.save') }}
+                    {% endblock %}
+
+                    {% block component_account_register_redirect %}
+                        <input type="hidden"
+                               name="redirectTo"
+                               value="{{ redirectTo }}">
+
+                        <input type="hidden"
+                               name="redirectParameters"
+                               value="{{ redirectParameters }}">
+                    {% endblock %}
+
+                    {% block component_account_register_form_action %}
+                        <input type="hidden"
+                               name="errorRoute"
+                               value="frontend.account.register.page"/>
+
+                        <input type="hidden"
+                               name="errorParameters"
+                               value="{{ errorParameters }}">
+                    {% endblock %}
+
+                    {% block component_account_register_personal %}
+                        <fieldset>
+                            <h4>Registreren</h4>
+
+                            <div class="grid-x">
+                                <div class="cell medium-12">
+                                    <div class="field-group">
+                                        {% block component_address_form_salutation_select %}
+                                            <select id="{{ prefix }}personalSalutation"
+                                                    class="form-control form-select custom-select{% if formViolations.getViolations('/salutationId') is not empty %} is-invalid{% endif %}"
+                                                    name="{% if prefix %}{{ prefix }}[salutationId]{% else %}salutationId{% endif %}"
+                                                    required="required">
+                                                {% if not data.get('salutationId') %}
+                                                    <option disabled="disabled"
+                                                            selected="selected"
+                                                            value="">
+                                                        {{ "account.personalSalutationPlaceholder"|trans|sw_sanitize }}
+                                                    </option>
+                                                {% endif %}
+                                                {% for salutation in page.salutations %}
+                                                    <option {% if salutation.id == data.get('salutationId') %}
+                                                        selected="selected"
+                                                    {% endif %}
+                                                        value="{{ salutation.id }}">
+                                                        {{ salutation.translated.displayName }}
+                                                    </option>
+                                                {% endfor %}
+                                            </select>
+                                        {% endblock %}
+                                        {% block component_address_form_salutation_select_error %}
+                                            {% if formViolations.getViolations('/salutationId') is not empty %}
+                                                {% sw_include '@Storefront/storefront/utilities/form-violation.html.twig' with {
+                                                    violationPath: '/salutationId'
+                                                } %}
+                                            {% endif %}
+                                        {% endblock %}
+                                    </div>
+                                    <div class="field-group">
+                                        {% block component_address_personal_company_name_label %}
+                                            <label class="form-label" for="company">
+                                                {{ "address.companyNameLabel"|trans|sw_sanitize }}{{ "general.required"|trans|sw_sanitize }}
+                                            </label>
+                                        {% endblock %}
+
+                                        {% block component_address_personal_company_name_input %}
+                                            <input type="text"
+                                                   class="form-control{% if violationPath %} is-invalid{% endif %}"
+                                                   id="company"
+                                                   placeholder="Bedrijfsnaam"
+                                                   name="custom_company_name_text"
+                                                   value="{{ data.get('custom_company_name_text') }}">
+                                        {% endblock %}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="grid-x grid-margin-x">
+                                <div class="cell medium-6">
+                                    <div class="field-group">
+                                        <label class="form-label visible" for="{{ prefix }}personalFirstName">Voornaam</label>
+                                        {% block component_address_personal_fields_first_name_input %}
+                                            <input type="text"
+                                                   class="form-control{% if formViolations.getViolations('/firstName') is not empty %} is-invalid{% endif %}"
+                                                   autocomplete="section-personal given-name"
+                                                   id="{{ prefix }}personalFirstName"
+                                                   name="{% if prefix %}{{ prefix }}[firstName]{% else %}firstName{% endif %}"
+                                                   value="{{ data.get('firstName') }}"
+                                                   required="required">
+                                        {% endblock %}
+
+                                        {% block component_address_personal_fields_first_name_input_error %}
+                                            {% if formViolations.getViolations('/firstName') is not empty %}
+                                                {% sw_include '@Storefront/storefront/utilities/form-violation.html.twig' with {
+                                                    violationPath: '/firstName'
+                                                } %}
+                                            {% endif %}
+                                        {% endblock %}
+                                    </div>
+                                </div>
+                                <div class="cell medium-6">
+                                    <div class="field-group">
+                                        <label class="form-label visible" for="{{ prefix }}personalLastName">Achternaam</label>
+                                        {% block component_address_personal_fields_last_name_input %}
+                                            <input type="text"
+                                                   class="form-control{% if formViolations.getViolations('/lastName') is not empty %} is-invalid{% endif %}"
+                                                   autocomplete="section-personal family-name"
+                                                   id="{{ prefix }}personalLastName"
+                                                   name="{% if prefix %}{{ prefix }}[lastName]{% else %}lastName{% endif %}"
+                                                   value="{{ data.get('lastName') }}"
+                                                   required="required">
+                                        {% endblock %}
+
+                                        {% block component_address_personal_fields_last_name_input_error %}
+                                            {% if formViolations.getViolations('/lastName') is not empty %}
+                                                {% sw_include '@Storefront/storefront/utilities/form-violation.html.twig' with {
+                                                    violationPath: '/lastName'
+                                                } %}
+                                            {% endif %}
+                                        {% endblock %}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="grid-x">
+                                <div class="cell medium-12">
+                                    <div class="field-group">
+                                        <label class="form-label" for="email">Email</label>
+                                        {% block component_account_register_personal_mail_input %}
+                                            <input type="email"
+                                                   class="form-control{% if formViolations.getViolations('/email') is not empty %} is-invalid{% endif %}"
+                                                   autocomplete="section-personal email"
+                                                   id="personalMail"
+                                                   name="email"
+                                                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,9}$"
+                                                   placeholder="Emailadres"
+                                                   value="{{ data.get('email') }}"
+                                                {% if shopware.config.core.loginRegistration.requireEmailConfirmation %}
+                                                    data-form-validation-equal="personalMail"
+                                                {% endif %}
+                                                   required="required">
+                                        {% endblock %}
+
+                                        {% block component_account_register_personal_mail_input_error %}
+                                            {% if formViolations.getViolations('/email') is not empty %}
+                                                {% sw_include '@Storefront/storefront/utilities/form-violation.html.twig' with {
+                                                    violationPath: '/email'
+                                                } %}
+                                            {% endif %}
+                                        {% endblock %}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="grid-x">
+                                <div class="cell medium-12">
+                                    <div class="field-group">
+                                        <label class="form-label" for="password">Password</label>
+                                        {% block component_account_register_personal_password_input %}
+                                            <input type="password"
+                                                   class="form-control{% if formViolations.getViolations('/password') is not empty %} is-invalid{% endif %}"
+                                                   autocomplete="new-password"
+                                                   id="personalPassword"
+                                                   placeholder="Wachtwoord"
+                                                   name="password"
+                                                   minlength="{{ shopware.config.core.loginRegistration.passwordMinLength }}"
+                                                {% if shopware.config.core.loginRegistration.requirePasswordConfirmation %}
+                                                    data-form-validation-equal="newPassword"
+                                                {% endif %}
+                                                {% if shopware.config.core.loginRegistration.passwordMinLength != 0 %}
+                                                    data-form-validation-length="{{ shopware.config.core.loginRegistration.passwordMinLength }}"
+                                                    data-form-validation-length-message=" {{ "account.personalPasswordDescription"|trans({
+                                                        '%minLength%': shopware.config.core.loginRegistration.passwordMinLength
+                                                    })|sw_sanitize }}"
+                                                {% endif %}
+                                                   required="required">
+                                        {% endblock %}
+
+                                        {% block component_account_register_personal_password_description %}
+                                            {% if shopware.config.core.loginRegistration.passwordMinLength != 0 %}
+                                                <span class="field-label">Minimaal 8 tekens</span>
+                                            {% endif %}
+                                        {% endblock %}
+
+                                        {% block component_account_register_personal_password_input_error %}
+                                            {% if formViolations.getViolations('/password') is not empty %}
+                                                {% sw_include '@Storefront/storefront/utilities/form-violation.html.twig' with {
+                                                    violationPath: '/password'
+                                                } %}
+                                            {% endif %}
+                                        {% endblock %}
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    {% endblock %}
+
+                    {% block component_account_register_address %}
+                        <fieldset>
+                            <h5>Mijn adres</h5>
+                            {% block component_account_register_address_billing_fields %}
+                                {# @deprecated tag:v6.4.0 hasSelectedBusiness variable will be removed #}
+                                {% sw_include '@Storefront/storefront/component/address/address-form.html.twig' with {
+                                    'prefix': 'billingAddress',
+                                    'data': data.get('billingAddress'),
+                                    'hasSelectedBusiness': data.get('accountType') == constant('Shopware\\Core\\Checkout\\Customer\\CustomerEntity::ACCOUNT_TYPE_BUSINESS')
+                                } %}
+                            {% endblock %}
+
+
+                            <div class="grid-x">
+                                <div class="cell medium-12">
+                                    <div class="field-group">
+                                        <input class="form-checkbox js-additional-address"
+                                               data-form-field-toggle="true"
+                                               data-form-field-toggle-target=".js-form-field-toggle-shipping-address"
+                                               data-form-field-toggle-value="true"
+                                               type="checkbox" id="differentShippingAddress" name="differentShippingAddress"
+                                        >
+                                        <label for="differentShippingAddress">Factuur en verzendadres komen niet overeen</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset class="additional-address hidden register-shipping js-form-field-toggle-shipping-address d-none">
+                            <h5>Mijn adres</h5>
+                            {% sw_include '@Storefront/storefront/component/address/address-personal.html.twig' with {
+                                'prefix': 'shippingAddress',
+                                'data': data.get('shippingAddress'),
+                                'hideCustomerTypeSelect': true,
+                                'accountType': data.get('accountType')
+                            } %}
+                            {%  block component_account_register_address_shipping_fields_address %}
+                                {% sw_include '@Storefront/storefront/component/address/address-form.html.twig' with {
+                                    'prefix': 'shippingAddress',
+                                    'data': data.get('shippingAddress')
+                                } %}
+                            {% endblock %}
+
+                        </fieldset>
+
+                    {% endblock %}
+                    {% block component_account_register_captcha %}
+                        {% sw_include '@Storefront/storefront/component/captcha/base.html.twig' with { preCheck: true } %}
+                    {% endblock %}
+                    {% block component_account_register_submit %}
+
+                        <fieldset>
+                            <div class="flex-container align-right">
+                                <button type="submit" class="button small">Registreren</button>
+                            </div>
+                        </fieldset>
+                    {% endblock %}
+                </form>
+            {% endblock %}
+{% endblock %}

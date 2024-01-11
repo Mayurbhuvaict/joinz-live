@@ -1,0 +1,54 @@
+{% sw_extends '@Storefront/storefront/layout/header/search-suggest.html.twig' %}
+
+{% block layout_search_suggest %}
+    <div class="search-suggest js-search-result">
+        {% block layout_search_suggest_container %}
+            <div class="grid-x">
+                <div class="cell medium-12">
+                    <div>Producten</div>
+                    {{ parent() }}
+                </div>
+
+                <div class="cell medium-12">
+                    <div>Categorieën</div>
+
+                    {% if not page.extensions.categories %}
+
+                        {% block mega_search_ajax_inner_no_results_categories %}
+                            <ul class="search-suggest-container">
+                                {% block layout_search_suggest_categories_no_result %}
+                                    <li class="search-suggest-no-result">
+                                        {{ "header.searchNoResult"|trans }}
+                                    </li>
+                                {% endblock %}
+                            </ul>
+                        {% endblock %}
+
+                    {% else %}
+
+                        {% block search_ajax_category_inner %}
+                            <ul class="search-suggest-container">
+                                {% for category in page.extensions.categories %}
+                                    {% block search_ajax_list_category_entry %}
+                                        <li class="search-suggest-product js-result">
+                                            <a class="search-suggest-product-link" href="{{ seoUrl('frontend.navigation.page', { 'navigationId': category.id }) }}" title="{{category.name|raw}}">
+                                                {% block search_ajax_list_category_name %}
+                                                    <span class="entry--name">
+                                                        {{category.name|raw}}
+                                                    </span>
+                                                {% endblock %}
+                                            </a>
+                                        </li>
+                                    {% endblock %}
+                                {% endfor %}
+                            </ul>
+                        {% endblock %}
+
+                    {% endif %}
+
+                </div>
+            </div>
+
+        {% endblock %}
+    </div>
+{% endblock %}

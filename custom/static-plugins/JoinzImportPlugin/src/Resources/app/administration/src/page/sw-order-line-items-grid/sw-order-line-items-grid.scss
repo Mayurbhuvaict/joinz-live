@@ -1,0 +1,20 @@
+.sw-order-line-items-grid {
+    .sw-data-grid {
+        .sw-data-grid__body {
+            .sw-data-grid__cell--multi-line {
+                .sw-data-grid__cell-content {
+                    height: auto;
+
+                    .sw-order-line-items-grid__item-product {
+                        display: block;
+
+                        &-inner {
+                            display: flex;
+                            flex-direction: row;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,126 @@
+{% set product = page.extensions.joinzProduct.product %}
+{% set id = product.id %}
+
+{% if page.cart %}
+    {% set summary = page.cart %}
+{% elseif page.order %}
+    {% set summary = page.order %}
+{% endif %}
+
+{% block page_checkout_summary %}
+    <div class="cell large-5 medium-12">
+        <div class="section-right">
+            <div class="section-right-top">
+                {%  set isQuote = app.request.get('quote') %}
+                {% if not isQuote %}
+                    {% set isQuote = app.session.get('quote') %}
+                {% endif %}
+                {% if isQuote %}
+                <p><b>Offerte binnen 2 uur</b></p>
+                <a href="#" class="link-alert flex-container align-middle">
+                    <i class="icon-alert-bell"></i>
+                    Persoonlijke offerte binnen 2 uur (ma-vr tussen 09:00 en 17:00)
+                </a>
+                {% else %}
+                <p class="flex-container align-middle align-justify">
+                    <b>Levering: {% for el in page.cart.data.elements %}
+                            {% if el.extensions['delivery_date'] %}{{ el.extensions['delivery_date'].text }} {% endif %}
+                        {% endfor %}{# page.cart.deliveries.elements[0].deliveryDate.earliest|date("j F") #}</b>
+
+                    <a href="/checkout/cart">Winkelmandje Wijzigen</a>
+                </p>
+                {% block page_checkout_summary_alert %}
+                    <a href="#" class="link-alert flex-container align-middle">
+                        <i class="icon-alert-bell"></i>
+                        Als order en drukproef akkoord zijn voor 17:00
+                    </a>
+                {% endblock %}
+                {% endif %}
+            </div>
+
+            {% block page_checkout_summary_list %}
+                <div class="checkout-list">
+                    <ul>
+                        {% for lineItem in page.cart.lineItems %}
+                            {% if lineItem.payload.type == 'product' %}
+                            <li>
+                                <div class="checkout-product flex-container align-middle">
+                                    <div style="width: 100px" class="image">
+                                        <img src="{{ lineItem.cover.url }}" alt="">
+                                    </div>
+                                    <div class="details">
+                                        <p>
+
+                                            <b>{{ lineItem.label }}</b> <br>
+
+                                            {% if lineItem.payload.imprint %}
+
+                                                {{ lineItem.payload.imprint.label }} {{ lineItem.payload.imprint.MaxPrintArea}}<br>
+
+                                            {% endif %}
+                                            {{ lineItem.payload.imprintLocation }} <br>
+                                            {{ lineItem.quantity }} stuks <br>
+                                            €{{ lineItem.price.unitPrice + lineItem.payload.imprint.price.unitPrice }} per stuk
+
+                                        </p>
+                                    </div>
+                                </div>
+                            </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endblock %}
+
+            <div class="section-right-middle">
+                {% if summary.lineItems | filter(v => v.type == 'promotion') | first %}
+                    <p class="flex-container align-justify" style="color:#159300;">
+                        <span>Korting</span>
+                        <span>{{ summary.lineItems | filter(v => v.type == 'promotion') | reduce((carry, v) => carry + v.price.unitprice) | currency}}</span>
+                    </p>
+                {% endif %}
+                <p class="flex-container align-justify">
+                    <span>Setupkosten</span>
+                    <span>{{ summary.lineItems | filter(v => v.payload.type == 'setup_cost') | reduce((carry, v) => carry + v.payload.cost_net) | currency}}</span>
+                </p>
+                {% block page_checkout_summary_shipping %}
+                    <p class="flex-container align-justify">
+                        <span>Verzendkosten</span>
+                        <span>{{ delivery.shippingCosts.totalPrice|currency }}</span>
+                    </p>
+                {% endblock %}
+                {% block page_checkout_summary_total %}
+                    <p class="flex-container align-justify">
+                        <span><b>Totaal Excl. btw</b></span>
+                        <span><b> {{ summary.price.netPrice|currency }}</b></span>
+                    </p>
+                {% endblock %}
+
+
+
+                {% block page_checkout_summary_taxes %}
+                    <p class="flex-container align-justify">
+                        <span>BTW</span>
+                        <span>{{ (summary.price.totalPrice - summary.price.netPrice)|currency }}</span>
+                    </p>
+                {% endblock %}
+
+                <p class="flex-container align-justify">
+                    <span>Totaal incl. BTW</span>
+                    <span>{{ summary.price.totalPrice|currency }}</span>
+                </p>
+            </div>
+
+            <div class="section-right-bottom">
+                {% if isQuote %}
+                    <p class="card"><b>Offerte op maat</b>
+                        Bij Joinz weet je zeker dat je nooit te veel betaald. Je krijgt namelijk een persoonlijke offerte.</p>
+                {% else %}
+                    <p class="card"><b>Gratis annuleren</b>
+                        Je bestelling wordt pas doorgezet nadat jij akkoord gaat met het ontwerp! Je mag tot die tijd nog afzien van je bestelling!</p>
+
+                {% endif %}
+                </div>
+        </div>
+    </div>
+{% endblock %}

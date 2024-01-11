@@ -1,0 +1,58 @@
+{% block page_checkout_confirm_address_inner %}
+{% if page.order %}
+{% set order = page.order %}
+{% set deliveries = order.deliveries.elements %}
+{% set billingAddress = order.billingAddress %}
+
+{% if deliveries|length > 0 and order.billingAddress.id != deliveries|first.shippingOrderAddressId %}
+{% set shippingAddress = deliveries|first.shippingOrderAddress %}
+{% else %}
+{% set shippingAddress = billingAddress %}
+{% endif %}
+{% else %}
+{% set billingAddress = context.customer.activeBillingAddress %}
+{% set shippingAddress = context.customer.activeShippingAddress %}
+{% endif %}
+
+{% block page_checkout_confirm_address %}
+    <div class="grid-x">
+        <div class="cell medium-6">
+            <b>{{ "checkout.billingAddressHeader"|trans|sw_sanitize }}</b>
+            <br /><br />
+            Company: {{ context.customer.customFields['custom_company_name_text'] }}<br />
+            Name: {{ billingAddress.firstName }} {{ billingAddress.lastName }}<br />
+            Email: {{ context.customer.email }}<br />
+            Phone: {{ billingAddress.phoneNumber }}<br />
+            Street: {{ billingAddress.street }} {{ billingAddress.additionalAddressLine1 }}<br />
+            Postcode: {{ billingAddress.zipcode }} <br />
+            Country: {{ billingAddress.country.translated.name }}
+            <div class="flex-container align-middle" style="margin-top: 20px">
+                <a href="{{ path('frontend.account.address.edit.page', {'addressId': billingAddress.id}) }}" class="button button-gray">{{ "account.overviewChangeBilling"|trans|sw_sanitize }}</a>
+            </div>
+
+        </div>
+        <div class="cell medium-6">
+            <b>{{ "checkout.shippingAddressHeader"|trans|sw_sanitize }}</b>
+            <br /><br />
+            {% if billingAddress.id is same as(shippingAddress.id) %}
+                    <p>
+                        {{ "checkout.addressEqualText"|trans|sw_sanitize }}
+                    </p>
+            {% else %}
+                Company: {{ context.customer.customFields['custom_company_name_text'] }}<br />
+                Name: {{ billingAddress.firstName }} {{ billingAddress.lastName }}<br />
+                Email: {{ context.customer.email }}<br />
+                Phone: {{ billingAddress.phoneNumber }}<br />
+                Street: {{ billingAddress.street }} {{ billingAddress.additionalAddressLine1 }}<br />
+                Postcode: {{ billingAddress.zipcode }} <br />
+                Country: {{ billingAddress.country.translated.name }}
+            {% endif %}
+            <div class="flex-container align-middle" style="margin-top: 20px">
+                <a href="{{ path('frontend.account.address.edit.page', {'addressId': shippingAddress.id}) }}" onclick="changeShippingAdress" class="button button-gray">{{ "account.overviewChangeShipping"|trans|sw_sanitize }}</a>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+{% endblock %}

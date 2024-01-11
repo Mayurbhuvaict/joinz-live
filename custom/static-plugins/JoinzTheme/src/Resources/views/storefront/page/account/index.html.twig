@@ -1,0 +1,61 @@
+{% sw_extends '@Storefront/storefront/page/account/_page.html.twig' %}
+
+{% block page_account_main_content %}
+    {% block page_account_overview %}
+        {% if page.customer.requestedGroup %}
+            {% sw_include '@Storefront/storefront/utilities/alert.html.twig' with {
+                type: 'info',
+                content: 'account.overviewCustomerGroupRequest'|trans({
+                    '%group%': page.customer.requestedGroup.translated.name
+                })
+            } %}
+        {% endif %}
+            <section class="section-account">
+                <div class="grid-container">
+                    <h3>Overzicht</h3>
+
+                    <div class="grid-x grid-margin-x">
+                        {% block page_account_overview_main %}
+
+
+                                        {% block page_account_overview_profile %}
+                                        {% block page_account_overview_profile_card %}
+                                            <div class="account-item cell medium-6 flex-container flex-dir-column align-justify align-top">
+                                                <h5>Jouw profiel</h5>
+
+                                                <p>{% block page_account_overview_profile_content %}
+
+                                                        {% if context.customer.salutation.salutationKey != 'not_specified' %}
+                                                            {{ context.customer.salutation.translated.displayName }}
+                                                        {% endif %}
+                                                        {% if context.customer.title %}
+                                                            {{ context.customer.title }}<br/>
+                                                        {% endif %}
+                                                        {{ context.customer.customFields['custom_company_name_text'] }} <br />
+                                                        {{ context.customer.firstName }} {{ context.customer.lastName }}
+
+                                                    {% endblock %} <br> {{ context.customer.email }}</p>
+
+                                                <a href="{{ path('frontend.account.profile.page') }}" class="button button-gray">Profiel aanpassen</a>
+                                            </div>
+                                        {% endblock %}{% endblock %}
+
+
+
+                        {% endblock %}
+
+                        <div class="account-item cell medium-6 flex-container flex-dir-column align-justify align-top">
+                            <h5>Jouw bestellingen</h5>
+
+                            <a href="/account/order" class="button button-gray">Bekijk Bestellingen</a>
+                        </div>
+                        {% block page_account_overview_addresses_include %}
+                            {% sw_include "@Storefront/storefront/page/account/address.html.twig" %}
+                        {% endblock %}
+
+                    </div>
+
+                </div>
+            </section></main>
+    {% endblock %}
+{% endblock %}

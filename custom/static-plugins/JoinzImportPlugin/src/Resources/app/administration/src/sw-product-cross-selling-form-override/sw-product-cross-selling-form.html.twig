@@ -1,0 +1,5 @@
+{% block sw_prduct_cross_selling_form_card %}
+        <img v-if="typeof crossSelling.extensions.extra != 'undefined'" :src="crossSelling.extensions.extra.cover.url" width="20%">
+    {% parent %}
+{% endblock %}
+

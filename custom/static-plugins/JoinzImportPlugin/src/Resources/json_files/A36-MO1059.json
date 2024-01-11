@@ -1,0 +1,3527 @@
+{
+  "ChildProducts": [
+    {
+      "ProductDetails": {
+        "nl": {
+          "Name": "MEMORAMA",
+          "Description": "Full colour bedrukking mogelijk - bekijk de prijzen achterin de prijslijst. USB memory stick in creditcard formaat van ABS. Het platte oppervlak van dit product maakt een full colour bedrukking van uw logo en afbeeldingen mogelijk. Onze USB prijzen zijn exclusief de €0,50 thuiskopie heffing. Deze heffing is van toepassing op alle USB leveringen in Nederland vanaf 01-01-2021.",
+          "ShortDescription": "Creditcard. USB flash 16GB     MO1059-06",
+          "MetaName": "",
+          "MetaDescription": "",
+          "MetaKeywords": "",
+          "Image": {
+            "Url": "https://promidatabase.s3.eu-central-1.amazonaws.com/Images/Live/32cd7f8b-1df9-47db-a33b-3f5740539c94/20737cb3eb4634eae0968b102bc5bfc35b8137ffb9b2427c87df6e6504f040d8.jpg",
+            "Description": "",
+            "FileName": "mo1059-06.jpg"
+          },
+          "MediaGalleryImages": null,
+          "InformationFiles": null,
+          "IsActive": true,
+          "ConfigurationFields": [
+            {
+              "ConfigurationName": "Color",
+              "ConfigurationNameTranslated": "Kleur",
+              "ConfigurationValue": "Wit"
+            },
+            {
+              "ConfigurationName": "Size",
+              "ConfigurationNameTranslated": "Afmeting",
+              "ConfigurationValue": "16G"
+            }
+          ],
+          "UnstructuredInformation": {
+            "SupplierMainCategory": "ELECTRONICS/USB-POWER_BANK/USB_STICKS",
+            "SupplierSearchColor": "WHITE"
+          },
+          "WebShopInformation": {
+            "ProductSizeText": {
+              "InformationLabel": "Informatie over de afmetingen van producten",
+              "InformationValue": "85X55X3 MM"
+            }
+          },
+          "PIMV1Information": {
+            "Dimensions": "85X55X3 MM",
+            "Custom Tarrif Number": "8523 5110",
+            "Default refining": "Digitale bedrukking 1 kleur",
+            "Weight": "0,021"
+          },
+          "ImportantInformation": null
+        }
+      },
+      "ProductCosts": null,
+      "ProductPriceRegionBased": null,
+      "ProductPriceCountryBased": {
+        "NLD": {
+          "RecommendedSellingPrice": [
+            {
+              "Price": 7.54,
+              "Quantity": 1,
+              "OnRequest": false,
+              "Valuta": "EURO"
+            },
+            {
+              "Price": 7.16,
+              "Quantity": 200,
+              "OnRequest": false,
+              "Valuta": "EURO"
+            },
+            {
+              "Price": 6.78,
+              "Quantity": 300,
+              "OnRequest": false,
+              "Valuta": "EURO"
+            },
+            {
+              "Price": 6.42,
+              "Quantity": 500,
+              "OnRequest": false,
+              "Valuta": "EURO"
+            },
+            {
+              "Price": 6.04,
+              "Quantity": 1000,
+              "OnRequest": false,
+              "Valuta": "EURO"
+            }
+          ],
+          "GeneralBuyingPrice": [],
+          "QuantityIncrements": 1,
+          "VatPercentage": 0,
+          "MinimumOrderQuantity": 1,
+          "VatSettingId": 1
+        }
+      },
+      "NonLanguageDependedProductDetails": {
+        "SearchColor": "White",
+        "HexColor": "",
+        "Fragile": false,
+        "Category": "ELECTRONICS/USB-POWER_BANK/USB_STICKS",
+        "TexodataCategory": null,
+        "SecondaryCategories": null,
+        "CountryOfOrigin": null,
+        "PIMV1ImageHash": null,
+        "ProductFiltersByGroup": null,
+        "Weight": 0,
+        "DimensionsLength": 0,
+        "DimensionsHeight": 0,
+        "DimensionsDiameter": 0,
+        "DimensionsWidth": 0,
+        "DimensionsDepth": 0,
+        "Brand": "",
+        "USBItem": false,
+        "CustomsTariffNumber": "8523 5110"
+      },
+      "BatteryInformation": null,
+      "ImprintPositions": [
+        {
+          "PositionCode": "OnProduct",
+          "ImprintLocationTexts": {
+            "nl": {
+              "Images": null,
+              "Name": "Op het product",
+              "Description": null
+            }
+          },
+          "UnstructuredInformation": null,
+          "ImprintOptions": [
+            {
+              "ChildImprints": null,
+              "PrintColorAsText": null,
+              "Dimension": null,
+              "ImprintTexts": {
+                "nl": {
+                  "Name": "Digitale bedrukking 1 kleur",
+                  "Description": "Digitale bedrukking"
+                }
+              },
+              "Sku": "A36-PD1_B_I1C_V",
+              "SupplierSku": "",
+              "DimensionsHeight": 0,
+              "DimensionsDiameter": 0,
+              "DimensionsWidth": 0,
+              "DimensionsDepth": 0,
+              "ImprintType": null,
+              "UnstructuredInformation": null,
+              "ProductPriceRegionBased": null,
+              "ProductPriceCountryBased": {
+                "NLD": {
+                  "RecommendedSellingPrice": [
+                    {
+                      "Price": 0.874,
+                      "Quantity": 1,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.684,
+                      "Quantity": 50,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.464,
+                      "Quantity": 100,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.404,
+                      "Quantity": 250,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.374,
+                      "Quantity": 500,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.292,
+                      "Quantity": 1000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.210,
+                      "Quantity": 2500,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.210,
+                      "Quantity": 5000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.210,
+                      "Quantity": 10000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.210,
+                      "Quantity": 20000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    }
+                  ],
+                  "GeneralBuyingPrice": [],
+                  "QuantityIncrements": 0,
+                  "VatPercentage": 0,
+                  "MinimumOrderQuantity": 1,
+                  "VatSettingId": 1
+                }
+              },
+              "PrintColor": 0,
+              "ImprintCosts": [
+                {
+                  "Sku": "A36-PD1_B_I1C_S",
+                  "SupplierSku": "",
+                  "Texts": {
+                    "nl": {
+                      "Name": "Setupkosten 1 kleur",
+                      "Description": null
+                    }
+                  },
+                  "ProductPriceRegionBased": null,
+                  "ProductPriceCountryBased": {
+                    "NLD": {
+                      "RecommendedSellingPrice": [
+                        {
+                          "Price": 59.00,
+                          "Quantity": 1,
+                          "OnRequest": false,
+                          "Valuta": "EURO"
+                        }
+                      ],
+                      "GeneralBuyingPrice": [],
+                      "QuantityIncrements": 0,
+                      "VatPercentage": 0,
+                      "MinimumOrderQuantity": 1,
+                      "VatSettingId": 1
+                    }
+                  },
+                  "IsActiveRegionBased": null,
+                  "IsActiveCountryBased": {
+                    "NLD": true,
+                    "BEL": true,
+                    "SWE": true,
+                    "ESP": true,
+                    "FRA": true,
+                    "LUX": true,
+                    "DEU": true,
+                    "AUT": true,
+                    "CHE": true,
+                    "PRT": true
+                  },
+                  "CalculationType": "Unique",
+                  "CalculationAmount": 1,
+                  "Requirement": null,
+                  "UnstructuredInformation": null
+                },
+                {
+                  "Sku": "A36-B_MAN",
+                  "SupplierSku": "",
+                  "Texts": {
+                    "nl": {
+                      "Name": "Handling",
+                      "Description": null
+                    }
+                  },
+                  "ProductPriceRegionBased": null,
+                  "ProductPriceCountryBased": {
+                    "NLD": {
+                      "RecommendedSellingPrice": [
+                        {
+                          "Price": 0.210,
+                          "Quantity": 1,
+                          "OnRequest": false,
+                          "Valuta": "EURO"
+                        }
+                      ],
+                      "GeneralBuyingPrice": [],
+                      "QuantityIncrements": 0,
+                      "VatPercentage": 0,
+                      "MinimumOrderQuantity": 1,
+                      "VatSettingId": 1
+                    }
+                  },
+                  "IsActiveRegionBased": null,
+                  "IsActiveCountryBased": {
+                    "NLD": true,
+                    "BEL": true,
+                    "SWE": true,
+                    "ESP": true,
+                    "FRA": true,
+                    "LUX": true,
+                    "DEU": true,
+                    "AUT": true,
+                    "CHE": true,
+                    "PRT": true
+                  },
+                  "CalculationType": "Multiplied",
+                  "CalculationAmount": 1,
+                  "Requirement": null,
+                  "UnstructuredInformation": null
+                }
+              ],
+              "IsActiveRegionBased": null,
+              "IsActiveCountryBased": {
+                "NLD": true,
+                "BEL": true,
+                "SWE": true,
+                "ESP": true,
+                "FRA": true,
+                "LUX": true,
+                "DEU": true,
+                "AUT": true,
+                "CHE": true,
+                "PRT": true
+              },
+              "ImportantInformation": null
+            },
+            {
+              "ChildImprints": null,
+              "PrintColorAsText": null,
+              "Dimension": null,
+              "ImprintTexts": {
+                "nl": {
+                  "Name": "Digitale bedrukking 2 kleuren",
+                  "Description": "Digitale bedrukking"
+                }
+              },
+              "Sku": "A36-PD1_B_I2C_V",
+              "SupplierSku": "",
+              "DimensionsHeight": 0,
+              "DimensionsDiameter": 0,
+              "DimensionsWidth": 0,
+              "DimensionsDepth": 0,
+              "ImprintType": null,
+              "UnstructuredInformation": null,
+              "ProductPriceRegionBased": null,
+              "ProductPriceCountryBased": {
+                "NLD": {
+                  "RecommendedSellingPrice": [
+                    {
+                      "Price": 1.748,
+                      "Quantity": 1,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 1.368,
+                      "Quantity": 50,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.928,
+                      "Quantity": 100,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.808,
+                      "Quantity": 250,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.748,
+                      "Quantity": 500,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.584,
+                      "Quantity": 1000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.420,
+                      "Quantity": 2500,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.420,
+                      "Quantity": 5000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.420,
+                      "Quantity": 10000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.420,
+                      "Quantity": 20000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    }
+                  ],
+                  "GeneralBuyingPrice": [],
+                  "QuantityIncrements": 0,
+                  "VatPercentage": 0,
+                  "MinimumOrderQuantity": 1,
+                  "VatSettingId": 1
+                }
+              },
+              "PrintColor": 0,
+              "ImprintCosts": [
+                {
+                  "Sku": "A36-PD1_B_I2C_S",
+                  "SupplierSku": "",
+                  "Texts": {
+                    "nl": {
+                      "Name": "Setupkosten 2 kleuren",
+                      "Description": null
+                    }
+                  },
+                  "ProductPriceRegionBased": null,
+                  "ProductPriceCountryBased": {
+                    "NLD": {
+                      "RecommendedSellingPrice": [
+                        {
+                          "Price": 59.00,
+                          "Quantity": 1,
+                          "OnRequest": false,
+                          "Valuta": "EURO"
+                        }
+                      ],
+                      "GeneralBuyingPrice": [],
+                      "QuantityIncrements": 0,
+                      "VatPercentage": 0,
+                      "MinimumOrderQuantity": 1,
+                      "VatSettingId": 1
+                    }
+                  },
+                  "IsActiveRegionBased": null,
+                  "IsActiveCountryBased": {
+                    "NLD": true,
+                    "BEL": true,
+                    "SWE": true,
+                    "ESP": true,
+                    "FRA": true,
+                    "LUX": true,
+                    "DEU": true,
+                    "AUT": true,
+                    "CHE": true,
+                    "PRT": true
+                  },
+                  "CalculationType": "Unique",
+                  "CalculationAmount": 1,
+                  "Requirement": null,
+                  "UnstructuredInformation": null
+                },
+                {
+                  "Sku": "A36-B_MAN",
+                  "SupplierSku": "",
+                  "Texts": {
+                    "nl": {
+                      "Name": "Handling",
+                      "Description": null
+                    }
+                  },
+                  "ProductPriceRegionBased": null,
+                  "ProductPriceCountryBased": {
+                    "NLD": {
+                      "RecommendedSellingPrice": [
+                        {
+                          "Price": 0.210,
+                          "Quantity": 1,
+                          "OnRequest": false,
+                          "Valuta": "EURO"
+                        }
+                      ],
+                      "GeneralBuyingPrice": [],
+                      "QuantityIncrements": 0,
+                      "VatPercentage": 0,
+                      "MinimumOrderQuantity": 1,
+                      "VatSettingId": 1
+                    }
+                  },
+                  "IsActiveRegionBased": null,
+                  "IsActiveCountryBased": {
+                    "NLD": true,
+                    "BEL": true,
+                    "SWE": true,
+                    "ESP": true,
+                    "FRA": true,
+                    "LUX": true,
+                    "DEU": true,
+                    "AUT": true,
+                    "CHE": true,
+                    "PRT": true
+                  },
+                  "CalculationType": "Multiplied",
+                  "CalculationAmount": 1,
+                  "Requirement": null,
+                  "UnstructuredInformation": null
+                }
+              ],
+              "IsActiveRegionBased": null,
+              "IsActiveCountryBased": {
+                "NLD": true,
+                "BEL": true,
+                "SWE": true,
+                "ESP": true,
+                "FRA": true,
+                "LUX": true,
+                "DEU": true,
+                "AUT": true,
+                "CHE": true,
+                "PRT": true
+              },
+              "ImportantInformation": null
+            },
+            {
+              "ChildImprints": null,
+              "PrintColorAsText": null,
+              "Dimension": null,
+              "ImprintTexts": {
+                "nl": {
+                  "Name": "Digitale bedrukking 3 kleuren",
+                  "Description": "Digitale bedrukking"
+                }
+              },
+              "Sku": "A36-PD1_B_I3C_V",
+              "SupplierSku": "",
+              "DimensionsHeight": 0,
+              "DimensionsDiameter": 0,
+              "DimensionsWidth": 0,
+              "DimensionsDepth": 0,
+              "ImprintType": null,
+              "UnstructuredInformation": null,
+              "ProductPriceRegionBased": null,
+              "ProductPriceCountryBased": {
+                "NLD": {
+                  "RecommendedSellingPrice": [
+                    {
+                      "Price": 2.622,
+                      "Quantity": 1,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 2.052,
+                      "Quantity": 50,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 1.392,
+                      "Quantity": 100,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 1.212,
+                      "Quantity": 250,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 1.122,
+                      "Quantity": 500,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.876,
+                      "Quantity": 1000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.630,
+                      "Quantity": 2500,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.630,
+                      "Quantity": 5000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.630,
+                      "Quantity": 10000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.630,
+                      "Quantity": 20000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    }
+                  ],
+                  "GeneralBuyingPrice": [],
+                  "QuantityIncrements": 0,
+                  "VatPercentage": 0,
+                  "MinimumOrderQuantity": 1,
+                  "VatSettingId": 1
+                }
+              },
+              "PrintColor": 0,
+              "ImprintCosts": [
+                {
+                  "Sku": "A36-PD1_B_I3C_S",
+                  "SupplierSku": "",
+                  "Texts": {
+                    "nl": {
+                      "Name": "Setupkosten 3 kleuren",
+                      "Description": null
+                    }
+                  },
+                  "ProductPriceRegionBased": null,
+                  "ProductPriceCountryBased": {
+                    "NLD": {
+                      "RecommendedSellingPrice": [
+                        {
+                          "Price": 59.00,
+                          "Quantity": 1,
+                          "OnRequest": false,
+                          "Valuta": "EURO"
+                        }
+                      ],
+                      "GeneralBuyingPrice": [],
+                      "QuantityIncrements": 0,
+                      "VatPercentage": 0,
+                      "MinimumOrderQuantity": 1,
+                      "VatSettingId": 1
+                    }
+                  },
+                  "IsActiveRegionBased": null,
+                  "IsActiveCountryBased": {
+                    "NLD": true,
+                    "BEL": true,
+                    "SWE": true,
+                    "ESP": true,
+                    "FRA": true,
+                    "LUX": true,
+                    "DEU": true,
+                    "AUT": true,
+                    "CHE": true,
+                    "PRT": true
+                  },
+                  "CalculationType": "Unique",
+                  "CalculationAmount": 1,
+                  "Requirement": null,
+                  "UnstructuredInformation": null
+                },
+                {
+                  "Sku": "A36-B_MAN",
+                  "SupplierSku": "",
+                  "Texts": {
+                    "nl": {
+                      "Name": "Handling",
+                      "Description": null
+                    }
+                  },
+                  "ProductPriceRegionBased": null,
+                  "ProductPriceCountryBased": {
+                    "NLD": {
+                      "RecommendedSellingPrice": [
+                        {
+                          "Price": 0.210,
+                          "Quantity": 1,
+                          "OnRequest": false,
+                          "Valuta": "EURO"
+                        }
+                      ],
+                      "GeneralBuyingPrice": [],
+                      "QuantityIncrements": 0,
+                      "VatPercentage": 0,
+                      "MinimumOrderQuantity": 1,
+                      "VatSettingId": 1
+                    }
+                  },
+                  "IsActiveRegionBased": null,
+                  "IsActiveCountryBased": {
+                    "NLD": true,
+                    "BEL": true,
+                    "SWE": true,
+                    "ESP": true,
+                    "FRA": true,
+                    "LUX": true,
+                    "DEU": true,
+                    "AUT": true,
+                    "CHE": true,
+                    "PRT": true
+                  },
+                  "CalculationType": "Multiplied",
+                  "CalculationAmount": 1,
+                  "Requirement": null,
+                  "UnstructuredInformation": null
+                }
+              ],
+              "IsActiveRegionBased": null,
+              "IsActiveCountryBased": {
+                "NLD": true,
+                "BEL": true,
+                "SWE": true,
+                "ESP": true,
+                "FRA": true,
+                "LUX": true,
+                "DEU": true,
+                "AUT": true,
+                "CHE": true,
+                "PRT": true
+              },
+              "ImportantInformation": null
+            },
+            {
+              "ChildImprints": null,
+              "PrintColorAsText": null,
+              "Dimension": null,
+              "ImprintTexts": {
+                "nl": {
+                  "Name": "Digitale bedrukking 4 kleuren",
+                  "Description": "Digitale bedrukking"
+                }
+              },
+              "Sku": "A36-PD1_B_I4C_V",
+              "SupplierSku": "",
+              "DimensionsHeight": 0,
+              "DimensionsDiameter": 0,
+              "DimensionsWidth": 0,
+              "DimensionsDepth": 0,
+              "ImprintType": null,
+              "UnstructuredInformation": null,
+              "ProductPriceRegionBased": null,
+              "ProductPriceCountryBased": {
+                "NLD": {
+                  "RecommendedSellingPrice": [
+                    {
+                      "Price": 3.496,
+                      "Quantity": 1,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 2.736,
+                      "Quantity": 50,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 1.856,
+                      "Quantity": 100,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 1.616,
+                      "Quantity": 250,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 1.496,
+                      "Quantity": 500,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 1.168,
+                      "Quantity": 1000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.840,
+                      "Quantity": 2500,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.840,
+                      "Quantity": 5000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.840,
+                      "Quantity": 10000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.840,
+                      "Quantity": 20000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    }
+                  ],
+                  "GeneralBuyingPrice": [],
+                  "QuantityIncrements": 0,
+                  "VatPercentage": 0,
+                  "MinimumOrderQuantity": 1,
+                  "VatSettingId": 1
+                }
+              },
+              "PrintColor": 0,
+              "ImprintCosts": [
+                {
+                  "Sku": "A36-PD1_B_I4C_S",
+                  "SupplierSku": "",
+                  "Texts": {
+                    "nl": {
+                      "Name": "Setupkosten 4 kleuren",
+                      "Description": null
+                    }
+                  },
+                  "ProductPriceRegionBased": null,
+                  "ProductPriceCountryBased": {
+                    "NLD": {
+                      "RecommendedSellingPrice": [
+                        {
+                          "Price": 59.00,
+                          "Quantity": 1,
+                          "OnRequest": false,
+                          "Valuta": "EURO"
+                        }
+                      ],
+                      "GeneralBuyingPrice": [],
+                      "QuantityIncrements": 0,
+                      "VatPercentage": 0,
+                      "MinimumOrderQuantity": 1,
+                      "VatSettingId": 1
+                    }
+                  },
+                  "IsActiveRegionBased": null,
+                  "IsActiveCountryBased": {
+                    "NLD": true,
+                    "BEL": true,
+                    "SWE": true,
+                    "ESP": true,
+                    "FRA": true,
+                    "LUX": true,
+                    "DEU": true,
+                    "AUT": true,
+                    "CHE": true,
+                    "PRT": true
+                  },
+                  "CalculationType": "Unique",
+                  "CalculationAmount": 1,
+                  "Requirement": null,
+                  "UnstructuredInformation": null
+                },
+                {
+                  "Sku": "A36-B_MAN",
+                  "SupplierSku": "",
+                  "Texts": {
+                    "nl": {
+                      "Name": "Handling",
+                      "Description": null
+                    }
+                  },
+                  "ProductPriceRegionBased": null,
+                  "ProductPriceCountryBased": {
+                    "NLD": {
+                      "RecommendedSellingPrice": [
+                        {
+                          "Price": 0.210,
+                          "Quantity": 1,
+                          "OnRequest": false,
+                          "Valuta": "EURO"
+                        }
+                      ],
+                      "GeneralBuyingPrice": [],
+                      "QuantityIncrements": 0,
+                      "VatPercentage": 0,
+                      "MinimumOrderQuantity": 1,
+                      "VatSettingId": 1
+                    }
+                  },
+                  "IsActiveRegionBased": null,
+                  "IsActiveCountryBased": {
+                    "NLD": true,
+                    "BEL": true,
+                    "SWE": true,
+                    "ESP": true,
+                    "FRA": true,
+                    "LUX": true,
+                    "DEU": true,
+                    "AUT": true,
+                    "CHE": true,
+                    "PRT": true
+                  },
+                  "CalculationType": "Multiplied",
+                  "CalculationAmount": 1,
+                  "Requirement": null,
+                  "UnstructuredInformation": null
+                }
+              ],
+              "IsActiveRegionBased": null,
+              "IsActiveCountryBased": {
+                "NLD": true,
+                "BEL": true,
+                "SWE": true,
+                "ESP": true,
+                "FRA": true,
+                "LUX": true,
+                "DEU": true,
+                "AUT": true,
+                "CHE": true,
+                "PRT": true
+              },
+              "ImportantInformation": null
+            },
+            {
+              "ChildImprints": null,
+              "PrintColorAsText": null,
+              "Dimension": null,
+              "ImprintTexts": {
+                "nl": {
+                  "Name": "Tampondruk 1 kleur",
+                  "Description": "Tampondruk"
+                }
+              },
+              "Sku": "A36-P2_B_I1C_V",
+              "SupplierSku": "",
+              "DimensionsHeight": 0,
+              "DimensionsDiameter": 0,
+              "DimensionsWidth": 0,
+              "DimensionsDepth": 0,
+              "ImprintType": null,
+              "UnstructuredInformation": null,
+              "ProductPriceRegionBased": null,
+              "ProductPriceCountryBased": {
+                "NLD": {
+                  "RecommendedSellingPrice": [
+                    {
+                      "Price": 1.014,
+                      "Quantity": 1,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.870,
+                      "Quantity": 50,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.376,
+                      "Quantity": 100,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.278,
+                      "Quantity": 250,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.224,
+                      "Quantity": 500,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.190,
+                      "Quantity": 1000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.182,
+                      "Quantity": 2500,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.14,
+                      "Quantity": 5000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.094,
+                      "Quantity": 10000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.094,
+                      "Quantity": 20000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    }
+                  ],
+                  "GeneralBuyingPrice": [],
+                  "QuantityIncrements": 0,
+                  "VatPercentage": 0,
+                  "MinimumOrderQuantity": 1,
+                  "VatSettingId": 1
+                }
+              },
+              "PrintColor": 0,
+              "ImprintCosts": [
+                {
+                  "Sku": "A36-P2_B_I1C_S",
+                  "SupplierSku": "",
+                  "Texts": {
+                    "nl": {
+                      "Name": "Setupkosten 1 kleur",
+                      "Description": null
+                    }
+                  },
+                  "ProductPriceRegionBased": null,
+                  "ProductPriceCountryBased": {
+                    "NLD": {
+                      "RecommendedSellingPrice": [
+                        {
+                          "Price": 55.00,
+                          "Quantity": 1,
+                          "OnRequest": false,
+                          "Valuta": "EURO"
+                        }
+                      ],
+                      "GeneralBuyingPrice": [],
+                      "QuantityIncrements": 0,
+                      "VatPercentage": 0,
+                      "MinimumOrderQuantity": 1,
+                      "VatSettingId": 1
+                    }
+                  },
+                  "IsActiveRegionBased": null,
+                  "IsActiveCountryBased": {
+                    "NLD": true,
+                    "BEL": true,
+                    "SWE": true,
+                    "ESP": true,
+                    "FRA": true,
+                    "LUX": true,
+                    "DEU": true,
+                    "AUT": true,
+                    "CHE": true,
+                    "PRT": true
+                  },
+                  "CalculationType": "Unique",
+                  "CalculationAmount": 1,
+                  "Requirement": null,
+                  "UnstructuredInformation": null
+                },
+                {
+                  "Sku": "A36-B_MAN",
+                  "SupplierSku": "",
+                  "Texts": {
+                    "nl": {
+                      "Name": "Handling",
+                      "Description": null
+                    }
+                  },
+                  "ProductPriceRegionBased": null,
+                  "ProductPriceCountryBased": {
+                    "NLD": {
+                      "RecommendedSellingPrice": [
+                        {
+                          "Price": 0.210,
+                          "Quantity": 1,
+                          "OnRequest": false,
+                          "Valuta": "EURO"
+                        }
+                      ],
+                      "GeneralBuyingPrice": [],
+                      "QuantityIncrements": 0,
+                      "VatPercentage": 0,
+                      "MinimumOrderQuantity": 1,
+                      "VatSettingId": 1
+                    }
+                  },
+                  "IsActiveRegionBased": null,
+                  "IsActiveCountryBased": {
+                    "NLD": true,
+                    "BEL": true,
+                    "SWE": true,
+                    "ESP": true,
+                    "FRA": true,
+                    "LUX": true,
+                    "DEU": true,
+                    "AUT": true,
+                    "CHE": true,
+                    "PRT": true
+                  },
+                  "CalculationType": "Multiplied",
+                  "CalculationAmount": 1,
+                  "Requirement": null,
+                  "UnstructuredInformation": null
+                }
+              ],
+              "IsActiveRegionBased": null,
+              "IsActiveCountryBased": {
+                "NLD": true,
+                "BEL": true,
+                "SWE": true,
+                "ESP": true,
+                "FRA": true,
+                "LUX": true,
+                "DEU": true,
+                "AUT": true,
+                "CHE": true,
+                "PRT": true
+              },
+              "ImportantInformation": null
+            },
+            {
+              "ChildImprints": null,
+              "PrintColorAsText": null,
+              "Dimension": null,
+              "ImprintTexts": {
+                "nl": {
+                  "Name": "Tampondruk 2 kleuren",
+                  "Description": "Tampondruk"
+                }
+              },
+              "Sku": "A36-P2_B_I2C_V",
+              "SupplierSku": "",
+              "DimensionsHeight": 0,
+              "DimensionsDiameter": 0,
+              "DimensionsWidth": 0,
+              "DimensionsDepth": 0,
+              "ImprintType": null,
+              "UnstructuredInformation": null,
+              "ProductPriceRegionBased": null,
+              "ProductPriceCountryBased": {
+                "NLD": {
+                  "RecommendedSellingPrice": [
+                    {
+                      "Price": 1.574,
+                      "Quantity": 1,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 1.352,
+                      "Quantity": 50,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.586,
+                      "Quantity": 100,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.432,
+                      "Quantity": 250,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.346,
+                      "Quantity": 500,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.292,
+                      "Quantity": 1000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.282,
+                      "Quantity": 2500,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.218,
+                      "Quantity": 5000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.146,
+                      "Quantity": 10000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.146,
+                      "Quantity": 20000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    }
+                  ],
+                  "GeneralBuyingPrice": [],
+                  "QuantityIncrements": 0,
+                  "VatPercentage": 0,
+                  "MinimumOrderQuantity": 1,
+                  "VatSettingId": 1
+                }
+              },
+              "PrintColor": 0,
+              "ImprintCosts": [
+                {
+                  "Sku": "A36-P2_B_I2C_S",
+                  "SupplierSku": "",
+                  "Texts": {
+                    "nl": {
+                      "Name": "Setupkosten 2 kleuren",
+                      "Description": null
+                    }
+                  },
+                  "ProductPriceRegionBased": null,
+                  "ProductPriceCountryBased": {
+                    "NLD": {
+                      "RecommendedSellingPrice": [
+                        {
+                          "Price": 55.0,
+                          "Quantity": 1,
+                          "OnRequest": false,
+                          "Valuta": "EURO"
+                        }
+                      ],
+                      "GeneralBuyingPrice": [],
+                      "QuantityIncrements": 0,
+                      "VatPercentage": 0,
+                      "MinimumOrderQuantity": 1,
+                      "VatSettingId": 1
+                    }
+                  },
+                  "IsActiveRegionBased": null,
+                  "IsActiveCountryBased": {
+                    "NLD": true,
+                    "BEL": true,
+                    "SWE": true,
+                    "ESP": true,
+                    "FRA": true,
+                    "LUX": true,
+                    "DEU": true,
+                    "AUT": true,
+                    "CHE": true,
+                    "PRT": true
+                  },
+                  "CalculationType": "Unique",
+                  "CalculationAmount": 2,
+                  "Requirement": null,
+                  "UnstructuredInformation": null
+                },
+                {
+                  "Sku": "A36-B_MAN",
+                  "SupplierSku": "",
+                  "Texts": {
+                    "nl": {
+                      "Name": "Handling",
+                      "Description": null
+                    }
+                  },
+                  "ProductPriceRegionBased": null,
+                  "ProductPriceCountryBased": {
+                    "NLD": {
+                      "RecommendedSellingPrice": [
+                        {
+                          "Price": 0.210,
+                          "Quantity": 1,
+                          "OnRequest": false,
+                          "Valuta": "EURO"
+                        }
+                      ],
+                      "GeneralBuyingPrice": [],
+                      "QuantityIncrements": 0,
+                      "VatPercentage": 0,
+                      "MinimumOrderQuantity": 1,
+                      "VatSettingId": 1
+                    }
+                  },
+                  "IsActiveRegionBased": null,
+                  "IsActiveCountryBased": {
+                    "NLD": true,
+                    "BEL": true,
+                    "SWE": true,
+                    "ESP": true,
+                    "FRA": true,
+                    "LUX": true,
+                    "DEU": true,
+                    "AUT": true,
+                    "CHE": true,
+                    "PRT": true
+                  },
+                  "CalculationType": "Multiplied",
+                  "CalculationAmount": 1,
+                  "Requirement": null,
+                  "UnstructuredInformation": null
+                }
+              ],
+              "IsActiveRegionBased": null,
+              "IsActiveCountryBased": {
+                "NLD": true,
+                "BEL": true,
+                "SWE": true,
+                "ESP": true,
+                "FRA": true,
+                "LUX": true,
+                "DEU": true,
+                "AUT": true,
+                "CHE": true,
+                "PRT": true
+              },
+              "ImportantInformation": null
+            },
+            {
+              "ChildImprints": null,
+              "PrintColorAsText": null,
+              "Dimension": null,
+              "ImprintTexts": {
+                "nl": {
+                  "Name": "Tampondruk 3 kleuren",
+                  "Description": "Tampondruk"
+                }
+              },
+              "Sku": "A36-P2_B_I3C_V",
+              "SupplierSku": "",
+              "DimensionsHeight": 0,
+              "DimensionsDiameter": 0,
+              "DimensionsWidth": 0,
+              "DimensionsDepth": 0,
+              "ImprintType": null,
+              "UnstructuredInformation": null,
+              "ProductPriceRegionBased": null,
+              "ProductPriceCountryBased": {
+                "NLD": {
+                  "RecommendedSellingPrice": [
+                    {
+                      "Price": 2.134,
+                      "Quantity": 1,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 1.834,
+                      "Quantity": 50,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.796,
+                      "Quantity": 100,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.586,
+                      "Quantity": 250,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.468,
+                      "Quantity": 500,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.394,
+                      "Quantity": 1000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.382,
+                      "Quantity": 2500,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.296,
+                      "Quantity": 5000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.198,
+                      "Quantity": 10000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.198,
+                      "Quantity": 20000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    }
+                  ],
+                  "GeneralBuyingPrice": [],
+                  "QuantityIncrements": 0,
+                  "VatPercentage": 0,
+                  "MinimumOrderQuantity": 1,
+                  "VatSettingId": 1
+                }
+              },
+              "PrintColor": 0,
+              "ImprintCosts": [
+                {
+                  "Sku": "A36-P2_B_I3C_S",
+                  "SupplierSku": "",
+                  "Texts": {
+                    "nl": {
+                      "Name": "Setupkosten 3 kleuren",
+                      "Description": null
+                    }
+                  },
+                  "ProductPriceRegionBased": null,
+                  "ProductPriceCountryBased": {
+                    "NLD": {
+                      "RecommendedSellingPrice": [
+                        {
+                          "Price": 55.0,
+                          "Quantity": 1,
+                          "OnRequest": false,
+                          "Valuta": "EURO"
+                        }
+                      ],
+                      "GeneralBuyingPrice": [],
+                      "QuantityIncrements": 0,
+                      "VatPercentage": 0,
+                      "MinimumOrderQuantity": 1,
+                      "VatSettingId": 1
+                    }
+                  },
+                  "IsActiveRegionBased": null,
+                  "IsActiveCountryBased": {
+                    "NLD": true,
+                    "BEL": true,
+                    "SWE": true,
+                    "ESP": true,
+                    "FRA": true,
+                    "LUX": true,
+                    "DEU": true,
+                    "AUT": true,
+                    "CHE": true,
+                    "PRT": true
+                  },
+                  "CalculationType": "Unique",
+                  "CalculationAmount": 3,
+                  "Requirement": null,
+                  "UnstructuredInformation": null
+                },
+                {
+                  "Sku": "A36-B_MAN",
+                  "SupplierSku": "",
+                  "Texts": {
+                    "nl": {
+                      "Name": "Handling",
+                      "Description": null
+                    }
+                  },
+                  "ProductPriceRegionBased": null,
+                  "ProductPriceCountryBased": {
+                    "NLD": {
+                      "RecommendedSellingPrice": [
+                        {
+                          "Price": 0.210,
+                          "Quantity": 1,
+                          "OnRequest": false,
+                          "Valuta": "EURO"
+                        }
+                      ],
+                      "GeneralBuyingPrice": [],
+                      "QuantityIncrements": 0,
+                      "VatPercentage": 0,
+                      "MinimumOrderQuantity": 1,
+                      "VatSettingId": 1
+                    }
+                  },
+                  "IsActiveRegionBased": null,
+                  "IsActiveCountryBased": {
+                    "NLD": true,
+                    "BEL": true,
+                    "SWE": true,
+                    "ESP": true,
+                    "FRA": true,
+                    "LUX": true,
+                    "DEU": true,
+                    "AUT": true,
+                    "CHE": true,
+                    "PRT": true
+                  },
+                  "CalculationType": "Multiplied",
+                  "CalculationAmount": 1,
+                  "Requirement": null,
+                  "UnstructuredInformation": null
+                }
+              ],
+              "IsActiveRegionBased": null,
+              "IsActiveCountryBased": {
+                "NLD": true,
+                "BEL": true,
+                "SWE": true,
+                "ESP": true,
+                "FRA": true,
+                "LUX": true,
+                "DEU": true,
+                "AUT": true,
+                "CHE": true,
+                "PRT": true
+              },
+              "ImportantInformation": null
+            },
+            {
+              "ChildImprints": null,
+              "PrintColorAsText": null,
+              "Dimension": null,
+              "ImprintTexts": {
+                "nl": {
+                  "Name": "Tampondruk 4 kleuren",
+                  "Description": "Tampondruk"
+                }
+              },
+              "Sku": "A36-P2_B_I4C_V",
+              "SupplierSku": "",
+              "DimensionsHeight": 0,
+              "DimensionsDiameter": 0,
+              "DimensionsWidth": 0,
+              "DimensionsDepth": 0,
+              "ImprintType": null,
+              "UnstructuredInformation": null,
+              "ProductPriceRegionBased": null,
+              "ProductPriceCountryBased": {
+                "NLD": {
+                  "RecommendedSellingPrice": [
+                    {
+                      "Price": 2.694,
+                      "Quantity": 1,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 2.316,
+                      "Quantity": 50,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 1.006,
+                      "Quantity": 100,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.740,
+                      "Quantity": 250,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.590,
+                      "Quantity": 500,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.496,
+                      "Quantity": 1000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.482,
+                      "Quantity": 2500,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.374,
+                      "Quantity": 5000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.250,
+                      "Quantity": 10000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.250,
+                      "Quantity": 20000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    }
+                  ],
+                  "GeneralBuyingPrice": [],
+                  "QuantityIncrements": 0,
+                  "VatPercentage": 0,
+                  "MinimumOrderQuantity": 1,
+                  "VatSettingId": 1
+                }
+              },
+              "PrintColor": 0,
+              "ImprintCosts": [
+                {
+                  "Sku": "A36-P2_B_I4C_S",
+                  "SupplierSku": "",
+                  "Texts": {
+                    "nl": {
+                      "Name": "Setupkosten 4 kleuren",
+                      "Description": null
+                    }
+                  },
+                  "ProductPriceRegionBased": null,
+                  "ProductPriceCountryBased": {
+                    "NLD": {
+                      "RecommendedSellingPrice": [
+                        {
+                          "Price": 55.0,
+                          "Quantity": 1,
+                          "OnRequest": false,
+                          "Valuta": "EURO"
+                        }
+                      ],
+                      "GeneralBuyingPrice": [],
+                      "QuantityIncrements": 0,
+                      "VatPercentage": 0,
+                      "MinimumOrderQuantity": 1,
+                      "VatSettingId": 1
+                    }
+                  },
+                  "IsActiveRegionBased": null,
+                  "IsActiveCountryBased": {
+                    "NLD": true,
+                    "BEL": true,
+                    "SWE": true,
+                    "ESP": true,
+                    "FRA": true,
+                    "LUX": true,
+                    "DEU": true,
+                    "AUT": true,
+                    "CHE": true,
+                    "PRT": true
+                  },
+                  "CalculationType": "Unique",
+                  "CalculationAmount": 4,
+                  "Requirement": null,
+                  "UnstructuredInformation": null
+                },
+                {
+                  "Sku": "A36-B_MAN",
+                  "SupplierSku": "",
+                  "Texts": {
+                    "nl": {
+                      "Name": "Handling",
+                      "Description": null
+                    }
+                  },
+                  "ProductPriceRegionBased": null,
+                  "ProductPriceCountryBased": {
+                    "NLD": {
+                      "RecommendedSellingPrice": [
+                        {
+                          "Price": 0.210,
+                          "Quantity": 1,
+                          "OnRequest": false,
+                          "Valuta": "EURO"
+                        }
+                      ],
+                      "GeneralBuyingPrice": [],
+                      "QuantityIncrements": 0,
+                      "VatPercentage": 0,
+                      "MinimumOrderQuantity": 1,
+                      "VatSettingId": 1
+                    }
+                  },
+                  "IsActiveRegionBased": null,
+                  "IsActiveCountryBased": {
+                    "NLD": true,
+                    "BEL": true,
+                    "SWE": true,
+                    "ESP": true,
+                    "FRA": true,
+                    "LUX": true,
+                    "DEU": true,
+                    "AUT": true,
+                    "CHE": true,
+                    "PRT": true
+                  },
+                  "CalculationType": "Multiplied",
+                  "CalculationAmount": 1,
+                  "Requirement": null,
+                  "UnstructuredInformation": null
+                }
+              ],
+              "IsActiveRegionBased": null,
+              "IsActiveCountryBased": {
+                "NLD": true,
+                "BEL": true,
+                "SWE": true,
+                "ESP": true,
+                "FRA": true,
+                "LUX": true,
+                "DEU": true,
+                "AUT": true,
+                "CHE": true,
+                "PRT": true
+              },
+              "ImportantInformation": null
+            }
+          ]
+        }
+      ],
+      "Ean": "",
+      "VideoUrl": null,
+      "Sku": "A36-MO1059-06-16G",
+      "SupplierSku": "MO1059-06-16G",
+      "ANumber": "A36",
+      "GatewayInformation": null,
+      "UnstructuredInformation": {},
+      "ForbiddenRegions": null,
+      "Errors": {},
+      "Warnings": {}
+    },
+    {
+      "ProductDetails": {
+        "nl": {
+          "Name": "MEMORAMA",
+          "Description": "Full colour bedrukking mogelijk - bekijk de prijzen achterin de prijslijst. USB memory stick in creditcard formaat van ABS. Het platte oppervlak van dit product maakt een full colour bedrukking van uw logo en afbeeldingen mogelijk. Onze USB prijzen zijn exclusief de €0,50 thuiskopie heffing. Deze heffing is van toepassing op alle USB leveringen in Nederland vanaf 01-01-2021.",
+          "ShortDescription": "Creditcard. USB flash      4GB MO1059-06",
+          "MetaName": "",
+          "MetaDescription": "",
+          "MetaKeywords": "",
+          "Image": {
+            "Url": "https://promidatabase.s3.eu-central-1.amazonaws.com/Images/Live/32cd7f8b-1df9-47db-a33b-3f5740539c94/20737cb3eb4634eae0968b102bc5bfc35b8137ffb9b2427c87df6e6504f040d8.jpg",
+            "Description": "",
+            "FileName": "mo1059-06.jpg"
+          },
+          "MediaGalleryImages": null,
+          "InformationFiles": null,
+          "IsActive": true,
+          "ConfigurationFields": [
+            {
+              "ConfigurationName": "Color",
+              "ConfigurationNameTranslated": "Kleur",
+              "ConfigurationValue": "Wit"
+            },
+            {
+              "ConfigurationName": "Size",
+              "ConfigurationNameTranslated": "Afmeting",
+              "ConfigurationValue": "4G"
+            }
+          ],
+          "UnstructuredInformation": {
+            "SupplierMainCategory": "ELECTRONICS/USB-POWER_BANK/USB_STICKS",
+            "SupplierSearchColor": "WHITE"
+          },
+          "WebShopInformation": {
+            "Material": {
+              "InformationLabel": "Materiaal",
+              "InformationValue": "Plastic"
+            },
+            "ProductSizeText": {
+              "InformationLabel": "Informatie over de afmetingen van producten",
+              "InformationValue": "85X55X3 MM"
+            }
+          },
+          "PIMV1Information": {
+            "Material": "Plastic",
+            "Dimensions": "85X55X3 MM",
+            "Custom Tarrif Number": "8523 5110",
+            "Default refining": "Digitale bedrukking 1 kleur",
+            "Weight": "0,021"
+          },
+          "ImportantInformation": null
+        }
+      },
+      "ProductCosts": null,
+      "ProductPriceRegionBased": null,
+      "ProductPriceCountryBased": {
+        "NLD": {
+          "RecommendedSellingPrice": [
+            {
+              "Price": 4.92,
+              "Quantity": 1,
+              "OnRequest": false,
+              "Valuta": "EURO"
+            },
+            {
+              "Price": 4.72,
+              "Quantity": 200,
+              "OnRequest": false,
+              "Valuta": "EURO"
+            },
+            {
+              "Price": 4.66,
+              "Quantity": 300,
+              "OnRequest": false,
+              "Valuta": "EURO"
+            }
+          ],
+          "GeneralBuyingPrice": [],
+          "QuantityIncrements": 1,
+          "VatPercentage": 0,
+          "MinimumOrderQuantity": 1,
+          "VatSettingId": 1
+        }
+      },
+      "NonLanguageDependedProductDetails": {
+        "SearchColor": "White",
+        "HexColor": "",
+        "Fragile": false,
+        "Category": "ELECTRONICS/USB-POWER_BANK/USB_STICKS",
+        "TexodataCategory": null,
+        "SecondaryCategories": null,
+        "CountryOfOrigin": null,
+        "PIMV1ImageHash": null,
+        "ProductFiltersByGroup": null,
+        "Weight": 0,
+        "DimensionsLength": 0,
+        "DimensionsHeight": 0,
+        "DimensionsDiameter": 0,
+        "DimensionsWidth": 0,
+        "DimensionsDepth": 0,
+        "Brand": "",
+        "USBItem": false,
+        "CustomsTariffNumber": "8523 5110"
+      },
+      "BatteryInformation": null,
+      "ImprintPositions": [
+        {
+          "PositionCode": "OnProduct",
+          "ImprintLocationTexts": {
+            "nl": {
+              "Images": null,
+              "Name": "Op het product",
+              "Description": null
+            }
+          },
+          "UnstructuredInformation": null,
+          "ImprintOptions": [
+            {
+              "ChildImprints": null,
+              "PrintColorAsText": null,
+              "Dimension": null,
+              "ImprintTexts": {
+                "nl": {
+                  "Name": "Digitale bedrukking 1 kleur",
+                  "Description": "Digitale bedrukking"
+                }
+              },
+              "Sku": "A36-PD1_B_I1C_V",
+              "SupplierSku": "",
+              "DimensionsHeight": 0,
+              "DimensionsDiameter": 0,
+              "DimensionsWidth": 0,
+              "DimensionsDepth": 0,
+              "ImprintType": null,
+              "UnstructuredInformation": null,
+              "ProductPriceRegionBased": null,
+              "ProductPriceCountryBased": {
+                "NLD": {
+                  "RecommendedSellingPrice": [
+                    {
+                      "Price": 0.874,
+                      "Quantity": 1,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.684,
+                      "Quantity": 50,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.464,
+                      "Quantity": 100,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.404,
+                      "Quantity": 250,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.374,
+                      "Quantity": 500,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.292,
+                      "Quantity": 1000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.210,
+                      "Quantity": 2500,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.210,
+                      "Quantity": 5000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.210,
+                      "Quantity": 10000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.210,
+                      "Quantity": 20000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    }
+                  ],
+                  "GeneralBuyingPrice": [],
+                  "QuantityIncrements": 0,
+                  "VatPercentage": 0,
+                  "MinimumOrderQuantity": 1,
+                  "VatSettingId": 1
+                }
+              },
+              "PrintColor": 0,
+              "ImprintCosts": [
+                {
+                  "Sku": "A36-PD1_B_I1C_S",
+                  "SupplierSku": "",
+                  "Texts": {
+                    "nl": {
+                      "Name": "Setupkosten 1 kleur",
+                      "Description": null
+                    }
+                  },
+                  "ProductPriceRegionBased": null,
+                  "ProductPriceCountryBased": {
+                    "NLD": {
+                      "RecommendedSellingPrice": [
+                        {
+                          "Price": 59.00,
+                          "Quantity": 1,
+                          "OnRequest": false,
+                          "Valuta": "EURO"
+                        }
+                      ],
+                      "GeneralBuyingPrice": [],
+                      "QuantityIncrements": 0,
+                      "VatPercentage": 0,
+                      "MinimumOrderQuantity": 1,
+                      "VatSettingId": 1
+                    }
+                  },
+                  "IsActiveRegionBased": null,
+                  "IsActiveCountryBased": {
+                    "NLD": true,
+                    "BEL": true,
+                    "SWE": true,
+                    "ESP": true,
+                    "FRA": true,
+                    "LUX": true,
+                    "DEU": true,
+                    "AUT": true,
+                    "CHE": true,
+                    "PRT": true
+                  },
+                  "CalculationType": "Unique",
+                  "CalculationAmount": 1,
+                  "Requirement": null,
+                  "UnstructuredInformation": null
+                },
+                {
+                  "Sku": "A36-B_MAN",
+                  "SupplierSku": "",
+                  "Texts": {
+                    "nl": {
+                      "Name": "Handling",
+                      "Description": null
+                    }
+                  },
+                  "ProductPriceRegionBased": null,
+                  "ProductPriceCountryBased": {
+                    "NLD": {
+                      "RecommendedSellingPrice": [
+                        {
+                          "Price": 0.210,
+                          "Quantity": 1,
+                          "OnRequest": false,
+                          "Valuta": "EURO"
+                        }
+                      ],
+                      "GeneralBuyingPrice": [],
+                      "QuantityIncrements": 0,
+                      "VatPercentage": 0,
+                      "MinimumOrderQuantity": 1,
+                      "VatSettingId": 1
+                    }
+                  },
+                  "IsActiveRegionBased": null,
+                  "IsActiveCountryBased": {
+                    "NLD": true,
+                    "BEL": true,
+                    "SWE": true,
+                    "ESP": true,
+                    "FRA": true,
+                    "LUX": true,
+                    "DEU": true,
+                    "AUT": true,
+                    "CHE": true,
+                    "PRT": true
+                  },
+                  "CalculationType": "Multiplied",
+                  "CalculationAmount": 1,
+                  "Requirement": null,
+                  "UnstructuredInformation": null
+                }
+              ],
+              "IsActiveRegionBased": null,
+              "IsActiveCountryBased": {
+                "NLD": true,
+                "BEL": true,
+                "SWE": true,
+                "ESP": true,
+                "FRA": true,
+                "LUX": true,
+                "DEU": true,
+                "AUT": true,
+                "CHE": true,
+                "PRT": true
+              },
+              "ImportantInformation": null
+            },
+            {
+              "ChildImprints": null,
+              "PrintColorAsText": null,
+              "Dimension": null,
+              "ImprintTexts": {
+                "nl": {
+                  "Name": "Digitale bedrukking 2 kleuren",
+                  "Description": "Digitale bedrukking"
+                }
+              },
+              "Sku": "A36-PD1_B_I2C_V",
+              "SupplierSku": "",
+              "DimensionsHeight": 0,
+              "DimensionsDiameter": 0,
+              "DimensionsWidth": 0,
+              "DimensionsDepth": 0,
+              "ImprintType": null,
+              "UnstructuredInformation": null,
+              "ProductPriceRegionBased": null,
+              "ProductPriceCountryBased": {
+                "NLD": {
+                  "RecommendedSellingPrice": [
+                    {
+                      "Price": 1.748,
+                      "Quantity": 1,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 1.368,
+                      "Quantity": 50,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.928,
+                      "Quantity": 100,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.808,
+                      "Quantity": 250,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.748,
+                      "Quantity": 500,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.584,
+                      "Quantity": 1000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.420,
+                      "Quantity": 2500,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.420,
+                      "Quantity": 5000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.420,
+                      "Quantity": 10000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.420,
+                      "Quantity": 20000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    }
+                  ],
+                  "GeneralBuyingPrice": [],
+                  "QuantityIncrements": 0,
+                  "VatPercentage": 0,
+                  "MinimumOrderQuantity": 1,
+                  "VatSettingId": 1
+                }
+              },
+              "PrintColor": 0,
+              "ImprintCosts": [
+                {
+                  "Sku": "A36-PD1_B_I2C_S",
+                  "SupplierSku": "",
+                  "Texts": {
+                    "nl": {
+                      "Name": "Setupkosten 2 kleuren",
+                      "Description": null
+                    }
+                  },
+                  "ProductPriceRegionBased": null,
+                  "ProductPriceCountryBased": {
+                    "NLD": {
+                      "RecommendedSellingPrice": [
+                        {
+                          "Price": 59.00,
+                          "Quantity": 1,
+                          "OnRequest": false,
+                          "Valuta": "EURO"
+                        }
+                      ],
+                      "GeneralBuyingPrice": [],
+                      "QuantityIncrements": 0,
+                      "VatPercentage": 0,
+                      "MinimumOrderQuantity": 1,
+                      "VatSettingId": 1
+                    }
+                  },
+                  "IsActiveRegionBased": null,
+                  "IsActiveCountryBased": {
+                    "NLD": true,
+                    "BEL": true,
+                    "SWE": true,
+                    "ESP": true,
+                    "FRA": true,
+                    "LUX": true,
+                    "DEU": true,
+                    "AUT": true,
+                    "CHE": true,
+                    "PRT": true
+                  },
+                  "CalculationType": "Unique",
+                  "CalculationAmount": 1,
+                  "Requirement": null,
+                  "UnstructuredInformation": null
+                },
+                {
+                  "Sku": "A36-B_MAN",
+                  "SupplierSku": "",
+                  "Texts": {
+                    "nl": {
+                      "Name": "Handling",
+                      "Description": null
+                    }
+                  },
+                  "ProductPriceRegionBased": null,
+                  "ProductPriceCountryBased": {
+                    "NLD": {
+                      "RecommendedSellingPrice": [
+                        {
+                          "Price": 0.210,
+                          "Quantity": 1,
+                          "OnRequest": false,
+                          "Valuta": "EURO"
+                        }
+                      ],
+                      "GeneralBuyingPrice": [],
+                      "QuantityIncrements": 0,
+                      "VatPercentage": 0,
+                      "MinimumOrderQuantity": 1,
+                      "VatSettingId": 1
+                    }
+                  },
+                  "IsActiveRegionBased": null,
+                  "IsActiveCountryBased": {
+                    "NLD": true,
+                    "BEL": true,
+                    "SWE": true,
+                    "ESP": true,
+                    "FRA": true,
+                    "LUX": true,
+                    "DEU": true,
+                    "AUT": true,
+                    "CHE": true,
+                    "PRT": true
+                  },
+                  "CalculationType": "Multiplied",
+                  "CalculationAmount": 1,
+                  "Requirement": null,
+                  "UnstructuredInformation": null
+                }
+              ],
+              "IsActiveRegionBased": null,
+              "IsActiveCountryBased": {
+                "NLD": true,
+                "BEL": true,
+                "SWE": true,
+                "ESP": true,
+                "FRA": true,
+                "LUX": true,
+                "DEU": true,
+                "AUT": true,
+                "CHE": true,
+                "PRT": true
+              },
+              "ImportantInformation": null
+            },
+            {
+              "ChildImprints": null,
+              "PrintColorAsText": null,
+              "Dimension": null,
+              "ImprintTexts": {
+                "nl": {
+                  "Name": "Digitale bedrukking 3 kleuren",
+                  "Description": "Digitale bedrukking"
+                }
+              },
+              "Sku": "A36-PD1_B_I3C_V",
+              "SupplierSku": "",
+              "DimensionsHeight": 0,
+              "DimensionsDiameter": 0,
+              "DimensionsWidth": 0,
+              "DimensionsDepth": 0,
+              "ImprintType": null,
+              "UnstructuredInformation": null,
+              "ProductPriceRegionBased": null,
+              "ProductPriceCountryBased": {
+                "NLD": {
+                  "RecommendedSellingPrice": [
+                    {
+                      "Price": 2.622,
+                      "Quantity": 1,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 2.052,
+                      "Quantity": 50,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 1.392,
+                      "Quantity": 100,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 1.212,
+                      "Quantity": 250,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 1.122,
+                      "Quantity": 500,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.876,
+                      "Quantity": 1000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.630,
+                      "Quantity": 2500,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.630,
+                      "Quantity": 5000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.630,
+                      "Quantity": 10000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.630,
+                      "Quantity": 20000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    }
+                  ],
+                  "GeneralBuyingPrice": [],
+                  "QuantityIncrements": 0,
+                  "VatPercentage": 0,
+                  "MinimumOrderQuantity": 1,
+                  "VatSettingId": 1
+                }
+              },
+              "PrintColor": 0,
+              "ImprintCosts": [
+                {
+                  "Sku": "A36-PD1_B_I3C_S",
+                  "SupplierSku": "",
+                  "Texts": {
+                    "nl": {
+                      "Name": "Setupkosten 3 kleuren",
+                      "Description": null
+                    }
+                  },
+                  "ProductPriceRegionBased": null,
+                  "ProductPriceCountryBased": {
+                    "NLD": {
+                      "RecommendedSellingPrice": [
+                        {
+                          "Price": 59.00,
+                          "Quantity": 1,
+                          "OnRequest": false,
+                          "Valuta": "EURO"
+                        }
+                      ],
+                      "GeneralBuyingPrice": [],
+                      "QuantityIncrements": 0,
+                      "VatPercentage": 0,
+                      "MinimumOrderQuantity": 1,
+                      "VatSettingId": 1
+                    }
+                  },
+                  "IsActiveRegionBased": null,
+                  "IsActiveCountryBased": {
+                    "NLD": true,
+                    "BEL": true,
+                    "SWE": true,
+                    "ESP": true,
+                    "FRA": true,
+                    "LUX": true,
+                    "DEU": true,
+                    "AUT": true,
+                    "CHE": true,
+                    "PRT": true
+                  },
+                  "CalculationType": "Unique",
+                  "CalculationAmount": 1,
+                  "Requirement": null,
+                  "UnstructuredInformation": null
+                },
+                {
+                  "Sku": "A36-B_MAN",
+                  "SupplierSku": "",
+                  "Texts": {
+                    "nl": {
+                      "Name": "Handling",
+                      "Description": null
+                    }
+                  },
+                  "ProductPriceRegionBased": null,
+                  "ProductPriceCountryBased": {
+                    "NLD": {
+                      "RecommendedSellingPrice": [
+                        {
+                          "Price": 0.210,
+                          "Quantity": 1,
+                          "OnRequest": false,
+                          "Valuta": "EURO"
+                        }
+                      ],
+                      "GeneralBuyingPrice": [],
+                      "QuantityIncrements": 0,
+                      "VatPercentage": 0,
+                      "MinimumOrderQuantity": 1,
+                      "VatSettingId": 1
+                    }
+                  },
+                  "IsActiveRegionBased": null,
+                  "IsActiveCountryBased": {
+                    "NLD": true,
+                    "BEL": true,
+                    "SWE": true,
+                    "ESP": true,
+                    "FRA": true,
+                    "LUX": true,
+                    "DEU": true,
+                    "AUT": true,
+                    "CHE": true,
+                    "PRT": true
+                  },
+                  "CalculationType": "Multiplied",
+                  "CalculationAmount": 1,
+                  "Requirement": null,
+                  "UnstructuredInformation": null
+                }
+              ],
+              "IsActiveRegionBased": null,
+              "IsActiveCountryBased": {
+                "NLD": true,
+                "BEL": true,
+                "SWE": true,
+                "ESP": true,
+                "FRA": true,
+                "LUX": true,
+                "DEU": true,
+                "AUT": true,
+                "CHE": true,
+                "PRT": true
+              },
+              "ImportantInformation": null
+            },
+            {
+              "ChildImprints": null,
+              "PrintColorAsText": null,
+              "Dimension": null,
+              "ImprintTexts": {
+                "nl": {
+                  "Name": "Digitale bedrukking 4 kleuren",
+                  "Description": "Digitale bedrukking"
+                }
+              },
+              "Sku": "A36-PD1_B_I4C_V",
+              "SupplierSku": "",
+              "DimensionsHeight": 0,
+              "DimensionsDiameter": 0,
+              "DimensionsWidth": 0,
+              "DimensionsDepth": 0,
+              "ImprintType": null,
+              "UnstructuredInformation": null,
+              "ProductPriceRegionBased": null,
+              "ProductPriceCountryBased": {
+                "NLD": {
+                  "RecommendedSellingPrice": [
+                    {
+                      "Price": 3.496,
+                      "Quantity": 1,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 2.736,
+                      "Quantity": 50,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 1.856,
+                      "Quantity": 100,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 1.616,
+                      "Quantity": 250,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 1.496,
+                      "Quantity": 500,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 1.168,
+                      "Quantity": 1000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.840,
+                      "Quantity": 2500,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.840,
+                      "Quantity": 5000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.840,
+                      "Quantity": 10000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.840,
+                      "Quantity": 20000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    }
+                  ],
+                  "GeneralBuyingPrice": [],
+                  "QuantityIncrements": 0,
+                  "VatPercentage": 0,
+                  "MinimumOrderQuantity": 1,
+                  "VatSettingId": 1
+                }
+              },
+              "PrintColor": 0,
+              "ImprintCosts": [
+                {
+                  "Sku": "A36-PD1_B_I4C_S",
+                  "SupplierSku": "",
+                  "Texts": {
+                    "nl": {
+                      "Name": "Setupkosten 4 kleuren",
+                      "Description": null
+                    }
+                  },
+                  "ProductPriceRegionBased": null,
+                  "ProductPriceCountryBased": {
+                    "NLD": {
+                      "RecommendedSellingPrice": [
+                        {
+                          "Price": 59.00,
+                          "Quantity": 1,
+                          "OnRequest": false,
+                          "Valuta": "EURO"
+                        }
+                      ],
+                      "GeneralBuyingPrice": [],
+                      "QuantityIncrements": 0,
+                      "VatPercentage": 0,
+                      "MinimumOrderQuantity": 1,
+                      "VatSettingId": 1
+                    }
+                  },
+                  "IsActiveRegionBased": null,
+                  "IsActiveCountryBased": {
+                    "NLD": true,
+                    "BEL": true,
+                    "SWE": true,
+                    "ESP": true,
+                    "FRA": true,
+                    "LUX": true,
+                    "DEU": true,
+                    "AUT": true,
+                    "CHE": true,
+                    "PRT": true
+                  },
+                  "CalculationType": "Unique",
+                  "CalculationAmount": 1,
+                  "Requirement": null,
+                  "UnstructuredInformation": null
+                },
+                {
+                  "Sku": "A36-B_MAN",
+                  "SupplierSku": "",
+                  "Texts": {
+                    "nl": {
+                      "Name": "Handling",
+                      "Description": null
+                    }
+                  },
+                  "ProductPriceRegionBased": null,
+                  "ProductPriceCountryBased": {
+                    "NLD": {
+                      "RecommendedSellingPrice": [
+                        {
+                          "Price": 0.210,
+                          "Quantity": 1,
+                          "OnRequest": false,
+                          "Valuta": "EURO"
+                        }
+                      ],
+                      "GeneralBuyingPrice": [],
+                      "QuantityIncrements": 0,
+                      "VatPercentage": 0,
+                      "MinimumOrderQuantity": 1,
+                      "VatSettingId": 1
+                    }
+                  },
+                  "IsActiveRegionBased": null,
+                  "IsActiveCountryBased": {
+                    "NLD": true,
+                    "BEL": true,
+                    "SWE": true,
+                    "ESP": true,
+                    "FRA": true,
+                    "LUX": true,
+                    "DEU": true,
+                    "AUT": true,
+                    "CHE": true,
+                    "PRT": true
+                  },
+                  "CalculationType": "Multiplied",
+                  "CalculationAmount": 1,
+                  "Requirement": null,
+                  "UnstructuredInformation": null
+                }
+              ],
+              "IsActiveRegionBased": null,
+              "IsActiveCountryBased": {
+                "NLD": true,
+                "BEL": true,
+                "SWE": true,
+                "ESP": true,
+                "FRA": true,
+                "LUX": true,
+                "DEU": true,
+                "AUT": true,
+                "CHE": true,
+                "PRT": true
+              },
+              "ImportantInformation": null
+            },
+            {
+              "ChildImprints": null,
+              "PrintColorAsText": null,
+              "Dimension": null,
+              "ImprintTexts": {
+                "nl": {
+                  "Name": "Tampondruk 1 kleur",
+                  "Description": "Tampondruk"
+                }
+              },
+              "Sku": "A36-P2_B_I1C_V",
+              "SupplierSku": "",
+              "DimensionsHeight": 0,
+              "DimensionsDiameter": 0,
+              "DimensionsWidth": 0,
+              "DimensionsDepth": 0,
+              "ImprintType": null,
+              "UnstructuredInformation": null,
+              "ProductPriceRegionBased": null,
+              "ProductPriceCountryBased": {
+                "NLD": {
+                  "RecommendedSellingPrice": [
+                    {
+                      "Price": 1.014,
+                      "Quantity": 1,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.870,
+                      "Quantity": 50,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.376,
+                      "Quantity": 100,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.278,
+                      "Quantity": 250,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.224,
+                      "Quantity": 500,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.190,
+                      "Quantity": 1000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.182,
+                      "Quantity": 2500,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.14,
+                      "Quantity": 5000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.094,
+                      "Quantity": 10000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.094,
+                      "Quantity": 20000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    }
+                  ],
+                  "GeneralBuyingPrice": [],
+                  "QuantityIncrements": 0,
+                  "VatPercentage": 0,
+                  "MinimumOrderQuantity": 1,
+                  "VatSettingId": 1
+                }
+              },
+              "PrintColor": 0,
+              "ImprintCosts": [
+                {
+                  "Sku": "A36-P2_B_I1C_S",
+                  "SupplierSku": "",
+                  "Texts": {
+                    "nl": {
+                      "Name": "Setupkosten 1 kleur",
+                      "Description": null
+                    }
+                  },
+                  "ProductPriceRegionBased": null,
+                  "ProductPriceCountryBased": {
+                    "NLD": {
+                      "RecommendedSellingPrice": [
+                        {
+                          "Price": 55.00,
+                          "Quantity": 1,
+                          "OnRequest": false,
+                          "Valuta": "EURO"
+                        }
+                      ],
+                      "GeneralBuyingPrice": [],
+                      "QuantityIncrements": 0,
+                      "VatPercentage": 0,
+                      "MinimumOrderQuantity": 1,
+                      "VatSettingId": 1
+                    }
+                  },
+                  "IsActiveRegionBased": null,
+                  "IsActiveCountryBased": {
+                    "NLD": true,
+                    "BEL": true,
+                    "SWE": true,
+                    "ESP": true,
+                    "FRA": true,
+                    "LUX": true,
+                    "DEU": true,
+                    "AUT": true,
+                    "CHE": true,
+                    "PRT": true
+                  },
+                  "CalculationType": "Unique",
+                  "CalculationAmount": 1,
+                  "Requirement": null,
+                  "UnstructuredInformation": null
+                },
+                {
+                  "Sku": "A36-B_MAN",
+                  "SupplierSku": "",
+                  "Texts": {
+                    "nl": {
+                      "Name": "Handling",
+                      "Description": null
+                    }
+                  },
+                  "ProductPriceRegionBased": null,
+                  "ProductPriceCountryBased": {
+                    "NLD": {
+                      "RecommendedSellingPrice": [
+                        {
+                          "Price": 0.210,
+                          "Quantity": 1,
+                          "OnRequest": false,
+                          "Valuta": "EURO"
+                        }
+                      ],
+                      "GeneralBuyingPrice": [],
+                      "QuantityIncrements": 0,
+                      "VatPercentage": 0,
+                      "MinimumOrderQuantity": 1,
+                      "VatSettingId": 1
+                    }
+                  },
+                  "IsActiveRegionBased": null,
+                  "IsActiveCountryBased": {
+                    "NLD": true,
+                    "BEL": true,
+                    "SWE": true,
+                    "ESP": true,
+                    "FRA": true,
+                    "LUX": true,
+                    "DEU": true,
+                    "AUT": true,
+                    "CHE": true,
+                    "PRT": true
+                  },
+                  "CalculationType": "Multiplied",
+                  "CalculationAmount": 1,
+                  "Requirement": null,
+                  "UnstructuredInformation": null
+                }
+              ],
+              "IsActiveRegionBased": null,
+              "IsActiveCountryBased": {
+                "NLD": true,
+                "BEL": true,
+                "SWE": true,
+                "ESP": true,
+                "FRA": true,
+                "LUX": true,
+                "DEU": true,
+                "AUT": true,
+                "CHE": true,
+                "PRT": true
+              },
+              "ImportantInformation": null
+            },
+            {
+              "ChildImprints": null,
+              "PrintColorAsText": null,
+              "Dimension": null,
+              "ImprintTexts": {
+                "nl": {
+                  "Name": "Tampondruk 2 kleuren",
+                  "Description": "Tampondruk"
+                }
+              },
+              "Sku": "A36-P2_B_I2C_V",
+              "SupplierSku": "",
+              "DimensionsHeight": 0,
+              "DimensionsDiameter": 0,
+              "DimensionsWidth": 0,
+              "DimensionsDepth": 0,
+              "ImprintType": null,
+              "UnstructuredInformation": null,
+              "ProductPriceRegionBased": null,
+              "ProductPriceCountryBased": {
+                "NLD": {
+                  "RecommendedSellingPrice": [
+                    {
+                      "Price": 1.574,
+                      "Quantity": 1,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 1.352,
+                      "Quantity": 50,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.586,
+                      "Quantity": 100,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.432,
+                      "Quantity": 250,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.346,
+                      "Quantity": 500,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.292,
+                      "Quantity": 1000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.282,
+                      "Quantity": 2500,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.218,
+                      "Quantity": 5000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.146,
+                      "Quantity": 10000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.146,
+                      "Quantity": 20000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    }
+                  ],
+                  "GeneralBuyingPrice": [],
+                  "QuantityIncrements": 0,
+                  "VatPercentage": 0,
+                  "MinimumOrderQuantity": 1,
+                  "VatSettingId": 1
+                }
+              },
+              "PrintColor": 0,
+              "ImprintCosts": [
+                {
+                  "Sku": "A36-P2_B_I2C_S",
+                  "SupplierSku": "",
+                  "Texts": {
+                    "nl": {
+                      "Name": "Setupkosten 2 kleuren",
+                      "Description": null
+                    }
+                  },
+                  "ProductPriceRegionBased": null,
+                  "ProductPriceCountryBased": {
+                    "NLD": {
+                      "RecommendedSellingPrice": [
+                        {
+                          "Price": 55.0,
+                          "Quantity": 1,
+                          "OnRequest": false,
+                          "Valuta": "EURO"
+                        }
+                      ],
+                      "GeneralBuyingPrice": [],
+                      "QuantityIncrements": 0,
+                      "VatPercentage": 0,
+                      "MinimumOrderQuantity": 1,
+                      "VatSettingId": 1
+                    }
+                  },
+                  "IsActiveRegionBased": null,
+                  "IsActiveCountryBased": {
+                    "NLD": true,
+                    "BEL": true,
+                    "SWE": true,
+                    "ESP": true,
+                    "FRA": true,
+                    "LUX": true,
+                    "DEU": true,
+                    "AUT": true,
+                    "CHE": true,
+                    "PRT": true
+                  },
+                  "CalculationType": "Unique",
+                  "CalculationAmount": 2,
+                  "Requirement": null,
+                  "UnstructuredInformation": null
+                },
+                {
+                  "Sku": "A36-B_MAN",
+                  "SupplierSku": "",
+                  "Texts": {
+                    "nl": {
+                      "Name": "Handling",
+                      "Description": null
+                    }
+                  },
+                  "ProductPriceRegionBased": null,
+                  "ProductPriceCountryBased": {
+                    "NLD": {
+                      "RecommendedSellingPrice": [
+                        {
+                          "Price": 0.210,
+                          "Quantity": 1,
+                          "OnRequest": false,
+                          "Valuta": "EURO"
+                        }
+                      ],
+                      "GeneralBuyingPrice": [],
+                      "QuantityIncrements": 0,
+                      "VatPercentage": 0,
+                      "MinimumOrderQuantity": 1,
+                      "VatSettingId": 1
+                    }
+                  },
+                  "IsActiveRegionBased": null,
+                  "IsActiveCountryBased": {
+                    "NLD": true,
+                    "BEL": true,
+                    "SWE": true,
+                    "ESP": true,
+                    "FRA": true,
+                    "LUX": true,
+                    "DEU": true,
+                    "AUT": true,
+                    "CHE": true,
+                    "PRT": true
+                  },
+                  "CalculationType": "Multiplied",
+                  "CalculationAmount": 1,
+                  "Requirement": null,
+                  "UnstructuredInformation": null
+                }
+              ],
+              "IsActiveRegionBased": null,
+              "IsActiveCountryBased": {
+                "NLD": true,
+                "BEL": true,
+                "SWE": true,
+                "ESP": true,
+                "FRA": true,
+                "LUX": true,
+                "DEU": true,
+                "AUT": true,
+                "CHE": true,
+                "PRT": true
+              },
+              "ImportantInformation": null
+            },
+            {
+              "ChildImprints": null,
+              "PrintColorAsText": null,
+              "Dimension": null,
+              "ImprintTexts": {
+                "nl": {
+                  "Name": "Tampondruk 3 kleuren",
+                  "Description": "Tampondruk"
+                }
+              },
+              "Sku": "A36-P2_B_I3C_V",
+              "SupplierSku": "",
+              "DimensionsHeight": 0,
+              "DimensionsDiameter": 0,
+              "DimensionsWidth": 0,
+              "DimensionsDepth": 0,
+              "ImprintType": null,
+              "UnstructuredInformation": null,
+              "ProductPriceRegionBased": null,
+              "ProductPriceCountryBased": {
+                "NLD": {
+                  "RecommendedSellingPrice": [
+                    {
+                      "Price": 2.134,
+                      "Quantity": 1,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 1.834,
+                      "Quantity": 50,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.796,
+                      "Quantity": 100,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.586,
+                      "Quantity": 250,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.468,
+                      "Quantity": 500,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.394,
+                      "Quantity": 1000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.382,
+                      "Quantity": 2500,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.296,
+                      "Quantity": 5000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.198,
+                      "Quantity": 10000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.198,
+                      "Quantity": 20000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    }
+                  ],
+                  "GeneralBuyingPrice": [],
+                  "QuantityIncrements": 0,
+                  "VatPercentage": 0,
+                  "MinimumOrderQuantity": 1,
+                  "VatSettingId": 1
+                }
+              },
+              "PrintColor": 0,
+              "ImprintCosts": [
+                {
+                  "Sku": "A36-P2_B_I3C_S",
+                  "SupplierSku": "",
+                  "Texts": {
+                    "nl": {
+                      "Name": "Setupkosten 3 kleuren",
+                      "Description": null
+                    }
+                  },
+                  "ProductPriceRegionBased": null,
+                  "ProductPriceCountryBased": {
+                    "NLD": {
+                      "RecommendedSellingPrice": [
+                        {
+                          "Price": 55.0,
+                          "Quantity": 1,
+                          "OnRequest": false,
+                          "Valuta": "EURO"
+                        }
+                      ],
+                      "GeneralBuyingPrice": [],
+                      "QuantityIncrements": 0,
+                      "VatPercentage": 0,
+                      "MinimumOrderQuantity": 1,
+                      "VatSettingId": 1
+                    }
+                  },
+                  "IsActiveRegionBased": null,
+                  "IsActiveCountryBased": {
+                    "NLD": true,
+                    "BEL": true,
+                    "SWE": true,
+                    "ESP": true,
+                    "FRA": true,
+                    "LUX": true,
+                    "DEU": true,
+                    "AUT": true,
+                    "CHE": true,
+                    "PRT": true
+                  },
+                  "CalculationType": "Unique",
+                  "CalculationAmount": 3,
+                  "Requirement": null,
+                  "UnstructuredInformation": null
+                },
+                {
+                  "Sku": "A36-B_MAN",
+                  "SupplierSku": "",
+                  "Texts": {
+                    "nl": {
+                      "Name": "Handling",
+                      "Description": null
+                    }
+                  },
+                  "ProductPriceRegionBased": null,
+                  "ProductPriceCountryBased": {
+                    "NLD": {
+                      "RecommendedSellingPrice": [
+                        {
+                          "Price": 0.210,
+                          "Quantity": 1,
+                          "OnRequest": false,
+                          "Valuta": "EURO"
+                        }
+                      ],
+                      "GeneralBuyingPrice": [],
+                      "QuantityIncrements": 0,
+                      "VatPercentage": 0,
+                      "MinimumOrderQuantity": 1,
+                      "VatSettingId": 1
+                    }
+                  },
+                  "IsActiveRegionBased": null,
+                  "IsActiveCountryBased": {
+                    "NLD": true,
+                    "BEL": true,
+                    "SWE": true,
+                    "ESP": true,
+                    "FRA": true,
+                    "LUX": true,
+                    "DEU": true,
+                    "AUT": true,
+                    "CHE": true,
+                    "PRT": true
+                  },
+                  "CalculationType": "Multiplied",
+                  "CalculationAmount": 1,
+                  "Requirement": null,
+                  "UnstructuredInformation": null
+                }
+              ],
+              "IsActiveRegionBased": null,
+              "IsActiveCountryBased": {
+                "NLD": true,
+                "BEL": true,
+                "SWE": true,
+                "ESP": true,
+                "FRA": true,
+                "LUX": true,
+                "DEU": true,
+                "AUT": true,
+                "CHE": true,
+                "PRT": true
+              },
+              "ImportantInformation": null
+            },
+            {
+              "ChildImprints": null,
+              "PrintColorAsText": null,
+              "Dimension": null,
+              "ImprintTexts": {
+                "nl": {
+                  "Name": "Tampondruk 4 kleuren",
+                  "Description": "Tampondruk"
+                }
+              },
+              "Sku": "A36-P2_B_I4C_V",
+              "SupplierSku": "",
+              "DimensionsHeight": 0,
+              "DimensionsDiameter": 0,
+              "DimensionsWidth": 0,
+              "DimensionsDepth": 0,
+              "ImprintType": null,
+              "UnstructuredInformation": null,
+              "ProductPriceRegionBased": null,
+              "ProductPriceCountryBased": {
+                "NLD": {
+                  "RecommendedSellingPrice": [
+                    {
+                      "Price": 2.694,
+                      "Quantity": 1,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 2.316,
+                      "Quantity": 50,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 1.006,
+                      "Quantity": 100,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.740,
+                      "Quantity": 250,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.590,
+                      "Quantity": 500,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.496,
+                      "Quantity": 1000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.482,
+                      "Quantity": 2500,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.374,
+                      "Quantity": 5000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.250,
+                      "Quantity": 10000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    },
+                    {
+                      "Price": 0.250,
+                      "Quantity": 20000,
+                      "OnRequest": false,
+                      "Valuta": "EURO"
+                    }
+                  ],
+                  "GeneralBuyingPrice": [],
+                  "QuantityIncrements": 0,
+                  "VatPercentage": 0,
+                  "MinimumOrderQuantity": 1,
+                  "VatSettingId": 1
+                }
+              },
+              "PrintColor": 0,
+              "ImprintCosts": [
+                {
+                  "Sku": "A36-P2_B_I4C_S",
+                  "SupplierSku": "",
+                  "Texts": {
+                    "nl": {
+                      "Name": "Setupkosten 4 kleuren",
+                      "Description": null
+                    }
+                  },
+                  "ProductPriceRegionBased": null,
+                  "ProductPriceCountryBased": {
+                    "NLD": {
+                      "RecommendedSellingPrice": [
+                        {
+                          "Price": 55.0,
+                          "Quantity": 1,
+                          "OnRequest": false,
+                          "Valuta": "EURO"
+                        }
+                      ],
+                      "GeneralBuyingPrice": [],
+                      "QuantityIncrements": 0,
+                      "VatPercentage": 0,
+                      "MinimumOrderQuantity": 1,
+                      "VatSettingId": 1
+                    }
+                  },
+                  "IsActiveRegionBased": null,
+                  "IsActiveCountryBased": {
+                    "NLD": true,
+                    "BEL": true,
+                    "SWE": true,
+                    "ESP": true,
+                    "FRA": true,
+                    "LUX": true,
+                    "DEU": true,
+                    "AUT": true,
+                    "CHE": true,
+                    "PRT": true
+                  },
+                  "CalculationType": "Unique",
+                  "CalculationAmount": 4,
+                  "Requirement": null,
+                  "UnstructuredInformation": null
+                },
+                {
+                  "Sku": "A36-B_MAN",
+                  "SupplierSku": "",
+                  "Texts": {
+                    "nl": {
+                      "Name": "Handling",
+                      "Description": null
+                    }
+                  },
+                  "ProductPriceRegionBased": null,
+                  "ProductPriceCountryBased": {
+                    "NLD": {
+                      "RecommendedSellingPrice": [
+                        {
+                          "Price": 0.210,
+                          "Quantity": 1,
+                          "OnRequest": false,
+                          "Valuta": "EURO"
+                        }
+                      ],
+                      "GeneralBuyingPrice": [],
+                      "QuantityIncrements": 0,
+                      "VatPercentage": 0,
+                      "MinimumOrderQuantity": 1,
+                      "VatSettingId": 1
+                    }
+                  },
+                  "IsActiveRegionBased": null,
+                  "IsActiveCountryBased": {
+                    "NLD": true,
+                    "BEL": true,
+                    "SWE": true,
+                    "ESP": true,
+                    "FRA": true,
+                    "LUX": true,
+                    "DEU": true,
+                    "AUT": true,
+                    "CHE": true,
+                    "PRT": true
+                  },
+                  "CalculationType": "Multiplied",
+                  "CalculationAmount": 1,
+                  "Requirement": null,
+                  "UnstructuredInformation": null
+                }
+              ],
+              "IsActiveRegionBased": null,
+              "IsActiveCountryBased": {
+                "NLD": true,
+                "BEL": true,
+                "SWE": true,
+                "ESP": true,
+                "FRA": true,
+                "LUX": true,
+                "DEU": true,
+                "AUT": true,
+                "CHE": true,
+                "PRT": true
+              },
+              "ImportantInformation": null
+            }
+          ]
+        }
+      ],
+      "Ean": "",
+      "VideoUrl": null,
+      "Sku": "A36-MO1059-06-4G",
+      "SupplierSku": "MO1059-06-4G",
+      "ANumber": "A36",
+      "GatewayInformation": null,
+      "UnstructuredInformation": {},
+      "ForbiddenRegions": null,
+      "Errors": {},
+      "Warnings": {}
+    }
+  ],
+  "ChildHasErrors": false,
+  "DefaultProducts": {
+    "NLD": "A36-MO1059-06-4G"
+  },
+  "ProductDetails": {
+    "nl": {
+      "Name": "MEMORAMA",
+      "Description": "Full colour bedrukking mogelijk - bekijk de prijzen achterin de prijslijst. USB memory stick in creditcard formaat van ABS. Het platte oppervlak van dit product maakt een full colour bedrukking van uw logo en afbeeldingen mogelijk. Onze USB prijzen zijn exclusief de €0,50 thuiskopie heffing. Deze heffing is van toepassing op alle USB leveringen in Nederland vanaf 01-01-2021.",
+      "ShortDescription": "Creditcard. USB flash      4GB MO1059-06",
+      "MetaName": null,
+      "MetaDescription": null,
+      "MetaKeywords": null,
+      "Image": {
+        "Url": "https://promidatabase.s3.eu-central-1.amazonaws.com/Images/Live/32cd7f8b-1df9-47db-a33b-3f5740539c94/20737cb3eb4634eae0968b102bc5bfc35b8137ffb9b2427c87df6e6504f040d8.jpg",
+        "Description": "",
+        "FileName": "mo1059-06.jpg"
+      },
+      "MediaGalleryImages": null,
+      "InformationFiles": null,
+      "IsActive": true,
+      "ConfigurationFields": null,
+      "UnstructuredInformation": {
+        "SupplierMainCategory": "ELECTRONICS/USB-POWER_BANK/USB_STICKS",
+        "SupplierSearchColor": "WHITE"
+      },
+      "WebShopInformation": {
+        "ProductSizeText": {
+          "InformationLabel": "Informatie over de afmetingen van producten",
+          "InformationValue": "85X55X3 MM"
+        }
+      },
+      "PIMV1Information": null,
+      "ImportantInformation": null
+    }
+  },
+  "ProductCosts": null,
+  "ProductPriceRegionBased": null,
+  "ProductPriceCountryBased": {
+    "NLD": {
+      "RecommendedSellingPrice": [
+        {
+          "Price": 4.66,
+          "Quantity": 300,
+          "OnRequest": false,
+          "Valuta": "EURO"
+        }
+      ],
+      "GeneralBuyingPrice": [],
+      "QuantityIncrements": 1,
+      "VatPercentage": 0,
+      "MinimumOrderQuantity": 1,
+      "VatSettingId": 1
+    }
+  },
+  "NonLanguageDependedProductDetails": {
+    "SearchColor": "Undefined",
+    "HexColor": null,
+    "Fragile": false,
+    "Category": "ELECTRONICS/USB-POWER_BANK/USB_STICKS",
+    "TexodataCategory": null,
+    "SecondaryCategories": null,
+    "CountryOfOrigin": null,
+    "PIMV1ImageHash": null,
+    "ProductFiltersByGroup": null,
+    "Weight": 0,
+    "DimensionsLength": 0,
+    "DimensionsHeight": 0,
+    "DimensionsDiameter": 0,
+    "DimensionsWidth": 0,
+    "DimensionsDepth": 0,
+    "Brand": "",
+    "USBItem": false,
+    "CustomsTariffNumber": null
+  },
+  "BatteryInformation": null,
+  "ImprintPositions": null,
+  "Ean": null,
+  "VideoUrl": null,
+  "Sku": "A36-MO1059",
+  "SupplierSku": "MO1059",
+  "ANumber": "A36",
+  "GatewayInformation": null,
+  "UnstructuredInformation": {},
+  "ForbiddenRegions": null,
+  "Errors": {},
+  "Warnings": {}
+}
