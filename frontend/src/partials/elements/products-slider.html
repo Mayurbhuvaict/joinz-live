@@ -1,0 +1,7 @@
+<ul class="products-slider {{#ifpage 'home' 'product'}}js-products-slider{{/ifpage}} {{#ifpage 'category'}}js-products-slider-small{{/ifpage}}">
+    {{#each products-list}}
+        <li>
+            {{> product-card}}
+        </li>
+    {{/each}}
+</ul>

@@ -1,0 +1,21 @@
+<section class="section-timeline">
+    <div class="grid-container">
+        <img src="../../assets/img/svg/timeline-arrow.svg" alt="" class="hide-for-small-only">
+        <img src="../../assets/img/svg/timeline-arrow-small.svg" alt="" class="show-for-small-only">
+
+        <div class="grid-x grid-margin-x">
+            {{#each timeline-events}}
+                <div class="cell xlarge-2 medium-4 small-6">
+                    <div class="timeline-period">
+                        <div class="timeline-block background-{{background-order}}">
+                            <p>{{name}}</p>
+                            <span>{{year}}</span>
+                        </div>
+                        
+                        <p>{{description}}</p>
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+    </div>
+</section>

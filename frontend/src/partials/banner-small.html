@@ -1,0 +1,25 @@
+<div class="banner banner-small">
+    <div class="background"></div>
+    
+    <div class="grid-container">
+        {{#ifpage 'overview' 'orders'}}
+            <p>Hi [customer name], <a href="#">Logout</a></p>
+        {{/ifpage}}
+
+        {{#ifpage 'contact'}}
+            <h1>Contact</h1>
+        {{/ifpage}}
+
+        {{#ifpage 'upload-logo'}}
+            <h1>Upload logo of drukinfo</h1>
+        {{/ifpage}}
+
+        {{#ifpage 'faq'}}
+            <h1>Veel gestelde vragen</h1>
+        {{/ifpage}}
+
+        {{#ifpage 'order-process'}}
+            <h1>Pijlsnel en makkelijk bestellen</h1>
+        {{/ifpage}}
+    </div>    
+</div>

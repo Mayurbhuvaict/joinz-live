@@ -1,0 +1,58 @@
+.menu-small {
+    position: relative;
+    top: -17px;
+    z-index: 5;
+
+    nav {
+        padding: 0 28px;
+    }
+
+    li {
+        min-width: 133px;
+        margin: 0 18px;
+        border: 1px solid $primary-color;
+        border-radius: $global-radius;
+        box-shadow: 0px 0px 10px 0px transparent;
+        background: $white;
+        text-align: center;   
+        text-transform: uppercase;
+        transition: 0.2s ease-in-out;
+
+        a {
+            display: block;
+            padding: 5px;
+
+            &.current,
+            &:hover {
+                box-shadow: 0px 0px 10px 0px #5FB7B973;
+            }
+        }
+    }
+}
+
+// Responsive 
+@include breakpoint(xlarge down) {
+    .menu-small {
+        li {
+            margin: 0 8px;
+        }
+    }
+}
+
+@include breakpoint(large down) {
+    .menu-small {
+        ul {
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        li {
+            min-width: unset;
+            margin-bottom: 10px;
+            
+            a {
+                padding: 5px 10px;
+            }
+        }
+    }
+}

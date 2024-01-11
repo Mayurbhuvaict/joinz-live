@@ -1,0 +1,41 @@
+.advantages-bar {
+    padding: 29px 0;
+    font-weight: 500;
+
+    .icon-check-circle {
+        margin-right: 10px;
+    }
+}
+
+// Responsive
+@include breakpoint(large down) {
+    .advantages-bar {
+        padding: 20px;
+    }
+}
+
+@include breakpoint(medium down) {
+    .advantages-bar {
+        padding: 10px;
+        overflow-x: scroll;
+
+        .icon-check-circle {
+            margin-top: 5px;
+            margin-right: 5px;
+        }
+
+        ul {
+            display: block;
+            min-width: 780px;
+            text-align: center;
+
+            li {
+                display: inline-block;
+
+                & + li {
+                    margin-left: 15px;
+                }
+            }
+        }
+    }
+}

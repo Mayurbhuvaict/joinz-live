@@ -1,0 +1,38 @@
+<div class="navigation">
+    <nav class="grid-container">
+        <div data-responsive-toggle="toggle-nav">
+            <a href="#" data-toggle="toggle-nav">
+                <i class="icon-responsive-menu"></i>
+            </a>
+        </div>
+
+        <div class="navigation-inner flex-container align-justify align-middle fast" id="toggle-nav"
+             data-animate="fade-in fade-out">
+            <div class="button-categories">
+                <button class="button primary button-gradient hide-for-small-only">
+                    All categories
+                    <span class="show-for-medium">
+                        <i class="icon-caret-down-white"></i>
+                    </span>
+                </button>
+
+                <button class="button flex-container align-middle" data-responsive-toggle="toggle-nav">
+                    <span class="show-for-small-only" data-toggle="toggle-nav">
+                        <i class="icon-close-menu-white"></i>
+                    </span>
+                    All categories
+                </button>
+            </div>
+            
+            {{> menu-categories}}
+
+            <ul class="menu flex-container align-middle show-for-large">
+                {{#each navigation-items}}
+                    <li>
+                        <a href="{{href}}">{{text}}</a>
+                    </li>
+                {{/each}}           
+            </ul>
+        </div>
+    </nav>
+</div>

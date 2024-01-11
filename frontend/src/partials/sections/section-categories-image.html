@@ -1,0 +1,29 @@
+<section class="section-categories hide-for-small-only">
+    <div class="grid-container">
+        <div class="flex-container align-middle">
+            <div class="section-image">
+                <div class="background"></div>
+                <img src="../assets/img/{{image}}" alt="{{image-description}}">
+            </div>
+
+            <div class="section-content">
+                <div class="section-head">
+                    <h4>{{title}}</h4>
+                </div>
+
+                <ul class="menu js-office-slider">
+                    {{#each content}}
+                        <li>
+                            {{> category}}
+                        </li>
+                    {{/each}}
+                </ul>
+
+                <a href="#" class="link-more-info flex-container align-middle">
+                    <i class="icon-caret-right"></i>
+                    <span>Alle Kantoorartikelen</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>

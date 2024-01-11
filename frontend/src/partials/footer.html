@@ -1,0 +1,121 @@
+<footer class="footer">
+    <div class="background"></div>
+
+    <div class="grid-container">
+        <div class="grid-x grid-margin-x">
+            <div class="cell large-3 medium-5 ">
+                <div class="info">
+                    <h6>Contact</h6>
+
+                    <div class="flex-container">
+                        <span>
+                            <i class="icon-pointer"></i>
+                        </span>
+
+                        <div class="info-content">
+                            <p>
+                                Henri Nouwenstraat 34 <br>
+                                3863 HV Nijkerk
+                            </p>
+
+                            <p>
+                                P.O. Box 1046, 3860 BA Nijkerk
+                                <a href="mailto:info@Joinz.nl">info@Joinz.nl</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info">
+                    <h6>VRAGEN? BEL ONS</h6>
+
+                    <div class="flex-container">
+                        <span>
+                            <i class="icon-phone"></i>
+                        </span>
+
+                        <div class="info-content">
+                            <p>
+                                <a href="tel:033-2464177">033-2464177</a>
+                                Maandag t/m vrijdag <br>
+                                09:00-17:00
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cell large-5 medium-7">
+                <div class="grid-x grid-margin-x">
+                    <div class="cell small-7">
+                        <h6>Relatlegeschenken</h6>
+        
+                        <ul class="vertical menu">
+                            {{#each footer.nav}}
+                            <li>
+                                <a href="#"> {{ text }} </a>
+                            </li>
+                            {{/each}}
+                        </ul>
+                    </div>
+
+                    <div class="cell small-5">
+                        <h6>Categories</h6>
+
+                        <ul class="vertical menu">
+                            {{#each footer.categories}}
+                            <li>
+                                <a href="#">{{ text }}</a>
+                            </li>
+                            {{/each}}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cell large-4 medium-12">
+                <div class="signup">
+                    <h6>Sign up for Newsletter</h6>
+
+                    <div class="input-group">
+                        <input class="input-group-field" type="email" placeholder="name@dmain.com">
+
+                        <button type="submit" class="button">
+                            <i class="icon-arrow-right-white"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="social">
+                    <h6>Find Us</h6>
+
+                    <ul class="menu">
+                        {{#each footer.social}}
+                        <li>
+                            <a href="#">
+                                <i class="{{icon}}"></i>
+                            </a>
+                        </li>
+                        {{/each}}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom flex-container align-justify align-middle">
+            <p>© 2022 Joinz •  All Rights Reserved</p>
+            
+            <a href="#">
+                <img src="../assets/img/svg/logo-joinz-white.svg" alt="Joinz logo">
+            </a>    
+
+            <ul class="menu">
+                {{#each footer.payment}}
+                    <li>
+                        <img src="../assets/img/svg/{{image}}" alt="">
+                    </li>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+</footer>

@@ -1,0 +1,119 @@
+.form-find-product {
+    position: relative;
+    padding-top: 175px;
+
+    fieldset {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin-bottom: 35px;
+        opacity: 1;
+        visibility: visible;
+        overflow: hidden;
+        transition: 0.7s ease-in-out;
+
+        &.hidden {
+            opacity: 0;
+            visibility: hidden; 
+
+            label {
+                &:nth-of-type(1) {
+                    transform: translateX(-190px);
+                }
+        
+                &:nth-of-type(2) {
+                    transform: translateX(190px);
+                }   
+
+                transition: transform 0.4s ease-in-out;
+            }
+        }
+    }
+
+    label {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        transform: none;
+        width: 175px;
+        min-height: 137px;
+        padding: 14px 10px 23px 10px;
+        background: $white;
+        border: 1px solid #d2d2d2;
+        border-radius: 6px;
+        transition: border-color 0.2s ease-in;
+        font-size: rem-calc(16);
+        transform: none;
+        
+
+        &:before,
+        &:after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            display: inline-block;
+            border-radius: 50%;
+        }
+
+        &:before {
+            bottom: 8px;
+            width: 15px;
+            height: 15px;
+            border: 1px solid #d2d2d2;
+            transition: border-color 0.2s ease-in, opacity 1s ease-in;
+        }
+
+        &:after {
+            bottom: 12px;
+            width: 7px;
+            height: 7px;
+            background: transparent;
+            transition: background 0.2s ease-in opacity 1s ease-in;
+        }
+
+        span {
+            display: inline-block;
+            width: 100%;
+        }
+    }
+
+    input[type="radio"] {
+        -webkit-appearance: none;
+        appearance: none;
+    }
+
+    input:checked {
+        & + label {
+            border: 1px solid #1cadb7;
+
+            &:before {
+                border-color: #1cadb7;
+            }
+
+            &:after {
+                background: #1cadb7;
+            }
+
+            .icon-present {
+                background: url(../img/svg/icons/icon-present-green.svg);
+                background-size: cover;
+            }
+            .icon-speaker {
+                background: url(../img/svg/icons/icon-speaker-green.svg);
+                background-size: cover;
+            }
+        }
+    }
+
+    .loading-bar {
+        max-width: 374px;
+        margin: 0 auto 33px;
+    }
+}

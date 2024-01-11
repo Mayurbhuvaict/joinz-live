@@ -1,0 +1,41 @@
+<section class="section-login">
+    <div class="grid-container">
+        <div class="grid-x grid-margin-x">
+            <div class="cell large-6">
+                <form action="" class="form form-login">
+                    <fieldset>
+                        <h4>Login</h4>
+
+                        <div class="grid-x">
+                            <div class="cell medium-12">
+                                <div class="field-group">
+                                    <label class="form-label" for="email">Email</label>
+                                    <input class="form-control" type="email" id="email" name="email" placeholder="Emailadres" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid-x">
+                            <div class="cell medium-12">
+                                <div class="field-group">
+                                    <label class="form-label" for="password">Password</label>
+                                    <input class="form-control" type="password" id="password" name="password" placeholder="Wachtwoord" required>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <a href="#" class="link-underlined">Wachtwoord vergeten ></a>
+                        <div class="flex-container align-right">
+                            <a href="#" class="button small">Inloggen</a>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+            <div class="cell large-6">
+                {{> form-register}}
+            </div>
+        </div>
+    </div>
+</section>

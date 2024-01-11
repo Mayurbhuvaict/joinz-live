@@ -1,0 +1,142 @@
+.discounts {
+    margin: -12px 0;
+
+    .discount {
+        position: relative;
+        margin: 12px 0;
+        padding: 25px 0px 24px 39px;
+        background: linear-gradient(to right, #79e7cc, #3abebb);
+        border-radius: $global-radius;
+        color: $white;
+        overflow: hidden;
+
+        .content {
+            span {
+                font-weight: bold;
+            }
+        }
+
+        .button {
+            margin: 0;
+            padding: 16px 27px;
+        }
+
+        .button-red {
+            background-color: #EC001D;
+        }
+
+        .image {
+            margin-top: -21px;
+            margin-bottom: -28px;
+        }
+
+        .content,
+        .image {
+            z-index: 1;
+        }
+    }
+
+    .discount-personal {
+        .content {
+            width: 62%;
+        }
+
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 160px;
+            height: 100%;
+            background-image: url(../img/svg/bg-discount-left.svg);
+            background-size: cover;
+        }
+    }
+
+    .discount-bottles {
+        padding-top: 18px;
+        font-size: rem-calc(32);
+
+        p {
+            margin-bottom: 20px;
+            line-height: 1.2;
+            letter-spacing: 0.04rem;
+        }
+
+        .content {
+            width: 55%;
+        }
+
+        .background {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 570px;
+            height: 65px;
+            background-image: url(../img/svg/bg-discount-bottom.svg);
+            background-size: cover;
+        }
+    }
+}
+
+
+// Responsive
+@include breakpoint(medium down) {
+    .discounts {
+        margin-bottom: 12px;
+    }
+}
+
+@include breakpoint(small down) {
+    .discounts {
+        margin-bottom: 37px;
+
+        .discount {
+            margin: 8px 0;
+            padding: 54px 22px 16px;
+
+            .button {
+                margin-top: 28px;
+                padding: 12px 27px;
+            }
+
+            .image {
+                position: absolute;
+                transform: scale(0.8);
+            }
+
+            .content {
+                width: 100%;
+                z-index: 10;
+
+                p {
+                    width: 63%;
+                }
+            }
+        }
+
+        .discount-personal {
+            .image {
+                top: 0;
+                right: -16px;
+            }
+        }
+
+        .discount-bottles {
+            font-size: rem-calc(24);
+
+            p {
+                line-height: initial;
+                letter-spacing: initial;
+
+                b {
+                    font-size: rem-calc(32);
+                }
+            }
+
+            .image {
+                top: 17px;
+                right: 7px;
+            }
+        }
+    }
+}

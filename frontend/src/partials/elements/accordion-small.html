@@ -1,0 +1,24 @@
+<div class="accordion-small">
+    <div class="grid-container">
+        <div class="accordion-inner">
+            <div class="accordion-top">
+                <p>{{title}}</p>    
+            </div>
+        
+            {{#each units}}
+                <div class="accordion-section">
+                    <div class="accordion-head">
+                        <span class="flex-container align-justify align-middle">
+                            {{head}}
+                            <i class="icon-caret-down"></i>
+                        </span>
+                    </div>
+        
+                    <div class="accordion-body">
+                        <p>{{text}}</p>
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+    </div>  
+</div>

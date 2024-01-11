@@ -1,0 +1,20 @@
+<section class="section-categories hide-for-small-only">
+    <div class="grid-container">
+        <div class="section-head flex-container align-justify align-middle">
+            <h4>{{title}}</h4>
+            <a href="#" class="link-more-info flex-container align-middle">
+                <i class="icon-caret-right"></i>
+                <span>Alle relatiegeschenken</span>
+            </a>
+        </div>
+        
+        <ul class="menu flex-container align-justify">
+            {{#each content}}
+            <li>
+                {{> category}}
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+</section>
+

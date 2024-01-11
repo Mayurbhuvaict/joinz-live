@@ -1,0 +1,18 @@
+- image: shopping-cart-product.png
+  image-description: Product
+  description-lines: 
+    - Wijnkist Shiraz
+    - zwart
+    - 3 Kleuren druk 200 x 500 mm
+  quantity: 520
+  price: 5,89
+  total: 3062,9
+- image: shopping-cart-product.png
+  image-description: Product
+  description-lines: 
+    - Wijnkist Shiraz
+    - zwart
+    - 3 Kleuren druk 200 x 500 mm
+  quantity: 520
+  price: 5,89
+  total: 3062,9

@@ -1,0 +1,22 @@
+.account-item {
+    margin-bottom: 63px;
+
+    h5 {
+        margin-bottom: 20px;
+        color: $primary-color;
+        font-size: rem-calc(24);
+    }
+
+    p {
+        margin-bottom: 27px;   
+    }
+}
+
+// Responsive 
+@include breakpoint(small down) {
+    .account-item {
+        h5 {
+            font-size: rem-calc(20);
+        }
+    }
+}

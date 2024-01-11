@@ -1,0 +1,121 @@
+.shopping-cart-product {
+    position: relative;
+    margin-top: 12px;
+    padding-bottom: 1rem;
+    font-size: rem-calc(14);
+
+    &:not(:last-child) {
+        border-bottom: 1px solid #C4C4C4;
+    }
+
+    input[type=number] {
+        width: 40px;
+        height: 26px;
+        padding: 0;
+        border-radius: 5px;
+        font-size: rem-calc(14);
+        text-align: center;
+        -moz-appearance: textfield;
+
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    }
+
+    span {
+        display: inline-block;
+        margin-top: 4px;
+    }
+
+    .cell:not(:first-child) {
+        padding-left: 20px;
+    }
+
+    .remove-button {
+        position: absolute;
+        top: 5px;
+        left: 0;
+        width: 12px;
+        height: 12px;
+
+        &:before,
+        &:after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 3px;
+            display: block;
+            width: 100%;
+            height: 2px;
+            border-radius: 10px;
+            background: $primary-color;
+        }
+
+        &::before {
+            transform: rotate(-45deg);
+        }
+
+        &:after {
+            transform: rotate(45deg);
+        }
+    }
+
+    .edit-button {
+        display: block;
+        text-decoration: underline;
+        color: $dark-gray;
+    }
+
+    .shopping-cart-image {
+        max-width: 100px;
+        margin-top: 5px;
+        margin-right: 17px;
+        overflow: hidden;
+
+        img {
+            max-width: 100%;
+        }
+    }
+
+    .shopping-cart-description {
+        margin-top: 5px;
+        text-transform: uppercase;
+        
+        p {
+            line-height: 1.8;
+        }
+
+        span {
+            display: block;
+            margin-top: 0;
+
+            &:first-child {
+                font-weight: 700;
+            }
+        }
+    }
+}
+
+// Responsive 
+@include breakpoint(small down) {
+    .shopping-cart-product {
+        .shopping-cart-description {
+            text-align: right;
+        }
+
+        .cell:not(:first-child) {
+            margin-top: 5px;
+            padding-left: 0;
+        }    
+
+        span {
+            margin: 0;
+        }
+
+        input {
+            margin: 0;
+        }
+    }
+}

@@ -1,0 +1,44 @@
+.list-categories {
+    margin-bottom: -12px;
+
+    ul {
+        margin: 0;
+        list-style: none;
+        overflow-x: auto;
+        scrollbar-color: #C4C4C4 #D3D3D3;
+        scrollbar-width: thin;
+
+        &::-webkit-scrollbar {
+            height: 12px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: #D3D3D3;
+            border-radius: 9px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: #79797c;
+            border-radius: 9px;
+        }
+
+        li {
+            margin: 0 6px 10px;
+        }
+
+        a {
+            display: inline-block;
+            padding: 8px 15px;
+            border: 1px solid #DEE9EE;
+            border-radius: 6px;
+            color: $black;
+            transition: 0.2s ease-in-out;
+            white-space: nowrap;
+
+            &:hover {
+                background: $secondary-color;
+                color: $white;
+            }
+        }
+    }
+}

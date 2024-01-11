@@ -1,0 +1,161 @@
+<form action="" class="form form-login">
+    <span class="product-label primary-color medium-weight small">Herhaalbestelling binnen 1 minuut</span>
+    <fieldset>
+        <h4>Register</h4>
+
+        <div class="grid-x">
+            <div class="cell medium-12">
+                <div class="field-group">
+                    <label class="form-label" for="personalSalutation">Salutation*</label>
+                    <select class="form-control form-select" id="personalSalutation" name="salutationId" required="required">
+                        <option disabled="disabled" selected="selected" value="">Enter salutation...</option>
+                        <option value="Not specified">Not specified</option>
+                        <option value="Mrs.">Mrs.</option>
+                        <option value="Mr.">Mr.</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid-x grid-margin-x">
+            <div class="cell medium-6">
+                <div class="field-group">
+                    <label class="form-label visible" for="first-name">Voornaam</label>
+                    <input class="form-control" type="text" id="first-name" name="first-name" required>
+                </div>
+            </div>
+            <div class="cell medium-6">
+                <div class="field-group">
+                    <label class="form-label visible" for="last-name">Achternaam</label>
+                    <input class="form-control" type="text" id="last-name" name="last-name" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid-x">
+            <div class="cell medium-12">
+                <div class="field-group">
+                    <label class="form-label" for="email">Email</label>
+                    <input class="form-control" type="email" id="email" name="email" placeholder="Emailadres"
+                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid-x">
+            <div class="cell medium-12">
+                <div class="field-group">
+                    <label class="form-label" for="password">Password</label>
+                    <input class="form-control" type="password" id="password" name="password" placeholder="Wachtwoord"
+                        required>
+                    <span class="field-label">Minimaal 8 tekens</span>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <h5>Mijn adres</h5>
+
+        <div class="grid-x grid-margin-x">
+            <div class="cell medium-8">
+                <div class="field-group">
+                    <label class="form-label" for="street">Straat</label>
+                    <input class="form-control" type="text" id="street" name="street" placeholder="Straat" required>
+                </div>
+            </div>
+            <div class="cell medium-4">
+                <div class="field-group">
+                    <label class="form-label" for="house-number">Huisnummer</label>
+                    <input class="form-control" type="text" id="house-number" name="house-number"
+                        placeholder="Huisnummer" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid-x grid-margin-x">
+            <div class="cell medium-4">
+                <div class="field-group">
+                    <label class="form-label" for="postcode">Postcode</label>
+                    <input class="form-control" type="text" id="postcode" name="postcode" placeholder="Postcode"
+                        required>
+                </div>
+            </div>
+            <div class="cell medium-8">
+                <div class="field-group">
+                    <label class="form-label" for="place">Plaats</label>
+                    <input class="form-control" type="text" id="place" name="place" placeholder="Plaats" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid-x">
+            <div class="cell medium-12">
+                <div class="field-group">
+                    <label class="form-label" for="country">Country</label>
+                    <input class="form-control" type="text" id="country" name="country" placeholder="Country" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid-x">
+            <div class="cell medium-12">
+                <div class="field-group">
+                    <input class="form-checkbox js-additional-address" type="checkbox" id="delivery" name="delivery" required>
+                    <label for="delivery">Factuur en verzendadres komen niet overeen</label>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset class="additional-address hidden">
+        <h5>Mijn adres</h5>
+
+        <div class="grid-x grid-margin-x">
+            <div class="cell medium-8">
+                <div class="field-group">
+                    <label class="form-label" for="street">Straat</label>
+                    <input class="form-control" type="text" id="street" name="street" placeholder="Straat" required>
+                </div>
+            </div>
+            <div class="cell medium-4">
+                <div class="field-group">
+                    <label class="form-label" for="house-number">Huisnummer</label>
+                    <input class="form-control" type="text" id="house-number" name="house-number"
+                        placeholder="Huisnummer" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid-x grid-margin-x">
+            <div class="cell medium-4">
+                <div class="field-group">
+                    <label class="form-label" for="postcode">Postcode</label>
+                    <input class="form-control" type="text" id="postcode" name="postcode" placeholder="Postcode"
+                        required>
+                </div>
+            </div>
+            <div class="cell medium-8">
+                <div class="field-group">
+                    <label class="form-label" for="place">Plaats</label>
+                    <input class="form-control" type="text" id="place" name="place" placeholder="Plaats" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid-x">
+            <div class="cell medium-12">
+                <div class="field-group">
+                    <label class="form-label" for="country">Country</label>
+                    <input class="form-control" type="text" id="country" name="country" placeholder="Country" required>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <div class="flex-container align-right">
+            <a href="#" class="button small">Registreren</a>
+        </div>
+    </fieldset>
+</form>

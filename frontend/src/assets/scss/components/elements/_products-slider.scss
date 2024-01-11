@@ -1,0 +1,25 @@
+.products-slider {
+    margin: 0;
+    list-style: none;
+
+    .product-card {
+        height: 100%;
+        margin: 0 auto;
+    }
+
+    .slick-track {
+        display: flex;
+    }
+
+    .slick-slide {
+        height: inherit;
+
+        & > div {
+            height: 100%;
+
+            & > li {
+                height: 100%;
+            }
+        }
+    }
+}

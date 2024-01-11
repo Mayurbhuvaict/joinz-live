@@ -1,0 +1,16 @@
+.shopping-cart {
+    .shopping-cart-head {
+        background: #f6f6f6;
+        font-size: rem-calc(12);
+        font-weight: 700;
+        text-transform: uppercase;
+
+        p {
+            margin: 0;
+        }
+
+        .cell {
+            padding-left: 20px;
+        }
+    }
+}

@@ -1,0 +1,20 @@
+.about-asset {
+    width: 200px;
+    min-height: 57px;
+    padding: 5px 1rem;
+    background: #2BB5B812;
+    border-radius: $global-radius;
+    font-size: rem-calc(16);
+    line-height: 1.2;
+
+    span {
+        width: 113px;
+    }
+}
+
+// Responsive 
+@include breakpoint(medium down) {
+    .about-asset {
+        width: 188px;
+    }
+}

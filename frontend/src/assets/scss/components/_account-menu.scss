@@ -1,0 +1,49 @@
+.account-menu {
+    position: relative;
+    top: -60px;
+
+    .account-menu-inner {
+        max-width: 772px;
+        margin: 0 auto;
+    }
+
+    .account-menu-item {
+        height: 120px;
+
+        a {
+            height: 100%;
+            background: $white;
+            border: 2px solid transparent;
+            border-radius: 5px;
+            box-shadow: 0px 0px 4px rgba(43, 181, 184, 0.25);
+            color: $primary-color;
+            text-transform: uppercase;
+            transition: 0.4s ease-in-out;
+
+            &.current,
+            &:hover {
+                box-shadow: 0px 0px 30px 10px rgba(95, 183, 185, 0.48);
+                border: 2px solid $primary-color;
+            }
+        }
+
+        i {
+            margin-bottom: 20px;
+        }
+    }
+}
+
+// Responsive
+@include breakpoint(xlarge down) {
+    .account-menu {
+        margin: 0 20px;
+    }
+}
+
+@include breakpoint(small down) {
+    .account-menu {
+        .account-menu-item {
+            margin-bottom: 15px;
+        }
+    }
+}

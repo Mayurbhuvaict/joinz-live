@@ -1,0 +1,104 @@
+.navigation {
+    background: $primary-color;
+
+    .navigation-inner {
+        position: relative;
+
+        & > ul {
+            a {
+                padding: 0.7rem 0.75rem 0.7rem 1.5rem;
+                color: $white;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+
+    .button-categories {
+        &:hover {
+            & + .menu-categories {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+
+        .button {
+            padding: 0.8rem;
+            margin: 6px 0;
+
+            .icon-caret-down-white {
+                margin-left: 1.55rem;
+            }
+
+            .icon-close-menu-white {
+                margin-right: 10px;
+            }
+        }
+    }
+
+    .menu {
+        padding: 6px 0;
+    }
+}
+
+// Responsive
+
+// Foundation menu height fix
+.is-drilldown{
+  height: calc(100vh - 51px)!important;
+  min-height:0!important;
+}
+
+@include breakpoint(large down) {
+    .navigation {
+        padding: 0 10px;
+
+        .navigation-inner {
+            & > ul {
+                a {
+                    padding: 7px;
+                }
+            }
+        }
+
+        .button-categories {
+            .button {
+                .icon-caret-down-white {
+                    margin-left: 5px;
+                }
+            }
+        }
+    }
+}
+
+@include breakpoint(small down) {
+    .navigation {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 16px 15px;
+        background: transparent;
+
+        .navigation-inner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 30;
+
+            .button-categories {
+                width: 100%;
+
+                .button {
+                    min-width: 100%;
+                    margin: 0;
+                    background: $primary-color;
+                    border-radius: 0;
+                }
+            }
+        }
+    }
+}

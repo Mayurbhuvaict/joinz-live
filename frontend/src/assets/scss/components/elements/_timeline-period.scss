@@ -1,0 +1,63 @@
+.timeline-period {
+    font-size: rem-calc(14);
+
+    & > p {
+        font-size: rem-calc(16);
+        font-weight: 300;
+        line-height: 1.1;
+    }
+
+    .timeline-block {
+        margin-bottom: 20px;
+        padding: 6px;
+        border-radius: $global-radius;
+        background: $primary-color;
+        color: $white;
+        font-weight: 500;
+        text-align: center;
+        text-transform: uppercase;
+
+        &.background-first {
+            background: linear-gradient(to right, #06688F, #1982AE);
+        }
+    
+        &.background-second {
+            background: linear-gradient(to right, #1982AE, #1790A2);
+        }
+    
+        &.background-third {
+            background: linear-gradient(to right, #1790A2, #1E9DAE);
+        }
+
+        &.background-fourth {
+            background: linear-gradient(to right, #1E9DAE, #20BAB9);
+        }
+
+        &.background-fifth {
+            background: linear-gradient(to right, #20BAB9, #68C5B9);
+        }
+
+        &.background-sixth {
+            background: linear-gradient(to right, #68C5B9, #79E7CC);
+        }
+
+        p {
+            margin: 0;
+        }
+
+        span {
+            font-size: rem-calc(12);
+        }
+    }
+}
+
+// Responsive
+@include breakpoint(small down) {
+    .timeline-period {
+        margin-bottom: 27px;
+        
+        .timeline-block {
+            padding: 4px 2px;
+        }
+    }
+}

@@ -1,0 +1,71 @@
+<section class="section-account">
+    <div class="grid-container">
+        <h3>{{title}}</h3>
+
+        {{#ifpage 'overview'}}
+            <div class="grid-x grid-margin-x">
+                {{#each overview-items}}
+                    <div class="account-item cell medium-6 flex-container flex-dir-column align-justify align-top">
+                        <h5>{{title}}</h5>
+
+                        <p>{{{text}}}</p>
+
+                        <a href="#" class="button button-gray">{{button-text}}</a>
+                    </div>
+                {{/each}}
+            </div>
+        {{/ifpage}}
+
+        {{#ifpage 'orders'}}
+            {{#each orders-list}}
+                <div class="order">
+                    <div class="div flex-container align-justify align-middle">
+                        <div class="order-date">{{order-date}}</div>
+                        <a href="#" class="button button-white small">Repeat Order</a>
+                    </div>
+                    <div class="order-number"><b>Order number:</b> {{order-number}}</div>
+
+                    <div class="order-table">
+                        <div class="order-table-header">
+                            <div class="grid-x grid-margin-x">
+                                <div class="cell medium-3">
+                                    <p>Shipping status</p>
+                                </div>
+                                <div class="cell medium-3">
+                                    <p>Payment status</p>
+                                </div>
+                                <div class="cell medium-3">
+                                    <p>Payment method</p>
+                                </div>
+                                <div class="cell medium-3">
+                                    <p>Shipping method</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="order-table-body">
+                            <div class="grid-x grid-margin-x">
+                                <div class="cell medium-3">
+                                    <p>{{shipping-status}}</p>
+                                </div>
+                                <div class="cell medium-3">
+                                    <p>{{payment-status}}</p>
+                                </div>
+                                <div class="cell medium-3">
+                                    <p>{{payment-method}}</p>
+                                </div>
+                                <div class="cell medium-3">
+                                    <p>{{shipping-method}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex-container align-right align-middle">
+                        <a href="#" class="button button-gray">View</a>
+                    </div>
+                </div>
+            {{/each}}
+        {{/ifpage}}
+    </div>
+</section>

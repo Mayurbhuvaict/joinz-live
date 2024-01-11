@@ -1,0 +1,15 @@
+<section class="section-categories">
+    <div class="grid-container">
+        <div class="section-head">
+            <h4>{{title}}</h4>
+        </div>
+        
+        <ul class="menu flex-container align-justify js-categories-slider">
+            {{#each content}}
+            <li>
+                {{> category}}
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+</section>

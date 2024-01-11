@@ -1,0 +1,11 @@
+.logo {
+    a {
+        display: inline-block;
+    }
+}
+
+@include breakpoint(small down) {
+    .logo {
+        max-width: 69px;
+    }
+}

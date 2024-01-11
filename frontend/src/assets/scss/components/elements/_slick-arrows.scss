@@ -1,0 +1,34 @@
+.slick-arrow {
+    position: absolute;
+    top: calc(50% - 50px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid $warning-color;
+    background: $white;
+    z-index: 5;
+    cursor: pointer;
+}
+
+.slick-next {
+    right: -10px;
+}
+
+@include breakpoint(small down) {
+    .slick-arrow {
+        top: -55px  ;
+        transform: scale(0.65);
+    }
+
+    .slick-prev {
+        right: 32px;
+        background: $warning-color;
+    }
+
+    .slick-next {
+        right: 0;
+    }
+}

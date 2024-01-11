@@ -1,0 +1,261 @@
+.banner {
+    position: relative;
+    background: linear-gradient(to right, #3ABEBB, #79E7CC);
+    color: $white;
+}
+
+.banner-primary {
+    //padding: 43px 0;
+    font-size: rem-calc(16);
+
+    .banner-inner {
+        position: relative;
+        z-index: 10;
+    }
+
+    h1 {
+        font-weight: 400;
+        color: $white;
+    }
+
+    h2 {
+        font-weight: 400;
+        color: $white;
+        font-size: 4rem;
+    }
+
+    p {
+        letter-spacing: 0.02rem;
+        margin-bottom: 25px;
+    }
+
+    .content {
+        position: relative;
+        width: 50%;
+        //max-width: 500px;
+    }
+
+    .button {
+        padding: 14px 32px;
+        text-transform: none;
+    }
+
+    .background {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 65vw;
+        height: calc((65vw/100) * 14.5);
+        background-image: url(../img/svg/bg-banner-primary.svg);
+        background-size: cover;
+    }
+}
+
+.banner-secondary {
+    padding: 60px 0;
+    text-transform: uppercase;
+    text-align: center;
+    overflow: hidden;
+
+    .background {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 50vw;
+        height: ((50vw / 100) * 9.8);
+        background-image: url(../img/svg/bg-banner-secondary.svg);
+        background-size: cover;
+    }
+
+    .content {
+        position: relative;
+        max-width: 770px;
+        margin: 0 auto;
+        padding-bottom: 72px;
+
+        & > img {
+            position: absolute;
+            bottom: 5px;
+            left: 100%;
+            width: 50px;
+            height: 50px;
+        }
+
+        h3 {
+            color: $white;
+            line-height: 1.2;
+        }
+
+        p {
+            color: $primary-color;
+            font-weight: 500;
+            font-size: rem-calc(24);
+
+            img {
+                margin-left: 5px;
+            }
+        }
+    }
+}
+
+.banner-category {
+    min-height: 220px;
+    padding: 53px 0 42px;
+    font-weight: 500;
+    text-align: center;
+
+    h4 {
+        color: $white;
+    }
+
+    h1 {
+        color: $white;
+        font-size: 2.28571rem;
+    }
+
+    a {
+        color: $white;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    ul {
+        margin-bottom: 10px;
+
+        a {
+            padding: 0.7rem 0.5rem;
+
+            .icon-pointer-next-white {
+                margin-left: 10px;
+            }
+        }
+    }
+
+    .background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 154px;
+        height: 100%;
+        background-image: url(../img/svg/bg-banner-category.svg);
+        background-size: cover;
+    }
+
+    .content {
+        position: relative;
+        z-index: 10;
+        padding: 0 10px;
+    }
+}
+
+.banner-small {
+    position: relative;
+    width: 100%;
+    height: 224px;
+
+    .background {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url(../img/svg/bg-banner-small.svg);
+        background-size: cover;
+    }
+
+    h1 {
+        position: relative;
+        z-index: 2;
+        padding: 73px 0;
+        color: $white;
+        text-align: center;
+        opacity: 0.8;
+    }
+
+    p {
+        position: relative;
+        top: 20px;
+        margin: 0;
+        z-index: 1;
+
+        a {
+            color: #fff;
+        }
+    }
+}
+
+
+// Responsive
+@include breakpoint(xlarge down) {
+    .banner {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+@include breakpoint(large down) {
+    .banner-primary {
+        padding: 20px;
+    }
+}
+
+@include breakpoint(medium down) {
+    .banner-primary {
+        padding: 20px;
+
+        .content {
+            max-width: 385px;
+            width: 100%;
+        }
+    }
+}
+
+@include breakpoint(small down) {
+    .banner-primary {
+        padding-bottom: 26px;
+        font-size: rem-calc(14);
+        text-align: center;
+
+        h1 {
+            margin-bottom: 4px;
+        }
+
+        h2 {
+            font-size: 2.4rem;
+        }
+
+        p {
+            line-height: 1.2;
+            letter-spacing: unset;
+        }
+
+        .button {
+            padding: 12px;
+        }
+
+        .banner-inner {
+            flex-direction: column-reverse;
+        }
+
+        .image {
+            /*max-width: 195px;*/
+        }
+    }
+
+    .banner-category {
+        min-height: 200px;
+        padding: 20px 0;
+    }
+
+    .banner-secondary {
+        .content {
+            padding-bottom: 43px;
+        }
+
+        .background {
+            display: none;
+        }
+    }
+}

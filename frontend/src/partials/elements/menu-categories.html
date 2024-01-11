@@ -1,0 +1,40 @@
+<div class="menu-categories">
+    <div class="menu-wrapper">
+        <ul class="menu-left-list vertical menu" data-responsive-menu="drilldown medium-dropdown" data-autoclose="false" data-close-on-click="false" data-close-on-click-inside="false" >
+            {{#each menu-categories}}
+                <li class="menu-item">
+                    <a href="{{category-href}}" class="menu-link">
+                        {{category-name}}
+                    </a>
+
+                    {{#if sections}}
+                        <ul class="menu nested menu-right-list">
+                            <li>
+                                {{#each sections}}
+                                    <div>
+                                        <a href="#" class="title">{{section}}</a>
+                                 
+                                        <ul>
+                                            {{#each nested-items}}
+                                                <li>
+                                                    <a href="{{href}}">
+                                                        {{item}}
+                                                    </a>
+                                                </li>
+                                            {{/each}}
+                                        </ul>
+                                    </div>
+                                {{/each}}
+
+                                <a href="#" class="link-read-more">
+                                    View all Products
+                                    <i class="icon-arrow-right-orange"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    {{/if}}
+                </li>
+            {{/each}}
+        </ul>
+    </div>
+</div>

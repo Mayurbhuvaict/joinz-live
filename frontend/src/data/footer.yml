@@ -1,0 +1,45 @@
+nav:
+  - text: Submit your logo
+    href: 
+  - text: News
+    href: 
+  - text: Order process
+    href: 
+  - text: FAQ
+    href: 
+  - text: Terms & Conditions
+    href: 
+
+categories:
+  - text: Category name
+    href:  
+  - text: Category name
+    href: 
+  - text: Category name
+    href: 
+  - text: Category name
+    href: 
+  - text: Category name
+    href: 
+  - text: Category name
+    href: 
+  - text: Category name
+    href: 
+
+
+social:
+  - icon: icon-facebook
+    href:
+  - icon: icon-youtube
+    href:
+  - icon: icon-linkedin
+    href:    
+  - icon: icon-instagram
+    href:
+
+
+payment:
+  - image: logo-ideal.svg
+  - image: logo-mastercard.svg
+  - image: logo-visa.svg
+  - image: logo-paypal.svg

@@ -1,0 +1,36 @@
+<div class="product-card flex-container flex-dir-column">
+    <span class="product-label {{label-color}}">{{label}}</span>
+
+    <div class="product-image flex-container align-center">
+        <img src="../assets/img/{{image}}" alt="{{image-description}}">
+    </div>
+
+    <div class="product-content flex-child-grow flex-container flex-dir-column align-justify">
+        <div>
+            <h5>{{name}}</h5>
+
+            <ul>
+                {{#each traits}}
+                    <li>
+                        <i class="icon-circle"></i>
+                        <span>{{this}}</span>
+                    </li>
+                {{/each}}
+            </ul>
+
+            <p>{{count}} pieces voor <span>${{price}}</span> per piece</p>
+
+            {{#if available-colors}}
+                <ul class="available-colors flex-container">
+                    {{#each available-colors}}
+                        <li>
+                            <a href="#" class="{{color}}"></a>
+                        </li>
+                    {{/each}}
+                </ul>
+            {{/if}}
+        </div>
+
+        <button class="button button-white small">{{button-text}}</button>
+    </div>
+</div>

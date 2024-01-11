@@ -1,0 +1,82 @@
+.product-categories {
+    padding: 20px 23px;
+    border: 1px solid #DEE9EE;
+    border-radius: 10px;
+    box-shadow: 2px 2px 20px rgba(11, 50, 71, 0.12);
+
+    .accordion-small {
+        margin-top: 0;
+
+        .spanh5 {
+            margin-bottom: 1rem;
+            line-height: 1.4;
+            margin-top: 0;
+            font-family: Ubuntu, Arial, sans-serif;
+            font-style: normal;
+            font-weight: 500;
+            color: #424242;
+            text-rendering: optimizeLegibility;
+            @media print, screen and (min-width: 40em)
+            {
+                font-size: 1.28571rem;
+            }
+            @media print, screen and (min-width: 64em)
+             {
+            font-size: 1.42857rem;
+            }
+        }
+
+        .accordion-section {
+            margin-top: 9px;
+
+            &.active {
+                .accordion-head {
+                    .icon-pointer-next {
+                        transform: rotate(-90deg);
+                    }
+                }
+            }
+
+            .accordion-head {
+                padding: 3px 0;
+                background: transparent;
+                border-bottom: 1px solid #F2F2F2;
+
+                .icon-pointer-next {
+                    transform: rotate(90deg);
+                    transition: 0.2s ease-in-out;
+                }
+            }
+
+            .accordion-body {
+                display: none;
+                padding: 1rem 0 0;
+
+                ul {
+                    margin: 0 0 0 0.5rem;
+                    list-style: none;
+                    font-weight: 500;
+
+                    a {
+                        display: block;
+                        padding-bottom: 0.5rem;
+                    }
+
+                    ul {
+                        a {
+                            color: $dark-gray;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Responsive
+@include breakpoint(medium down) {
+    .product-categories {
+        max-width: 500px;
+        margin: 0 auto 30px;
+    }
+}

@@ -1,0 +1,74 @@
+<section class="section-product">
+    <div class="grid-container">
+        <div class="section-head">
+            <h4>Product name here</h4>
+
+            <ul class="menu align-center">
+                <li>
+                    <a href="#">
+                        Home
+                        <i class="icon-pointer-next"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        Pages
+                        <i class="icon-pointer-next"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        Product name here
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="section-body">
+            <div class="product flex-container align-justify">
+                <div class="product-image">
+                    <div class="product-image-box">
+                        <img src="../../assets/img/vintage-typewriter-large.png" alt="Vintage typewriter">
+                    </div>
+
+                    <ul class="product-image-list flex-container align-justify">
+                        {{#repeat 4}}
+                        <li>
+                            <a href="#">
+                                <img src="../../assets/img/vintage-typewriter-small.png" alt="Vintage typewriter">
+                            </a>
+                        </li>
+                        {{/repeat}}
+                    </ul>
+
+                    <ul class="product-details grid-x grid-margin-x">
+                        <li class="cell xlarge-6 large-12">
+                            <i class="icon-circle"></i>
+                            Minimal Order Quantity: 50
+                        </li>
+
+                        <li class="cell xlarge-6 large-12">
+                            <i class="icon-circle"></i>
+                            Delivery time: ong. 10 werkdagen
+                        </li>
+
+                        <li class="cell xlarge-6 large-12">
+                            <i class="icon-circle"></i>
+                            From <b>€3,40 p/s</b>
+
+                        </li>
+
+                        <li class="cell xlarge-6 large-12">
+                            <i class="icon-circle"></i>
+                            Stock: <b>456 stuks</b>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="product-content">
+                    {{> accordion}}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

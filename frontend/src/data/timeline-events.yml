@@ -1,0 +1,24 @@
+- name: Crystal Impressions
+  year: 2001
+  description: Joinz verkoopt 3D lasergravures in glas aan bedrijven en retailers
+  background-order: first
+- name: Nieuwe Markt
+  year: 2009
+  description: Joinz gaat banden aan met een fabriek in 3D modellen. En start de productie van 3D relatiegeschenken
+  background-order: second
+- name: Groei
+  year: 2013
+  description: De omzet verdubbelt en de ambitie ook. Samenwerkingen met fabrieken in Polen en China
+  background-order: third
+- name: verhuizing
+  year: 2017
+  description: Joinz verhuist naar een gloednieuw pand in Nijkerk. Nieuw mogelijkheden voor groei!
+  background-order: fourth
+- name: Productaanbod
+  year: 2022
+  description: Ons aanbod blijft groeien ondanks de lockdown
+  background-order: fifth
+- name: Toekomst
+  year: 2024
+  description: Binnen 2 jaar de omzet en aantal werknemers verdubbelen
+  background-order: sixth

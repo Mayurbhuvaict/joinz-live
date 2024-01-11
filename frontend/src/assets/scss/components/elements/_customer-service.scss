@@ -1,0 +1,114 @@
+.customer-service {
+    position: relative;
+    padding: 42px 26px;
+    color: $white;
+    font-size: rem-calc(16);
+    background: linear-gradient(to left, #06688F, #0C87A9);
+    border-radius: $global-radius;
+
+    b {
+        font-size: rem-calc(24);
+        line-height: 0.3;
+    }
+
+    div {
+        position: relative;
+        z-index: 10;
+    }
+
+    .contact {
+        border-radius: $global-radius;
+
+        a,
+        span {
+            display: block;
+            font-weight: 500;
+        }
+
+        a {
+            color: $white;
+            font-size: rem-calc(24);
+        }
+
+        span {
+            display: block;
+            color: $white;
+            font-weight: 500;
+        }
+
+        div {
+            margin-left: 10px;
+            margin-right: 20px;
+        }
+    }
+
+    p {
+        text-align: center;
+    }
+
+    .background {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 173px;
+        height: 200px;
+        background-image: url(../img/svg/customer-service-bg.svg);
+        background-size: cover;
+    }
+}
+
+// Responsive
+@include breakpoint(large down) {
+    .customer-service {
+        .contact {
+            a {
+                font-size: rem-calc(20);
+            }
+        }
+    }
+}
+
+
+@include breakpoint(medium down) {
+    .customer-service {
+        width: 100%;
+
+        .contact {
+            margin: 19px 0 14px;
+        }
+    }
+}
+
+@include breakpoint(small down) {
+    .customer-service {
+        padding: 16px;
+
+        img {
+            width: 120px;
+            height: 120px;
+        }
+
+        p {
+            margin: 15px 0 0;
+            font-size: 1rem;
+            line-height: 1.3;
+        }
+
+        .contact {
+            align-items: center;
+            flex-direction: column;
+            width: auto;
+            margin: 30px 0 0;
+            padding: 8px 23px;
+
+            div {
+                margin: 7px 0 0 0;
+                text-align: center;
+            }
+
+            span {
+                font-size: rem-calc(14);
+            }
+        }
+    }
+}

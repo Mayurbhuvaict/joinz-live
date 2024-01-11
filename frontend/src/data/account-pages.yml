@@ -1,0 +1,31 @@
+overview:
+  title: Overview
+  overview-items: 
+    - title: Your Profile
+      text: Hristo Stoichkov <br> hristostoichkov@CSKASofia.bg
+      button-text: Edit Profile
+    - title: Your orders
+      text: 
+      button-text: View orders
+    - title: Default Billing Address
+      text: Hristo Stoichkov <br> hristostoichkov@CSKASofia.bg <br> Hristo <br> 3817EB
+      button-text: Change billing address
+    - title: Default Shipping Address
+      text: Hristo Stoichkov <br> hristostoichkov@CSKASofia.bg <br> Hristo <br> 3817EB
+      button-text: Change Shipping address
+
+orders:
+  title: Orders
+  orders-list:
+    - order-date: 12-04-2022
+      order-number: 10000
+      shipping-status: Open
+      payment-status: Open
+      payment-method: Cash on delivery
+      shipping-method: Standard
+    - order-date: 13-04-2022
+      order-number: 10001
+      shipping-status: Open
+      payment-status: Open
+      payment-method: Credit card
+      shipping-method: Standard

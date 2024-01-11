@@ -1,0 +1,73 @@
+- category-name: Category
+  sub-categories: 
+  - name: Sub Category
+    href: '#'
+    list:
+    - name: Sub Category
+      href: '#'
+    - name: Sub Category 
+      href: '#'
+- category-name: Category
+  sub-categories: 
+  - name: Sub Category
+    href: '#'
+    list:
+    - name: Sub Category
+      href: '#'
+    - name: Sub Category 2
+      href: '#'
+  - name: Sub Category
+    href: '#'
+    list:
+    - name: Sub Category
+      href: '#'
+    - name: Sub Category 2
+      href: '#'
+- category-name: Category
+  sub-categories: 
+  - name: Sub Category
+    href: '#'
+    list:
+    - name: Sub Category
+      href: '#'
+    - name: Sub Category 2
+      href: '#'
+  - name: Sub Category
+    href: '#'
+    list:
+    - name: Sub Category
+      href: '#'
+    - name: Sub Category 2
+      href: '#'
+- category-name: Category
+  sub-categories: 
+  - name: Sub Category
+    href: '#'
+    list:
+    - name: Sub Category
+      href: '#'
+    - name: Sub Category 2
+      href: '#'
+  - name: Sub Category
+    href: '#'
+    list:
+    - name: Sub Category
+      href: '#'
+    - name: Sub Category 2
+      href: '#'
+- category-name: Category
+  sub-categories: 
+  - name: Sub Category
+    href: '#'
+    list:
+    - name: Sub Category
+      href: '#'
+    - name: Sub Category 2
+      href: '#'
+  - name: Sub Category
+    href: '#'
+    list:
+    - name: Sub Category
+      href: '#'
+    - name: Sub Category 2
+      href: '#'

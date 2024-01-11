@@ -1,0 +1,165 @@
+<form action="" class="form-cart">
+    <fieldset>
+        <h4>1. offerte of bestellen</h4>
+
+        <div class="grid-x grid-margin-x">
+            <div class="cell xlarge-4 large-6 medium-4">
+                <div class="field-group">
+                    <input class="form-radio" type="radio" name="offering" value="Offerte aanvragen" id="offer" checked required>
+
+                    <label for="offer">
+                        <i class="icon-list-gray"></i>
+                        <span>Offerte aanvragen</span>
+                    </label>
+                </div>
+            </div>
+            <div class="cell xlarge-4 large-6 medium-4">
+                <div class="field-group">
+                    <input class="form-radio" type="radio" name="offering" value="Direct bestellen" id="order-now">
+
+                    <label for="order-now">
+                        <i class="icon-bag-gray-lg"></i>
+                        <span>Direct bestellen</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset class="label-top">
+        <p class="label label-note label-pointer top-right">Je mag je logo ook laten later terugmailen</p>
+
+        <h4 class="flex-container align-middle align-justify">
+            2. Jouw logo en tekst
+            <span>optioneel</span>
+        </h4>
+
+        <div class="grid-x grid-margin-x">
+            <div class="cell medium-6 small-12">
+                <div class="field-group">
+                    <div class="fileupload">
+                        <input type="file" name="fileupload" id="fileupload" value="fileupload" id="fileupload" accept="image/*">
+                        <label for="fileupload" class="flex-container flex-dir-column align-middle align-center">
+                            <span class="flex-container align-middle align-center">
+                                <i class="icon-file"></i>
+                                Kies bestanden
+                            </span>
+
+                            of Sleep en pLAATS JE BESTANDEN HIER (MAX 100mb)
+                        </label>
+                        <p class="text-center">PDF/SVG/EPS/AI/PNG/JPG</p>
+                    </div>
+                </div>
+            </div>
+            <div class="cell medium-6 small-12">
+                <div class="field-group">
+                    <label for="textfiled">Tekst/opmerking</label>
+                    <textarea class="textarea" id="textfield" name="textfield" rows="7" cols="50">optioneel: af te drukken tekst of opmerking over het ontwerp/de bestelling</textarea>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <h4>3. Mijn GEGEVENS</h4>
+
+        <div class="grid-x">
+            <div class="cell medium-12">
+                <div class="field-group">
+                    <label class="form-label" for="company">Company</label>
+                    <input class="form-control" type="text" id="company" name="company" placeholder="Bedrijfsnaam" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid-x grid-margin-x">
+            <div class="cell medium-6">
+                <div class="field-group">
+                    <label class="form-label visible" for="first-name">Voornaam</label>
+                    <input class="form-control" type="text" id="first-name" name="first-name" required>
+                </div>
+            </div>
+            <div class="cell medium-6">
+                <div class="field-group">
+                    <label class="form-label visible" for="last-name">Achternaam</label>
+                    <input class="form-control" type="text" id="last-name" name="last-name" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid-x">
+            <div class="cell medium-12">
+                <div class="field-group">
+                    <label class="form-label" for="email">Email</label>
+                    <input class="form-control" type="email" id="email" name="email" placeholder="Emailadres" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid-x">
+            <div class="cell medium-12">
+                <div class="field-group">
+                    <label class="form-label" for="phone">Number</label>
+                    <input class="form-control" type="tel" id="phone" name="phone" placeholder="Telefoonnummer" required>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <h4>4. Mijn adres</h4>
+
+        <div class="grid-x grid-margin-x">
+            <div class="cell medium-6">
+                <div class="field-group">
+                    <label class="form-label" for="street">Straat</label>
+                    <input class="form-control" type="text" id="street" name="street" placeholder="Straat" required>
+                </div>
+            </div>
+            <div class="cell medium-6">
+                <div class="field-group">
+                    <label class="form-label" for="house-number">Huisnummer</label>
+                    <input class="form-control" type="text" id="house-number" name="house-number" placeholder="Huisnummer" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid-x grid-margin-x">
+            <div class="cell medium-6">
+                <div class="field-group">
+                    <label class="form-label" for="postcode">Postcode</label>
+                    <input class="form-control" type="text" id="postcode" name="postcode" placeholder="Postcode" required>
+                </div>
+            </div>
+            <div class="cell medium-6">
+                <div class="field-group">
+                    <label class="form-label" for="place">Plaats</label>
+                    <input class="form-control" type="text" id="place" name="place" placeholder="Plaats" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid-x">
+            <div class="cell medium-12">
+                <div class="field-group">
+                    <label class="form-label" for="country">Country</label>
+                    <input class="form-control" type="text" id="country" name="country" placeholder="Country" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid-x">
+            <div class="cell medium-12">
+                <div class="field-group">
+                    <input class="form-checkbox" type="checkbox" id="delivery" name="delivery" required>
+                    <label for="delivery">Different delivery address</label>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset class="label-bottom">
+        <a href="#" class="button expanded uppercase">ONTVANG OFFERTE OP MAAT</a>
+        <p class="label label-note bottom-right">Je mag je logo ook laten later terugmailen</p>
+    </fieldset>
+</form>

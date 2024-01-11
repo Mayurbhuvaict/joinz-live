@@ -1,0 +1,12 @@
+- text: 1) Kies Product
+  image: order-step-1.svg
+- text: 2) Upload Logo
+  image: order-step-2.svg
+- text: 3) Betaal nu of later
+  image: order-step-3.svg
+- text: 4) Ontvang Ontwerp
+  image: order-step-4.svg
+- text: 5) Ga akkoord
+  image: order-step-5.svg
+- text: 6) Productie en verzending
+  image: order-step-6.svg

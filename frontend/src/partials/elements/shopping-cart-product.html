@@ -1,0 +1,42 @@
+<div class="shopping-cart-product">
+    <div class="grid-x">
+        <div class="cell medium-6">
+            <div class="flex-container align-justify">
+                <a href="#" class="remove-button"></a>
+                
+                <div class="shopping-cart-image">
+                    <img src="../../assets/img/{{image}}" alt="{{image-description}}">
+                </div>
+                
+                <div class="shopping-cart-description">
+                    <p>
+                        {{#each description-lines}}
+                            <span>{{this}}</span>
+                        {{/each}}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="cell medium-2">
+            <div class="flex-container align-justify align-middle">
+                <span class="show-for-small-only">Quantity</span>
+                <input type="number" value="{{quantity}}">
+            </div>
+        </div>
+        <div class="cell medium-2">
+            <div class="flex-container align-justify align-middle">
+                <span class="show-for-small-only">Price per piece</span>
+                <span>€{{price}} P/S</span>
+            </div>
+        </div>
+        <div class="cell medium-2">
+            <div class="flex-container align-justify align-middle">
+                <span class="show-for-small-only">Total (Ex Vat)</span>
+                <div>
+                    <span>€{{total}}</span>
+                    <a href="#" class="edit-button hide-for-small-only">edit</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

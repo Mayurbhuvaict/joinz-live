@@ -1,0 +1,50 @@
+.callout {
+    display: flex;
+    padding: 0;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+
+    h6 {
+        color: inherit;
+    }
+
+    span {
+        width: 40px;
+        background: #689EC5;
+    }
+
+    p {
+        margin-bottom: 0;
+    }
+
+    .callout-inner {
+        padding: 12px 25px;
+    }
+}
+
+.callout-success {
+    background: #D7EDD9;
+    color: #68C571;
+
+    span {
+        background: #68C571;
+    }
+}
+
+.callout-failed {
+    background: #FCE8C9;
+    color: #E18800;
+
+    span {
+        background: #F29200;
+    }
+}
+
+.callout-warning {
+    background: #C568683D;
+    color: #C56868;
+
+    span {
+        background: #C56868;
+    }
+}

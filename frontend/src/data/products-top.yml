@@ -1,0 +1,85 @@
+title: Top Products
+products-list:
+  - name: Vintage Typewriter
+    label: Our choice
+    label-color: warning-color
+    image: vintage-typewriter.png
+    image-description: Vintage Typewriter
+    button-text: Bereken Jouw Prijs
+    count: 50
+    price: 9.95
+    traits:
+      - Delivered on the 10 feb
+      
+  - name: Vintage Typewriter
+    image: vintage-typewriter.png
+    image-description: Vintage Typewriter
+    button-text: Bereken Jouw Prijs
+    count: 50
+    price: 9.95
+    traits:
+      - Delivered on the 10 feb
+      - MOQ 300
+  - name: Vintage Typewriter
+    label: 20% Sale
+    label-color: secondary-color
+    image: vintage-typewriter.png
+    image-description: Vintage Typewriter
+    button-text: Bereken Jouw Prijs
+    count: 50
+    price: 9.95
+    traits:
+      - Delivered on the 10 feb
+      - MOQ 300
+  - name: Vintage Typewriter
+    image: vintage-typewriter.png
+    image-description: Vintage Typewriter
+    button-text: Bereken Jouw Prijs
+    count: 50
+    price: 9.95
+    traits:
+      - Delivered on the 10 feb
+      - MOQ 300
+  - name: Vintage Typewriter
+    label: Our choice
+    label-color: warning-color
+    image: vintage-typewriter.png
+    image-description: Vintage Typewriter
+    button-text: Bereken Jouw Prijs
+    count: 50
+    price: 9.95
+    traits:
+      - Delivered on the 10 feb
+      - MOQ 300
+  - name: Vintage Typewriter
+    image: vintage-typewriter.png
+    image-description: Vintage Typewriter
+    button-text: Bereken Jouw Prijs
+    count: 50
+    price: 9.95
+    traits:
+      - Delivered on the 10 feb
+      - MOQ 300
+  - name: Vintage Typewriter
+    label: 20% Sale
+    label-color: secondary-color
+    image: vintage-typewriter.png
+    image-description: Vintage Typewriter
+    button-text: Bereken Jouw Prijs
+    count: 50
+    price: 9.95
+    traits:
+      - Delivered on the 10 feb
+      - MOQ 300
+  - name: Vintage Typewriter
+    image: vintage-typewriter.png
+    image-description: Vintage Typewriter
+    button-text: Bereken Jouw Prijs
+    count: 50
+    price: 9.95
+    traits:
+      - Delivered on the 10 feb
+      - MOQ 300
+
+    
+    

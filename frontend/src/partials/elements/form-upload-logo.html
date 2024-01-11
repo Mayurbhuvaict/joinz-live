@@ -1,0 +1,64 @@
+<form action="" class="form">
+    <span class="product-label primary-color medium-weight small">Gratis Ontwerp binnen 4 uur</span>
+    <fieldset>
+        <h4>Lever bestanden of informatie aan voor het ontwerp </h4>
+
+        <div class="grid-x grid-margin-x">
+            <div class="cell medium-6">
+                <div class="field-group">
+                    <label class="form-label visible" for="first-name">Voornaam</label>
+                    <input class="form-control" type="text" id="first-name" name="first-name" required>
+                </div>
+            </div>
+            <div class="cell medium-6">
+                <div class="field-group">
+                    <label class="form-label visible" for="last-name">Achternaam</label>
+                    <input class="form-control" type="text" id="last-name" name="last-name" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid-x">
+            <div class="cell medium-12">
+                <div class="field-group">
+                    <label class="form-label" for="email">Email</label>
+                    <input class="form-control" type="email" id="email" name="email" placeholder="Emailadres"
+                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid-x grid-margin-x">
+            <div class="cell">
+                <div class="field-group">
+                    <div class="fileupload">          
+                        <input type="file" name="fileupload" id="fileupload" value="fileupload" id="fileupload" accept="image/*">
+                        <label for="fileupload" class="flex-container flex-dir-column align-middle align-center">
+                            <span class="flex-container align-middle align-center">
+                                <i class="icon-file"></i>
+                                Kies bestanden
+                            </span>
+    
+                            of Sleep en pLAATS JE BESTANDEN HIER (MAX 100mb)
+                        </label>
+                        <p class="text-center">PDF/SVG/EPS/AI/PNG/JPG</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid-x">
+            <div class="cell medium-12">
+                <div class="field-group">
+                    <textarea class="textarea" id="textfield" name="textfield" rows="7" cols="50" placeholder="Af te drukken tekst of opmerking over het ontwerp"></textarea>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <div class="flex-container align-right">
+            <a href="#" class="button x-large bold">Bericht verzenden</a>
+        </div>
+    </fieldset>
+</form>

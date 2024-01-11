@@ -1,0 +1,45 @@
+<form action="" class="form">
+    <span class="product-label warning-color medium-weight small">Snelle reactie gegarandeerd</span>
+    <fieldset>
+        <h4>Neem contact met ons op</h4>
+
+        <div class="grid-x grid-margin-x">
+            <div class="cell medium-6">
+                <div class="field-group">
+                    <label class="form-label visible" for="first-name">Voornaam</label>
+                    <input class="form-control" type="text" id="first-name" name="first-name" required>
+                </div>
+            </div>
+            <div class="cell medium-6">
+                <div class="field-group">
+                    <label class="form-label visible" for="last-name">Achternaam</label>
+                    <input class="form-control" type="text" id="last-name" name="last-name" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid-x">
+            <div class="cell medium-12">
+                <div class="field-group">
+                    <label class="form-label" for="email">Email</label>
+                    <input class="form-control" type="email" id="email" name="email" placeholder="Emailadres"
+                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid-x">
+            <div class="cell medium-12">
+                <div class="field-group">
+                    <textarea class="textarea" id="textfield" name="textfield" rows="7" cols="50" placeholder="Your message"></textarea>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <div class="flex-container align-right">
+            <a href="#" class="button x-large bold">Bericht verzenden</a>
+        </div>
+    </fieldset>
+</form>

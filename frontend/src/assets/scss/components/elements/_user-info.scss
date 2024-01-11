@@ -1,0 +1,17 @@
+.user-info {
+    a {
+        color: $black;
+    }
+
+    span {
+        font-size: rem-calc(12);
+        color: #8296A0;
+        font-weight: 500;
+    }
+
+    a,
+    span {
+        display: block;
+        margin-left: 15px;
+    }
+}

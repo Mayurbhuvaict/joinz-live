@@ -1,0 +1,40 @@
+.order-process-list {
+    li {
+        div {
+            width: 170px;
+            height: 170px;
+            margin-bottom: 10px;
+
+            img {
+                width: 100%;
+            }
+        }
+
+        p {
+            color: $primary-color;
+            text-align: center;
+        }
+    }
+}
+
+// Responsive
+@include breakpoint(large down) {
+    .order-process-list {
+        ul {
+            flex-wrap: wrap;
+        }
+
+        li {
+            width: 33%;
+            margin-bottom: 20px;
+        }
+    }
+}
+
+@include breakpoint(small down) {
+    .order-process-list {
+        li {
+            width: 100%;
+        }
+    }
+}

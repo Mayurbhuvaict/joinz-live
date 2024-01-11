@@ -1,0 +1,35 @@
+<div class="product-categories">
+    <div class="accordion-small">
+        <h5>Main Categories</h5>
+        
+        {{#each product-categories}}
+            <div class="accordion-section">
+                <div class="accordion-head">
+                    <span class="flex-container align-justify align-middle">
+                        {{category-name}}
+                        <i class="icon-pointer-next"></i>
+                    </span>
+                </div>
+                <div class="accordion-body">
+                    <ul>
+                        {{#each sub-categories}}
+                            <li>
+                                <a href="{{href}}">{{name}}</a>
+
+                                {{#if list}}
+                                    <ul>
+                                        {{#each list}}
+                                            <li>
+                                                <a href="{{href}}">{{name}}</a>
+                                            </li>
+                                        {{/each}}
+                                    </ul>
+                                {{/if}}
+                            </li>
+                        {{/each}}
+                    </ul>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</div>

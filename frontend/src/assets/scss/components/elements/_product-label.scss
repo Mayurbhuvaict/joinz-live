@@ -1,0 +1,30 @@
+.product-label {
+    padding: 4px 12px;
+    border: 2px;
+    border-radius: 4px;
+    //background: $white;
+    font-weight: 500;
+    z-index: 1;
+
+    &.warning-color {
+        border-color: $warning-color;
+        background-color: $warning-color;
+        color: $white;
+    }
+
+    &.primary-color {
+        border-color: $primary-color;
+        background-color: $primary-color;
+        color: $white;
+    }
+
+    &.secondary-color {
+        border-color: $secondary-color;
+        background-color: $secondary-color;
+        color: $white;
+    }
+
+    &.small {
+        font-size: rem-calc(12);
+    }
+}

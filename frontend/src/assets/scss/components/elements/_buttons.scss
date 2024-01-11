@@ -1,0 +1,67 @@
+.button {
+    min-width: 160px;
+    padding: 17px 40px;
+}
+
+.button.uppercase {
+    text-transform: uppercase;
+}
+
+.button.bold {
+    font-weight: bold;
+}
+
+.button.x-large {
+    min-width: 395px;
+    padding: 14px;
+    font-size: rem-calc(22);
+}
+
+.button.small {
+    padding: 13px;
+}
+
+.button.mini {
+    font-size: rem-calc(12);
+    padding: 10px;
+}
+
+.button-white {
+    color: $warning-color;
+    background: $white;
+    border: 1px solid $warning-color;
+}
+
+.button-gray {
+    padding: 12px;
+    background: $light-gray;
+    color: $dark-gray;
+    font-weight: 500;
+}
+
+.button-gradient {
+    position: relative;
+}
+
+.button-gradient.active,
+.button-gradient:hover {   
+    background: linear-gradient(to right, #1C9DB2, #2BB5B8);
+}
+
+@include breakpoint(small down) {
+    .button {
+        min-width: 100%;
+        padding: 12px 20px;
+        font-size: rem-calc(14);
+    }
+
+    .button.small {
+        padding: 9px;
+    }
+
+    .button.x-large {
+        min-width: 100%;
+        padding: 10px;
+        font-size: rem-calc(18);
+    }
+}

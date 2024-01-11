@@ -1,0 +1,160 @@
+@charset 'utf-8';
+
+@import 'settings';
+@import 'foundation';
+@import 'motion-ui';
+
+// Global styles
+@include foundation-global-styles;
+@include foundation-forms;
+@include foundation-typography;
+
+// Grids (choose one)
+@include foundation-xy-grid-classes;
+// @include foundation-grid;
+// @include foundation-flex-grid;
+
+// Generic components
+@include foundation-button;
+@include foundation-button-group;
+@include foundation-close-button;
+@include foundation-label;
+@include foundation-progress-bar;
+@include foundation-slider;
+@include foundation-range-input;
+@include foundation-switch;
+@include foundation-table;
+// Basic components
+@include foundation-badge;
+@include foundation-breadcrumbs;
+@include foundation-callout;
+@include foundation-card;
+@include foundation-dropdown;
+@include foundation-pagination;
+@include foundation-tooltip;
+
+// Containers
+@include foundation-accordion;
+@include foundation-media-object;
+@include foundation-orbit;
+@include foundation-responsive-embed;
+@include foundation-tabs;
+@include foundation-thumbnail;
+// Menu-based containers
+@include foundation-menu;
+@include foundation-menu-icon;
+@include foundation-accordion-menu;
+@include foundation-drilldown-menu;
+@include foundation-dropdown-menu;
+
+// Layout components
+@include foundation-off-canvas;
+@include foundation-reveal;
+@include foundation-sticky;
+@include foundation-title-bar;
+@include foundation-top-bar;
+
+// Helpers
+@include foundation-float-classes;
+@include foundation-flex-classes;
+@include foundation-visibility-classes;
+// @include foundation-prototype-classes;
+
+// Motion UI
+@include motion-ui-transitions;
+@include motion-ui-animations;
+
+// Libraries
+@import 'slick.scss';
+
+//Components syles
+@import 'components/header';
+@import 'components/navigation';
+@import 'components/banners';
+@import 'components/advantages-bar';
+@import 'components/account-menu';
+@import 'components/menu-small';
+@import 'components/order-process-list';
+@import 'components/sections';
+@import 'components/footer';
+@import 'components/elements/icons';
+@import 'components/elements/links';
+@import 'components/elements/buttons';
+@import 'components/elements/slick-arrows';
+@import 'components/elements/logo';
+@import 'components/elements/product-card';
+@import 'components/elements/products-slider';
+@import 'components/elements/category';
+@import 'components/elements/search-bar';
+@import 'components/elements/form-find-product';
+@import 'components/elements/customer-service';
+@import 'components/elements/discounts';
+@import 'components/elements/about-asset';
+@import 'components/elements/product-description';
+@import 'components/elements/product';
+@import 'components/elements/accordion';
+@import 'components/elements/product-label';
+@import 'components/elements/menu-categories';
+@import 'components/elements/product-categories';
+@import 'components/elements/list-categories';
+@import 'components/elements/loading-bar';
+@import 'components/elements/shopping-cart';
+@import 'components/elements/shopping-cart-product';
+@import 'components/elements/accordion-small';
+@import 'components/elements/checkout-list';
+@import 'components/elements/form-elements';
+@import 'components/elements/account-overview-items';
+@import 'components/elements/order';
+@import 'components/elements/timeline-period';
+@import 'components/elements/user-info';
+@import 'components/elements/company-info';
+@import 'components/elements/callout';
+.cookie-permission-container {
+    display: none;
+    border-top: 1px solid #bcc1c7;
+    background: #fff;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    text-align: center;
+    padding: .5rem;
+    z-index: 1100;
+}
+
+.cookie-permission-content {
+    margin-bottom: .5rem;
+}
+
+.cookie-permission-content a {
+    display: inline-block;
+}
+
+@media (min-width: 768px) {
+    .cookie-permission-content {
+        text-align: left;
+        margin-bottom: 0;
+    }
+}
+
+.img-max-size {
+    object-fit: contain;
+    object-position: center center;
+    width: 240px;
+    height: 240px;
+    max-width: 240px;
+    max-height: 240px;
+}
+
+.d-none {
+    display: none!important;
+}
+
+.search-suggest.js-search-result {
+    border: solid 1px;
+    border-radius: 0px 0px 10px 10px;
+    border-width: 0px 1px 1px 1px;
+    border-color: #e1edf3;
+    margin-top: -4px;
+}
+
