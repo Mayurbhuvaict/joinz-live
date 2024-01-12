@@ -12,3 +12,7 @@
 /var/*
 
 .env
+
+joinz.sql
+
+joinz-prod.sql

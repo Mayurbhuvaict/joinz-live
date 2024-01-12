@@ -1,0 +1,4 @@
+/vendor/
+*.phar
+.phpunit.result.cache
+docker-compose.override.yml

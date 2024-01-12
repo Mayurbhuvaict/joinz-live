@@ -1,0 +1,65 @@
+[33mcommit f7d705efe02056ac78a004ebb259fda258682255[m[33m ([m[1;36mHEAD -> [m[1;32mstaging[m[33m)[m
+Author: Hit Shah <hit@icreativetechnologies.com>
+Date:   Thu Jan 11 14:26:57 2024 +0000
+
+    initial commit
+
+[33mcommit 0db232e328a4cc654a8ce113437403ab9024c0bd[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmaster[m[33m)[m
+Author: Hit Shah <hit@icreativetechnologies.com>
+Date:   Thu Jan 11 13:47:17 2024 +0000
+
+    vendor folder add
+
+[33mcommit f4bab868f0bf5eb918a60ad73855a4dd909f5494[m
+Author: Hit Shah <hit@icreativetechnologies.com>
+Date:   Thu Jan 11 13:46:02 2024 +0000
+
+    files add
+
+[33mcommit ee8ca24712bc96329bea76fc183defb7b74e8dc2[m
+Author: Hit Shah <hit@icreativetechnologies.com>
+Date:   Thu Jan 11 13:41:42 2024 +0000
+
+    files add
+
+[33mcommit d5b6a8b5cbcfe7fc589db0567a65a144cb030c78[m
+Author: Hit Shah <hit@icreativetechnologies.com>
+Date:   Thu Jan 11 13:37:31 2024 +0000
+
+    .gitlab-ci folder add
+
+[33mcommit 1281670692156bfb00abf7a3905955a78b4d5bb6[m
+Author: Hit Shah <hit@icreativetechnologies.com>
+Date:   Thu Jan 11 13:35:49 2024 +0000
+
+    src frontend artifacts folders add
+
+[33mcommit 9e7d1565fadc84301225593de7a611446c9e6da3[m
+Author: Hit Shah <hit@icreativetechnologies.com>
+Date:   Thu Jan 11 13:33:06 2024 +0000
+
+    bin config alpine folders add
+
+[33mcommit c4ffe75963aba29f299d117865fb06a2956ddfff[m
+Author: Hit Shah <hit@icreativetechnologies.com>
+Date:   Thu Jan 11 13:30:35 2024 +0000
+
+    custom folder add
+
+[33mcommit c7fd4ea9c530d41742c94653a02a6908eddd33ee[m
+Author: Hit Shah <hit@icreativetechnologies.com>
+Date:   Thu Jan 11 13:27:09 2024 +0000
+
+    public folder add
+
+[33mcommit c5ed865c9a5c5fa33ffa3fd533fe5aa17fb87507[m
+Author: Hit Shah <hit@icreativetechnologies.com>
+Date:   Thu Jan 11 13:23:41 2024 +0000
+
+    README.md file add
+
+[33mcommit b91e28394ec729d25e93a3c2961439b86b8ce484[m
+Author: Hit Shah <hit@icreativetechnologies.com>
+Date:   Thu Jan 11 18:45:40 2024 +0530
+
+    First test commit
